@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GiLaurelCrown } from "react-icons/gi";
+import { MdHowToVote } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RiVipCrownLine } from "react-icons/ri";
 
@@ -30,12 +30,12 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto  w-[90%] py-4 flex items-center ">
-        <div className="flex items-center text-blue-600 space-x-2">
+        <div className="flex  text-blue-600 space-x-2">
           <div>
-            <GiLaurelCrown size={30} />
+            <MdHowToVote size={30} />
           </div>
 
-          <h4 className="text-4xl font-semibold">The Grand Stage</h4>
+          <h4 className="text-2xl font-semibold">2ruvotes</h4>
         </div>
 
         {/* Links */}
@@ -77,12 +77,10 @@ const Navbar = () => {
           {/* Dashboard header */}
 
           <div className="flex items-center  space-x-2 ">
-            <div className="text-pink-500">
-              <GiLaurelCrown size={20} />
+            <div className="text-blue-600">
+              <MdHowToVote size={20} />
             </div>
-            <h4 className="text-2xl font-bold text-gray-800">
-              The Grand Stage
-            </h4>
+            <h4 className="text-2xl font-bold ">The Grand Stage</h4>
           </div>
 
           <div className=" flex flex-col my-6 gap-4">
