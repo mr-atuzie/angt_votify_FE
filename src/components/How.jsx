@@ -4,7 +4,7 @@ import { PiCrown } from "react-icons/pi";
 const How = () => {
   const rules = [1, 2, 3, 5, 6, 7];
   return (
-    <div className=" py-8 ">
+    <div className=" py-8 h-screen ">
       <div className=" w-[90%] mx-auto">
         <h4 className="  text-4xl text-pink-500 capitalize text-center font-bold">
           how it works

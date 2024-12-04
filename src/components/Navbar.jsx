@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { GiLaurelCrown } from "react-icons/gi";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { RiVipCrownLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
-
-  const colorWaveAnimation = {
-    hidden: { backgroundPosition: "0%" },
-    visible: {
-      backgroundPosition: ["0%", "100%", "0%"],
-      transition: {
-        duration: 5, // How long the animation lasts
-        ease: "easeInOut",
-        repeat: Infinity, // Infinite loop
-      },
-    },
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,35 +29,17 @@ const Navbar = () => {
         scrolled ? "bg-black shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div className="flex items-center space-x-2">
-          {/* Solid crown icon */}
-          <div className="text-pink-500">
+      <div className="container mx-auto  w-[90%] py-4 flex items-center ">
+        <div className="flex items-center text-blue-600 space-x-2">
+          <div>
             <GiLaurelCrown size={30} />
           </div>
 
-          {/* Text with color wave animation */}
-          <motion.h4
-            className="text-4xl font-semibold"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, #ec4899, #f472b6, #db2777, #ec4899)", // Pink gradient
-              backgroundSize: "200% 100%", // Allows smooth color wave transition
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent",
-            }}
-            variants={colorWaveAnimation}
-            initial="hidden"
-            animate="visible"
-          >
-            The Grand Stage
-          </motion.h4>
-        </motion.div>
+          <h4 className="text-4xl font-semibold">The Grand Stage</h4>
+        </div>
 
         {/* Links */}
-        <div className="space-x-8 hidden md:flex">
+        <div className=" gap-5 hidden md:flex">
           <a href="#home" className="text-white hover:text-purple-500">
             Home
           </a>

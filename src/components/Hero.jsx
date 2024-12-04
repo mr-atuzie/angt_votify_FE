@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import bgVid from "../assets/pageantry.mp4";
 import { Link } from "react-router-dom";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Pagination, Autoplay } from "swiper/modules";
-// import "swiper/css";
-// import "swiper/css/pagination";
 
 const Hero = () => {
   const calculateTimeLeft = () => {
@@ -57,18 +52,8 @@ const Hero = () => {
   });
 
   return (
-    <div className="relative h-[80vh] overflow-hidden">
+    <div className=" h-screen bg-black">
       {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src={bgVid} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
 
       {/* Content on top of the video */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
