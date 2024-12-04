@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className=" h-screen bg-black">
+    <div className=" h-screen ">
       <div>
         <h1 className=" text-6xl font-extrabold relative block overflow-hidden">
           MISS UNIVERSE 2024
