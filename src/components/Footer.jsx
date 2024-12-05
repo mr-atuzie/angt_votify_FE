@@ -7,7 +7,7 @@ const Footer = () => {
       <div className=" w-[90%] mx-auto flex justify-between">
         {/* Column 1: Logo Section */}
 
-        <h4 className="text-2xl flex-1 font-semibold">The Grand Stage</h4>
+        <h4 className="text-2xl flex-1 font-semibold">2rueVotes</h4>
 
         {/* Column 2: About Section */}
         <div className=" flex-1">
