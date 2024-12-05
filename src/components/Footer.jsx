@@ -3,7 +3,7 @@ import { RiVipCrownLine } from "react-icons/ri";
 
 const Footer = () => {
   return (
-    <footer className="bg-black h-[65vh]  text-gray-200  flex flex-col  justify-center items-center">
+    <footer className="bg-black pt-24 pb-4 text-gray-200  flex flex-col  justify-center items-center">
       <div className=" w-[90%] mx-auto flex justify-between">
         {/* Column 1: Logo Section */}
 
@@ -159,7 +159,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center w-[90%] mt-8 border-t border-gray-800 pt-4">
-        <p className="text-sm">© 2024 The Grand Stage. All rights reserved.</p>
+        <p className="text-xs">© 2024 The Grand Stage. All rights reserved.</p>
       </div>
     </footer>
   );
