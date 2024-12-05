@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Reviews from "../components/Reviews";
 import Features from "../components/Features";
 import Faq from "../components/Faq";
+import Banner from "../components/Banner";
 
 const Home = () => {
   return (
@@ -16,10 +17,8 @@ const Home = () => {
       <Features />
       <Reviews />
       <Faq />
+      <Banner />
       <Footer />
-      {/* 
-     
-       */}
     </>
   );
 };
