@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { formatter } from "../utils";
 import { BiSolidBadgeCheck } from "react-icons/bi";
 import Faq from "../components/Faq";
+import Banner from "../components/Banner";
 
 const Pricing = () => {
   //   const plans = [
@@ -252,6 +253,7 @@ const Pricing = () => {
         </div>
       </div>
       <Faq />
+      <Banner />
       <Footer />
     </div>
   );

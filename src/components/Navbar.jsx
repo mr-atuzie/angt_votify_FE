@@ -17,13 +17,13 @@ const Navbar = () => {
         <div className=" gap-10  hidden md:flex">
           <Link
             className=" cursor-pointer hover:underline tracking-wide"
-            to={"#"}
+            to={"/"}
           >
             Home
           </Link>
           <Link
             className=" cursor-pointer hover:underline tracking-wide "
-            to={"#"}
+            to={"/pricing"}
           >
             Pricing
           </Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
           </Link>
           <Link
             className=" cursor-pointer hover:underline tracking-wide "
-            to={"#"}
+            to={"/contact"}
           >
             Contact
           </Link>
@@ -53,7 +53,7 @@ const Navbar = () => {
           </Link>
           <Link
             className=" cursor-pointer hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600 bg-blue-600 rounded-full px-6 py-1.5 text-white"
-            to={"/login"}
+            to={"/register"}
           >
             Sign up
           </Link>
