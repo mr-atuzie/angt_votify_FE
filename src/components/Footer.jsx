@@ -1,33 +1,64 @@
 import React from "react";
-import { GiLaurelCrown } from "react-icons/gi";
 import { RiVipCrownLine } from "react-icons/ri";
 
 const Footer = () => {
   return (
-    <footer className="bg-black h-[75vh]  text-gray-200 py-10">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-black h-[65vh]  text-gray-200  flex flex-col  justify-center items-center">
+      <div className=" w-[90%] mx-auto flex justify-between">
         {/* Column 1: Logo Section */}
-        <div className="flex items-center space-x-2">
-          <div className="text-white">
-            <GiLaurelCrown size={20} />
-          </div>
-          <h4 className="text-2xl font-semibold">The Grand Stage</h4>
-        </div>
+
+        <h4 className="text-2xl flex-1 font-semibold">The Grand Stage</h4>
 
         {/* Column 2: About Section */}
-        <div>
-          <h2 className="lg:text-xl font-semibold mb-2 lg:mb-4">About Us</h2>
-          <p className="text-sm">
-            Welcome to The Grand Stage, where talented contestants showcase
-            their skills and compete for exciting cash prizes. Join our
-            community to vote, participate, and support your favorite
-            contestants.
-          </p>
+        <div className=" flex-1">
+          <h2 className="lg:text-xl  mb-2 lg:mb-4">About Us</h2>
+          <ul className=" text-sm">
+            <li className="mb-2 flex items-center gap-2">
+              <span>
+                <RiVipCrownLine />
+              </span>
+              <a href="#home" className="hover:text-purple-500">
+                Home
+              </a>
+            </li>
+            <li className="mb-2 flex items-center gap-2">
+              <span>
+                <RiVipCrownLine />
+              </span>
+              <a href="#contestants" className="hover:text-purple-500">
+                Contestants
+              </a>
+            </li>
+            <li className="mb-2 flex items-center gap-2">
+              <span>
+                <RiVipCrownLine />
+              </span>
+              <a href="#how-it-works" className="hover:text-purple-500">
+                How It Works
+              </a>
+            </li>
+            <li className="mb-2 flex items-center gap-2">
+              <span>
+                <RiVipCrownLine />
+              </span>
+              <a href="#contact" className="hover:text-purple-500">
+                Contact Us
+              </a>
+            </li>
+            <li className="mb-2 flex items-center gap-2">
+              <span>
+                <RiVipCrownLine />
+              </span>
+              <a href="#faq" className="hover:text-purple-500">
+                FAQs
+              </a>
+            </li>
+          </ul>
         </div>
 
         {/* Column 3: Quick Links */}
-        <div>
-          <h2 className="lg:text-xl font-semibold mb-2 lg:mb-4">Quick Links</h2>
+        <div className=" flex-1">
+          <h2 className="lg:text-xl  mb-2 lg:mb-4">Quick Links</h2>
           <ul className=" text-sm">
             <li className="mb-2 flex items-center gap-2">
               <span>
@@ -73,7 +104,7 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Social Media & Contact */}
-        <div>
+        <div className="flex-1">
           <h2 className="lg:text-xl font-semibold mb-2 lg:mb-4">
             Stay Connected
           </h2>
@@ -127,7 +158,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-center mt-8 border-t border-gray-800 pt-4">
+      <div className="text-center w-[90%] mt-8 border-t border-gray-800 pt-4">
         <p className="text-sm">© 2024 The Grand Stage. All rights reserved.</p>
       </div>
     </footer>

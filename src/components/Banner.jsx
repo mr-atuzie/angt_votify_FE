@@ -10,7 +10,7 @@ const Banner = () => {
 
       <Link
         to={"/register"}
-        className="bg-white  text-sm lg:text-base text-blue-600 font-medium py-3 px-6 rounded-full "
+        className="bg-white   lg:text-base text-blue-600  py-3 px-6 rounded-full "
       >
         Get started now
       </Link>

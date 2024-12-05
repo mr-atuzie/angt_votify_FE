@@ -22,7 +22,7 @@ const Hero = () => {
 
         <Link
           to={"/register"}
-          className="bg-blue-600 designed text-sm lg:text-base text-white font-medium py-3 px-6 rounded-full transition-all"
+          className="bg-blue-600 lg:text-base text-white  py-3 px-6 rounded-full transition-all"
         >
           Get started
         </Link>
