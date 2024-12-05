@@ -29,13 +29,13 @@ const Navbar = () => {
           </Link>
           <Link
             className=" cursor-pointer hover:underline tracking-wide "
-            to={"#"}
+            to={"/frequently-asked-questions"}
           >
             FAQ
           </Link>
           <Link
             className=" cursor-pointer hover:underline tracking-wide "
-            to={"#"}
+            to={"/reviews"}
           >
             Testimonal
           </Link>

@@ -6,6 +6,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
+import FAQ from "./pages/FAQ";
+import Testimonal from "./pages/Testimonal";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/dashbaord" element={<Dashboard />} />
+          <Route path="/frequently-asked-questions" element={<FAQ />} />
+          <Route path="/reviews" element={<Testimonal />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
