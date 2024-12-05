@@ -1,9 +1,11 @@
 import About from "../components/About";
 import Hero from "../components/Hero";
-import Faq from "../components/Faq";
 import Footer from "../components/Footer";
-import How from "../components/How";
+
 import Navbar from "../components/Navbar";
+import Reviews from "../components/Reviews";
+import Features from "../components/Features";
+import Faq from "../components/Faq";
 
 const Home = () => {
   return (
@@ -11,9 +13,13 @@ const Home = () => {
       <Navbar />
       <Hero />
       <About />
-      <How />
+      <Features />
+      <Reviews />
       <Faq />
       <Footer />
+      {/* 
+     
+       */}
     </>
   );
 };

@@ -1,57 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdHowToVote } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RiVipCrownLine } from "react-icons/ri";
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <nav
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${
-        scrolled ? "bg-black shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto  w-[90%] py-4 flex items-center ">
-        <div className="flex  text-blue-600 space-x-2">
-          <div>
-            <MdHowToVote size={30} />
-          </div>
-
-          <h4 className="text-2xl font-semibold">2ruvotes</h4>
+    <nav className=" bg-white w-full ">
+      <div className=" mx-auto  w-[85%] py-4 flex items-center justify-between ">
+        <div>
+          <h4 className="text-2xl font-medium text-blue-600">Truevotes</h4>
         </div>
 
         {/* Links */}
-        <div className=" gap-5 hidden md:flex">
-          <a href="#home" className="text-white hover:text-purple-500">
+        <div className=" gap-10  hidden md:flex">
+          <Link
+            className=" cursor-pointer hover:underline tracking-wide"
+            to={"#"}
+          >
             Home
-          </a>
-          <a href="#contestants" className="text-white hover:text-purple-500">
-            Contestants
-          </a>
-          <a href="#about" className="text-white hover:text-purple-500">
-            About
-          </a>
-          <a href="#contact" className="text-white hover:text-purple-500">
+          </Link>
+          <Link
+            className=" cursor-pointer hover:underline tracking-wide "
+            to={"#"}
+          >
+            Pricing
+          </Link>
+          <Link
+            className=" cursor-pointer hover:underline tracking-wide "
+            to={"#"}
+          >
+            FAQ
+          </Link>
+          <Link
+            className=" cursor-pointer hover:underline tracking-wide "
+            to={"#"}
+          >
+            Testimonal
+          </Link>
+          <Link
+            className=" cursor-pointer hover:underline tracking-wide "
+            to={"#"}
+          >
             Contact
-          </a>
+          </Link>
+        </div>
+
+        <div className="  flex items-center tracking-wide gap-5">
+          <Link className=" cursor-pointer " to={"/login"}>
+            Login
+          </Link>
+          <Link
+            className=" cursor-pointer hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600 bg-blue-600 rounded-full px-6 py-1.5 text-white"
+            to={"/login"}
+          >
+            Sign up
+          </Link>
         </div>
 
         {/* Hamburger Menu for mobile */}
