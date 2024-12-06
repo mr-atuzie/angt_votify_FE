@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import FAQ from "./pages/FAQ";
 import Testimonal from "./pages/Testimonal";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route path="/reviews" element={<Testimonal />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

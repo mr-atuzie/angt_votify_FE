@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdHowToVote } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RiVipCrownLine } from "react-icons/ri";
 
 const Navbar = () => {
@@ -15,36 +15,60 @@ const Navbar = () => {
 
         {/* Links */}
         <div className=" gap-10  hidden md:flex">
-          <Link
-            className=" cursor-pointer hover:underline tracking-wide"
-            to={"/"}
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `tracking-wide cursor-pointer ${
+                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
+              }`
+            }
           >
             Home
-          </Link>
-          <Link
-            className=" cursor-pointer hover:underline tracking-wide "
-            to={"/pricing"}
+          </NavLink>
+
+          <NavLink
+            to="/pricing"
+            className={({ isActive }) =>
+              `tracking-wide cursor-pointer ${
+                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
+              }`
+            }
           >
             Pricing
-          </Link>
-          <Link
-            className=" cursor-pointer hover:underline tracking-wide "
-            to={"/frequently-asked-questions"}
+          </NavLink>
+
+          <NavLink
+            to="/frequently-asked-questions"
+            className={({ isActive }) =>
+              `tracking-wide cursor-pointer ${
+                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
+              }`
+            }
           >
             FAQ
-          </Link>
-          <Link
-            className=" cursor-pointer hover:underline tracking-wide "
-            to={"/reviews"}
+          </NavLink>
+
+          <NavLink
+            to="/reviews"
+            className={({ isActive }) =>
+              `tracking-wide cursor-pointer ${
+                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
+              }`
+            }
           >
             Testimonal
-          </Link>
-          <Link
-            className=" cursor-pointer hover:underline tracking-wide "
-            to={"/contact"}
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `tracking-wide cursor-pointer ${
+                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
+              }`
+            }
           >
             Contact
-          </Link>
+          </NavLink>
         </div>
 
         <div className="  flex items-center tracking-wide gap-5">

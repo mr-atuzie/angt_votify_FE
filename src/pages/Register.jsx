@@ -94,7 +94,7 @@ const Register = () => {
                   Full Name
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="text"
                   name="name"
                   value={name}
@@ -117,7 +117,7 @@ const Register = () => {
                   Email
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="email"
                   name="email"
                   value={email}
@@ -140,7 +140,7 @@ const Register = () => {
                   Phone Number
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="text"
                   name="phone"
                   value={phone}
@@ -163,7 +163,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="password"
                   name="password"
                   value={password}
@@ -182,13 +182,13 @@ const Register = () => {
             <div className="flex flex-col items-center">
               <button
                 disabled={loading}
-                className="text-sm lg:text-base w-full py-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-pink-700 transition-all disabled:bg-gray-300"
+                className="text-sm lg:text-base w-full py-3 bg-blue-600 rounded-full text-white  hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
                 type="submit"
               >
                 {loading ? "Loading..." : "Register"}
               </button>
 
-              <p className="text-xs text-center font-medium mt-6 text-gray-500">
+              <p className="text-sm text-center  my-8 ">
                 Already have an account?
                 <Link to="/login" className="text-blue-500 ml-1">
                   Login

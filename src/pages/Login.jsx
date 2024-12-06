@@ -72,7 +72,7 @@ const Login = () => {
     <>
       <Navbar />
       <div className="w-full py-16  bg-blue-50 min-h-screen">
-        <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[43%] mx-auto py-10 lg:py-12 lg:px-6 ">
+        <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[35%] mx-auto py-10 lg:py-12 lg:px-6 ">
           {/* Welcome Back Section */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center mb-8 text-blue-600">
@@ -91,7 +91,7 @@ const Login = () => {
                   Email
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="email"
                   name="email"
                   value={email}
@@ -111,7 +111,7 @@ const Login = () => {
                   Password
                 </label>
                 <input
-                  className="border border-gray-300 p-2.5 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="password"
                   name="password"
                   value={password}
@@ -127,13 +127,13 @@ const Login = () => {
             <div className="flex flex-col items-center">
               <button
                 disabled={loading}
-                className="text-sm lg:text-base w-full py-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-pink-700 transition-all disabled:bg-gray-300"
+                className="text-sm lg:text-base w-full py-3 bg-blue-600 rounded-lg text-white  hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
                 type="submit"
               >
                 {loading ? "Loading..." : "Login"}
               </button>
 
-              <p className="text-xs text-center font-medium mt-6 text-gray-500">
+              <p className="text-sm text-center font-medium mt-6 ">
                 Don't have an account?
                 <Link to="/register" className="text-blue-600 ml-1">
                   Sign up
