@@ -10,6 +10,11 @@ import Dashboard from "./pages/Dashboard";
 import FAQ from "./pages/FAQ";
 import Testimonal from "./pages/Testimonal";
 import DashboardLayout from "./layouts/DashboardLayout";
+import DashboardElections from "./pages/DashboardElections";
+import DashboardVoters from "./pages/DashboardVoters";
+import DashboardCandidates from "./pages/DashboardCandidates";
+import DashboardPricing from "./pages/DashboardPricing";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -29,6 +34,14 @@ function App() {
 
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path="elections" element={<DashboardElections />} />
+            <Route path="voter-management" element={<DashboardVoters />} />
+            <Route
+              path="candidate-management"
+              element={<DashboardCandidates />}
+            />
+            <Route path="pricing" element={<DashboardPricing />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>
