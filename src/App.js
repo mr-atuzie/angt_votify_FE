@@ -15,6 +15,9 @@ import DashboardVoters from "./pages/DashboardVoters";
 import DashboardCandidates from "./pages/DashboardCandidates";
 import DashboardPricing from "./pages/DashboardPricing";
 import Settings from "./pages/Settings";
+import CreateElection from "./pages/CreateElection";
+import ElectionLayout from "./layouts/ElectionLayout";
+import ElectionOverview from "./pages/ElectionOverview";
 
 function App() {
   return (
@@ -42,6 +45,12 @@ function App() {
             />
             <Route path="pricing" element={<DashboardPricing />} />
             <Route path="settings" element={<Settings />} />
+          </Route>
+
+          <Route path="/create-election" element={<CreateElection />} />
+
+          <Route path="/election" element={<ElectionLayout />}>
+            <Route path=":id/overview" element={<ElectionOverview />} />
           </Route>
         </Routes>
       </BrowserRouter>
