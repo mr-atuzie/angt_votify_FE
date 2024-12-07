@@ -18,6 +18,7 @@ import Settings from "./pages/Settings";
 import CreateElection from "./pages/CreateElection";
 import ElectionLayout from "./layouts/ElectionLayout";
 import ElectionOverview from "./pages/ElectionOverview";
+import ElectionBallot from "./pages/ElectionBallot";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
 
           <Route path="/election" element={<ElectionLayout />}>
             <Route path=":id/overview" element={<ElectionOverview />} />
+            <Route path=":id/ballot" element={<ElectionBallot />} />
           </Route>
         </Routes>
       </BrowserRouter>
