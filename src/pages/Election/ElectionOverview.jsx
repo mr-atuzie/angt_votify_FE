@@ -3,23 +3,6 @@ import React from "react";
 const ElectionOverview = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex items-center gap-4">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Most Beautiful Girl Nigeria
-          </h1>
-
-          <span className="bg-yellow-100 text-yellow-600 text-sm px-3 py-1 rounded-full">
-            Building
-          </span>
-        </div>
-
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-          Edit Election
-        </button>
-      </div>
-
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white shadow-md p-4 rounded-lg">

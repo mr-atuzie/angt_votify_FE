@@ -2,24 +2,18 @@ import React, { useState } from "react";
 import { MdBallot } from "react-icons/md";
 import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
-import BallotForm from "../components/BallotForm";
-import Ballot from "../components/Ballot";
-// import BallotOptions from "../components/BallotOptions";
-// import { Link } from "react-router-dom";
+
+import Ballot from "../../components/Ballot";
+import { Link } from "react-router-dom";
 
 const ElectionBallot = () => {
-  const [menu, setMenu] = useState(false);
-  const [ballot, setBallot] = useState(true);
+  const [ballot, setBallot] = useState(false);
 
   return (
     <div>
-      {menu && (
-        <BallotForm menu={menu} setMenu={setMenu} setBallot={setBallot} />
-      )}
-
       <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
         {/* header */}
-        <div className="flex justify-between items-center mb-6">
+        {/* <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-4">
             <h1 className="text-3xl font-bold text-gray-800">
               Most Beautiful Girl Nigeria
@@ -29,7 +23,7 @@ const ElectionBallot = () => {
               Building
             </span>
           </div>
-        </div>
+        </div> */}
 
         {ballot ? (
           <div className=" flex flex-col gap-10">
@@ -62,15 +56,14 @@ const ElectionBallot = () => {
                   <span>Import</span>
                 </button>
 
-                <button
-                  onClick={() => setMenu(!menu)}
-                  className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
-                >
-                  <span>
-                    <IoAddSharp size={20} />
-                  </span>
-                  Add Questions
-                </button>
+                <Link to={"/election/12345/ballot/create"}>
+                  <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                    <span>
+                      <IoAddSharp size={20} />
+                    </span>
+                    Add Questions
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

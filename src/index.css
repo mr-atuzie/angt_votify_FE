@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* index.css */
+
+/* Custom style for the phone input container */
+.phone-input-container {
+  display: flex;
+  width: 100%;
+}
+
+/* Custom style for phone input field */
+.phone-input-field {
+  height: 3rem !important;
+  padding: 0.75rem 3rem !important;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb !important;
+  border-radius: 0.5rem;
+  width: 100% !important;
+}
+
+/* Custom style for the phone input dropdown button */
+.phone-input-button {
+  padding: 0.8rem; /* Increase button padding for consistency */
+  height: 3rem; /* Match button height with input */
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
 @layer base {
   html {
     font-family: "Roboto", serif;

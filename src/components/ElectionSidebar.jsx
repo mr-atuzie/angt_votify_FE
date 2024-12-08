@@ -1,10 +1,11 @@
 import React from "react";
-import { MdBallot } from "react-icons/md";
+import { MdBallot, MdRocketLaunch } from "react-icons/md";
 import { PiUsersFourFill } from "react-icons/pi";
 import { GrSettingsOption } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { GrEdit } from "react-icons/gr";
+import { BiSupport } from "react-icons/bi";
 
 const fontSize = 20;
 
@@ -33,13 +34,18 @@ const ElectionSidebar = () => {
           },
           {
             to: "/election/12345/edit",
-            label: "Edit Election",
-            Icon: GrEdit,
-          },
-          {
-            to: "/election/12345/settngs",
             label: "Settings",
             Icon: GrSettingsOption,
+          },
+          {
+            to: "/election/12345/support",
+            label: "Support",
+            Icon: BiSupport,
+          },
+          {
+            to: "/election/12345/launch",
+            label: "Lanuch",
+            Icon: MdRocketLaunch,
           },
         ].map(({ to, label, Icon }) => (
           <NavLink

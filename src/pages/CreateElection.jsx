@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateElection = () => {
   const initialState = {
@@ -11,7 +11,7 @@ const CreateElection = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const { title, startDate, endDate, electionType } = formData;
 
@@ -22,112 +22,136 @@ const CreateElection = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     navigate("/election/12345/overview");
   };
 
+  const back = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="w-full  flex justify-center items-center  bg-blue-50 min-h-screen">
-      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[40%] mx-auto py-10 lg:py-12 lg:px-6 ">
-        {/* Welcome Back Section */}
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center justify-center mb-8 text-blue-600">
-            <h4 className="text-5xl font-extrabold -mt-2">Create Election</h4>
-          </div>
+    <div className="w-full flex justify-center items-center bg-blue-50 min-h-screen">
+      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[40%] mx-auto">
+        {/* Header */}
+        <div className="w-full bg-blue-800 text-white text-center py-4 ">
+          <h1 className="text-xl uppercase font-semibold">Create Election</h1>
+        </div>
 
-          {/* Input Fields */}
-          <div className="grid grid-cols-1 gap-6 mb-6">
-            {/* title */}
-            <div>
-              <label
-                className="block text-sm   mb-1 capitalize"
-                htmlFor="title"
-              >
-                election title
-              </label>
-              <input
-                className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-                type="title"
-                name="title"
-                value={title}
-                onChange={handleInputChange}
-                id="title"
-                placeholder="E.g Most Beautiful Girl, Class Presidnt"
-                required
-              />
-            </div>
+        <div className="py-10 px-6 lg:px-8">
+          {/* Instruction */}
+          <p className="mb-6 text-gray-600 text-center text-sm">
+            Fill out the form below to create a new election.
+          </p>
 
-            <div className="flex gap-6">
-              {/* Start Date */}
-              <div className="w-full">
+          {/* Form */}
+          <form onSubmit={handleSubmit}>
+            {/* Input Fields */}
+            <div className="grid grid-cols-1 gap-6 mb-8">
+              {/* Title */}
+              <div>
                 <label
-                  className="block text-sm mb-1 capitalize"
-                  htmlFor="startDate"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="title"
                 >
-                  Start Date
+                  Election Title
                 </label>
                 <input
-                  id="startDate"
-                  name="startDate"
-                  value={startDate}
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="text"
+                  name="title"
+                  value={title}
                   onChange={handleInputChange}
-                  type="datetime-local"
-                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  id="title"
+                  placeholder="E.g. Most Beautiful Girl, Class President"
+                  required
                 />
               </div>
 
-              {/* End Date */}
-              <div className="w-full">
+              {/* Dates */}
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="startDate"
+                  >
+                    Start Date
+                  </label>
+                  <input
+                    id="startDate"
+                    name="startDate"
+                    value={startDate}
+                    onChange={handleInputChange}
+                    type="datetime-local"
+                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="endDate"
+                  >
+                    End Date
+                  </label>
+                  <input
+                    id="endDate"
+                    name="endDate"
+                    value={endDate}
+                    onChange={handleInputChange}
+                    type="datetime-local"
+                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              {/* Election Type */}
+              <div>
                 <label
-                  className="block text-sm mb-1 capitalize"
-                  htmlFor="endDate"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="electionType"
                 >
-                  End Date
+                  Election Type
                 </label>
-                <input
-                  id="endDate"
-                  name="endDate"
-                  value={endDate}
+                <select
+                  id="electionType"
+                  name="electionType"
+                  value={electionType}
                   onChange={handleInputChange}
-                  type="datetime-local"
-                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-                />
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="" disabled>
+                    Select type
+                  </option>
+                  <option value="single">Single Choice</option>
+                  <option value="multiple">Multiple Choice</option>
+                  <option value="ranked">Ranked Choice</option>
+                </select>
               </div>
             </div>
 
-            {/* Election Type */}
-            <div>
-              <label className="block mb-1" htmlFor="electionType">
-                Election Type
-              </label>
-              <select
-                id="electionType"
-                name="electionType"
-                value={electionType}
-                onChange={handleInputChange}
-                className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            {/* Buttons */}
+            <div className="flex gap-4 items-center justify-center">
+              <Link to={"/election/12345/overview"}>
+                <button
+                  className="text-sm w-40 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                  type="submit"
+                >
+                  Save
+                </button>
+              </Link>
+
+              <button
+                className="text-sm w-40 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 transition-all"
+                type="button"
+                onClick={back}
               >
-                <option value="" disabled selected>
-                  Select type
-                </option>
-                <option value="single">Single Choice</option>
-                <option value="multiple">Multiple Choice</option>
-                <option value="ranked">Ranked Choice</option>
-              </select>
+                Close
+              </button>
             </div>
-          </div>
-
-          {/* Submit Button */}
-
-          <button
-            disabled={loading}
-            className="text-sm lg:text-base w-40 py-3  text-center bg-blue-600 rounded-lg text-white  hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
-            type="submit"
-          >
-            {loading ? "Loading..." : "Login"}
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,29 +1,38 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import ScrollTop from "./components/ScrollTop";
+
+// Public
+import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import FAQ from "./pages/FAQ";
 import Testimonal from "./pages/Testimonal";
-import DashboardLayout from "./layouts/DashboardLayout";
-import DashboardElections from "./pages/DashboardElections";
-import DashboardVoters from "./pages/DashboardVoters";
-import DashboardCandidates from "./pages/DashboardCandidates";
-import DashboardPricing from "./pages/DashboardPricing";
 import Settings from "./pages/Settings";
+
+// Dashboard
+import DashboardLayout from "./layouts/DashboardLayout";
+import DashboardElections from "./pages/Dashboard/DashboardElections";
+import DashboardVoters from "./pages/Dashboard/DashboardVoters";
+import DashboardCandidates from "./pages/Dashboard/DashboardCandidates";
+import DashboardPricing from "./pages/Dashboard/DashboardPricing";
+
 import CreateElection from "./pages/CreateElection";
+
+//Election Overvieww
 import ElectionLayout from "./layouts/ElectionLayout";
-import ElectionOverview from "./pages/ElectionOverview";
-import ElectionBallot from "./pages/ElectionBallot";
-import BallotOptions from "./components/BallotOptions";
-// import BallotLayout from "./layouts/BallotLayout";
-import BallotForm from "./components/BallotForm";
-import ElectionAddVoters from "./pages/ElectionAddVoters";
-import ElectionVoters from "./pages/ElectionVoters";
+import ElectionOverview from "./pages/Election/ElectionOverview";
+import ElectionBallot from "./pages/Election/ElectionBallot";
+
+import ElectionAddVoters from "./pages/Election/ElectionAddVoters";
+import ElectionVoters from "./pages/Election/ElectionVoters";
+
+import CreateBallotQuestion from "./pages/Election/CreateBallotQuestion";
+import CreateBallotOption from "./pages/Election/CreateBallotOption";
+import EditElectionPage from "./pages/Election/EditElectionPage";
 
 function App() {
   return (
@@ -57,10 +66,19 @@ function App() {
 
           <Route path="/election" element={<ElectionLayout />}>
             <Route path=":id/overview" element={<ElectionOverview />} />
-            <Route path=":id/ballot" index element={<ElectionBallot />} />
+
+            <Route path=":id/ballot">
+              <Route index element={<ElectionBallot />} />
+              <Route
+                path="create-ballot-question"
+                element={<CreateBallotQuestion />}
+              />
+              <Route path=":option" element={<CreateBallotOption />} />
+            </Route>
+
             <Route path=":id/voters" index element={<ElectionVoters />} />
-            <Route path=":id/ballotcreate" element={<BallotForm />} />
-            <Route path=":id/ballot/option" element={<BallotOptions />} />
+
+            <Route path=":id/edit" index element={<EditElectionPage />} />
 
             <Route path=":id/voter/create" element={<ElectionAddVoters />} />
           </Route>
