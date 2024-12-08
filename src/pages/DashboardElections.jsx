@@ -28,6 +28,23 @@ const DashboardElections = () => {
       </div>
 
       <div className=" w-[90%] mx-auto flex flex-col gap-5">
+        <div>
+          <div></div>
+          <div>
+            <select
+              id="electionType"
+              name="electionType"
+              className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <option value="" disabled selected>
+                Filter by status
+              </option>
+              <option value="single">Building</option>
+              <option value="multiple">Runnings</option>
+              <option value="ranked"></option>
+            </select>
+          </div>
+        </div>
         <Link to={"/election/12345/overview"}>
           <div className=" w-full bg-white h-fit border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6">
             <div>

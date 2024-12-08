@@ -11,7 +11,9 @@ const fontSize = 20;
 const ElectionSidebar = () => {
   return (
     <div className=" w-full h-full  bg-blue-900 p-4 py-6 text-white">
-      <div></div>
+      <div className="mb-6">
+        <h1 className=" font-semibold text-lg text-center">2RUEVOTES</h1>
+      </div>
       <div className="flex flex-col gap-2">
         {[
           {

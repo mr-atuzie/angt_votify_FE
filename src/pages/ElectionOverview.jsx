@@ -44,6 +44,36 @@ const ElectionOverview = () => {
         </div>
       </div>
 
+      <div className="bg-white shadow-md rounded-lg p-6 max-w-md">
+        <h2 className="text-LG font-medium mb-4">Election URLS</h2>
+        {/* <p className="text-sm text-gray-600 mb-2">
+          <span className="font-medium">Start Date:</span> 2024-12-10
+        </p>
+        <p className="text-sm text-gray-600 mb-4">
+          <span className="font-medium">End Date:</span> 2024-12-20
+        </p> */}
+        <div className="mb-4">
+          <p className="text-sm text-gray-600">
+            Share this URL with voters to participate:
+          </p>
+          <div className="bg-gray-100 p-2 rounded-lg mt-2">
+            <p className="text-blue-500 text-sm break-all">
+              https://example.com/election/12345/vote
+            </p>
+          </div>
+        </div>
+        <button
+          className="w-full py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 transition-all"
+          onClick={() =>
+            navigator.clipboard.writeText(
+              "https://example.com/election/12345/vote"
+            )
+          }
+        >
+          Copy Link
+        </button>
+      </div>
+
       {/* Ballots Table */}
       {/* <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">

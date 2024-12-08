@@ -19,6 +19,11 @@ import CreateElection from "./pages/CreateElection";
 import ElectionLayout from "./layouts/ElectionLayout";
 import ElectionOverview from "./pages/ElectionOverview";
 import ElectionBallot from "./pages/ElectionBallot";
+import BallotOptions from "./components/BallotOptions";
+// import BallotLayout from "./layouts/BallotLayout";
+import BallotForm from "./components/BallotForm";
+import ElectionAddVoters from "./pages/ElectionAddVoters";
+import ElectionVoters from "./pages/ElectionVoters";
 
 function App() {
   return (
@@ -52,7 +57,12 @@ function App() {
 
           <Route path="/election" element={<ElectionLayout />}>
             <Route path=":id/overview" element={<ElectionOverview />} />
-            <Route path=":id/ballot" element={<ElectionBallot />} />
+            <Route path=":id/ballot" index element={<ElectionBallot />} />
+            <Route path=":id/voters" index element={<ElectionVoters />} />
+            <Route path=":id/ballotcreate" element={<BallotForm />} />
+            <Route path=":id/ballot/option" element={<BallotOptions />} />
+
+            <Route path=":id/voter/create" element={<ElectionAddVoters />} />
           </Route>
         </Routes>
       </BrowserRouter>
