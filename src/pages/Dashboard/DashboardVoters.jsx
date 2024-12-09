@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 const DashboardVoters = () => {
   const initialState = {
     name: "",
@@ -12,6 +15,7 @@ const DashboardVoters = () => {
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [phone, setPhone] = useState("");
 
   const { name, email, electionType } = formData;
 
@@ -58,86 +62,122 @@ const DashboardVoters = () => {
         </div>
       </div>
 
-      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[50%] mx-auto py-10 lg:py-12 lg:px-6 ">
-        {/* Welcome Back Section */}
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center justify-center mb-8 text-blue-600">
-            <h4 className="text-5xl font-extrabold -mt-2">Add Voter</h4>
+      <div className="bg-white w-[90%] rounded-lg shadow-lg lg:w-[60%] mx-auto">
+        {/* Header */}
+        <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
+          Add Voter
+        </div>
+
+        {/* Form */}
+        <form className="p-8" onSubmit={handleSubmit}>
+          <p className="text-center text-gray-700 mb-8">
+            Add a voter to the election:{" "}
+            <span className="text-blue-600 font-semibold">
+              Most Beautiful Girl Nigeria
+            </span>
+          </p>
+
+          {/* Name */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-1" htmlFor="name">
+              Full Name
+            </label>
+            <input
+              className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+              type="text"
+              name="name"
+              placeholder="Enter voter's full name"
+              value={name}
+              onChange={handleInputChange}
+              required
+            />
+            <small className="text-xs text-gray-600 mt-1 block">
+              Name as you'd like it to appear in the contest.
+            </small>
           </div>
 
-          {/* Input Fields */}
-          <div className="grid grid-cols-1 gap-6 mb-6">
-            {/* Full Name */}
-            <div>
-              <label className="block text-sm  mb-1" htmlFor="name">
-                Full Name
-              </label>
-              <input
-                className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleInputChange}
-                id="name"
-                placeholder="Enter your voter name"
-                required
-              />
-              <small className="text-xs text-gray-600 mt-1 block">
-                Name as you'd like it to appear in the contest.
-              </small>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm mb-1" htmlFor="email">
-                Email
-              </label>
-              <input
-                className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleInputChange}
-                id="email"
-                placeholder="Enter your voter Email"
-                required
-              />
-              <small className="text-xs text-gray-600 mt-1 block">
-                Make sure your email address is correct.
-              </small>
-            </div>
-
-            {/* Election Type */}
-            <div>
-              <label className="block text-sm mb-1" htmlFor="electionType">
-                Election
-              </label>
-              <select
-                id="electionType"
-                name="electionType"
-                value={electionType}
-                onChange={handleInputChange}
-                className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-              >
-                <option value="" disabled selected>
-                  Select Election
-                </option>
-                <option value="single">Most beautiful girl in niigeria</option>
-                <option value="multiple">Class President 2024/2025</option>
-                <option value="ranked">Employee of the month</option>
-              </select>
-            </div>
+          {/* Email */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-1" htmlFor="email">
+              Email Address
+            </label>
+            <input
+              className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+              name="email"
+              type="email"
+              placeholder="Enter voter's email address"
+              required
+              value={email}
+              onChange={handleInputChange}
+            />
+            <small className="text-xs text-gray-600 mt-1 block">
+              Make sure email address is correct
+            </small>
           </div>
 
-          {/* Submit Button */}
+          {/* Phone */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-1" htmlFor="phone">
+              Phone Number
+            </label>
 
-          <button
-            disabled={loading}
-            className="text-sm lg:text-base w-40 py-3  text-center bg-blue-600 rounded-lg text-white  hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
-            type="submit"
-          >
-            {loading ? "Loading..." : "Continue"}
-          </button>
+            <PhoneInput
+              country={"ng"} // Default country
+              value={phone}
+              onChange={setPhone} // Update state with selected number
+              inputClass="phone-input-field" // Apply custom class to input field
+              buttonClass="phone-input-button" // Apply custom class to button
+              containerClass="phone-input-container" // Apply custom class to container
+            />
+            <small className="text-gray-500">
+              Ensure this number is correct to receive the verification code via
+              SMS.
+            </small>
+          </div>
+
+          {/* Election Type */}
+          <div className=" mb-14">
+            <label
+              className="block text-sm font-medium mb-1"
+              htmlFor="electionType"
+            >
+              Election
+            </label>
+            <select
+              id="electionType"
+              name="electionType"
+              value={electionType}
+              onChange={handleInputChange}
+              className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <option value="" disabled selected>
+                Select Election
+              </option>
+              <option value="single">Most beautiful girl in niigeria</option>
+              <option value="multiple">Class President 2024/2025</option>
+              <option value="ranked">Employee of the month</option>
+            </select>
+            <small className="text-gray-500">
+              Select Election you will like to add voter to
+            </small>
+          </div>
+
+          {/* Submit Buttons */}
+          <div className="flex gap-4 items-center justify-center">
+            <button
+              className="text-sm lg:text-base w-40 py-3 bg-blue-600 rounded-lg text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all"
+              type="submit"
+              disabled={loading}
+            >
+              Save
+            </button>
+            <button
+              className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>

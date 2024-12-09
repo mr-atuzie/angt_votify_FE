@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const GeneralSetting = () => {
+const ElectionGeneralSetting = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ const GeneralSetting = () => {
   };
 
   return (
-    <div className="min-h-screen flex gap-10 flex-col bg-gray-100 ">
+    <div className="min-h-screen flex gap-10 flex-col  ">
       <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 rounded-t-lg">
@@ -90,4 +90,4 @@ const GeneralSetting = () => {
   );
 };
 
-export default GeneralSetting;
+export default ElectionGeneralSetting;

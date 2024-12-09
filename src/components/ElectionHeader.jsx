@@ -10,7 +10,7 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
   // //   }, [location]);
 
   return (
-    <header className=" bg-blue-900 py-2 shadow-lg px-6">
+    <header className=" bg-blue-900 py-4 shadow-lg px-6">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <h1 className="text-xl text-white font-medium">
@@ -22,8 +22,8 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
           </span>
         </div>
 
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-          Edit Election
+        <button className="bg-blue-600 text-white px-4 py-2 w-10 h-10  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
+          RA
         </button>
       </div>
       {/* <div className="flex justify-between items-center">

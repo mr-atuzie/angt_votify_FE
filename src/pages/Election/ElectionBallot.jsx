@@ -27,7 +27,7 @@ const ElectionBallot = () => {
 
         {ballot ? (
           <div className=" flex flex-col gap-10">
-            <Ballot />
+            <Ballot setBallot={setBallot} />
             <Ballot />
           </div>
         ) : (

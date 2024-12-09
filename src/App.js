@@ -32,9 +32,13 @@ import ElectionVoters from "./pages/Election/ElectionVoters";
 
 import CreateBallotQuestion from "./pages/Election/CreateBallotQuestion";
 import CreateBallotOption from "./pages/Election/CreateBallotOption";
-import EditElectionPage from "./pages/Election/EditElectionPage";
+
 import SettingLayout from "./layouts/SettingLayout";
 import BallotLayout from "./layouts/BallotLayout";
+import ElectionDateSetting from "./components/ElectionDateSetting";
+import ElectionDeleteForm from "./components/ElectionDeleteForm";
+import ElectionTypeSetting from "./components/ElectionTypeSetting";
+import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
 
 function App() {
   return (
@@ -93,7 +97,15 @@ function App() {
 
             {/* setting layout */}
             <Route path=":id/setting" element={<SettingLayout />}>
-              <Route index element={<EditElectionPage />} />
+              <Route
+                index
+                path="general"
+                element={<ElectionGeneralSetting />}
+              />
+              <Route path="election-date" element={<ElectionDateSetting />} />
+              <Route path="election-type" element={<ElectionTypeSetting />} />
+
+              <Route index path="delete" element={<ElectionDeleteForm />} />
             </Route>
           </Route>
         </Routes>

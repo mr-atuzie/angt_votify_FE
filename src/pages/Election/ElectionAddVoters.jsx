@@ -12,7 +12,7 @@ const ElectionAddVoters = () => {
 
   const [formData, setFormData] = useState(initialState);
   // const [loading, setLoading] = useState(false);
-  const [phone, setPhone] = useState(""); // Initial state for phone number
+  const [phone, setPhone] = useState("");
 
   const { name, email } = formData;
 
@@ -27,7 +27,6 @@ const ElectionAddVoters = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // setLoading(true);
-
     localStorage.setItem("text", formData);
 
     navigate("/election/12345/voters");
@@ -50,7 +49,7 @@ const ElectionAddVoters = () => {
 
       <div className="bg-white rounded-lg shadow-lg w-[60%] mx-auto">
         {/* Header */}
-        <div className="bg-blue-800 py-4 text-center text-white text-lg font-bold">
+        <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
           Add Voter
         </div>
 
@@ -71,6 +70,7 @@ const ElectionAddVoters = () => {
             <input
               className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
               type="text"
+              name="name"
               placeholder="Enter voter's full name"
               value={name}
               onChange={handleInputChange}
@@ -85,6 +85,7 @@ const ElectionAddVoters = () => {
             </label>
             <input
               className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+              name="email"
               type="email"
               placeholder="Enter voter's email address"
               required
@@ -98,14 +99,7 @@ const ElectionAddVoters = () => {
             <label className="block text-sm font-medium mb-1" htmlFor="phone">
               Phone Number
             </label>
-            {/* <PhoneInput
-              country={"ng"} // Default country
-              value={phone}
-              dropdownStyle={{ height: "50px" }}
-              onChange={setPhone} // This simplifies updating the state
-              inputClass="!border-gray-300 !bg-gray-50 !rounded-lg  !w-full !text-sm !focus:ring-2 !focus:ring-blue-300"
-              buttonClass="!border-gray-300 !bg-gray-50 !py-3 !h-30 !rounded-l-lg !focus:ring-2 !focus:ring-blue-300"
-            /> */}
+
             <PhoneInput
               country={"ng"} // Default country
               value={phone}

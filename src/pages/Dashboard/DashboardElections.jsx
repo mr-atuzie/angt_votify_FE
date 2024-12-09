@@ -7,6 +7,8 @@ import { FaVoteYea } from "react-icons/fa";
 
 import { FaRegCalendarXmark, FaRegCalendarCheck } from "react-icons/fa6";
 
+import { FaEye } from "react-icons/fa6";
+
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -112,144 +114,12 @@ const DashboardElections = () => {
               <option value="Inactive">Inactive</option>
             </select>
           </form>
-
-          {/* <div className="w-[35%]">
-            <select
-              id="electionType"
-              name="electionType"
-              className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-              <option value="" disabled selected>
-                Filter by status
-              </option>
-              <option value="single">Building</option>
-              <option value="multiple">Runnings</option>
-              <option value="ranked">Completed</option>
-            </select>
-          </div> */}
-        </div>
-        <div className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-          {/* Header Section */}
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg capitalize font-medium">
-              Most Beautiful Girl in Nigeria
-            </h2>
-            <span className="bg-yellow-100 text-yellow-500 text-sm  px-3 py-1 rounded-lg">
-              Building
-            </span>
-          </div>
-
-          {/* Date Section */}
-          <div className="border-t border-gray-200 pt-4">
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              {/* Start Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarCheck size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
-                    start Date
-                  </h4>
-                </div>
-                <p className="text-gray-500">06/12/24 11:00 AM</p>
-              </div>
-
-              {/* End Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarXmark size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
-                    End Date
-                  </h4>
-                </div>
-                <p className="text-gray-500">10/12/24 11:00 AM</p>
-              </div>
-
-              {/* type*/}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaVoteYea size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
-                    Election type
-                  </h4>
-                </div>
-                <p className=" text-gray-600 capitalize ">single choice</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Section */}
-          <div className="mt-4 flex justify-between items-center">
-            <Link to={"/election/12345/overview"}>
-              <button className="text-sm text-blue-600 hover:underline font-medium">
-                View Details
-              </button>
-            </Link>
-            <button className="bg-red-600  flex justify-center items-center gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700">
-              <BsTrash3 size={15} />
-              Delete Election
-            </button>
-          </div>
         </div>
 
         <div className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
           {/* Header Section */}
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold capitalize">Mr Nigeria</h2>
-            <span className="text-blue-600 bg-blue-100 text-sm px-3 py-1 rounded-lg">
-              Completed
-            </span>
-          </div>
-
-          {/* Date Section */}
-          <div className="border-t border-gray-200 pt-4">
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              {/* Start Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarCheck size={15} />
-                  <h4 className="font-medium  uppercase mb-1">Start Date</h4>
-                </div>
-                <p className="text-gray-500">06/12/24 11:00 AM</p>
-              </div>
-
-              {/* End Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarXmark size={15} />
-                  <h4 className="font-medium  uppercase mb-1">End Date</h4>
-                </div>
-                <p className="text-gray-500">10/12/24 11:00 AM</p>
-              </div>
-
-              {/* type*/}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaVoteYea size={15} />
-                  <h4 className="font-medium  uppercase mb-1">Election type</h4>
-                </div>
-                <p className=" text-gray-600 capitalize ">single choice</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Section */}
-          <div className="mt-4 flex justify-between items-center">
-            <Link to={"/election/12345/overview"}>
-              <button className="text-sm text-blue-600 hover:underline font-medium">
-                View Details
-              </button>
-            </Link>
-            <button className="bg-red-600 flex justify-center items-center gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700">
-              <BsTrash3 size={15} />
-              Delete Election
-            </button>
-          </div>
-        </div>
-
-        <div className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-          {/* Header Section */}
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold capitalize">
+            <h2 className="text-lg font-medium capitalize">
               Class President 2024/2025
             </h2>
             <span className="text-green-600 bg-green-100 text-sm  px-3 py-1 rounded-lg">
@@ -264,65 +134,8 @@ const DashboardElections = () => {
               <div>
                 <div className="flex gap-2 ">
                   <FaRegCalendarCheck size={15} />
-                  <h4 className="font-medium  uppercase mb-1">Start Date</h4>
-                </div>
-                <p className="text-gray-500">06/12/24 11:00 AM</p>
-              </div>
-
-              {/* End Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarXmark size={15} />
-                  <h4 className="font-medium  uppercase mb-1">End Date</h4>
-                </div>
-                <p className="text-gray-500">10/12/24 11:00 AM</p>
-              </div>
-
-              {/* type*/}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaVoteYea size={20} />
-                  <h4 className="font-medium  uppercase mb-1">Election type</h4>
-                </div>
-                <p className=" text-gray-600 capitalize ">single choice</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Section */}
-          <div className="mt-4 flex justify-between items-center">
-            <Link to={"/election/12345/overview"}>
-              <button className="text-sm text-blue-600 hover:underline font-medium">
-                View Details
-              </button>
-            </Link>
-            <button className="bg-red-600 flex justify-center items-center gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700">
-              <BsTrash3 size={15} />
-              Delete Election
-            </button>
-          </div>
-        </div>
-
-        <div className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-          {/* Header Section */}
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg capitalize font-medium">
-              Most Beautiful Girl in Nigeria
-            </h2>
-            <span className="bg-yellow-100 text-yellow-500 text-sm  px-3 py-1 rounded-lg">
-              Building
-            </span>
-          </div>
-
-          {/* Date Section */}
-          <div className="border-t border-gray-200 pt-4">
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              {/* Start Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarCheck size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
-                    start Date
+                  <h4 className="font-medium text-xs uppercase mb-1">
+                    Start Date
                   </h4>
                 </div>
                 <p className="text-gray-500">06/12/24 11:00 AM</p>
@@ -332,7 +145,7 @@ const DashboardElections = () => {
               <div>
                 <div className="flex gap-2 ">
                   <FaRegCalendarXmark size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
+                  <h4 className="font-medium text-xs  uppercase mb-1">
                     End Date
                   </h4>
                 </div>
@@ -342,26 +155,26 @@ const DashboardElections = () => {
               {/* type*/}
               <div>
                 <div className="flex gap-2 ">
-                  <FaVoteYea size={15} />
-                  <h4 className="font-medium text-sm  uppercase mb-1">
+                  <FaVoteYea size={20} />
+                  <h4 className="font-medium text-xs uppercase mb-1">
                     Election type
                   </h4>
                 </div>
-                <p className=" text-gray-600 capitalize ">single choice</p>
+                <p className=" text-blue-600 capitalize ">single choice</p>
               </div>
             </div>
           </div>
 
           {/* Footer Section */}
-          <div className="mt-4 flex justify-between items-center">
+          <div className="mt-6 flex gap-6 items-center">
             <Link to={"/election/12345/overview"}>
-              <button className="text-sm text-blue-600 hover:underline font-medium">
-                View Details
+              <button className="text-sm px-4 py-2 bg-blue-600 flex justify-center items-center gap-2 font-normal text-white rounded-lg hover:bg-blue-100 hover:text-blue-400 ">
+                <FaEye size={15} /> View Details
               </button>
             </Link>
-            <button className="bg-red-600  flex justify-center items-center gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-700">
+            <button className="bg-red-600 flex justify-center items-start gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-100 hover:text-red-600">
               <BsTrash3 size={15} />
-              Delete Election
+              Delete
             </button>
           </div>
         </div>

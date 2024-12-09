@@ -32,7 +32,7 @@ const ElectionSidebar = () => {
             Icon: PiUsersFourFill,
           },
           {
-            to: "/election/12345/setting",
+            to: "/election/12345/setting/general",
             label: "Settings",
             Icon: GrSettingsOption,
           },
@@ -51,7 +51,7 @@ const ElectionSidebar = () => {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `tracking-wide cursor-pointer py-2 flex items-center rounded-md gap-2 px-4 transition-all duration-300 ${
+              `tracking-wide cursor-pointer py-2 flex items-center rounded-md  gap-2 px-4 transition-all duration-300 ${
                 isActive
                   ? "bg-white text-blue-900"
                   : "hover:bg-blue-800 text-white"

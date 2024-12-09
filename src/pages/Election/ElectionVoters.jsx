@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
-  const [ballot, setBallot] = useState(true);
+  const [ballot, setBallot] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -18,6 +18,7 @@ const ElectionVoters = () => {
     e.preventDefault();
     // Handle the search submit logic here
     console.log("Search submitted for:", searchQuery);
+    setBallot(true);
   };
 
   // const electionName = "Most Beautiful Girl in Nigeria";
