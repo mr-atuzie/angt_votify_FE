@@ -12,10 +12,10 @@ const DashboardLayout = () => {
 
   return (
     <div className=" min-h-screen flex">
-      <div className=" fixed h-full w-[20%]">
+      <div className=" hidden lg:block fixed h-full w-[20%]">
         <DashboardSidebar />
       </div>
-      <div className=" flex-1 ml-[20%] bg-gray-100">
+      <div className=" flex-1 lg:ml-[20%] bg-gray-100">
         <Outlet />
       </div>
     </div>

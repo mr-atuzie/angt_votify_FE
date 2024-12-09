@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className=" bg-white w-full ">
       <div className=" mx-auto w-[90%]  lg:w-[85%] py-4 flex items-center justify-between ">
         <div>
-          <h4 className="text-2xl font-medium text-blue-900">2ruevote</h4>
+          <h4 className="text-2xl font-extrabold text-blue-900">2ruevote</h4>
         </div>
 
         {/* Links */}
@@ -71,7 +71,7 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className=" hidden  flex items-center tracking-wide gap-1 lg:gap-5">
+        <div className=" hidden  lg:flex items-center tracking-wide gap-1 lg:gap-5">
           <Link className=" cursor-pointer " to={"/login"}>
             Login
           </Link>
@@ -102,47 +102,81 @@ const Navbar = () => {
         </button>
       </div>
       {menu && (
-        <div className=" w-[80%] p-4 bg-orange-50 h-screen fixed z-50 top-0 left-0">
+        <div className=" w-[80%] p-4 bg-white h-screen fixed z-50 top-0 left-0">
           {/* Dashboard header */}
 
-          <div className="flex items-center  space-x-2 ">
-            <div className="text-blue-600">
+          <div className="flex items-center text-blue-800  space-x-2 ">
+            <div className="">
               <MdHowToVote size={20} />
             </div>
             <h4 className="text-2xl font-bold ">The Grand Stage</h4>
           </div>
 
           <div className=" flex flex-col my-6 gap-4">
-            <Link className=" flex font-medium items-center gap-2" to={"/"}>
-              <span className=" text-pink-500">
-                <RiVipCrownLine />
-              </span>
-              <span className=" ">Home</span>
-            </Link>
-            <Link className=" flex items-center gap-2" to={"/about"}>
-              <span className=" text-pink-500">
-                <RiVipCrownLine />
-              </span>
-              <span>About</span>
-            </Link>
-            <Link className=" flex items-center gap-2" to={"/contestants"}>
-              <span className=" text-pink-500">
-                <RiVipCrownLine />
-              </span>
-              <span className=" ">Contestant</span>
-            </Link>
-            <Link className=" flex items-center gap-2" to={"/contact"}>
-              <span className=" text-pink-500">
-                <RiVipCrownLine />
-              </span>
-              <span>Contact</span>
-            </Link>
-            <Link className=" flex items-center gap-2" to={"/Register"}>
-              <span className=" text-pink-500">
-                <RiVipCrownLine />
-              </span>
-              <span>Register</span>
-            </Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `tracking-wide cursor-pointer ${
+                  isActive
+                    ? " text-blue-600 "
+                    : "text-black hover:text-blue-600"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/pricing"
+              className={({ isActive }) =>
+                `tracking-wide cursor-pointer ${
+                  isActive
+                    ? " text-blue-600 "
+                    : "text-black hover:text-blue-600"
+                }`
+              }
+            >
+              Pricing
+            </NavLink>
+
+            <NavLink
+              to="/frequently-asked-questions"
+              className={({ isActive }) =>
+                `tracking-wide cursor-pointer ${
+                  isActive
+                    ? " text-blue-600 "
+                    : "text-black hover:text-blue-600"
+                }`
+              }
+            >
+              FAQ
+            </NavLink>
+
+            <NavLink
+              to="/reviews"
+              className={({ isActive }) =>
+                `tracking-wide cursor-pointer ${
+                  isActive
+                    ? " text-blue-600 "
+                    : "text-black hover:text-blue-600"
+                }`
+              }
+            >
+              Testimonal
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `tracking-wide cursor-pointer ${
+                  isActive
+                    ? " text-blue-600 "
+                    : "text-black hover:text-blue-600"
+                }`
+              }
+            >
+              Contact
+            </NavLink>
           </div>
         </div>
       )}

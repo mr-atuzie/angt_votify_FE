@@ -63,11 +63,13 @@ const Login = () => {
     <>
       <Navbar />
       <div className="w-full py-16  bg-blue-50 min-h-screen">
-        <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[35%] mx-auto py-10 lg:py-12 lg:px-6 ">
+        <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[35%] mx-auto px-3 py-10 lg:py-12 lg:px-6 ">
           {/* Welcome Back Section */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center mb-8 text-blue-600">
-              <h4 className="text-5xl font-extrabold -mt-2">Welcome Back</h4>
+              <h4 className=" text-2xl lg:text-5xl font-extrabold -mt-2">
+                Welcome Back
+              </h4>
               <p className="text-sm text-gray-500 ">Log into your dashboard</p>
             </div>
 
