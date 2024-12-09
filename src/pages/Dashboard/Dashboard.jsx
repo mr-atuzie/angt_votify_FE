@@ -3,6 +3,7 @@ import React from "react";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { IoAddSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import CountUpAnimation from "../../components/CountUpAnimation";
 
 const Dashboard = () => {
   return (
@@ -30,19 +31,20 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-medium text-gray-600">Total Elections</h2>
-          <p className="text-3xl font-bold text-blue-600">15</p>
+
+          <CountUpAnimation count={15} />
         </div>
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-medium text-gray-600">
             Active Elections
           </h2>
-          <p className="text-3xl font-bold text-green-500">5</p>
+          <CountUpAnimation count={10} />
         </div>
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-lg font-medium text-gray-600">
             Voter Participation
           </h2>
-          <p className="text-3xl font-bold text-yellow-500">78%</p>
+          <CountUpAnimation count={78} symbol="%" />
         </div>
       </div>
 

@@ -4,7 +4,6 @@ import { PiUsersFourFill } from "react-icons/pi";
 import { GrSettingsOption } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-import { GrEdit } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 
 const fontSize = 20;
@@ -33,7 +32,7 @@ const ElectionSidebar = () => {
             Icon: PiUsersFourFill,
           },
           {
-            to: "/election/12345/edit",
+            to: "/election/12345/setting",
             label: "Settings",
             Icon: GrSettingsOption,
           },

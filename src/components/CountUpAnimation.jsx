@@ -1,19 +1,16 @@
-import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated } from "@react-spring/web";
 
-const CountUpAnimation = ({ count }) => {
+const CountUpAnimation = ({ count, symbol }) => {
   const props = useSpring({
     from: { number: 0 },
     to: { number: count },
-    config: { duration: 400 },
+    config: { duration: 600 },
   });
 
   return (
-    <>
-      <animated.div className="text-xl font-bold">
-        {props.number.to((n) => n.toFixed(0))}
-      </animated.div>
-    </>
+    <animated.div className="text-3xl font-bold text-blue-600">
+      {props.number.to((n) => `${n.toFixed(0)}${symbol ? symbol : ""}`)}
+    </animated.div>
   );
 };
 

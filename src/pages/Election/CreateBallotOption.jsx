@@ -33,7 +33,7 @@ const CreateBallotOption = () => {
   return (
     <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
       {/* header */}
-      <div className="flex justify-between items-center mb-6">
+      {/* <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
           <h1 className="text-3xl font-bold text-gray-800">
             Most Beautiful Girl Nigeria
@@ -43,7 +43,7 @@ const CreateBallotOption = () => {
             Building
           </span>
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-white rounded-lg shadow-md h-full w-[60%] mx-auto">
         {/* Header */}

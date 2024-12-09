@@ -27,8 +27,8 @@ const EditElectionPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex gap-10 flex-col bg-gray-100 p-10">
-      <div className="bg-white rounded-lg shadow-lg w-[60%] mx-auto mt-8">
+    <div className="min-h-screen flex gap-10 flex-col bg-gray-100 ">
+      <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 rounded-t-lg">
           <h1 className="text-2xl uppercase font-semibold">General Settings</h1>
@@ -101,7 +101,7 @@ const EditElectionPage = () => {
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg w-[60%] mx-auto mt-8">
+      <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 rounded-t-lg">
           <h1 className="text-2xl uppercase font-semibold"> Election Date</h1>
@@ -165,7 +165,7 @@ const EditElectionPage = () => {
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md w-[60%] mx-auto">
+      <div className="bg-white rounded-lg shadow-md w-full mx-auto">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4">
           <h1 className="text-xl uppercase font-semibold">Election Type</h1>
@@ -213,7 +213,7 @@ const EditElectionPage = () => {
         </form>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md w-[60%] mx-auto">
+      <div className="bg-white rounded-lg shadow-md w-full mx-auto">
         {/* Header */}
         <div className="w-full bg-red-600 text-white text-center py-4">
           <h1 className="text-xl uppercase font-semibold">Delete Election</h1>

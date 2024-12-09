@@ -7,7 +7,7 @@ import Ballot from "../../components/Ballot";
 import { Link } from "react-router-dom";
 
 const ElectionBallot = () => {
-  const [ballot, setBallot] = useState(false);
+  const [ballot, setBallot] = useState(true);
 
   return (
     <div>
@@ -56,7 +56,7 @@ const ElectionBallot = () => {
                   <span>Import</span>
                 </button>
 
-                <Link to={"/election/12345/ballot/create"}>
+                <Link to={"/election/12345/ballot/6789/create-ballot-question"}>
                   <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
                     <span>
                       <IoAddSharp size={20} />

@@ -33,6 +33,8 @@ import ElectionVoters from "./pages/Election/ElectionVoters";
 import CreateBallotQuestion from "./pages/Election/CreateBallotQuestion";
 import CreateBallotOption from "./pages/Election/CreateBallotOption";
 import EditElectionPage from "./pages/Election/EditElectionPage";
+import SettingLayout from "./layouts/SettingLayout";
+import BallotLayout from "./layouts/BallotLayout";
 
 function App() {
   return (
@@ -50,10 +52,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
+          {/* dashboard lay out */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
+
             <Route path="elections" element={<DashboardElections />} />
+
             <Route path="voter-management" element={<DashboardVoters />} />
+
             <Route
               path="candidate-management"
               element={<DashboardCandidates />}
@@ -64,23 +70,31 @@ function App() {
 
           <Route path="/create-election" element={<CreateElection />} />
 
+          {/* Election layout */}
           <Route path="/election" element={<ElectionLayout />}>
             <Route path=":id/overview" element={<ElectionOverview />} />
 
-            <Route path=":id/ballot">
+            {/* ballot laout */}
+            <Route path=":id/ballot" element={<BallotLayout />}>
               <Route index element={<ElectionBallot />} />
+
               <Route
-                path="create-ballot-question"
+                path=":ballotId/create-ballot-question"
                 element={<CreateBallotQuestion />}
               />
-              <Route path=":option" element={<CreateBallotOption />} />
+              <Route
+                path=":ballotId/create-ballot-option"
+                element={<CreateBallotOption />}
+              />
             </Route>
 
             <Route path=":id/voters" index element={<ElectionVoters />} />
-
-            <Route path=":id/edit" index element={<EditElectionPage />} />
-
             <Route path=":id/voter/create" element={<ElectionAddVoters />} />
+
+            {/* setting layout */}
+            <Route path=":id/setting" element={<SettingLayout />}>
+              <Route index element={<EditElectionPage />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

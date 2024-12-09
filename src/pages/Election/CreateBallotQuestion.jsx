@@ -114,7 +114,7 @@ const CreateBallotQuestion = () => {
             >
               {loading ? "Loading..." : "Save"}
             </button>
-            <Link to="/election/12345/ballot">
+            <Link to="/election/12345/ballot/6789/create-ballot-option">
               <button
                 className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all disabled:bg-gray-300"
                 type="button"
