@@ -176,6 +176,21 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
+
+            <div className="grid grid-cols-1 gap-4">
+              <Link
+                className=" cursor-pointer hover:bg-blue-600 hover:text-white bg-white border-blue-600 text-blue-600   rounded-full px-6 py-1.5 "
+                to={"/login"}
+              >
+                Login
+              </Link>
+              <Link
+                className=" cursor-pointer hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600 bg-blue-600 rounded-full px-6 py-1.5 text-white"
+                to={"/register"}
+              >
+                Sign up
+              </Link>
+            </div>
           </div>
         </div>
       )}
