@@ -36,7 +36,7 @@ const Contact = () => {
             <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
               Contact us
             </div>
-            <h1 className=" text-4xl -mt-2 text-center   max-w-lg">
+            <h1 className=" text-4xl font-semibold -mt-2 text-center   max-w-lg">
               Want to get in touch with our team? We're all ears.
             </h1>
           </div>
