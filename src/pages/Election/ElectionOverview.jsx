@@ -1,6 +1,15 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
+import moment from "moment";
 
 const ElectionOverview = () => {
+  const electionData = useOutletContext();
+
+  if (!electionData) {
+    return <div>No election data available</div>;
+  }
+
+  console.log(electionData);
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
       {/* Overview Cards */}
@@ -8,13 +17,13 @@ const ElectionOverview = () => {
         <div className="bg-white shadow-md p-4 rounded-lg">
           <h2 className="text-sm font-medium text-gray-500">Start Date</h2>
           <p className="text-lg font-semibold text-gray-800">
-            Dec 10, 2024 - 10:00 AM
+            {moment(electionData.startDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">
           <h2 className="text-sm font-medium text-gray-500">End Date</h2>
           <p className="text-lg font-semibold text-gray-800">
-            Dec 20, 2024 - 6:00 PM
+            {moment(electionData.endDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">

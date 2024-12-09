@@ -7,12 +7,12 @@ const Accordion = ({ title, answer }) => {
   const [accordion, setAccordion] = useState(false);
 
   return (
-    <div className=" w-[55%] border-b-2  border-dashed border-blue-600 ">
+    <div className=" lg:w-[55%] border-b-2  border-dashed border-blue-600 ">
       <div
-        className="  w-full flex justify-between  text-base items-center mb-2"
+        className="  w-full flex justify-between items-start py-1 text-base  mb-2"
         onClick={() => setAccordion(!accordion)}
       >
-        <h1 className={`text-lg mb-2 ${accordion ? " text-blue-600" : ""}`}>
+        <h1 className={`lg:text-lg mb-2 ${accordion ? " text-blue-600" : ""}`}>
           {title}
         </h1>
 

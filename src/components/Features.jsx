@@ -19,7 +19,7 @@ const Features = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="max-w-7xl px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Feature 1: Secure Voting */}
           <div className=" border p-5 rounded-lg text-center flex flex-col justify-center items-center">
             <div className="text-blue-600 text-4xl mb-4">

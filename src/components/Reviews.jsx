@@ -36,99 +36,119 @@ const Reviews = () => {
           <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
             Testimonial
           </div>
-          <h1 className=" text-4xl text-center">What our users say</h1>
+          <h1 className=" text-4xl font-semibold text-center">
+            What our users say
+          </h1>
         </div>
 
-        {/* <div className="grid grid-cols-3 gap-8">
-          {testimonals.map((testimonal) => {
-            return (
-              <div className=" border rounded-lg p-5">
-                <div className=" flex justify-between items-center">
-                  <div className=" flex items-center   my-4 gap-2">
-                    <img
-                      src="https://www.slido.com/static/wade.42fcba32.1184.png"
-                      className=" w-10 h-10 rounded-full object-cover"
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="">Peter Dury</h3>
-                      <p className=" text-sm text-gray-400 -mt-1">
-                        sport analyst
-                      </p>
-                    </div>
-                  </div>
+        {/* desktop slider */}
+        <div className="hidden lg:block">
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+            spaceBetween={50}
+            slidesPerView={3}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+          >
+            {testimonals.map((testimonal) => {
+              return (
+                <SwiperSlide key={testimonal}>
+                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-5">
+                    <div className=" flex justify-between items-center">
+                      <div className=" flex items-center   my-4 gap-2">
+                        <img
+                          src={testimonal}
+                          className=" w-10 h-10 rounded-full object-cover"
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="">Peter Dury</h3>
+                          <p className=" text-sm text-gray-400 -mt-1">
+                            sport analyst
+                          </p>
+                        </div>
+                      </div>
 
-                  <div className=" flex items-center gap-1 text-yellow-400">
-                    <IoStar size={20} />
-                    <IoStar size={20} />
-                    <IoStar size={20} />
-                    <IoStar size={20} />
-                    <IoStar size={20} />
-                  </div>
-                </div>
-
-                <p className="">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tempore consequatur neque debitis vel porro, cupiditate
-                  aliquam, consectetur sed quisquam numquam asperiores
-                  accusantium, tempora nesciunt molestias.
-                </p>
-              </div>
-            );
-          })}
-        </div> */}
-
-        <Swiper
-          // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-          spaceBetween={50}
-          slidesPerView={3}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-        >
-          {testimonals.map((testimonal) => {
-            return (
-              <SwiperSlide key={testimonal}>
-                <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-5">
-                  <div className=" flex justify-between items-center">
-                    <div className=" flex items-center   my-4 gap-2">
-                      <img
-                        src={testimonal}
-                        className=" w-10 h-10 rounded-full object-cover"
-                        alt=""
-                      />
-                      <div>
-                        <h3 className="">Peter Dury</h3>
-                        <p className=" text-sm text-gray-400 -mt-1">
-                          sport analyst
-                        </p>
+                      <div className=" flex items-center gap-1 text-yellow-400">
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
                       </div>
                     </div>
 
-                    <div className=" flex items-center gap-1 text-yellow-400">
-                      <IoStar size={20} />
-                      <IoStar size={20} />
-                      <IoStar size={20} />
-                      <IoStar size={20} />
-                      <IoStar size={20} />
-                    </div>
+                    <p className="">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Tempore consequatur neque debitis vel porro, cupiditate
+                      aliquam, consectetur sed quisquam numquam asperiores
+                      accusantium, tempora nesciunt molestias.
+                    </p>
                   </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
 
-                  <p className="">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempore consequatur neque debitis vel porro, cupiditate
-                    aliquam, consectetur sed quisquam numquam asperiores
-                    accusantium, tempora nesciunt molestias.
-                  </p>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+        <div className=" lgblock lg:hidden">
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+            spaceBetween={50}
+            slidesPerView={1}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log("slide change")}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+          >
+            {testimonals.map((testimonal) => {
+              return (
+                <SwiperSlide key={testimonal}>
+                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-5">
+                    <div className=" flex justify-between items-center">
+                      <div className=" flex items-center   my-4 gap-2">
+                        <img
+                          src={testimonal}
+                          className=" w-10 h-10 rounded-full object-cover"
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="">Peter Dury</h3>
+                          <p className=" text-sm text-gray-400 -mt-1">
+                            sport analyst
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className=" flex items-center gap-1 text-yellow-400">
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                        <IoStar size={20} />
+                      </div>
+                    </div>
+
+                    <p className="">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Tempore consequatur neque debitis vel porro, cupiditate
+                      aliquam, consectetur sed quisquam numquam asperiores
+                      accusantium, tempora nesciunt molestias.
+                    </p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

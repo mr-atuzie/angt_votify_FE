@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
@@ -20,6 +20,14 @@ const ElectionVoters = () => {
     console.log("Search submitted for:", searchQuery);
     setBallot(true);
   };
+
+  const electionData = useOutletContext();
+
+  if (!electionData) {
+    return <div>No election data available</div>;
+  }
+
+  console.log(electionData);
 
   // const electionName = "Most Beautiful Girl in Nigeria";
 

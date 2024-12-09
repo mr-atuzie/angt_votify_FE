@@ -7,7 +7,7 @@ import Ballot from "../../components/Ballot";
 import { Link } from "react-router-dom";
 
 const ElectionBallot = () => {
-  const [ballot, setBallot] = useState(true);
+  const [ballot, setBallot] = useState(false);
 
   return (
     <div>

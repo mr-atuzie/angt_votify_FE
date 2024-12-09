@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CreateElection = () => {
   const initialState = {
     title: "",
+    description: "",
     startDate: "",
     endDate: "",
     electionType: "",
@@ -11,9 +14,9 @@ const CreateElection = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const { title, startDate, endDate, electionType } = formData;
+  const { title, startDate, endDate, electionType, description } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,9 +25,44 @@ const CreateElection = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
-    navigate("/election/12345/overview");
+    console.log({ title, description, startDate, endDate, electionType });
+
+    if (!title || !description || !startDate || !endDate || !electionType) {
+      setLoading(false);
+      return toast.error("All fields are required");
+    }
+
+    try {
+      const { data } = await axios.post(`/api/v1/election/create`, {
+        title,
+        description,
+        startDate,
+        endDate,
+        electionType,
+      });
+
+      setLoading(false);
+
+      toast.success("Election created");
+
+      console.log(data);
+
+      navigate(`/election/${data.election?._id}/overview`);
+
+      // navigate("/dashboard");
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   const back = () => {
@@ -32,7 +70,7 @@ const CreateElection = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center bg-blue-50 min-h-screen">
+    <div className="w-full flex justify-center items-cente py-16 bg-blue-50 min-h-screen">
       <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[40%] mx-auto">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 ">
@@ -67,6 +105,28 @@ const CreateElection = () => {
                   placeholder="E.g. Most Beautiful Girl, Class President"
                   required
                 />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="description"
+                >
+                  Description
+                </label>
+                <textarea
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  value={description}
+                  onChange={handleInputChange}
+                  id="description"
+                  name="description"
+                  placeholder="Provide additional details for this ballot question..."
+                ></textarea>
+                <small className="text-gray-500">
+                  Add more context to help voters understand the purpose of this
+                  ballot.
+                </small>
               </div>
 
               {/* Dates */}
@@ -133,14 +193,15 @@ const CreateElection = () => {
 
             {/* Buttons */}
             <div className="flex gap-4 items-center justify-center">
-              <Link to={"/election/12345/overview"}>
-                <button
-                  className="text-sm w-40 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all"
-                  type="submit"
-                >
-                  Save
-                </button>
-              </Link>
+              {/* <Link to={"/election/12345/overview"}> */}
+              <button
+                className="text-sm w-40 py-3 bg-blue-600 disabled:bg-blue-300 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all"
+                type="submit"
+                disabled={loading}
+              >
+                Save
+              </button>
+              {/* </Link> */}
 
               <button
                 className="text-sm w-40 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 transition-all"

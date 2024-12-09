@@ -9,16 +9,18 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
   // //     setCurrentPage(path.replace(/-/g, " ").toUpperCase()); // Format the page name
   // //   }, [location]);
 
+  console.log(electionStatus);
+
   return (
     <header className=" bg-blue-900 py-4 shadow-lg px-6">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <h1 className="text-xl text-white font-medium">
-            Most Beautiful Girl Nigeria
+          <h1 className="text-xl capitalize text-white font-medium">
+            {electionName}
           </h1>
 
           <span className="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-lg">
-            Building
+            {electionStatus}
           </span>
         </div>
 

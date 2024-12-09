@@ -41,13 +41,7 @@ const Login = () => {
     const userData = { email, password };
 
     try {
-      await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/login`,
-        userData,
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.post(`/api/v1/user/login`, userData);
 
       setLoading(false);
 

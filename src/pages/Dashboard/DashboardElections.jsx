@@ -11,6 +11,7 @@ import { FaEye } from "react-icons/fa6";
 
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -46,24 +47,7 @@ const DashboardElections = () => {
 
       <div className=" w-[90%] mx-auto flex flex-col gap-5">
         <div className=" flex justify-between items-center mb-4">
-          {/* <form className=" w-[50%]">
-            <input
-              className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-              type="title"
-              name="title"
-              id="title"
-              placeholder="Search for election title"
-              required
-            />
-          </form> */}
-
           <form onSubmit={handleSearchSubmit} className=" w-[45%]">
-            {/* <label
-              htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-            >
-              Search
-            </label> */}
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg
@@ -100,13 +84,15 @@ const DashboardElections = () => {
             </div>
           </form>
 
-          <form class=" w-[30%]">
+          <form className=" w-[30%]">
             <select
               id="countries"
               className="bg-gray-50 border p-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
             >
-              <option disabled selected>
-                Filter By Status
+              <option value="" disabled>
+                Filter election by status
               </option>
               <option value="Running">Running</option>
               <option value="Completed">Completed</option>

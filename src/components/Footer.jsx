@@ -4,7 +4,7 @@ import { RiVipCrownLine } from "react-icons/ri";
 const Footer = () => {
   return (
     <footer className="bg-black pt-24 pb-4 text-gray-200  flex flex-col  justify-center items-center">
-      <div className=" w-[90%] mx-auto flex justify-between">
+      <div className=" w-[85%] lg:w-[90%] mx-auto gap-5 flex flex-col justify-between">
         {/* Column 1: Logo Section */}
 
         <h4 className="text-2xl flex-1 font-semibold">2rueVotes</h4>

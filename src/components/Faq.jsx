@@ -9,26 +9,28 @@ const Faq = () => {
           <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
             FAQ
           </div>
-          <h1 className=" text-4xl text-center">Frequently Asked Questions</h1>
+          <h1 className=" text-4xl font-semibold text-center">
+            Frequently Asked Questions
+          </h1>
         </div>
-        {/* <div className=" w-full"> */}
-        <Accordion
-          title="Does Election Runner offer educational discounts?"
-          answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
-        />
-        <Accordion
-          title="Does Election Runner offer educational discounts?"
-          answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
-        />
-        <Accordion
-          title="Does Election Runner offer educational discounts?"
-          answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
-        />
-        <Accordion
-          title="Does Election Runner offer educational discounts?"
-          answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
-        />
-        {/* </div> */}
+        <div className=" px-4 lg:px-0">
+          <Accordion
+            title="Does Election Runner offer educational discounts?"
+            answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
+          />
+          <Accordion
+            title="Does Election Runner offer educational discounts?"
+            answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
+          />
+          <Accordion
+            title="Does Election Runner offer educational discounts?"
+            answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
+          />
+          <Accordion
+            title="Does Election Runner offer educational discounts?"
+            answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."
+          />
+        </div>
       </div>
     </div>
   );
