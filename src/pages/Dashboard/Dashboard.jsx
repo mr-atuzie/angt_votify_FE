@@ -150,43 +150,43 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div class="bg-white h-fit w-[35%] shadow-lg rounded-lg p-3">
-          <h2 class="text-lg font-semibold text-gray-800 mb-4">
+        <div className="bg-white h-fit w-[35%] shadow-lg rounded-lg p-3">
+          <h2 className="text-lg font-semibold text-gray-800 mb-4">
             Recent Activity
           </h2>
-          <ul class="space-y-4">
-            <li class="flex items-center gap-3">
-              <span class="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center">
+          <ul className="space-y-4">
+            <li className="flex items-center gap-3">
+              <span className="bg-blue-600 text-white rounded-full h-8 w-8 flex items-center justify-center">
                 E
               </span>
               <div>
-                <p class="text-sm text-gray-700">
+                <p className="text-sm text-gray-700">
                   New election "Annual Awards" created.
                 </p>
-                <p class="text-xs text-gray-500">5 minutes ago</p>
+                <p className="text-xs text-gray-500">5 minutes ago</p>
               </div>
             </li>
-            <li class="flex items-center gap-3">
-              <span class="bg-green-500 text-white rounded-full h-8 w-8 flex items-center justify-center">
+            <li className="flex items-center gap-3">
+              <span className="bg-green-500 text-white rounded-full h-8 w-8 flex items-center justify-center">
                 V
               </span>
               <div>
-                <p class="text-sm text-gray-700">
+                <p className="text-sm text-gray-700">
                   200 new voters added for "Employee of the Month".
                 </p>
-                <p class="text-xs text-gray-500">1 hour ago</p>
+                <p className="text-xs text-gray-500">1 hour ago</p>
               </div>
             </li>
-            <li class="flex items-center gap-3">
-              <span class="bg-yellow-500 text-white rounded-full h-8 w-8 flex items-center justify-center">
+            <li className="flex items-center gap-3">
+              <span className="bg-yellow-500 text-white rounded-full h-8 w-8 flex items-center justify-center">
                 C
               </span>
               <div>
-                <p class="text-sm text-gray-700">
+                <p className="text-sm text-gray-700">
                   Candidate "John Doe" registered for "Student Council
                   Elections".
                 </p>
-                <p class="text-xs text-gray-500">2 hours ago</p>
+                <p className="text-xs text-gray-500">2 hours ago</p>
               </div>
             </li>
           </ul>

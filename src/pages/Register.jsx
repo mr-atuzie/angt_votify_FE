@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Register = () => {
   const initialState = {
@@ -16,7 +17,7 @@ const Register = () => {
 
   const { name, email, password, phone } = formData;
 
-  const navigate = useNavigate("/");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,41 +34,31 @@ const Register = () => {
       return toast.error("All fields are required");
     }
 
-    if (password.length < 6) {
+    if (password.length < 8) {
       setLoading(false);
-      return toast.error("Password must be up to 6 characters");
+      return toast.error("Password must be up to 8 characters");
     }
 
-    const userData = { name, email, phone, password };
+    const userData = { fullName: name, email, phone, password };
 
-    console.log(userData);
+    try {
+      await axios.post(`/api/v1/user/register`, userData);
 
-    navigate("/dashboard");
+      setLoading(false);
 
-    //   try {
-    //     await axios.post(
-    //       `${process.env.REACT_APP_BACKEND_URL}/api/v1/pakam/register`,
-    //       userData,
-    //       {
-    //         withCredentials: true,
-    //       }
-    //     );
+      toast.success("User Registered successfully");
+      navigate("/dashboard");
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    //     setLoading(false);
-
-    //     toast.success("User Registered successfully");
-    //     navigate("/dashboard");
-    //   } catch (error) {
-    //     const message =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
-
-    //     setLoading(false);
-    //     toast.error(message);
-    //   }
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (

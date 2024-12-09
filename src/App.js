@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollTop from "./components/ScrollTop";
+import axios from "axios";
 
 // Public
 import Home from "./pages/Home";
@@ -39,6 +40,9 @@ import ElectionDateSetting from "./components/ElectionDateSetting";
 import ElectionDeleteForm from "./components/ElectionDeleteForm";
 import ElectionTypeSetting from "./components/ElectionTypeSetting";
 import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   return (

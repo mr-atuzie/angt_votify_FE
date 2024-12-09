@@ -155,7 +155,7 @@ const DashboardElections = () => {
               {/* type*/}
               <div>
                 <div className="flex gap-2 ">
-                  <FaVoteYea size={20} />
+                  <FaVoteYea size={15} />
                   <h4 className="font-medium text-xs uppercase mb-1">
                     Election type
                   </h4>
