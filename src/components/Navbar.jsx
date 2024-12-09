@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { MdHowToVote } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import { RiVipCrownLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
