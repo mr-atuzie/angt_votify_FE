@@ -8,9 +8,9 @@ const Navbar = () => {
 
   return (
     <nav className=" bg-white w-full ">
-      <div className=" mx-auto  w-[85%] py-4 flex items-center justify-between ">
+      <div className=" mx-auto w-[90%]  lg:w-[85%] py-4 flex items-center justify-between ">
         <div>
-          <h4 className="text-2xl font-medium text-blue-600">Truevotes</h4>
+          <h4 className="text-2xl font-medium text-blue-900">2ruevote</h4>
         </div>
 
         {/* Links */}
@@ -71,7 +71,7 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <div className="  flex items-center tracking-wide gap-5">
+        <div className=" hidden  flex items-center tracking-wide gap-1 lg:gap-5">
           <Link className=" cursor-pointer " to={"/login"}>
             Login
           </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
         </div>
 
         {/* Hamburger Menu for mobile */}
-        <button onClick={() => setMenu(!menu)} className="md:hidden text-white">
+        <button onClick={() => setMenu(!menu)} className="md:hidden text-black">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

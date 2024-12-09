@@ -9,7 +9,7 @@ const Hero = () => {
           The Easiest Way to Make Voting Interactive.
         </div>
 
-        <h1 className="text-center text-5xl w-[60%] font-semibold">
+        <h1 className="text-center text-2xl lg:text-5xl w-[85%] lg:w-[60%] font-semibold">
           Manage elections easily with a{" "}
           <span className="text-blue-600">cloud-based platform</span> designed
           for secure and interactive voting experiences.

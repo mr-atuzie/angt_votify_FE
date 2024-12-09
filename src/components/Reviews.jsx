@@ -112,7 +112,7 @@ const Reviews = () => {
             {testimonals.map((testimonal) => {
               return (
                 <SwiperSlide key={testimonal}>
-                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-5">
+                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-2.5 lg:p-5">
                     <div className=" flex justify-between items-center">
                       <div className=" flex items-center   my-4 gap-2">
                         <img
@@ -129,11 +129,11 @@ const Reviews = () => {
                       </div>
 
                       <div className=" flex items-center gap-1 text-yellow-400">
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
+                        <IoStar size={15} />
+                        <IoStar size={15} />
+                        <IoStar size={15} />
+                        <IoStar size={15} />
+                        <IoStar size={15} />
                       </div>
                     </div>
 

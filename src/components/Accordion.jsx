@@ -9,7 +9,7 @@ const Accordion = ({ title, answer }) => {
   return (
     <div className=" lg:w-[55%] border-b-2  border-dashed border-blue-600 ">
       <div
-        className="  w-full flex justify-between items-start py-1 text-base  mb-2"
+        className="  w-full flex justify-between items-start py-1 text-sm lg:text-base  mb-2"
         onClick={() => setAccordion(!accordion)}
       >
         <h1 className={`lg:text-lg mb-2 ${accordion ? " text-blue-600" : ""}`}>
@@ -28,7 +28,7 @@ const Accordion = ({ title, answer }) => {
       </div>
 
       <div
-        className={`  transition-all duration-300 ease-in-out text-gray-600 my-2  ${
+        className={` text-xs lg:text-sm transition-all duration-300 ease-in-out text-gray-600 mb-2  ${
           accordion ? " grid-rows-[1fr] block" : "grid-rows-[0fr] hidden"
         }`}
       >

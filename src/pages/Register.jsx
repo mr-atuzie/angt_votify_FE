@@ -65,11 +65,11 @@ const Register = () => {
     <>
       <Navbar />
       <div className="w-full flex justify-center items-center bg-blue-50 py-10 min-h-screen">
-        <div className="w-[90%] bg-white rounded-lg shadow-lg lg:w-[43%] mx-auto py-10 lg:py-12 lg:px-6  ">
+        <div className="w-[90%] bg-white rounded-lg shadow-lg lg:w-[43%] mx-auto px-3 py-10 lg:py-12 lg:px-6  ">
           {/* Registration Form */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center text-blue-600">
-              <h4 className="text-5xl font-extrabold  mb-6">
+              <h4 className=" text-2xl lg:text-5xl font-extrabold  mb-6">
                 Registration Form
               </h4>
             </div>
