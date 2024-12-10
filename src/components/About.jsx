@@ -13,7 +13,7 @@ const About = () => {
           </h1>
         </div>
 
-        <div className=" gap-5 flex flex-col lg:fler justify-between items-center">
+        <div className=" gap-5 flex flex-col lg:flex-row justify-between items-center">
           <div className=" border rounded-lg p-5">
             <div className=" h-52 bg-pink-200 rounded-lg mb-5"></div>
 
