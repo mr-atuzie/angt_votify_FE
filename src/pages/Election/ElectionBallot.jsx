@@ -106,7 +106,7 @@ const ElectionBallot = () => {
                   <span>Import</span>
                 </button>
 
-                <Link to={`/election/${id}/create-ballot-question`}>
+                <Link to={`/election/${id}/ballot/create-question`}>
                   <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
                     <span>
                       <IoAddSharp size={20} />
