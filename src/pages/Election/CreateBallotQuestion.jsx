@@ -45,7 +45,7 @@ const CreateBallotQuestion = () => {
       toast.success("Ballot created successfully");
       console.log(data);
 
-      const redirectPath = `/election/${electionData._id}/create-ballot-option/${data.ballot._id}`;
+      const redirectPath = `/election/${electionData._id}/ballot/create-option/${data.ballot._id}`;
 
       navigate(redirectPath);
     } catch (error) {
