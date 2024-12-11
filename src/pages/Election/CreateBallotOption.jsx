@@ -1,33 +1,87 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 
 const CreateBallotOption = () => {
-  const initialState = {
-    title: "",
-    description: "",
-  };
+  const { id, ballotId } = useParams();
+  const electionData = useOutletContext();
 
-  const [formData, setFormData] = useState(initialState);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const { title, description } = formData;
+  const [previewImage, setPreviewImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  function previewImageHandler(ev) {
+    const file = ev.target.files[0];
 
-    setFormData({ ...formData, [name]: value });
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewImage(imageUrl);
+    }
+
+    setSelectedImage(ev.target.files[0]);
+  }
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setPreviewImage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const dataDoc = new FormData();
 
-    localStorage.setItem("text", formData);
+    // Check if there's no image or other required fields
+    if (!selectedImage || !title || !description) {
+      setLoading(false);
+      return toast.error("All fields are required");
+    }
 
-    navigate("/election/12345/ballot");
+    try {
+      dataDoc.append("file", selectedImage);
+      dataDoc.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+      dataDoc.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+
+      const res = await fetch(process.env.REACT_APP_CLOUD_URL, {
+        method: "post",
+        body: dataDoc,
+      });
+
+      const imageData = await res.json();
+
+      const imagePath = imageData.secure_url.toString();
+
+      const { data } = await axios.post(`/api/v1/ballot/create-ballot-option`, {
+        name: title,
+        description,
+        image: imagePath,
+        ballotId,
+      });
+
+      setLoading(false);
+      toast.success("Ballot option added successfully");
+      console.log(data);
+
+      const redirectPath = `/election/${id}/ballot`;
+      console.log(redirectPath);
+      navigate(redirectPath);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (
@@ -55,45 +109,66 @@ const CreateBallotOption = () => {
         <form className="p-8">
           <p className="text-center text-gray-600 mb-6">
             Add a voting option for{" "}
-            <span className="text-blue-600 font-semibold">Mrs River State</span>{" "}
+            <span className="text-blue-600 font-semibold">
+              {electionData?.title}e
+            </span>{" "}
             Ballot.
           </p>
 
           {/* Input Fields */}
           <div className="grid grid-cols-1 gap-6 mb-8">
             {/* Add Photo */}
-            <div>
-              <label
-                className="block text-sm font-medium mb-1"
-                htmlFor="addPhoto"
-              >
-                Option Photo
-              </label>
-              <div className="bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col justify-center items-center h-40 w-40">
-                <IoIosCloudUpload className="text-gray-500 text-2xl" />
-                <span className="text-xs text-gray-500 mt-2">Upload image</span>
+            {previewImage ? (
+              <div className="relative">
+                <img
+                  className="w-40 h-40 rounded-lg object-cover"
+                  src={previewImage}
+                  alt="Preview"
+                />
+                <button
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 bg-white text-gray-500 rounded-full p-1"
+                >
+                  X
+                </button>
               </div>
-              <small className="text-gray-500">
-                Upload an image that represents the voting option. For example,
-                a photo of a person, dish, or product.
-              </small>
-            </div>
+            ) : (
+              <div>
+                <p className="block text-sm font-medium mb-1">Option Photo</p>
+                <label
+                  htmlFor="addPhoto"
+                  className="bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col justify-center items-center h-40 w-40"
+                >
+                  <input
+                    id="addPhoto"
+                    type="file"
+                    className="hidden"
+                    onChange={previewImageHandler}
+                  />
+                  <IoIosCloudUpload className="text-gray-500 text-2xl" />
+                  <span className="text-xs text-gray-500 mt-2">
+                    Upload image
+                  </span>
+                </label>
+                <small className="text-gray-500">
+                  Upload an image that represents the voting option. For
+                  example, a photo of a person, dish, or product.
+                </small>
+              </div>
+            )}
 
             {/* Option Name */}
             <div>
-              <label
-                className="block text-sm font-medium mb-1"
-                htmlFor="optionName"
-              >
+              <label className="block text-sm font-medium mb-1" htmlFor="title">
                 Option Name
               </label>
               <input
                 className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                 type="text"
-                name="optionName"
+                name="title"
                 value={title}
-                onChange={handleInputChange}
-                id="optionName"
+                onChange={(e) => setTitle(e.target.value)}
+                id="title"
                 placeholder="E.g., Jane Doe, Chocolate Cake, iPhone 15"
                 required
               />
@@ -112,7 +187,7 @@ const CreateBallotOption = () => {
               </label>
               <textarea
                 value={description}
-                onChange={handleInputChange}
+                onChange={(e) => setDescription(e.target.value)}
                 id="description"
                 name="description"
                 placeholder="Provide a detailed description of the option..."
@@ -137,11 +212,11 @@ const CreateBallotOption = () => {
             </button>
 
             <button
-              disabled={loading}
-              className="w-40 py-2 text-sm lg:text-base bg-red-600 text-white rounded-lg hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition disabled:bg-gray-300"
+              onClick={() => navigate(-1)}
+              className="w-40 py-2 text-sm lg:text-base bg-red-600 text-white rounded-lg hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition disabled:bg-gray-400"
               type="button"
             >
-              {loading ? "Loading..." : "Cancel"}
+              Cancel
             </button>
           </div>
         </form>

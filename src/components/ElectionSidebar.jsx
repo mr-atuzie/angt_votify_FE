@@ -6,44 +6,42 @@ import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { BiSupport } from "react-icons/bi";
 
-const fontSize = 20;
-
-const ElectionSidebar = () => {
+const ElectionSidebar = ({ id }) => {
   return (
-    <div className=" w-full h-full  bg-blue-900 p-4 py-6 text-white">
+    <div className="w-full h-full bg-blue-900 p-4 py-6 text-white">
       <div className="mb-6">
-        <h1 className=" font-semibold text-lg text-center">2RUEVOTES</h1>
+        <h1 className="font-semibold text-lg text-center">2RUEVOTES</h1>
       </div>
       <div className="flex flex-col gap-2">
         {[
           {
-            to: "/election/12345/overview",
+            to: `/election/${id}/overview`,
             label: "Overview",
             Icon: IoHome,
           },
           {
-            to: "/election/12345/ballot",
+            to: `/election/${id}/ballot`,
             label: "Ballot",
             Icon: MdBallot,
           },
           {
-            to: "/election/12345/voters",
+            to: `/election/${id}/voters`,
             label: "Voters",
             Icon: PiUsersFourFill,
           },
           {
-            to: "/election/12345/setting/general",
+            to: `/election/${id}/setting/general`,
             label: "Settings",
             Icon: GrSettingsOption,
           },
           {
-            to: "/election/12345/support",
+            to: `/election/${id}/support`,
             label: "Support",
             Icon: BiSupport,
           },
           {
-            to: "/election/12345/launch",
-            label: "Lanuch",
+            to: `/election/${id}/launch`,
+            label: "Launch",
             Icon: MdRocketLaunch,
           },
         ].map(({ to, label, Icon }) => (
@@ -51,16 +49,16 @@ const ElectionSidebar = () => {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `tracking-wide cursor-pointer py-2 flex items-center rounded-md  gap-2 px-4 transition-all duration-300 ${
+              `tracking-wide cursor-pointer py-2 flex items-center rounded-md gap-2 px-4 transition-all duration-300 ${
                 isActive
                   ? "bg-white text-blue-900"
                   : "hover:bg-blue-800 text-white"
               }`
             }
-            end
+            end={label === "Overview"}
           >
             <span>
-              <Icon size={fontSize} />
+              <Icon size={20} />
             </span>
             <span>{label}</span>
           </NavLink>

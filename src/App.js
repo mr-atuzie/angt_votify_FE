@@ -35,7 +35,7 @@ import CreateBallotQuestion from "./pages/Election/CreateBallotQuestion";
 import CreateBallotOption from "./pages/Election/CreateBallotOption";
 
 import SettingLayout from "./layouts/SettingLayout";
-import BallotLayout from "./layouts/BallotLayout";
+// import BallotLayout from "./layouts/BallotLayout";
 import ElectionDateSetting from "./components/ElectionDateSetting";
 import ElectionDeleteForm from "./components/ElectionDeleteForm";
 import ElectionTypeSetting from "./components/ElectionTypeSetting";
@@ -79,37 +79,31 @@ function App() {
           <Route path="/create-election" element={<CreateElection />} />
 
           {/* Election layout */}
-          <Route path="/election" element={<ElectionLayout />}>
-            <Route path=":id/overview" element={<ElectionOverview />} />
+          <Route path="/election/:id" element={<ElectionLayout />}>
+            {/* Overview route */}
+            <Route path="overview" element={<ElectionOverview />} />
 
-            {/* ballot laout */}
-            <Route path=":id/ballot" element={<BallotLayout />}>
-              <Route index element={<ElectionBallot />} />
+            {/* Ballot routes */}
+            <Route path="ballot" element={<ElectionBallot />} />
+            <Route
+              path="ballot/create-question"
+              element={<CreateBallotQuestion />}
+            />
+            <Route
+              path="ballot/create-option/:ballotId"
+              element={<CreateBallotOption />}
+            />
 
-              <Route
-                path=":ballotId/create-ballot-question"
-                element={<CreateBallotQuestion />}
-              />
-              <Route
-                path=":ballotId/create-ballot-option"
-                element={<CreateBallotOption />}
-              />
-            </Route>
+            {/* Voters routes */}
+            <Route path="voters" element={<ElectionVoters />} />
+            <Route path="voters/create" element={<ElectionAddVoters />} />
 
-            <Route path=":id/voters" index element={<ElectionVoters />} />
-            <Route path=":id/voter/create" element={<ElectionAddVoters />} />
-
-            {/* setting layout */}
-            <Route path=":id/setting" element={<SettingLayout />}>
-              <Route
-                index
-                path="general"
-                element={<ElectionGeneralSetting />}
-              />
+            {/* Settings layout */}
+            <Route path="setting" element={<SettingLayout />}>
+              <Route path="general" element={<ElectionGeneralSetting />} />
               <Route path="election-date" element={<ElectionDateSetting />} />
               <Route path="election-type" element={<ElectionTypeSetting />} />
-
-              <Route index path="delete" element={<ElectionDeleteForm />} />
+              <Route path="delete" element={<ElectionDeleteForm />} />
             </Route>
           </Route>
         </Routes>

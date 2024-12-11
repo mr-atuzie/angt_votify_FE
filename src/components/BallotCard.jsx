@@ -4,7 +4,7 @@ import { GoTrash } from "react-icons/go";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const BallotCard = () => {
+const BallotCard = ({ option }) => {
   const [isTooltipVisible, setTooltipVisible] = useState(false);
   // Show tooltip on mouse enter
   const handleMouseEnter = () => {
@@ -15,20 +15,21 @@ const BallotCard = () => {
   const handleMouseLeave = () => {
     setTooltipVisible(false);
   };
+
   return (
     <div className="flex justify-between items-center bg-white shadow-md p-6 rounded-xl border border-gray-200">
       {/* Profile Section */}
       <div className="flex items-center gap-4">
         <img
           className="w-16 h-16 object-cover rounded-full border-2 border-blue-500"
-          src="https://orlandosydney.com/wp-content/uploads/2022/02/Corporate-Headshot-Photo.-By-Photographer-orlandosydney.com-OS1_8302.jpg"
+          src={option?.image}
           alt="Profile"
         />
         <div>
-          <h2 className="text-lg font-medium text-gray-800">Atuie Rex</h2>
-          <p className="text-sm text-gray-500">
-            Vote for trust, bravery, and grit
-          </p>
+          <h2 className="text-lg font-medium capitalize text-gray-800">
+            {option?.name}
+          </h2>
+          <p className="text-sm text-gray-500">{option?.description}</p>
         </div>
       </div>
 

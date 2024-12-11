@@ -1,18 +1,22 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const CreateBallotQuestion = () => {
+  const electionData = useOutletContext();
+
   const initialState = {
     title: "",
-    ballotDescription: "",
+    description: "",
   };
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  const { title, ballotDescription } = formData;
-
-  const navigate = useNavigate();
+  const { title, description } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,13 +24,41 @@ const CreateBallotQuestion = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    localStorage.setItem("text", formData);
+    if (!title) {
+      setLoading(false);
+      return toast.error("All fields are required");
+    }
 
-    navigate("/election/12345/ballot/option");
+    try {
+      const { data } = await axios.post(`/api/v1/ballot/create-ballot`, {
+        title,
+        description,
+        electionId: electionData?._id,
+      });
+
+      setLoading(false);
+
+      toast.success("Ballot created successfully");
+      console.log(data);
+
+      const redirectPath = `/election/${electionData._id}/create-ballot-option/${data.ballot._id}`;
+
+      navigate(redirectPath);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (
@@ -53,11 +85,12 @@ const CreateBallotQuestion = () => {
         {/* Form */}
         <form className="p-8">
           {/* Election Title */}
-          <p className="text-center text-gray-700 mb-8">
-            Create a ballot question for the election:{" "}
+          <p className="text-center capitalize text-gray-700 mb-8">
+            Create a ballot question for the{" "}
             <span className="text-blue-600 font-semibold">
-              Most Beautiful Girl in Nigeria
-            </span>
+              {electionData?.title}
+            </span>{" "}
+            Election
           </p>
 
           {/* Ballot Title */}
@@ -91,10 +124,10 @@ const CreateBallotQuestion = () => {
               </label>
               <textarea
                 className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-                value={ballotDescription}
+                value={description}
                 onChange={handleInputChange}
-                id="ballotDescription"
-                name="ballotDescription"
+                id="description"
+                name="description"
                 placeholder="Provide additional details for this ballot question..."
               ></textarea>
               <small className="text-gray-500">
@@ -114,15 +147,14 @@ const CreateBallotQuestion = () => {
             >
               {loading ? "Loading..." : "Save"}
             </button>
-            <Link to="/election/12345/ballot/6789/create-ballot-option">
-              <button
-                className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all disabled:bg-gray-300"
-                type="button"
-                disabled={loading}
-              >
-                {loading ? "Loading..." : "Cancel"}
-              </button>
-            </Link>
+
+            <button
+              className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all disabled:bg-gray-300"
+              type="button"
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>

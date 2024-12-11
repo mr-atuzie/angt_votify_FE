@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -32,6 +32,8 @@ const ElectionAddVoters = () => {
     navigate("/election/12345/voters");
   };
 
+  const electionData = useOutletContext();
+
   return (
     <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
       {/* header */}
@@ -58,7 +60,7 @@ const ElectionAddVoters = () => {
           <p className="text-center text-gray-700 mb-8">
             Add a voter to the election:{" "}
             <span className="text-blue-600 font-semibold">
-              Most Beautiful Girl Nigeria
+              {electionData?.title}
             </span>
           </p>
 

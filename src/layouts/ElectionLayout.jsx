@@ -1,47 +1,43 @@
-import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchElectionData } from "../redux/features/election/electionSlice";
 import { Outlet, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
-import axios from "axios";
 
 const ElectionLayout = () => {
   const { id } = useParams();
-  const [electionData, setElectionData] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const { electionData, loading } = useSelector((state) => state.election);
 
   useEffect(() => {
-    const fetchElectionData = async () => {
-      try {
-        const { data } = await axios.get(`/api/v1/election/${id}`); // Replace with your API URL
+    // Dispatch the action to fetch election data
+    dispatch(fetchElectionData(id));
 
-        setElectionData(data);
+    console.log("Fetching election with ID:", id); // Log the ID
+  }, [dispatch, id]); // Make sure to include dispatch and id as dependencies
 
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching election data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error}</div>;
 
-    fetchElectionData();
-  }, [id]);
+  if (!electionData) return <div>No election found for ID: {id}</div>;
 
-  if (loading) {
-    return "Loading....";
-  }
+  // console.log("Fetched Election Data:", electionData);
 
   return (
-    <div className=" min-h-screen relative flex">
-      <div className=" fixed h-full w-[20%]">
-        <ElectionSidebar />
+    <div className="min-h-screen relative flex">
+      <div className="fixed h-full w-[20%]">
+        <ElectionSidebar id={electionData?._id} />
       </div>
-      <div className=" flex-1 ml-[20%] bg-gray-100">
+      <div className="flex-1 ml-[20%] bg-gray-100">
         <ElectionHeader
           electionName={electionData?.title}
           electionStatus={electionData?.status}
           electionType={electionData?.electionType}
         />
+
         <Outlet context={electionData} />
       </div>
     </div>
