@@ -16,7 +16,7 @@ const ElectionLayout = () => {
     // Dispatch the action to fetch election data
     dispatch(fetchElectionData(id));
 
-    console.log("Fetching election with ID:", id); // Log the ID
+    // console.log("Fetching election with ID:", id); // Log the ID
   }, [dispatch, id]); // Make sure to include dispatch and id as dependencies
 
   if (loading) return <div>Loading...</div>;

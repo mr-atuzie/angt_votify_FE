@@ -7,7 +7,7 @@ const Accordion = ({ title, answer }) => {
   const [accordion, setAccordion] = useState(false);
 
   return (
-    <div className=" lg:w-[55%] border-b-2  border-dashed border-blue-600 ">
+    <div className=" w-full border-b-2  border-dashed border-blue-600 ">
       <div
         className="  w-full flex justify-between items-start py-1 text-sm lg:text-base  mb-2"
         onClick={() => setAccordion(!accordion)}

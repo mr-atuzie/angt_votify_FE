@@ -64,11 +64,51 @@ const ElectionBallot = () => {
     }
   };
 
+  const clearBallotOptions = async (ballotId) => {
+    console.log("clear ballot options", ballotId);
+
+    try {
+      await axios.put(`/api/v1/ballot/clearAllOptions/${ballotId}`);
+
+      const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      console.log(response.data);
+      setBallots(response.data);
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      //  setLoading(false);
+      toast.error(message);
+    }
+  };
+
   return (
     <div>
       <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
         {ballots.length > 0 ? (
           <div className=" flex flex-col gap-10">
+            <div className=" flex gap-2 mt-4">
+              <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
+                <span>
+                  <IoIosCloudUpload size={20} />
+                </span>
+                <span>Import</span>
+              </button>
+
+              <Link to={`/election/${id}/ballot/create-question`}>
+                <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                  <span>
+                    <IoAddSharp size={20} />
+                  </span>
+                  Add Questions
+                </button>
+              </Link>
+            </div>
             {ballots.map((ballot) => {
               return (
                 <Ballot
@@ -76,6 +116,7 @@ const ElectionBallot = () => {
                   ballot={ballot}
                   electionData={electionData}
                   handleDeleteBallot={handleDeleteBallot}
+                  clearBallotOptions={clearBallotOptions}
                 />
               );
             })}

@@ -13,7 +13,7 @@ const Faq = () => {
             Frequently Asked Questions
           </h1>
         </div>
-        <div className=" px-4 lg:px-0">
+        <div className=" w-full lg:w-[60%] px-4 lg:px-0">
           <Accordion
             title="Does Election Runner offer educational discounts?"
             answer="Absolutely! Election Runner was built with schools in mind. We offer significant K-12 and University discounts/subscriptions. Please contact us for more information."

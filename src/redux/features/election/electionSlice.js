@@ -7,7 +7,7 @@ export const fetchElectionData = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/api/v1/election/${id}`);
-      console.log("Fetched Election Data: ", response.data);
+      // console.log("Fetched Election Data: ", response.data);
 
       return response.data;
     } catch (error) {

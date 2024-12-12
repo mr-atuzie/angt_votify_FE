@@ -3,6 +3,8 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const ElectionAddVoters = () => {
   const initialState = {
@@ -11,7 +13,7 @@ const ElectionAddVoters = () => {
   };
 
   const [formData, setFormData] = useState(initialState);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
 
   const { name, email } = formData;
@@ -24,12 +26,42 @@ const ElectionAddVoters = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-    localStorage.setItem("text", formData);
+    setLoading(true);
 
-    navigate("/election/12345/voters");
+    if (!name || !email || !phone) {
+      setLoading(false);
+      return toast.error("All fields are required");
+    }
+
+    try {
+      const { data } = await axios.post(`/api/v1/voter`, {
+        fullName: name,
+        email,
+        phone,
+        electionId: electionData?._id,
+      });
+
+      setLoading(false);
+
+      toast.success("Voter added to election");
+      console.log(data);
+
+      const redirectPath = `/election/${electionData._id}/voters`;
+
+      navigate(redirectPath);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   const electionData = useOutletContext();
@@ -119,14 +151,18 @@ const ElectionAddVoters = () => {
           {/* Submit Buttons */}
           <div className="flex gap-4 items-center justify-center">
             <button
-              className="text-sm lg:text-base w-40 py-3 bg-blue-600 rounded-lg text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all"
+              className="text-sm lg:text-base w-40 py-3 bg-blue-600 rounded-lg text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
               type="submit"
+              onClick={handleSubmit}
+              disabled={loading}
             >
-              Save
+              {loading ? "Loading..." : "Save"}
             </button>
+
             <button
               className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all"
               type="button"
+              onClick={() => navigate(-1)}
             >
               Close
             </button>

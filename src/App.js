@@ -40,6 +40,8 @@ import ElectionDateSetting from "./components/ElectionDateSetting";
 import ElectionDeleteForm from "./components/ElectionDeleteForm";
 import ElectionTypeSetting from "./components/ElectionTypeSetting";
 import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
+import EditBallotQuestion from "./pages/Election/EditBallotQuestion";
+import EditBallotOption from "./pages/Election/EditBallotOption";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -89,9 +91,20 @@ function App() {
               path="ballot/create-question"
               element={<CreateBallotQuestion />}
             />
+
+            <Route
+              path="ballot/edit-question/:ballotId"
+              element={<EditBallotQuestion />}
+            />
+
             <Route
               path="ballot/create-option/:ballotId"
               element={<CreateBallotOption />}
+            />
+
+            <Route
+              path="ballot/:ballotId/edit-option/:optionId"
+              element={<EditBallotOption />}
             />
 
             {/* Voters routes */}

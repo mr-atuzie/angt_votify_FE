@@ -9,7 +9,7 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
   // //     setCurrentPage(path.replace(/-/g, " ").toUpperCase()); // Format the page name
   // //   }, [location]);
 
-  console.log(electionStatus);
+  // console.log(electionStatus);
 
   return (
     <header className=" bg-blue-900 py-4 shadow-lg px-6">

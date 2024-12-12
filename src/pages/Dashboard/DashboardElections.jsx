@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoAddSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,9 @@ import { FaVoteYea } from "react-icons/fa";
 import { FaRegCalendarXmark, FaRegCalendarCheck } from "react-icons/fa6";
 
 import { FaEye } from "react-icons/fa6";
+import toast from "react-hot-toast";
+import axios from "axios";
+import moment from "moment";
 
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +25,31 @@ const DashboardElections = () => {
     // Handle the search submit logic here
     console.log("Search submitted for:", searchQuery);
   };
+
+  const [elections, setElections] = useState([]);
+
+  useEffect(() => {
+    const getElection = async () => {
+      try {
+        const response = await axios.get(`/api/v1/user/election`);
+        console.log(response.data);
+        setElections(response.data);
+        return response.data;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        //  setLoading(false);
+        toast.error(message);
+      }
+    };
+
+    getElection();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
@@ -102,68 +130,99 @@ const DashboardElections = () => {
           </form>
         </div>
 
-        <div className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow">
-          {/* Header Section */}
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-medium capitalize">
-              Class President 2024/2025
-            </h2>
-            <span className="text-green-600 bg-green-100 text-sm  px-3 py-1 rounded-lg">
-              Active
-            </span>
-          </div>
+        {elections.length > 0 ? (
+          <div className=" flex flex-col gap-5">
+            {elections.map((election) => {
+              return (
+                <div
+                  key={election?._id}
+                  className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow"
+                >
+                  {/* Header Section */}
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-medium capitalize">
+                      {election?.title}
+                    </h2>
+                    <span
+                      className={`text-sm px-3 py-1 rounded-lg ${
+                        election?.status === "Upcoming"
+                          ? "text-yellow-600 bg-yellow-100"
+                          : election?.status === "Ongoing"
+                          ? "text-green-600 bg-green-100"
+                          : "text-blue-600 bg-blue-100"
+                      }`}
+                    >
+                      {election?.status}
+                    </span>
+                  </div>
 
-          {/* Date Section */}
-          <div className="border-t border-gray-200 pt-4">
-            <div className="grid grid-cols-3 gap-4 text-sm">
-              {/* Start Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarCheck size={15} />
-                  <h4 className="font-medium text-xs uppercase mb-1">
-                    Start Date
-                  </h4>
+                  {/* Date Section */}
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="grid grid-cols-3 gap-4 text-sm">
+                      {/* Start Date */}
+                      <div>
+                        <div className="flex gap-2 ">
+                          <FaRegCalendarCheck size={15} />
+                          <h4 className="font-medium text-xs uppercase mb-1">
+                            Start Date
+                          </h4>
+                        </div>
+                        <p className="text-gray-500">
+                          {moment(election?.startDate).format(
+                            "MMM DD, YYYY hh:mm A"
+                          )}
+                        </p>
+                      </div>
+
+                      {/* End Date */}
+                      <div>
+                        <div className="flex gap-2 ">
+                          <FaRegCalendarXmark size={15} />
+                          <h4 className="font-medium text-xs  uppercase mb-1">
+                            End Date
+                          </h4>
+                        </div>
+                        <p className="text-gray-500">
+                          {moment(election?.endDate).format(
+                            "MMM DD, YYYY hh:mm A"
+                          )}
+                        </p>
+                      </div>
+
+                      {/* type*/}
+                      <div>
+                        <div className="flex gap-2 ">
+                          <FaVoteYea size={15} />
+                          <h4 className="font-medium text-xs uppercase mb-1">
+                            Election type
+                          </h4>
+                        </div>
+                        <p className=" text-blue-600 capitalize ">
+                          {election?.electionType}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer Section */}
+                  <div className="mt-6 flex gap-6 items-center">
+                    <Link to={`/election/${election?._id}/overview`}>
+                      <button className="text-sm px-4 py-2 bg-blue-600 flex justify-center items-center gap-2 font-normal text-white rounded-lg hover:bg-blue-100 hover:text-blue-400 ">
+                        <FaEye size={15} /> View Details
+                      </button>
+                    </Link>
+                    <button className="bg-red-600 flex justify-center items-start gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-100 hover:text-red-600">
+                      <BsTrash3 size={15} />
+                      Delete
+                    </button>
+                  </div>
                 </div>
-                <p className="text-gray-500">06/12/24 11:00 AM</p>
-              </div>
-
-              {/* End Date */}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaRegCalendarXmark size={15} />
-                  <h4 className="font-medium text-xs  uppercase mb-1">
-                    End Date
-                  </h4>
-                </div>
-                <p className="text-gray-500">10/12/24 11:00 AM</p>
-              </div>
-
-              {/* type*/}
-              <div>
-                <div className="flex gap-2 ">
-                  <FaVoteYea size={15} />
-                  <h4 className="font-medium text-xs uppercase mb-1">
-                    Election type
-                  </h4>
-                </div>
-                <p className=" text-blue-600 capitalize ">single choice</p>
-              </div>
-            </div>
+              );
+            })}
           </div>
-
-          {/* Footer Section */}
-          <div className="mt-6 flex gap-6 items-center">
-            <Link to={"/election/12345/overview"}>
-              <button className="text-sm px-4 py-2 bg-blue-600 flex justify-center items-center gap-2 font-normal text-white rounded-lg hover:bg-blue-100 hover:text-blue-400 ">
-                <FaEye size={15} /> View Details
-              </button>
-            </Link>
-            <button className="bg-red-600 flex justify-center items-start gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-100 hover:text-red-600">
-              <BsTrash3 size={15} />
-              Delete
-            </button>
-          </div>
-        </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );
