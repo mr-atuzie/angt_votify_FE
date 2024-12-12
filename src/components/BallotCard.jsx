@@ -5,7 +5,12 @@ import { GoTrash } from "react-icons/go";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const BallotCard = ({ option, electionData, ballotId }) => {
+const BallotCard = ({
+  option,
+  electionData,
+  ballotId,
+  handleDeleteVotingOption,
+}) => {
   const [isTooltipVisible, setTooltipVisible] = useState(false);
   // Show tooltip on mouse enter
   const handleMouseEnter = () => {
@@ -60,7 +65,10 @@ const BallotCard = ({ option, electionData, ballotId }) => {
             </Link>
             <hr className="my-1 border-gray-200" />
             {/* Delete Button */}
-            <button className="flex w-full items-center gap-3 px-4 py-2 hover:bg-red-50 rounded-lg transition">
+            <button
+              onClick={() => handleDeleteVotingOption(option?._id)}
+              className="flex w-full items-center gap-3 px-4 py-2 hover:bg-red-50 rounded-lg transition"
+            >
               <GoTrash size={20} className="text-red-600 text-sm" />
               <span className="text-gray-800">Delete</span>
             </button>

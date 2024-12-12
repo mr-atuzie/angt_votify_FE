@@ -1,15 +1,41 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const ElectionDateSetting = () => {
-  const [startDate, setStartDate] = useState("2024-12-15"); // Example date
-  const [endDate, setEndDate] = useState("2024-12-15"); // Example date
+  const [startDate, setStartDate] = useState(""); // Example date
+  const [endDate, setEndDate] = useState(""); // Example date
   const [loading, setLoading] = useState(false);
 
-  const handleSaveChanges = () => {
+  const { id } = useParams();
+
+  const handleSaveChanges = async () => {
     setLoading(true);
-    console.log({ startDate, endDate });
-    // Add logic to save changes
-    setLoading(false);
+    try {
+      const { data } = await axios.put(`/api/v1/election/${id}`, {
+        endDate,
+        startDate,
+      });
+
+      console.log(data);
+      setLoading(false);
+      toast.success("Election date has be");
+      // const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      // console.log(response.data);
+      // setBallots(response.data);
+      // return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (
@@ -36,7 +62,7 @@ const ElectionDateSetting = () => {
                 Start Date
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 id="start-date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
@@ -53,7 +79,7 @@ const ElectionDateSetting = () => {
                 End Date
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 id="end-date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}

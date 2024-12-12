@@ -1,15 +1,45 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchElectionData } from "../redux/features/election/electionSlice";
 
 const ElectionGeneralSetting = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSaveChanges = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const handleSaveChanges = async () => {
     setLoading(true);
-    console.log({ title, description });
-    // Add logic to save changes
-    setLoading(false);
+
+    try {
+      const { data } = await axios.put(`/api/v1/election/${id}`, {
+        title,
+        description,
+      });
+      dispatch(fetchElectionData(id));
+
+      console.log(data);
+      setLoading(false);
+      // const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      // console.log(response.data);
+      // setBallots(response.data);
+      // return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (

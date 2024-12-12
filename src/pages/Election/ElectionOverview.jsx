@@ -6,25 +6,30 @@ const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
 
   const electionData = useOutletContext();
+
+  console.log(electionData);
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium text-gray-500">Start Date</h2>
+          <h2 className="text-sm font-medium ">Start Date</h2>
           <p className="text-lg font-bold text-blue-600">
             {moment(electionData?.startDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium text-gray-500">End Date</h2>
+          <h2 className="text-sm font-medium ">End Date</h2>
           <p className="text-lg font-bold text-blue-600">
             {moment(electionData?.endDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium text-gray-500">Total Ballots</h2>
-          <p className="text-lg font-semibold text-gray-800">5</p>
+          <h2 className="text-sm font-medium">Total Ballots</h2>
+          <p className="text-lg font-bold text-blue-600">
+            {electionData?.ballots.length}
+          </p>
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">
           <h2 className="text-sm font-medium text-gray-500">Voters</h2>

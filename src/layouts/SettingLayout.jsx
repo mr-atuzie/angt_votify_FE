@@ -1,12 +1,14 @@
 import React from "react";
 import { MdOutlineBallot } from "react-icons/md";
 import { FaRegCalendarDays } from "react-icons/fa6";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { LiaCogSolid } from "react-icons/lia";
 
 const SettingLayout = () => {
   const fontSize = 15;
+  const { id } = useParams();
+
   return (
     <div className="flex px-6 gap-10">
       <div className=" h-fit bg-white w-[25%] mx-auto p-3 mt-8 shadow-lg rounded-lg flex flex-col ">
@@ -15,22 +17,22 @@ const SettingLayout = () => {
         </h2>
         {[
           {
-            to: "/election/12345/setting/general",
+            to: `/election/${id}/setting/general`,
             label: "General Setting",
             Icon: LiaCogSolid,
           },
           {
-            to: "/election/12345/setting/election-date",
+            to: `/election/${id}/setting/election-date`,
             label: "Election Dates",
             Icon: FaRegCalendarDays,
           },
           {
-            to: "/election/12345/setting/election-type",
+            to: `/election/${id}/setting/election-type`,
             label: "Election Type",
             Icon: MdOutlineBallot,
           },
           {
-            to: "/election/12345/setting/delete",
+            to: `/election/${id}/setting/delete`,
             label: "Delete",
             Icon: FaRegTrashAlt,
           },

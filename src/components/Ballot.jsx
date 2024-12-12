@@ -14,6 +14,7 @@ const Ballot = ({
   handleDeleteBallot,
   electionData,
   clearBallotOptions,
+  handleDeleteVotingOption,
 }) => {
   const [isTooltipVisible, setTooltipVisible] = useState(false);
 
@@ -94,6 +95,7 @@ const Ballot = ({
               option={option}
               ballotId={ballot?._id}
               electionData={electionData}
+              handleDeleteVotingOption={handleDeleteVotingOption}
             />
           ))
         ) : (

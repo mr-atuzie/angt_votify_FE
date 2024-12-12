@@ -17,7 +17,7 @@ const ElectionBallot = () => {
     const getBallot = async () => {
       try {
         const response = await axios.get(`/api/v1/ballot/election/${id}`);
-        console.log(response.data);
+
         setBallots(response.data);
         return response.data;
       } catch (error) {
@@ -87,6 +87,29 @@ const ElectionBallot = () => {
     }
   };
 
+  const handleDeleteVotingOption = async (optionId) => {
+    console.log(optionId);
+
+    try {
+      await axios.delete(`/api/v1/ballot/voting-option/${optionId}`);
+
+      const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      console.log(response.data);
+      setBallots(response.data);
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      //  setLoading(false);
+      toast.error(message);
+    }
+  };
+
   return (
     <div>
       <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
@@ -116,6 +139,7 @@ const ElectionBallot = () => {
                   ballot={ballot}
                   electionData={electionData}
                   handleDeleteBallot={handleDeleteBallot}
+                  handleDeleteVotingOption={handleDeleteVotingOption}
                   clearBallotOptions={clearBallotOptions}
                 />
               );

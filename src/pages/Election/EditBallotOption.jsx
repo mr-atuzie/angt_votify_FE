@@ -18,7 +18,7 @@ const EditBallotOption = () => {
 
   // Fetch the ballot details when the component mounts
   useEffect(() => {
-    const fetchBallot = async () => {
+    const fetchVotingOption = async () => {
       try {
         const { data } = await axios.get(
           `/api/v1/ballot/voting-option/${optionId}`
@@ -41,7 +41,7 @@ const EditBallotOption = () => {
       }
     };
 
-    fetchBallot();
+    fetchVotingOption();
   }, [optionId]);
 
   function previewImageHandler(ev) {

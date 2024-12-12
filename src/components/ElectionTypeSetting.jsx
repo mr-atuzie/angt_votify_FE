@@ -1,14 +1,42 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const ElectionTypeSetting = () => {
   const [electionType, setElectionType] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSaveChanges = () => {
+  const { id } = useParams();
+
+  const handleSaveChanges = async () => {
     setLoading(true);
-    console.log({ electionType });
-    // Add logic to save changes
-    setLoading(false);
+    console.log(electionType);
+
+    try {
+      const { data } = await axios.put(`/api/v1/election/${id}`, {
+        electionType,
+      });
+
+      console.log(data);
+      setLoading(false);
+
+      toast.success("Election type has been updated");
+      // const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      // console.log(response.data);
+      // setBallots(response.data);
+      // return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   return (
@@ -39,6 +67,9 @@ const ElectionTypeSetting = () => {
               onChange={(e) => setElectionType(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
+              <option value="" disabled>
+                Select type
+              </option>
               <option value="Single Choice">Single Choice</option>
               <option value="Multiple Choice">Multiple Choice</option>
               <option value="Ranked Choice">Ranked Choice</option>
