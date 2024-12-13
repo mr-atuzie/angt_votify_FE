@@ -30,6 +30,7 @@ const EditBallotQuestion = () => {
         setPreLoader(false);
       } catch (error) {
         setLoading(false);
+        setPreLoader(false);
         const message =
           error.response?.data?.message ||
           error.message ||
