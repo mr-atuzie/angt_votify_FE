@@ -207,11 +207,11 @@ const DashboardElections = () => {
                   {/* Footer Section */}
                   <div className="mt-6 flex gap-6 items-center">
                     <Link to={`/election/${election?._id}/overview`}>
-                      <button className="text-sm px-4 py-2 bg-blue-600 flex justify-center items-center gap-2 font-normal text-white rounded-lg hover:bg-blue-100 hover:text-blue-400 ">
+                      <button className="text-sm px-4 py-2 flex justify-center items-center gap-2 font-normal  rounded-lg bg-blue-100 text-blue-400 ">
                         <FaEye size={15} /> View Details
                       </button>
                     </Link>
-                    <button className="bg-red-600 flex justify-center items-start gap-2 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-100 hover:text-red-600">
+                    <button className="flex justify-center items-start gap-2  text-sm px-4 py-2 rounded-lg bg-red-100 text-red-600">
                       <BsTrash3 size={15} />
                       Delete
                     </button>

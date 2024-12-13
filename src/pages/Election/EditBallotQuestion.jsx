@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const EditBallotQuestion = () => {
   const electionData = useOutletContext();
@@ -13,9 +14,11 @@ const EditBallotQuestion = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+  const [preLoader, setPreLoader] = useState(false);
 
   // Fetch the ballot details when the component mounts
   useEffect(() => {
+    setPreLoader(true);
     const fetchBallot = async () => {
       try {
         setLoading(true);
@@ -24,6 +27,7 @@ const EditBallotQuestion = () => {
         setTitle(data?.title || "");
         setDescription(data?.description || "");
         setLoading(false);
+        setPreLoader(false);
       } catch (error) {
         setLoading(false);
         const message =
@@ -73,6 +77,10 @@ const EditBallotQuestion = () => {
       toast.error(message);
     }
   };
+
+  if (preLoader) {
+    return <Loader />;
+  }
 
   return (
     <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">

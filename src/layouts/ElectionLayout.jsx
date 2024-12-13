@@ -4,6 +4,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
+import Loader from "../components/Loader";
 
 const ElectionLayout = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const ElectionLayout = () => {
     // console.log("Fetching election with ID:", id); // Log the ID
   }, [dispatch, id]); // Make sure to include dispatch and id as dependencies
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   // if (error) return <div>Error: {error}</div>;
 
   if (!electionData) return <div>No election found for ID: {id}</div>;

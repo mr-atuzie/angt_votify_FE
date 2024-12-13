@@ -4,7 +4,7 @@ import { PiUsersFourFill } from "react-icons/pi";
 import { GrSettingsOption } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-// import { BiSupport } from "react-icons/bi";
+import { FaChartPie } from "react-icons/fa6";
 
 const ElectionSidebar = ({ id }) => {
   return (
@@ -34,11 +34,11 @@ const ElectionSidebar = ({ id }) => {
             label: "Settings",
             Icon: GrSettingsOption,
           },
-          // {
-          //   to: `/election/${id}/support`,
-          //   label: "Support",
-          //   Icon: BiSupport,
-          // },
+          {
+            to: `/election/${id}/result`,
+            label: "Result",
+            Icon: FaChartPie,
+          },
           {
             to: `/election/${id}/launch`,
             label: "Launch",

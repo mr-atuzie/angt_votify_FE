@@ -42,6 +42,7 @@ import ElectionTypeSetting from "./components/ElectionTypeSetting";
 import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
 import EditBallotQuestion from "./pages/Election/EditBallotQuestion";
 import EditBallotOption from "./pages/Election/EditBallotOption";
+import ElectionResult from "./pages/Election/ElectionResult";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -84,6 +85,9 @@ function App() {
           <Route path="/election/:id" element={<ElectionLayout />}>
             {/* Overview route */}
             <Route path="overview" element={<ElectionOverview />} />
+
+            {/* Ballot routes */}
+            <Route path=":result" element={<ElectionResult />} />
 
             {/* Ballot routes */}
             <Route path="ballot" element={<ElectionBallot />} />

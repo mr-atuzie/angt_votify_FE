@@ -1,4 +1,6 @@
 import React from "react";
+import { MdSpaceDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
   //   const [currentPage, setCurrentPage] = useState("");
@@ -24,9 +26,20 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
           </span>
         </div>
 
-        <button className="bg-blue-600 text-white px-4 py-2 w-10 h-10  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
-          RA
-        </button>
+        <div className=" gap-5 flex items-center">
+          <Link
+            to={"/dashboard"}
+            className=" flex items-center text-white gap-2"
+          >
+            <span>
+              <MdSpaceDashboard />
+            </span>
+            <span className="text-white">Dashboard</span>
+          </Link>
+          <button className="bg-blue-600 text-white px-4 py-2 w-10 h-10  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
+            RA
+          </button>
+        </div>
       </div>
       {/* <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">

@@ -7,18 +7,22 @@ import Ballot from "../../components/Ballot";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 const ElectionBallot = () => {
   const { id } = useParams();
 
   const [ballots, setBallots] = useState([]);
+  const [preLoader, setPreLoader] = useState(false);
 
   useEffect(() => {
+    setPreLoader(true);
     const getBallot = async () => {
       try {
         const response = await axios.get(`/api/v1/ballot/election/${id}`);
 
         setBallots(response.data);
+        setPreLoader(false);
         return response.data;
       } catch (error) {
         const message =
@@ -29,6 +33,7 @@ const ElectionBallot = () => {
           error.toString();
 
         //  setLoading(false);
+        setPreLoader(false);
         toast.error(message);
       }
     };
@@ -109,6 +114,10 @@ const ElectionBallot = () => {
       toast.error(message);
     }
   };
+
+  if (preLoader) {
+    return <Loader />;
+  }
 
   return (
     <div>

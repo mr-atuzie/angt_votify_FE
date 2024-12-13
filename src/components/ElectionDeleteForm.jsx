@@ -1,14 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ElectionDeleteForm = () => {
-  const handleDeleteElection = () => {
-    if (
-      window.confirm(
-        "Are you sure you want to delete this election? This action cannot be undone."
-      )
-    ) {
-      console.log("Election deleted");
-      // Add logic to delete the election
+  const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
+
+  const navigate = useNavigate();
+
+  console.log(id);
+  const handleDeleteElection = async () => {
+    setLoading(true);
+
+    try {
+      await axios.delete(`/api/v1/election/${id}`);
+      toast.success(`election has been deleted`);
+      setLoading(false);
+      navigate("/dashboard");
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
     }
   };
 
@@ -29,7 +49,7 @@ const ElectionDeleteForm = () => {
           </p>
 
           {/* Election Name Input */}
-          <div>
+          {/* <div>
             <label
               htmlFor="election-name"
               className="block text-sm font-medium  mb-2"
@@ -39,8 +59,8 @@ const ElectionDeleteForm = () => {
             <input
               type="text"
               id="election-name"
-              //   value={electionNameInput}
-              //   onChange={(e) => setElectionNameInput(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-red-500"
               placeholder="Enter the election name"
               required
@@ -48,17 +68,17 @@ const ElectionDeleteForm = () => {
             <small className="text-gray-600">
               Type the exact name of the election to confirm deletion.
             </small>
-          </div>
+          </div> */}
 
           <div className=" flex justify-center">
             {/* Delete Button */}
             <button
               type="button"
               onClick={handleDeleteElection}
-              // disabled={electionNameInput !== electionName}
-              className={`px-6 py-3 text-white font-medium rounded-lg bg-red-600 hover:bg-red-700" focus:outline-none`}
+              disabled={loading}
+              className={`px-6 py-3 text-white font-medium disabled:bg-red-300 rounded-lg bg-red-600 hover:bg-red-700" focus:outline-none`}
             >
-              Delete Election
+              {loading ? "Deleting" : "Delete Election"}
             </button>
           </div>
         </form>

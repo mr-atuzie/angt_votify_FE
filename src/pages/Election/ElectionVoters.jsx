@@ -5,13 +5,14 @@ import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 import { Link, useOutletContext, useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
   const [voters, setVoters] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [preLoader, setPreLoader] = useState(false);
   const electionData = useOutletContext();
 
   const { id } = useParams();
@@ -21,10 +22,12 @@ const ElectionVoters = () => {
   };
 
   useEffect(() => {
+    setPreLoader(true);
     const getVoters = async () => {
       try {
         const response = await axios.get(`/api/v1/voter/election/${id}`);
         // console.log(response.data.voters);
+        setPreLoader(false);
         setVoters(response.data.voters);
         return response.data;
       } catch (error) {
@@ -36,6 +39,7 @@ const ElectionVoters = () => {
           error.toString();
 
         //  setLoading(false);
+        setPreLoader(false);
         toast.error(message);
       }
     };
@@ -52,6 +56,10 @@ const ElectionVoters = () => {
 
   if (!electionData) {
     return <div>No election data available</div>;
+  }
+
+  if (preLoader) {
+    return <Loader />;
   }
 
   return (

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 const EditBallotOption = () => {
   const { id, ballotId, optionId } = useParams();
@@ -11,6 +12,7 @@ const EditBallotOption = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+  const [preLoader, setPreLoader] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -18,6 +20,7 @@ const EditBallotOption = () => {
 
   // Fetch the ballot details when the component mounts
   useEffect(() => {
+    setPreLoader(true);
     const fetchVotingOption = async () => {
       try {
         const { data } = await axios.get(
@@ -31,8 +34,10 @@ const EditBallotOption = () => {
         setPreviewImage(data?.image || "");
         setSelectedImage(data?.image || "");
         // setLoading(false);
+        setPreLoader(false);
       } catch (error) {
         setLoading(false);
+        setPreLoader(false);
         const message =
           error.response?.data?.message ||
           error.message ||
@@ -114,6 +119,10 @@ const EditBallotOption = () => {
       toast.error(message);
     }
   };
+
+  if (preLoader) {
+    return <Loader />;
+  }
 
   return (
     <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">

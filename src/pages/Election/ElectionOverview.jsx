@@ -1,13 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
 
   const electionData = useOutletContext();
+  const [voters, setVoters] = useState(0);
+  const [preLoader, setPreLoader] = useState(false);
 
-  console.log(electionData);
+  const { id } = useParams();
+
+  useEffect(() => {
+    setPreLoader(true);
+    const getTotalVoter = async () => {
+      try {
+        const { data } = await axios.get(`/api/v1/election/${id}/total`);
+
+        setVoters(data);
+        setPreLoader(false);
+        // return response.data;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        //  setLoading(false);
+        setPreLoader(false);
+        toast.error(message);
+      }
+    };
+
+    getTotalVoter();
+  }, [id]);
+
+  if (preLoader) {
+    return <Loader />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
@@ -30,10 +65,13 @@ const ElectionOverview = () => {
           <p className="text-lg font-bold text-blue-600">
             {electionData?.ballots.length}
           </p>
+          {/* <CountUpAnimation count={electionData?.ballots.length} /> */}
         </div>
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium text-gray-500">Voters</h2>
-          <p className="text-lg font-semibold text-gray-800">120</p>
+          <h2 className="text-sm font-medium ">Voters</h2>
+
+          {/* <CountUpAnimation count={voters} /> */}
+          <p className="text-lg font-bold text-blue-600">{voters}</p>
         </div>
       </div>
 
