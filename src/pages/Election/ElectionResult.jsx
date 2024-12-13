@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import ResultTable from "../../components/ResultTable";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
@@ -11,6 +11,8 @@ const ElectionResult = () => {
 
   const [ballots, setBallots] = useState([]);
   const [preLoader, setPreLoader] = useState(false);
+
+  const electionData = useOutletContext();
 
   useEffect(() => {
     setPreLoader(true);
@@ -46,13 +48,20 @@ const ElectionResult = () => {
   return (
     <div className="p-6">
       {ballots.length > 0 ? (
-        <div className=" flex flex-col gap-10">
-          <div className=" w-[60%] mx-auto">
-            {ballots.map((ballot) => {
-              return <ResultTable key={ballot?._id} ballot={ballot} />;
-            })}
+        <>
+          <h2 className=" text-center capitalize text-lg mb-5 font-medium text-gray-700">
+            Track real time result of{" "}
+            <span className=" text-blue-500">{electionData?.title}</span>{" "}
+            Election{" "}
+          </h2>
+          <div className=" flex flex-col gap-10">
+            <div className=" w-[60%] mx-auto">
+              {ballots.map((ballot) => {
+                return <ResultTable key={ballot?._id} ballot={ballot} />;
+              })}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <div className=" flex justify-center min-h-[70vh] items-center h-full w-full">
           <p className="text-center text-gray-500 col-span-full">

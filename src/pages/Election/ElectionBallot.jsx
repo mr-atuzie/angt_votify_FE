@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdBallot } from "react-icons/md";
-import { IoIosCloudUpload } from "react-icons/io";
+// import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 
 import Ballot from "../../components/Ballot";
@@ -125,19 +125,19 @@ const ElectionBallot = () => {
         {ballots.length > 0 ? (
           <div className=" flex flex-col gap-10">
             <div className=" flex gap-2 mt-4">
-              <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
+              {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
                 <span>
                   <IoIosCloudUpload size={20} />
                 </span>
                 <span>Import</span>
-              </button>
+              </button> */}
 
               <Link to={`/election/${id}/ballot/create-question`}>
                 <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
                   <span>
                     <IoAddSharp size={20} />
                   </span>
-                  Add Questions
+                  Add Ballot
                 </button>
               </Link>
             </div>
@@ -173,12 +173,12 @@ const ElectionBallot = () => {
               </p>
 
               <div className=" flex gap-2 mt-4">
-                <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
+                {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
                   <span>
                     <IoIosCloudUpload size={20} />
                   </span>
                   <span>Import</span>
-                </button>
+                </button> */}
 
                 <Link to={`/election/${id}/ballot/create-question`}>
                   <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { IoIosCloudUpload } from "react-icons/io";
+// import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 import { Link, useOutletContext, useParams } from "react-router-dom";
@@ -113,12 +113,12 @@ const ElectionVoters = () => {
               </form>
 
               <div className=" flex gap-2 ">
-                <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
+                {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
                   <span>
                     <IoIosCloudUpload size={20} />
                   </span>
                   <span>Import</span>
-                </button>
+                </button> */}
 
                 <Link to={`/election/${electionData?._id}/voters/create`}>
                   <button
@@ -199,13 +199,13 @@ const ElectionVoters = () => {
                 Election
               </p>
 
-              <div className=" flex gap-2 mt-4">
-                <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
+              <div className=" flex justify-center gap-2 mt-4">
+                {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
                   <span>
                     <IoIosCloudUpload size={20} />
                   </span>
                   <span>Import</span>
-                </button>
+                </button> */}
 
                 <Link to={`/election/${electionData?._id}/voters/create`}>
                   <button
