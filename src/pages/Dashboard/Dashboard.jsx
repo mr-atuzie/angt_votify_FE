@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { IoAddSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import CountUpAnimation from "../../components/CountUpAnimation";
+import axios from "axios";
+import toast from "react-hot-toast";
+import DashboardLoader from "../../components/DashboardLoader";
+import moment from "moment";
 
 const Dashboard = () => {
+  const [preLoader, setPreLoader] = useState(true);
+  const [dashboard, setDashBoard] = useState(null);
+
+  useEffect(() => {
+    setPreLoader(true);
+    const getElection = async () => {
+      try {
+        const response = await axios.get(`/api/v1/user/dashboard`);
+        console.log(response.data);
+        setDashBoard(response.data);
+        setPreLoader(false);
+        return response.data;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setPreLoader(false);
+
+        //  setLoading(false);
+        toast.error(message);
+      }
+    };
+
+    getElection();
+  }, []);
+
+  if (preLoader) {
+    return <DashboardLoader />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
       <div className="flex items-center justify-between ">
@@ -28,129 +66,92 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium text-gray-600">Total Elections</h2>
+          <h2 className="text-lg font-medium">Total Elections</h2>
 
-          <CountUpAnimation count={15} />
+          <CountUpAnimation count={dashboard?.totalElections} />
         </div>
+
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium text-gray-600">
-            Active Elections
-          </h2>
-          <CountUpAnimation count={10} />
+          <h2 className="text-lg font-medium">Ongoing Elections</h2>
+          <CountUpAnimation count={dashboard?.ongoingElections} />
         </div>
+
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium text-gray-600">
-            Voter Participation
-          </h2>
-          <CountUpAnimation count={78} symbol="%" />
+          <h2 className="text-lg font-medium">Upcoming Elections</h2>
+          <CountUpAnimation count={dashboard?.upcomingElections} />
+        </div>
+
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h2 className="text-lg font-medium 0">Completed Elections</h2>
+          <CountUpAnimation count={dashboard?.compeletedElections} />
         </div>
       </div>
 
       <div className=" flex gap-6">
         <div className=" w-[70%]">
-          <div className=" w-full bg-white h-fit border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6">
-            <div>
-              <h2 className=" mb-1 font-medium">Most Beautiful Girl Nigeria</h2>
-              <span className="bg-yellow-100 text-yellow-600 rounded-md px-6 py-1.5 text-xs">
-                Building
-              </span>
-            </div>
+          {dashboard?.recentElections?.length > 0 &&
+            dashboard?.recentElections?.map((election) => {
+              return (
+                <div
+                  key={election._id}
+                  className=" w-full bg-white h-fit mb-4 border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6"
+                >
+                  <div>
+                    <h2 className=" mb-1 capitalize font-medium">
+                      {election.title}
+                    </h2>
+                    <span
+                      className={`text-sm px-3 py-1 rounded-lg ${
+                        election?.status === "Upcoming"
+                          ? "text-yellow-600 bg-yellow-100"
+                          : election?.status === "Ongoing"
+                          ? "text-green-600 bg-green-100"
+                          : "text-blue-600 bg-blue-100"
+                      }`}
+                    >
+                      {election?.status}
+                    </span>
+                  </div>
 
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">
-                  start date
-                </span>
-              </div>
+                  <div className=" flex flex-col justify-center items-center">
+                    <div className=" flex gap-2 items-center mb-1">
+                      <span>
+                        <FaRegCalendarCheck size={12} />
+                      </span>
+                      <span className="font-medium text-xs uppercase">
+                        start date
+                      </span>
+                    </div>
 
-              <p className=" text-sm text-gray-600">06/12/24 11:00 AM</p>
-            </div>
+                    <p className=" text-sm text-gray-600">
+                      {moment(election?.startDate).format(
+                        "MMM DD, YYYY hh:mm A"
+                      )}
+                    </p>
+                  </div>
 
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">end date</span>
-              </div>
+                  <div className=" flex flex-col justify-center items-center">
+                    <div className=" flex gap-2 items-center mb-1 ">
+                      <span>
+                        <FaRegCalendarCheck size={12} />
+                      </span>
+                      <span className="font-medium text-xs uppercase">
+                        end date
+                      </span>
+                    </div>
 
-              <p className=" text-sm text-gray-600">10/12/24 11:00 AM</p>
-            </div>
-          </div>
-
-          <div className=" w-full bg-white h-fit border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6">
-            <div>
-              <h2 className=" mb-1 font-medium">Most Beautiful Girl Nigeria</h2>
-              <span className="bg-green-100 text-green-600 rounded-md px-6 py-1.5 text-xs">
-                Started
-              </span>
-            </div>
-
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">
-                  start date
-                </span>
-              </div>
-
-              <p className=" text-sm text-gray-600">06/12/24 11:00 AM</p>
-            </div>
-
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">end date</span>
-              </div>
-
-              <p className=" text-sm text-gray-600">10/12/24 11:00 AM</p>
-            </div>
-          </div>
-
-          <div className=" w-full bg-white h-fit border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6">
-            <div>
-              <h2 className=" mb-1 font-medium">Most Beautiful Girl Nigeria</h2>
-              <span className="bg-pink-100 text-pink-600 rounded-md px-6 py-1.5 text-xs">
-                Ended
-              </span>
-            </div>
-
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">
-                  start date
-                </span>
-              </div>
-
-              <p className=" text-sm text-gray-600">06/12/24 11:00 AM</p>
-            </div>
-
-            <div>
-              <div className=" flex gap-2 items-center mb-2">
-                <span>
-                  <FaRegCalendarCheck size={12} />
-                </span>
-                <span className="font-medium text-xs uppercase">end date</span>
-              </div>
-
-              <p className=" text-sm text-gray-600">10/12/24 11:00 AM</p>
-            </div>
-          </div>
+                    <p className=" text-sm text-gray-600">
+                      {moment(election?.endDate).format("MMM DD, YYYY hh:mm A")}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
-        <div className="bg-white h-fit w-[35%] shadow-lg rounded-lg p-3">
+        {/* <div className="bg-white h-fit w-[35%] shadow-lg rounded-lg p-3">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
             Recent Activity
           </h2>
@@ -190,7 +191,7 @@ const Dashboard = () => {
               </div>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

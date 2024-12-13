@@ -10,7 +10,6 @@ const ElectionDeleteForm = () => {
 
   const navigate = useNavigate();
 
-  console.log(id);
   const handleDeleteElection = async () => {
     setLoading(true);
 

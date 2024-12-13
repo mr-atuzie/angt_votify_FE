@@ -29,11 +29,11 @@ const DashboardSidebar = () => {
             label: "Voter Management",
             Icon: PiUsersFourDuotone,
           },
-          {
-            to: "/dashboard/candidate-management",
-            label: "Candidate Management",
-            Icon: FaUsersGear,
-          },
+          // {
+          //   to: "/dashboard/candidate-management",
+          //   label: "Candidate Management",
+          //   Icon: FaUsersGear,
+          // },
           { to: "/dashboard/pricing", label: "Pricing", Icon: IoMdPricetags },
           {
             to: "/dashboard/settings",
@@ -59,6 +59,10 @@ const DashboardSidebar = () => {
             <span>{label}</span>
           </NavLink>
         ))}
+
+        <button className=" py-2 flex items-center px-4 mt-6  rounded-lg bg-blue-800/60">
+          Logout
+        </button>
       </div>
     </div>
   );
