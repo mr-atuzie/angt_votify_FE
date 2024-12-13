@@ -1,64 +1,134 @@
-import React, { useState } from "react";
-import { IoIosCloudUpload } from "react-icons/io";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import axios from "axios";
+import toast from "react-hot-toast";
+import DashboardLoader from "../../components/DashboardLoader";
+import { IoAddSharp } from "react-icons/io5";
+import { getUserInitials } from "../../utils";
 
 const DashboardVoters = () => {
   const initialState = {
     name: "",
     email: "",
-    electionType: "",
+    election: "",
   };
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
+  const [preLoader, setPreLoader] = useState(true);
+  const [elections, setElections] = useState([]);
+  const [electionId, setElectionId] = useState("");
 
-  const { name, email, electionType } = formData;
+  const { name, email, election } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    navigate("/election/12345/overview");
+    console.log({ name, email, phone, election, electionId });
+
+    if (!name || !email || !phone || !electionId) {
+      setLoading(false);
+      return toast.error("All fields are required");
+    }
+
+    try {
+      const { data } = await axios.post(`/api/v1/voter`, {
+        fullName: name,
+        email,
+        phone,
+        electionId,
+      });
+
+      setLoading(false);
+
+      console.log(data);
+      setFormData(initialState);
+      setElectionId("");
+      toast.success("Voter added to election");
+
+      // const redirectPath = `/election/${electionId}/voters`;
+
+      // navigate(redirectPath);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
+
+  useEffect(() => {
+    setPreLoader(true);
+    const getElection = async () => {
+      try {
+        const response = await axios.get(`/api/v1/user/election`);
+        console.log(response.data);
+        setElections(response.data);
+        setPreLoader(false);
+        return response.data;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setPreLoader(false);
+
+        //  setLoading(false);
+        toast.error(message);
+      }
+    };
+
+    getElection();
+  }, []);
+
+  if (preLoader) {
+    return <DashboardLoader />;
+  }
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="flex items-start justify-between ">
+      <div className="flex  justify-between ">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">
-            Voters Managements
+            Voters Mangagement
           </h1>
           <h1 className="text-gray-500">
             Welcome Back, <span className="text-blue-600">Rex</span>
           </h1>
         </div>
 
-        <div className=" flex items-center gap-6">
-          {/* <Link to={"/create-election"}>
-            <button className="bg-white flex gap-2 items-center border border-blue-600 text-blue-600 px-6 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
-              <span>
-                <IoIosCloudUpload size={20} />
-              </span>
-              <span>Import</span>
-            </button>
-          </Link> */}
+        <div className=" flex  gap-5  items-center ">
           <Link to={"/create-election"}>
             <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
               <span>
-                <IoIosCloudUpload size={20} />
+                <IoAddSharp size={20} />
               </span>
-              <span>Import Voters</span>
+              <span> Add Election</span>
             </button>
           </Link>
+
+          <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
+            {getUserInitials("Atuzie Rex")}
+          </button>
         </div>
       </div>
 
@@ -71,10 +141,7 @@ const DashboardVoters = () => {
         {/* Form */}
         <form className="p-8" onSubmit={handleSubmit}>
           <p className="text-center text-gray-700 mb-8">
-            Add a voter to the election:{" "}
-            <span className="text-blue-600 font-semibold">
-              Most Beautiful Girl Nigeria
-            </span>
+            Add a voter to the election of your choice
           </p>
 
           {/* Name */}
@@ -139,23 +206,34 @@ const DashboardVoters = () => {
           <div className=" mb-14">
             <label
               className="block text-sm font-medium mb-1"
-              htmlFor="electionType"
+              htmlFor="election"
             >
               Election
             </label>
             <select
-              id="electionType"
-              name="electionType"
-              value={electionType}
-              onChange={handleInputChange}
+              id="election"
+              name="election"
+              value={election}
+              onChange={(e) => setElectionId(e.target.value)}
               className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
-              <option value="" disabled selected>
+              <option disabled value={""}>
                 Select Election
               </option>
-              <option value="single">Most beautiful girl in niigeria</option>
-              <option value="multiple">Class President 2024/2025</option>
-              <option value="ranked">Employee of the month</option>
+              {elections.length > 0 &&
+                elections.map((election) => {
+                  return (
+                    <option
+                      className=" text-sm"
+                      key={election?._id}
+                      value={election?._id}
+                    >
+                      {election?.title}
+                    </option>
+                  );
+                })}
+              {/* <option value="multiple">Class President 2024/2025</option>
+              <option value="ranked">Employee of the month</option> */}
             </select>
             <small className="text-gray-500">
               Select Election you will like to add voter to
@@ -169,11 +247,12 @@ const DashboardVoters = () => {
               type="submit"
               disabled={loading}
             >
-              Save
+              {loading ? "Saving" : "Save"}
             </button>
             <button
               className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all"
               type="button"
+              onClick={() => navigate(-1)}
             >
               Close
             </button>

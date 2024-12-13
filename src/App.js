@@ -43,6 +43,7 @@ import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
 import EditBallotQuestion from "./pages/Election/EditBallotQuestion";
 import EditBallotOption from "./pages/Election/EditBallotOption";
 import ElectionResult from "./pages/Election/ElectionResult";
+import VotingLogin from "./pages/Election/VotingLogin";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -123,6 +124,9 @@ function App() {
               <Route path="delete" element={<ElectionDeleteForm />} />
             </Route>
           </Route>
+
+          {/* voting */}
+          <Route path="voting/:electionId/login" element={<VotingLogin />} />
         </Routes>
       </BrowserRouter>
     </>

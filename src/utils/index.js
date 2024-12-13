@@ -7,6 +7,15 @@ export const shortenText = (text, n) => {
   return text;
 };
 
+export function getUserInitials(name) {
+  if (!name) return "";
+
+  return name
+    .split(" ") // Split the name into an array of words
+    .map((word) => word[0]?.toUpperCase()) // Get the first letter of each word, convert to uppercase
+    .join(""); // Join the initials into a single string
+}
+
 export const formatter = (price) => {
   return new Intl.NumberFormat().format(price);
 };

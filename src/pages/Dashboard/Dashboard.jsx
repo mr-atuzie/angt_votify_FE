@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
+import { getUserInitials } from "../../utils";
 
 const Dashboard = () => {
   const [preLoader, setPreLoader] = useState(true);
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="flex items-center justify-between ">
+      <div className="flex  justify-between ">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">
             Dashboard Overview
@@ -56,14 +57,20 @@ const Dashboard = () => {
           </h1>
         </div>
 
-        <Link to={"/create-election"}>
-          <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
-            <span>
-              <IoAddSharp size={20} />
-            </span>
-            <span> Add Election</span>
+        <div className=" flex  gap-5  items-center ">
+          <Link to={"/create-election"}>
+            <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
+              <span>
+                <IoAddSharp size={20} />
+              </span>
+              <span> Add Election</span>
+            </button>
+          </Link>
+
+          <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
+            {getUserInitials("Atuzie Rex")}
           </button>
-        </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -96,14 +103,15 @@ const Dashboard = () => {
               return (
                 <div
                   key={election._id}
-                  className=" w-full bg-white h-fit mb-4 border border-blue-100 rounded-lg flex items-center justify-between shadow-lg p-6"
+                  className="w-full bg-white h-fit mb-4 border rounded-lg shadow-md p-6 flex justify-between items-center hover:shadow-lg transition duration-300"
                 >
+                  {/* Election Title and Status */}
                   <div>
-                    <h2 className=" mb-1 capitalize font-medium">
+                    <h2 className="text-lg capitalize font-semibold text-gray-800 mb-2">
                       {election.title}
                     </h2>
                     <span
-                      className={`text-sm px-3 py-1 rounded-lg ${
+                      className={`text-sm font-medium px-3 py-1 rounded-full ${
                         election?.status === "Upcoming"
                           ? "text-yellow-600 bg-yellow-100"
                           : election?.status === "Ongoing"
@@ -115,34 +123,30 @@ const Dashboard = () => {
                     </span>
                   </div>
 
-                  <div className=" flex flex-col justify-center items-center">
-                    <div className=" flex gap-2 items-center mb-1">
-                      <span>
-                        <FaRegCalendarCheck size={12} />
-                      </span>
-                      <span className="font-medium text-xs uppercase">
-                        start date
+                  {/* Start Date */}
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2 mb-1">
+                      <FaRegCalendarCheck size={14} className="text-blue-500" />
+                      <span className="text-xs font-medium text-gray-500 uppercase">
+                        Start Date
                       </span>
                     </div>
-
-                    <p className=" text-sm text-gray-600">
+                    <p className="text-sm font-medium text-gray-700">
                       {moment(election?.startDate).format(
                         "MMM DD, YYYY hh:mm A"
                       )}
                     </p>
                   </div>
 
-                  <div className=" flex flex-col justify-center items-center">
-                    <div className=" flex gap-2 items-center mb-1 ">
-                      <span>
-                        <FaRegCalendarCheck size={12} />
-                      </span>
-                      <span className="font-medium text-xs uppercase">
-                        end date
+                  {/* End Date */}
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-2 mb-1">
+                      <FaRegCalendarCheck size={14} className="text-blue-500" />
+                      <span className="text-xs font-medium text-gray-500 uppercase">
+                        End Date
                       </span>
                     </div>
-
-                    <p className=" text-sm text-gray-600">
+                    <p className="text-sm font-medium text-gray-700">
                       {moment(election?.endDate).format("MMM DD, YYYY hh:mm A")}
                     </p>
                   </div>

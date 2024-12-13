@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { useOutletContext, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
@@ -77,20 +77,17 @@ const ElectionOverview = () => {
 
       <div className="bg-white shadow-md rounded-lg p-6 max-w-md">
         <h2 className="text-LG font-medium mb-4">Election URLS</h2>
-        {/* <p className="text-sm text-gray-600 mb-2">
-          <span className="font-medium">Start Date:</span> 2024-12-10
-        </p>
-        <p className="text-sm text-gray-600 mb-4">
-          <span className="font-medium">End Date:</span> 2024-12-20
-        </p> */}
+
         <div className="mb-4">
           <p className="text-sm text-gray-600">
             Share this URL with voters to participate:
           </p>
           <div className="bg-gray-100 p-2 rounded-lg mt-2">
-            <p className="text-blue-500 text-sm break-all">
-              https://example.com/election/12345/vote
-            </p>
+            <Link to={`/voting/${electionData?._id}/login`}>
+              <p className="text-blue-500 text-sm break-all">
+                https://example.com/election/12345/vote
+              </p>
+            </Link>
           </div>
         </div>
         <button

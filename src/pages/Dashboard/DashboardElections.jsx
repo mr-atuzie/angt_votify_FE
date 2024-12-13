@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import DashboardLoader from "../../components/DashboardLoader";
 import DashboardElectionCard from "../../components/DashboardElectionCard";
+import { getUserInitials } from "../../utils";
 
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -55,7 +56,7 @@ const DashboardElections = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="flex items-start justify-between ">
+      <div className="flex  justify-between ">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">
             Manage Elections
@@ -65,14 +66,20 @@ const DashboardElections = () => {
           </h1>
         </div>
 
-        <Link to={"/create-election"}>
-          <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
-            <span>
-              <IoAddSharp size={20} />
-            </span>
-            <span> Add Election</span>
+        <div className=" flex  gap-5  items-center ">
+          <Link to={"/create-election"}>
+            <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
+              <span>
+                <IoAddSharp size={20} />
+              </span>
+              <span> Add Election</span>
+            </button>
+          </Link>
+
+          <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
+            {getUserInitials("Atuzie Rex")}
           </button>
-        </Link>
+        </div>
       </div>
 
       <div className=" w-[90%] mx-auto flex flex-col gap-5">
