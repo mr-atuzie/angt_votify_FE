@@ -43,7 +43,8 @@ import ElectionGeneralSetting from "./components/ElectionGeneralSetting";
 import EditBallotQuestion from "./pages/Election/EditBallotQuestion";
 import EditBallotOption from "./pages/Election/EditBallotOption";
 import ElectionResult from "./pages/Election/ElectionResult";
-import VotingLogin from "./pages/Election/VotingLogin";
+import VotingLogin from "./pages/Voting/VotingLogin";
+import Voting from "./pages/Voting/Voting";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -127,6 +128,10 @@ function App() {
 
           {/* voting */}
           <Route path="voting/:electionId/login" element={<VotingLogin />} />
+          <Route
+            path="voting/:electionId/voter/:voterId"
+            element={<Voting />}
+          />
         </Routes>
       </BrowserRouter>
     </>

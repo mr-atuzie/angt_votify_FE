@@ -8,8 +8,8 @@ import moment from "moment";
 
 const VotingLogin = () => {
   const initialState = {
-    email: "",
-    password: "",
+    voterId: "",
+    voterCode: "",
   };
 
   const [preLoader, setPreLoader] = useState(false);
@@ -50,7 +50,7 @@ const VotingLogin = () => {
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  const { email, password } = formData;
+  const { voterId, voterCode } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,36 +62,37 @@ const VotingLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!email || !password) {
+    if (!voterCode || !voterId) {
       setLoading(false);
       return toast.error("All fields are required");
     }
 
-    if (password.length < 8) {
-      setLoading(false);
-      return toast.error("Password must be up to 8 characters");
-    }
+    navigate("/voting/1234/voter/5678");
+    // if (password.length < 8) {
+    //   setLoading(false);
+    //   return toast.error("Password must be up to 8 characters");
+    // }
 
-    const userData = { email, password };
+    // const userData = { email, password };
 
-    try {
-      await axios.post(`/api/v1/user/login`, userData);
+    // try {
+    //   await axios.post(`/api/v1/user/login`, userData);
 
-      setLoading(false);
+    //   setLoading(false);
 
-      toast.success("Login successfully");
-      navigate("/dashboard");
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+    //   toast.success("Login successfully");
+    //   navigate("/dashboard");
+    // } catch (error) {
+    //   const message =
+    //     (error.response &&
+    //       error.response.data &&
+    //       error.response.data.message) ||
+    //     error.message ||
+    //     error.toString();
 
-      setLoading(false);
-      toast.error(message);
-    }
+    //   setLoading(false);
+    //   toast.error(message);
+    // }
   };
 
   if (preLoader) {
@@ -188,16 +189,16 @@ const VotingLogin = () => {
                   {/* Voter ID */}
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="voterId"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Voter ID
                     </label>
                     <input
-                      id="email"
-                      type="email"
-                      name="email"
-                      value={email}
+                      id="voterId"
+                      type="voterId"
+                      name="voterId"
+                      value={voterId}
                       onChange={handleInputChange}
                       placeholder="E.g., VOTER-51442789"
                       className="mt-2 block w-full px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-gray-50"
@@ -208,16 +209,16 @@ const VotingLogin = () => {
                   {/* Voter Code */}
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="voterCode"
                       className="block text-sm font-semibold text-gray-700"
                     >
                       Voter Code
                     </label>
                     <input
-                      id="password"
-                      type="password"
-                      name="password"
-                      value={password}
+                      id="voterCode"
+                      type="voterCode"
+                      name="voterCode"
+                      value={voterCode}
                       onChange={handleInputChange}
                       placeholder="Enter your Voter Code"
                       className="mt-2 block w-full px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-gray-50"
