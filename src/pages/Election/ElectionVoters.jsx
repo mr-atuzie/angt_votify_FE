@@ -54,6 +54,10 @@ const ElectionVoters = () => {
     // setVoters(true);
   };
 
+  const handleEdit = (voterId) => {};
+
+  const handleDelete = (voterId) => {};
+
   if (!electionData) {
     return <div>No election data available</div>;
   }
@@ -150,9 +154,9 @@ const ElectionVoters = () => {
                     <th scope="col" className="px-6 py-3">
                       Verified
                     </th>
-                    {/* <th scope="col" className="px-6 py-3">
-                      Registered On
-                    </th> */}
+                    <th scope="col" className="px-6 py-3">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
@@ -172,9 +176,20 @@ const ElectionVoters = () => {
                           {voter.isVerified ? "Verified" : "Unverified"}
                         </span>
                       </td>
-                      {/* <td className="px-6 py-4 text-gray-500">
-                        {new Date(voter.createdAt).toLocaleDateString()}
-                      </td> */}
+                      <td className="px-6 py-4 flex items-center space-x-4">
+                        <button
+                          onClick={() => handleEdit(voter._id)}
+                          className="text-green-500 hover:text-blue-700"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(voter._id)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -194,7 +209,7 @@ const ElectionVoters = () => {
               <p>
                 Get started by adding Voters to{" "}
                 <span className="text-blue-600 font-medium">
-                  Most Beautiful Girl Nigeria
+                  {electionData?.title}
                 </span>{" "}
                 Election
               </p>

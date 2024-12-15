@@ -28,14 +28,19 @@ const ResultTable = ({ ballot }) => {
               {ballot.votingOptions.map((option, index) => (
                 <tr key={index} className="border-t even:bg-gray-50">
                   <td className="px-6 py-4">{option.name}</td>
-                  <td className="px-6 py-4 text-center">{option.votes}</td>
                   <td className="px-6 py-4 text-center">
-                    {(
-                      (option.votes /
-                        ballot.votingOptions.reduce((a, b) => a + b.votes, 0)) *
+                    {option.votes.length}
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    {/* {(
+                      (option.votes.length /
+                        ballot.votingOptions.length.reduce(
+                          (a, b) => a + b.votes,
+                          0
+                        )) *
                       100
                     ).toFixed(2)}{" "}
-                    %
+                    % */}
                   </td>
                 </tr>
               ))}

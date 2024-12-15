@@ -12,7 +12,7 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import FAQ from "./pages/FAQ";
 import Testimonal from "./pages/Testimonal";
-import Settings from "./pages/Settings";
+// import Settings from "./pages/Settings";
 
 // Dashboard
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -45,6 +45,10 @@ import EditBallotOption from "./pages/Election/EditBallotOption";
 import ElectionResult from "./pages/Election/ElectionResult";
 import VotingLogin from "./pages/Voting/VotingLogin";
 import Voting from "./pages/Voting/Voting";
+import DashboardSettingLayout from "./layouts/DashboardSettingLayout";
+import DashboardGeneralSetting from "./components/DashboardGeneralSetting";
+import DashboardSecuritySetting from "./components/DashboardSecuritySetting";
+import OrganisationForm from "./components/OrganisationForm";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -78,7 +82,16 @@ function App() {
               element={<DashboardCandidates />}
             />
             <Route path="pricing" element={<DashboardPricing />} />
-            <Route path="settings" element={<Settings />} />
+
+            {/* <Route path="settings" element={<Settings />} /> */}
+
+            {/* Settings layout */}
+            <Route path="setting" element={<DashboardSettingLayout />}>
+              <Route path="general" element={<DashboardGeneralSetting />} />
+              <Route path="security" element={<DashboardSecuritySetting />} />
+              <Route path="organisation" element={<OrganisationForm />} />
+              <Route path="delete" element={<ElectionDeleteForm />} />
+            </Route>
           </Route>
 
           <Route path="/create-election" element={<CreateElection />} />
@@ -127,9 +140,13 @@ function App() {
           </Route>
 
           {/* voting */}
-          <Route path="voting/:electionId/login" element={<VotingLogin />} />
           <Route
-            path="voting/:electionId/voter/:voterId"
+            path="voting/:electionId/voter/:voterId/login"
+            element={<VotingLogin />}
+          />
+
+          <Route
+            path="voting/:electionId/voter/:voterId/vote"
             element={<Voting />}
           />
         </Routes>

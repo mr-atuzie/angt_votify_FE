@@ -101,56 +101,66 @@ const Dashboard = () => {
           {dashboard?.recentElections?.length > 0 &&
             dashboard?.recentElections?.map((election) => {
               return (
-                <div
+                <Link
                   key={election._id}
-                  className="w-full bg-white h-fit mb-4 border rounded-lg shadow-md p-6 flex justify-between items-center hover:shadow-lg transition duration-300"
+                  to={`/election/${election?._id}/overview`}
                 >
-                  {/* Election Title and Status */}
-                  <div>
-                    <h2 className="text-lg capitalize font-semibold text-gray-800 mb-2">
-                      {election.title}
-                    </h2>
-                    <span
-                      className={`text-sm font-medium px-3 py-1 rounded-full ${
-                        election?.status === "Upcoming"
-                          ? "text-yellow-600 bg-yellow-100"
-                          : election?.status === "Ongoing"
-                          ? "text-green-600 bg-green-100"
-                          : "text-blue-600 bg-blue-100"
-                      }`}
-                    >
-                      {election?.status}
-                    </span>
-                  </div>
-
-                  {/* Start Date */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-2 mb-1">
-                      <FaRegCalendarCheck size={14} className="text-blue-500" />
-                      <span className="text-xs font-medium text-gray-500 uppercase">
-                        Start Date
+                  <div className="w-full bg-white h-fit mb-4 border rounded-lg shadow-md p-6 flex justify-between items-center hover:shadow-lg transition duration-300">
+                    {/* Election Title and Status */}
+                    <div>
+                      <h2 className="text-lg capitalize font-semibold text-gray-800 mb-2">
+                        {election.title}
+                      </h2>
+                      <span
+                        className={`text-sm font-medium px-3 py-1 rounded-full ${
+                          election?.status === "Upcoming"
+                            ? "text-yellow-600 bg-yellow-100"
+                            : election?.status === "Ongoing"
+                            ? "text-green-600 bg-green-100"
+                            : "text-blue-600 bg-blue-100"
+                        }`}
+                      >
+                        {election?.status}
                       </span>
                     </div>
-                    <p className="text-sm font-medium text-gray-700">
-                      {moment(election?.startDate).format(
-                        "MMM DD, YYYY hh:mm A"
-                      )}
-                    </p>
-                  </div>
 
-                  {/* End Date */}
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-2 mb-1">
-                      <FaRegCalendarCheck size={14} className="text-blue-500" />
-                      <span className="text-xs font-medium text-gray-500 uppercase">
-                        End Date
-                      </span>
+                    {/* Start Date */}
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center gap-2 mb-1">
+                        <FaRegCalendarCheck
+                          size={14}
+                          className="text-blue-500"
+                        />
+                        <span className="text-xs font-medium text-gray-500 uppercase">
+                          Start Date
+                        </span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-700">
+                        {moment(election?.startDate).format(
+                          "MMM DD, YYYY hh:mm A"
+                        )}
+                      </p>
                     </div>
-                    <p className="text-sm font-medium text-gray-700">
-                      {moment(election?.endDate).format("MMM DD, YYYY hh:mm A")}
-                    </p>
+
+                    {/* End Date */}
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center gap-2 mb-1">
+                        <FaRegCalendarCheck
+                          size={14}
+                          className="text-blue-500"
+                        />
+                        <span className="text-xs font-medium text-gray-500 uppercase">
+                          End Date
+                        </span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-700">
+                        {moment(election?.endDate).format(
+                          "MMM DD, YYYY hh:mm A"
+                        )}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
         </div>

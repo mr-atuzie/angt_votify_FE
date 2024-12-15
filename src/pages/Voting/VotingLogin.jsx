@@ -67,7 +67,6 @@ const VotingLogin = () => {
       return toast.error("All fields are required");
     }
 
-    navigate("/voting/1234/voter/5678");
     // if (password.length < 8) {
     //   setLoading(false);
     //   return toast.error("Password must be up to 8 characters");
@@ -75,24 +74,31 @@ const VotingLogin = () => {
 
     // const userData = { email, password };
 
-    // try {
-    //   await axios.post(`/api/v1/user/login`, userData);
+    try {
+      const { data } = await axios.post(`/api/v1/voter/login`, {
+        voterId,
+        verificationCode: voterCode,
+        electionId,
+      });
 
-    //   setLoading(false);
+      console.log(data);
 
-    //   toast.success("Login successfully");
-    //   navigate("/dashboard");
-    // } catch (error) {
-    //   const message =
-    //     (error.response &&
-    //       error.response.data &&
-    //       error.response.data.message) ||
-    //     error.message ||
-    //     error.toString();
+      setLoading(false);
 
-    //   setLoading(false);
-    //   toast.error(message);
-    // }
+      toast.success("Login successfully");
+      const redirect = `/voting/${electionId}/voter/${data?.voter.id}/vote`;
+      navigate(redirect);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      setLoading(false);
+      toast.error(message);
+    }
   };
 
   if (preLoader) {
@@ -166,7 +172,7 @@ const VotingLogin = () => {
 
       {voting?.hasStarted ? (
         <main className="min-h-screen flex  justify-center bg-gradient-to-b from-blue-50 to-gray-100 py-16">
-          <div className="w-[90%] lg:w-[35%] bg-white shadow-xl rounded-xl overflow-hidden">
+          <div className="w-[90%] h-fit lg:w-[35%] bg-white shadow-xl rounded-xl overflow-hidden">
             {/* Header Section */}
             <div className="bg-blue-800 text-white text-center py-6">
               <h2 className="text-2xl font-semibold uppercase">

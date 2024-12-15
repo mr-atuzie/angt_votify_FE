@@ -35,7 +35,7 @@ const DashboardSidebar = () => {
           // },
           // { to: "/dashboard/pricing", label: "Pricing", Icon: IoMdPricetags },
           {
-            to: "/dashboard/settings",
+            to: "/dashboard/setting/general",
             label: "Settings",
             Icon: GrSettingsOption,
           },
