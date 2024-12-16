@@ -7,15 +7,13 @@ import axios from "axios";
 import moment from "moment";
 
 const VotingLogin = () => {
-  const initialState = {
-    voterId: "",
-    voterCode: "",
-  };
-
   const [preLoader, setPreLoader] = useState(false);
   const [voting, setVoting] = useState(null);
+  const [voterLoginId, setVoterLoginId] = useState("");
+  const [voterCode, setVoterCode] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const { electionId } = useParams();
+  const { electionId, voterId } = useParams();
 
   useEffect(() => {
     setPreLoader(true);
@@ -24,7 +22,12 @@ const VotingLogin = () => {
         const { data } = await axios.get(
           `/api/v1/election/${electionId}/status`
         );
-        console.log(data);
+
+        const { data: voter } = await axios.get(`/api/v1/voter/${voterId}`);
+
+        setVoterLoginId(voter?.voter.voterId || "");
+        setVoterCode(voter?.voter.verificationCode || "");
+
         setPreLoader(false);
         setVoting(data);
         return data;
@@ -43,20 +46,9 @@ const VotingLogin = () => {
     };
 
     getElection();
-  }, [electionId]);
+  }, [electionId, voterId]);
 
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState(initialState);
-  const [loading, setLoading] = useState(false);
-
-  const { voterId, voterCode } = formData;
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData({ ...formData, [name]: value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -204,8 +196,8 @@ const VotingLogin = () => {
                       id="voterId"
                       type="voterId"
                       name="voterId"
-                      value={voterId}
-                      onChange={handleInputChange}
+                      value={voterLoginId}
+                      onChange={(e) => setVoterLoginId(e.target.value)}
                       placeholder="E.g., VOTER-51442789"
                       className="mt-2 block w-full px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-gray-50"
                       required
@@ -225,7 +217,7 @@ const VotingLogin = () => {
                       type="voterCode"
                       name="voterCode"
                       value={voterCode}
-                      onChange={handleInputChange}
+                      onChange={(e) => setVoterCode(e.target.value)}
                       placeholder="Enter your Voter Code"
                       className="mt-2 block w-full px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none bg-gray-50"
                       required
