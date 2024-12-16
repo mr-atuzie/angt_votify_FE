@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
 
 const Register = () => {
   const initialState = {
@@ -18,6 +20,7 @@ const Register = () => {
   const { name, email, password, phone } = formData;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,12 +45,22 @@ const Register = () => {
     const userData = { fullName: name, email, phone, password };
 
     try {
-      await axios.post(`/api/v1/user/register`, userData);
+      const { data } = await axios.post(`/api/v1/user/register`, userData);
+
+      console.log(data);
+
+      const userDetail = {
+        fullname: data?.newUser.fullName,
+        id: data?.newUser._id,
+      };
+
+      dispatch(SET_USER(userDetail));
+      dispatch(SET_LOGIN(true));
 
       setLoading(false);
 
       toast.success("User Registered successfully");
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } catch (error) {
       const message =
         (error.response &&

@@ -49,11 +49,39 @@ import DashboardSettingLayout from "./layouts/DashboardSettingLayout";
 import DashboardGeneralSetting from "./components/DashboardGeneralSetting";
 import DashboardSecuritySetting from "./components/DashboardSecuritySetting";
 import OrganisationForm from "./components/OrganisationForm";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN } from "./redux/features/auth/authSlice";
+import { useEffect } from "react";
+import Private from "./components/Private";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getLoginStatus = async () => {
+      try {
+        const { data } = await axios.get(`/api/v1/user/loginStatus`);
+
+        console.log(data);
+
+        dispatch(SET_LOGIN(data));
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        console.log(message);
+      }
+    };
+    getLoginStatus();
+  }, [dispatch]);
+
   return (
     <>
       <BrowserRouter>
@@ -70,72 +98,79 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           {/* dashboard lay out */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<Dashboard />} />
+          <Route path="/dashboard" element={<Private />}>
+            <Route element={<DashboardLayout />}>
+              {/* Default dashboard route */}
+              <Route index element={<Dashboard />} />
 
-            <Route path="elections" element={<DashboardElections />} />
+              {/* Individual dashboard sections */}
+              <Route path="elections" element={<DashboardElections />} />
+              <Route path="voter-management" element={<DashboardVoters />} />
+              <Route
+                path="candidate-management"
+                element={<DashboardCandidates />}
+              />
+              <Route path="pricing" element={<DashboardPricing />} />
 
-            <Route path="voter-management" element={<DashboardVoters />} />
-
-            <Route
-              path="candidate-management"
-              element={<DashboardCandidates />}
-            />
-            <Route path="pricing" element={<DashboardPricing />} />
-
-            {/* <Route path="settings" element={<Settings />} /> */}
-
-            {/* Settings layout */}
-            <Route path="setting" element={<DashboardSettingLayout />}>
-              <Route path="general" element={<DashboardGeneralSetting />} />
-              <Route path="security" element={<DashboardSecuritySetting />} />
-              <Route path="organisation" element={<OrganisationForm />} />
-              <Route path="delete" element={<ElectionDeleteForm />} />
+              {/* Settings layout with nested routes */}
+              <Route path="setting" element={<DashboardSettingLayout />}>
+                <Route path="general" element={<DashboardGeneralSetting />} />
+                <Route path="security" element={<DashboardSecuritySetting />} />
+                <Route path="organisation" element={<OrganisationForm />} />
+                <Route path="delete" element={<ElectionDeleteForm />} />
+              </Route>
             </Route>
           </Route>
 
-          <Route path="/create-election" element={<CreateElection />} />
+          <Route
+            path="/create-election"
+            element={
+              <Private>
+                <CreateElection />
+              </Private>
+            }
+          />
 
           {/* Election layout */}
-          <Route path="/election/:id" element={<ElectionLayout />}>
-            {/* Overview route */}
-            <Route path="overview" element={<ElectionOverview />} />
+          {/* Election Routes */}
+          <Route path="/election/:id" element={<Private />}>
+            <Route element={<ElectionLayout />}>
+              {/* Overview Route */}
+              <Route path="overview" element={<ElectionOverview />} />
 
-            {/* Ballot routes */}
-            <Route path=":result" element={<ElectionResult />} />
+              {/* Results Route */}
+              <Route path=":result" element={<ElectionResult />} />
 
-            {/* Ballot routes */}
-            <Route path="ballot" element={<ElectionBallot />} />
-            <Route
-              path="ballot/create-question"
-              element={<CreateBallotQuestion />}
-            />
+              {/* Ballot Routes */}
+              <Route path="ballot" element={<ElectionBallot />} />
+              <Route
+                path="ballot/create-question"
+                element={<CreateBallotQuestion />}
+              />
+              <Route
+                path="ballot/edit-question/:ballotId"
+                element={<EditBallotQuestion />}
+              />
+              <Route
+                path="ballot/create-option/:ballotId"
+                element={<CreateBallotOption />}
+              />
+              <Route
+                path="ballot/:ballotId/edit-option/:optionId"
+                element={<EditBallotOption />}
+              />
 
-            <Route
-              path="ballot/edit-question/:ballotId"
-              element={<EditBallotQuestion />}
-            />
+              {/* Voters Routes */}
+              <Route path="voters" element={<ElectionVoters />} />
+              <Route path="voters/create" element={<ElectionAddVoters />} />
 
-            <Route
-              path="ballot/create-option/:ballotId"
-              element={<CreateBallotOption />}
-            />
-
-            <Route
-              path="ballot/:ballotId/edit-option/:optionId"
-              element={<EditBallotOption />}
-            />
-
-            {/* Voters routes */}
-            <Route path="voters" element={<ElectionVoters />} />
-            <Route path="voters/create" element={<ElectionAddVoters />} />
-
-            {/* Settings layout */}
-            <Route path="setting" element={<SettingLayout />}>
-              <Route path="general" element={<ElectionGeneralSetting />} />
-              <Route path="election-date" element={<ElectionDateSetting />} />
-              <Route path="election-type" element={<ElectionTypeSetting />} />
-              <Route path="delete" element={<ElectionDeleteForm />} />
+              {/* Settings Layout */}
+              <Route path="setting" element={<SettingLayout />}>
+                <Route path="general" element={<ElectionGeneralSetting />} />
+                <Route path="election-date" element={<ElectionDateSetting />} />
+                <Route path="election-type" element={<ElectionTypeSetting />} />
+                <Route path="delete" element={<ElectionDeleteForm />} />
+              </Route>
             </Route>
           </Route>
 

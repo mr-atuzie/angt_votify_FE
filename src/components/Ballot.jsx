@@ -50,7 +50,7 @@ const Ballot = ({
                   <span className="text-gray-800 text-sm">Edit</span>
                 </button>
               </Link>
-
+              <hr className="my-1 border-gray-200" />
               {/* Add option */}
               <Link
                 to={`/election/${electionData?._id}/ballot/create-option/${ballot?._id}`}

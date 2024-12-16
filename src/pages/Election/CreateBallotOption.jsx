@@ -110,7 +110,7 @@ const CreateBallotOption = () => {
           <p className="text-center text-gray-600 mb-6">
             Add a voting option for{" "}
             <span className="text-blue-600 font-semibold">
-              {electionData?.title}e
+              {electionData?.title}
             </span>{" "}
             Ballot.
           </p>

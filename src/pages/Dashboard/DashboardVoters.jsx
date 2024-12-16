@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import { IoAddSharp } from "react-icons/io5";
 import { getUserInitials } from "../../utils";
+import { selectUser } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const DashboardVoters = () => {
   const initialState = {
@@ -25,6 +27,8 @@ const DashboardVoters = () => {
   const [electionId, setElectionId] = useState("");
 
   const { name, email, election } = formData;
+
+  const { fullname } = useSelector(selectUser);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -112,7 +116,7 @@ const DashboardVoters = () => {
             Voters Mangagement
           </h1>
           <h1 className="text-gray-500">
-            Welcome Back, <span className="text-blue-600">Rex</span>
+            Welcome Back, <span className="text-blue-600">{fullname}</span>
           </h1>
         </div>
 
@@ -127,7 +131,7 @@ const DashboardVoters = () => {
           </Link>
 
           <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
-            {getUserInitials("Atuzie Rex")}
+            {getUserInitials(fullname)}
           </button>
         </div>
       </div>

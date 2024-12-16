@@ -257,7 +257,7 @@ const VotingLogin = () => {
                   ? "The election has concluded. Thank you for participating!"
                   : `Voting will begin on ${moment(
                       voting?.election.startDate
-                    ).format("MMMM Do, YYYY")}.`}
+                    ).format("MMM DD, YYYY hh:mm A")}.`}
               </p>
             </div>
             <div className="px-6 py-8 text-center">

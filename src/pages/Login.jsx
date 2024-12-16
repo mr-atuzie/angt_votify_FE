@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
 
 const Login = () => {
   const initialState = {
@@ -12,6 +14,7 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -41,9 +44,19 @@ const Login = () => {
     const userData = { email, password };
 
     try {
-      await axios.post(`/api/v1/user/login`, userData);
+      const { data } = await axios.post(`/api/v1/user/login`, userData);
 
       setLoading(false);
+
+      const userDetail = {
+        fullname: data?.user.fullName,
+        id: data?.user._id,
+      };
+
+      console.log(userDetail);
+
+      dispatch(SET_USER(userDetail));
+      dispatch(SET_LOGIN(true));
 
       toast.success("Login successfully");
       navigate("/dashboard");

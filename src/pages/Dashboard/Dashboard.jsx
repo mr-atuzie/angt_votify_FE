@@ -9,10 +9,14 @@ import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
 import { getUserInitials } from "../../utils";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/auth/authSlice";
 
 const Dashboard = () => {
   const [preLoader, setPreLoader] = useState(true);
   const [dashboard, setDashBoard] = useState(null);
+
+  const { fullname } = useSelector(selectUser);
 
   useEffect(() => {
     setPreLoader(true);
@@ -53,7 +57,7 @@ const Dashboard = () => {
             Dashboard Overview
           </h1>
           <h1 className="text-gray-500">
-            Welcome Back, <span className="text-blue-600">Rex</span>
+            Welcome Back, <span className="text-blue-600">{fullname}</span>
           </h1>
         </div>
 
@@ -68,7 +72,7 @@ const Dashboard = () => {
           </Link>
 
           <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
-            {getUserInitials("Atuzie Rex")}
+            {getUserInitials(fullname)}
           </button>
         </div>
       </div>

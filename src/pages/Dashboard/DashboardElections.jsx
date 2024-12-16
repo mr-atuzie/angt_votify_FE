@@ -6,12 +6,16 @@ import axios from "axios";
 import DashboardLoader from "../../components/DashboardLoader";
 import DashboardElectionCard from "../../components/DashboardElectionCard";
 import { getUserInitials } from "../../utils";
+import { selectUser } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [preLoader, setPreLoader] = useState(true);
   const [elections, setElections] = useState([]);
+
+  const { fullname } = useSelector(selectUser);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -62,7 +66,7 @@ const DashboardElections = () => {
             Manage Elections
           </h1>
           <h1 className="text-gray-500">
-            Welcome Back, <span className="text-blue-600">Rex</span>
+            Welcome Back, <span className="text-blue-600">{fullname}</span>
           </h1>
         </div>
 
@@ -77,7 +81,7 @@ const DashboardElections = () => {
           </Link>
 
           <button className="bg-white shadow-md font-medium tracking-wider uppercase border border-blue-600 text-blue-600  px-4 py-2 w-12 h-12  text-lg text-center flex justify-center items-center  rounded-full hover:bg-blue-700 transition">
-            {getUserInitials("Atuzie Rex")}
+            {getUserInitials(fullname)}
           </button>
         </div>
       </div>
