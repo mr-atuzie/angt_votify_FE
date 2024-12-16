@@ -1,5 +1,5 @@
 import React from "react";
-import { MdBallot, MdRocketLaunch } from "react-icons/md";
+import { MdBallot } from "react-icons/md";
 import { PiUsersFourFill } from "react-icons/pi";
 import { GrSettingsOption } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
@@ -39,11 +39,11 @@ const ElectionSidebar = ({ id }) => {
             label: "Result",
             Icon: FaChartPie,
           },
-          {
-            to: `/election/${id}/launch`,
-            label: "Launch",
-            Icon: MdRocketLaunch,
-          },
+          // {
+          //   to: `/election/${id}/launch`,
+          //   label: "Launch",
+          //   Icon: MdRocketLaunch,
+          // },
         ].map(({ to, label, Icon }) => (
           <NavLink
             key={to}

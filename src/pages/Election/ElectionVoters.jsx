@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-// import { IoIosCloudUpload } from "react-icons/io";
+import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 import { Link, useOutletContext, useParams } from "react-router-dom";
@@ -14,6 +14,36 @@ const ElectionVoters = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [preLoader, setPreLoader] = useState(false);
   const electionData = useOutletContext();
+
+  const [fileLoader, setFileLoader] = useState(false);
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    setFileLoader(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await axios.post(
+        `/api/upload-excel/${electionData?._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setFileLoader(false);
+      toast.success(response.data.message);
+    } catch (error) {
+      setFileLoader(false);
+      toast.error("Error uploading the file.");
+    }
+  };
 
   const { id } = useParams();
 
@@ -116,13 +146,20 @@ const ElectionVoters = () => {
                 </div>
               </form>
 
-              <div className=" flex gap-2 ">
-                {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
-                  <span>
-                    <IoIosCloudUpload size={20} />
-                  </span>
-                  <span>Import</span>
-                </button> */}
+              <div className=" flex items-center gap-2 ">
+                <input type="file" accept=".xlsx" onChange={handleFileChange} />
+
+                {file && (
+                  <button
+                    onClick={handleUpload}
+                    className="bg-white shadow-md w-36  text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition"
+                  >
+                    <span>
+                      <IoIosCloudUpload size={20} />
+                    </span>
+                    <span>{fileLoader ? "Uploading" : "Upload File"}</span>
+                  </button>
+                )}
 
                 <Link to={`/election/${electionData?._id}/voters/create`}>
                   <button
