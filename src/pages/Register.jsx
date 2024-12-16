@@ -60,7 +60,7 @@ const Register = () => {
       setLoading(false);
 
       toast.success("User Registered successfully");
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       const message =
         (error.response &&
