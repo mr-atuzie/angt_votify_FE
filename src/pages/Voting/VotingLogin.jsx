@@ -71,6 +71,7 @@ const VotingLogin = () => {
     try {
       const { data } = await axios.post(`/api/v1/voter/login`, {
         voterId,
+        voterLoginId,
         verificationCode: voterCode,
         electionId,
       });

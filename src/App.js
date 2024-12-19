@@ -116,6 +116,8 @@ function App() {
               />
               <Route path="pricing" element={<DashboardPricing />} />
 
+              <Route path="create-election" element={<CreateElection />} />
+
               {/* Settings layout with nested routes */}
               <Route path="setting" element={<DashboardSettingLayout />}>
                 <Route path="general" element={<DashboardGeneralSetting />} />
@@ -125,15 +127,6 @@ function App() {
               </Route>
             </Route>
           </Route>
-
-          <Route
-            path="/create-election"
-            element={
-              <Private>
-                <CreateElection />
-              </Private>
-            }
-          />
 
           {/* Election layout */}
           {/* Election Routes */}

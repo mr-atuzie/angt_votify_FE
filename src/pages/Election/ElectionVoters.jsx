@@ -84,9 +84,9 @@ const ElectionVoters = () => {
     // setVoters(true);
   };
 
-  const handleEdit = (voterId) => {};
+  // const handleEdit = (voterId) => {};
 
-  const handleDelete = (voterId) => {};
+  // const handleDelete = (voterId) => {};
 
   if (!electionData) {
     return <div>No election data available</div>;
@@ -189,11 +189,11 @@ const ElectionVoters = () => {
                       Phone
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Verified
+                      Voted
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    {/* <th scope="col" className="px-6 py-3">
                       Actions
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
@@ -207,13 +207,15 @@ const ElectionVoters = () => {
                       <td className="px-6 py-4">
                         <span
                           className={`px-2.5 py-1 rounded ${
-                            voter.isVerified ? "text-green-500" : "text-red-500"
+                            voter.isVerified
+                              ? "text-green-500"
+                              : "text-gray-600"
                           }`}
                         >
-                          {voter.isVerified ? "Verified" : "Unverified"}
+                          {voter.isVerified ? "Voted" : "null"}
                         </span>
                       </td>
-                      <td className="px-6 py-4 flex items-center space-x-4">
+                      {/* <td className="px-6 py-4 flex items-center space-x-4">
                         <button
                           onClick={() => handleEdit(voter._id)}
                           className="text-green-500 hover:text-blue-700"
@@ -226,7 +228,7 @@ const ElectionVoters = () => {
                         >
                           Delete
                         </button>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
                 </tbody>

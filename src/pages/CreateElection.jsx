@@ -71,7 +71,7 @@ const CreateElection = () => {
 
   return (
     <div className="w-full flex justify-center items-cente py-16 bg-blue-50 min-h-screen">
-      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[40%] mx-auto">
+      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 ">
           <h1 className="text-xl uppercase font-semibold">Create Election</h1>

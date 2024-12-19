@@ -1,6 +1,71 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+// Registering the necessary components for Chart.js
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 const ResultTable = ({ ballot }) => {
+  // Calculate total votes, considering multiple votes per user
+  const totalVotes = ballot.votingOptions.reduce(
+    (sum, option) => sum + option.votes.length,
+    0
+  );
+
+  // Prepare the data for the Bar chart (converted to percentage)
+  const barChartData = {
+    labels: ballot.votingOptions.map((option) => option.name),
+    datasets: [
+      {
+        label: "Votes",
+        data: ballot.votingOptions.map((option) => {
+          // Calculate the percentage for each option
+          return totalVotes > 0 ? (option.votes.length / totalVotes) * 100 : 0;
+        }),
+        backgroundColor: "#4CAF50", // Bar color
+        borderColor: "#388E3C", // Bar border color
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart Options
+  const options = {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          // Customize tooltips to show votes and percentages
+          label: (tooltipItem) => {
+            const percentage = tooltipItem.raw.toFixed(2);
+            return `${tooltipItem.label}: ${percentage}%`;
+          },
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true, // Ensure the y-axis starts at 0
+        max: 100, // The y-axis will now scale from 0% to 100%
+      },
+    },
+  };
+
   return (
     <div className="shadow-lg rounded-lg bg-white p-6 mb-6 space-y-8">
       {/* Header Section */}
@@ -23,75 +88,39 @@ const ResultTable = ({ ballot }) => {
               </th>
             </tr>
           </thead>
-          {ballot?.votingOptions.length > 0 ? (
-            <tbody>
-              {ballot.votingOptions.map((option, index) => (
+          <tbody>
+            {ballot?.votingOptions.length > 0 ? (
+              ballot.votingOptions.map((option, index) => (
                 <tr key={index} className="border-t even:bg-gray-50">
                   <td className="px-6 py-4">{option.name}</td>
                   <td className="px-6 py-4 text-center">
                     {option.votes.length}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    {/* {(
-                      (option.votes.length /
-                        ballot.votingOptions.length.reduce(
-                          (a, b) => a + b.votes,
-                          0
-                        )) *
-                      100
-                    ).toFixed(2)}{" "}
-                    % */}
+                    {totalVotes > 0
+                      ? ((option.votes.length / totalVotes) * 100).toFixed(2)
+                      : 0}
+                    %
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          ) : (
-            <tbody>
+              ))
+            ) : (
               <tr>
                 <td colSpan="3" className="text-center text-gray-500 py-6">
-                  No ballots available.
+                  No voting options available.
                 </td>
               </tr>
-            </tbody>
-          )}
+            )}
+          </tbody>
         </table>
       </div>
 
-      {/* Real-Time Pie Chart Section */}
-      <div className="max-w-md mx-auto">
+      {/* Bar Chart Section */}
+      <div className="max-w-md mx-auto mt-6">
         <h2 className="text-center text-lg font-semibold mb-4">
           Vote Distribution
         </h2>
-        {/* <Pie
-          data={{
-            labels: ballot?.votingOptions.map((option) => option.name),
-            datasets: [
-              {
-                data: ballot?.votingOptions.map((option) => option.votes),
-                backgroundColor: ["#6366F1", "#34D399", "#FBBF24", "#F43F5E"],
-                hoverBackgroundColor: [
-                  "#4F46E5",
-                  "#10B981",
-                  "#F59E0B",
-                  "#E11D48",
-                ],
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: {
-                display: true,
-                position: "bottom",
-                labels: {
-                  usePointStyle: true,
-                  color: "#4B5563",
-                },
-              },
-            },
-          }}
-        /> */}
+        <Bar data={barChartData} options={options} />
       </div>
     </div>
   );

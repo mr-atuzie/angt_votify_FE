@@ -62,7 +62,7 @@ const Dashboard = () => {
         </div>
 
         <div className=" flex  gap-5  items-center ">
-          <Link to={"/create-election"}>
+          <Link to={"/dashboard/create-election"}>
             <button className="bg-blue-600 flex gap-2 items-center text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
               <span>
                 <IoAddSharp size={20} />

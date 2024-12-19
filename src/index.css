@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 /* index.css */
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
 
 /* Custom style for the phone input container */
 .phone-input-container {

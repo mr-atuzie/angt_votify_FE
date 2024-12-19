@@ -30,20 +30,15 @@ const ElectionSidebar = ({ id }) => {
             Icon: PiUsersFourFill,
           },
           {
-            to: `/election/${id}/setting/general`,
-            label: "Settings",
-            Icon: GrSettingsOption,
-          },
-          {
             to: `/election/${id}/result`,
             label: "Result",
             Icon: FaChartPie,
           },
-          // {
-          //   to: `/election/${id}/launch`,
-          //   label: "Launch",
-          //   Icon: MdRocketLaunch,
-          // },
+          {
+            to: `/election/${id}/setting/general`,
+            label: "Settings",
+            Icon: GrSettingsOption,
+          },
         ].map(({ to, label, Icon }) => (
           <NavLink
             key={to}
