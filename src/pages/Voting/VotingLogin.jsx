@@ -28,6 +28,8 @@ const VotingLogin = () => {
         setVoterLoginId(voter?.voter.voterId || "");
         setVoterCode(voter?.voter.verificationCode || "");
 
+        console.log(data);
+
         setPreLoader(false);
         setVoting(data);
         return data;

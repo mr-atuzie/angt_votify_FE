@@ -127,6 +127,11 @@ const Login = () => {
                   required
                 />
               </div>
+              <Link className=" text-end" to="/forget-password">
+                <small className=" capitalize text-end text-blue-500 font-medium">
+                  Forget password
+                </small>
+              </Link>
             </div>
 
             {/* Submit Button */}

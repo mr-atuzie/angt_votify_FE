@@ -53,6 +53,8 @@ import { useDispatch } from "react-redux";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import { useEffect } from "react";
 import Private from "./components/Private";
+import ForgetPassword from "./pages/ForgetPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -96,6 +98,8 @@ function App() {
           <Route path="/reviews" element={<Testimonal />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/reset-password/:id" element={<ResetPassword />} />
 
           {/* dashboard lay out */}
           <Route path="/dashboard" element={<Private />}>

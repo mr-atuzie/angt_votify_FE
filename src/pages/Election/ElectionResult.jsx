@@ -23,6 +23,9 @@ const ElectionResult = () => {
         // console.log(data);
         setPreLoader(false);
         setBallots(data);
+
+        console.log(data);
+
         // return response.data;
       } catch (error) {
         const message =
