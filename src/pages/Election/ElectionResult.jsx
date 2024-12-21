@@ -4,162 +4,97 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
 import ResultTable from "../../components/ResultTable";
-import {
-  Document,
-  Packer,
-  Paragraph,
-  Table,
-  TableCell,
-  TableRow,
-  TextRun,
-} from "docx";
-import { saveAs } from "file-saver";
+import * as XLSX from "xlsx";
 
 const ElectionResult = () => {
   const { id } = useParams();
   const [ballots, setBallots] = useState([]);
   const [preLoader, setPreLoader] = useState(false);
-  const electionData = useOutletContext();
+  const electionData = useOutletContext() || { title: "Unknown Election" };
 
   useEffect(() => {
-    setPreLoader(true);
-    const getBallot = async () => {
+    const fetchBallots = async () => {
+      setPreLoader(true);
       try {
         const { data } = await axios.get(`/api/v1/ballot/election/${id}`);
-        setPreLoader(false);
-        setBallots(data);
+        setBallots(data || []);
       } catch (error) {
         const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+          error.response?.data?.message ||
           error.message ||
-          error.toString();
-        setPreLoader(false);
+          "Error loading data.";
         toast.error(message);
+      } finally {
+        setPreLoader(false);
       }
     };
-    getBallot();
+    fetchBallots();
   }, [id]);
 
   if (preLoader) {
     return <Loader />;
   }
 
-  // Function to generate and download the Word document
-  const generateWordDoc = () => {
-    const doc = new Document();
+  const generateExcel = () => {
+    if (!ballots.length) {
+      toast.error("No ballots available for this election.");
+      return;
+    }
 
-    // Title
-    doc.addSection({
-      children: [
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: `Election Results for ${electionData?.title}`,
-              bold: true,
-              size: 28,
-            }),
-          ],
-        }),
-        new Paragraph({ text: "" }), // Blank line
-      ],
-    });
+    const workbook = XLSX.utils.book_new();
 
-    // Create table rows
-    const tableRows = [
-      new TableRow({
-        children: [
-          new TableCell({
-            children: [new Paragraph("Ballot Title")],
-          }),
-          new TableCell({
-            children: [new Paragraph("Voting Option")],
-          }),
-          new TableCell({
-            children: [new Paragraph("Votes")],
-          }),
-          new TableCell({
-            children: [new Paragraph("Percentage")],
-          }),
-        ],
-      }),
-    ];
-
-    // Populate table with data
     ballots.forEach((ballot) => {
-      ballot.votingOptions.forEach((option) => {
-        const totalVotes = ballot.votingOptions.reduce(
-          (sum, opt) => sum + opt.votes.length,
-          0
-        );
-        const percentage = ((option.votes.length / totalVotes) * 100).toFixed(
-          2
-        );
+      const data = ballot.votingOptions.map((option) => ({
+        "Voting Option": option.name,
+        Votes: option.votes.length,
+        Percentage: `${(
+          (option.votes.length /
+            ballot.votingOptions.reduce(
+              (sum, opt) => sum + opt.votes.length,
+              0
+            )) *
+            100 || 0
+        ).toFixed(2)}%`,
+      }));
 
-        tableRows.push(
-          new TableRow({
-            children: [
-              new TableCell({ children: [new Paragraph(ballot.title)] }),
-              new TableCell({ children: [new Paragraph(option.name)] }),
-              new TableCell({
-                children: [new Paragraph(`${option.votes.length}`)],
-              }),
-              new TableCell({ children: [new Paragraph(`${percentage}%`)] }),
-            ],
-          })
-        );
-      });
+      const worksheet = XLSX.utils.json_to_sheet(data);
+      XLSX.utils.book_append_sheet(workbook, worksheet, ballot.title);
     });
 
-    // Add table to the document
-    doc.addSection({
-      children: [
-        new Table({
-          rows: tableRows,
-        }),
-      ],
-    });
-
-    // Save the document as a .docx file
-    Packer.toBlob(doc).then((blob) => {
-      saveAs(blob, `${electionData?.title}_results.docx`);
-      toast.success("Document downloaded successfully!");
-    });
+    XLSX.writeFile(workbook, `${electionData.title}_results.xlsx`);
+    toast.success("Election results downloaded successfully!");
   };
 
   return (
     <div className="p-6">
       {ballots.length > 0 ? (
         <>
-          <h2 className="text-center capitalize text-lg mb-5 font-medium text-gray-700">
-            Track real-time result of{" "}
-            <span className="text-blue-500">{electionData?.title}</span>{" "}
-            Election
+          <h2 className="text-center text-lg font-medium text-gray-700">
+            Track results of{" "}
+            <span className="text-blue-500">{electionData.title}</span>
           </h2>
 
-          {/* Download Button for Word Document */}
-          <div className="flex justify-center mb-5">
+          <div className="flex justify-center my-5">
             <button
-              onClick={generateWordDoc}
-              className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition duration-200"
+              onClick={generateExcel}
+              className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
             >
-              Download Election Data
+              Download Results
             </button>
           </div>
 
           <div className="flex flex-col gap-10">
             <div className="w-[60%] mx-auto">
-              {ballots.map((ballot) => {
-                return <ResultTable key={ballot?._id} ballot={ballot} />;
-              })}
+              {ballots.map((ballot) => (
+                <ResultTable key={ballot._id} ballot={ballot} />
+              ))}
             </div>
           </div>
         </>
       ) : (
-        <div className="flex justify-center min-h-[70vh] items-center h-full w-full">
-          <p className="text-center text-gray-500 col-span-full">
-            No ballots available.
+        <div className="flex justify-center items-center min-h-[70vh]">
+          <p className="text-gray-500">
+            No ballots available for this election.
           </p>
         </div>
       )}

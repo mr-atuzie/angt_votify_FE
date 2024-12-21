@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const CreateElection = () => {
@@ -15,6 +16,24 @@ const CreateElection = () => {
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  function previewImageHandler(ev) {
+    const file = ev.target.files[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewImage(imageUrl);
+    }
+
+    setSelectedImage(ev.target.files[0]);
+  }
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setPreviewImage(null);
+  };
 
   const { title, startDate, endDate, electionType, description } = formData;
 
@@ -26,8 +45,9 @@ const CreateElection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const dataDoc = new FormData();
 
-    console.log({ title, description, startDate, endDate, electionType });
+    // console.log({ title, description, startDate, endDate, electionType });
 
     if (!title || !description || !startDate || !endDate || !electionType) {
       setLoading(false);
@@ -35,19 +55,33 @@ const CreateElection = () => {
     }
 
     try {
+      dataDoc.append("file", selectedImage);
+      dataDoc.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+      dataDoc.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+
+      const res = await fetch(process.env.REACT_APP_CLOUD_URL, {
+        method: "post",
+        body: dataDoc,
+      });
+
+      const imageData = await res.json();
+
+      const imagePath = imageData.secure_url.toString();
+
       const { data } = await axios.post(`/api/v1/election/create`, {
         title,
         description,
         startDate,
         endDate,
         electionType,
+        image: imagePath,
       });
 
       setLoading(false);
 
       toast.success("Election created");
 
-      console.log(data);
+      // console.log(data);
 
       navigate(`/election/${data.election?._id}/overview`);
 
@@ -87,6 +121,48 @@ const CreateElection = () => {
           <form onSubmit={handleSubmit}>
             {/* Input Fields */}
             <div className="grid grid-cols-1 gap-6 mb-8">
+              {/* Add Photo */}
+              {previewImage ? (
+                <div className="relative">
+                  <img
+                    className="w-40 h-40 rounded-lg object-cover"
+                    src={previewImage}
+                    alt="Preview"
+                  />
+                  <button
+                    onClick={removeImage}
+                    className="absolute top-2 right-2 bg-white text-gray-500 rounded-full p-1"
+                  >
+                    X
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <p className="block text-sm font-medium mb-1">
+                    Organization logo
+                  </p>
+                  <label
+                    htmlFor="addPhoto"
+                    className="bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col justify-center items-center h-40 w-40"
+                  >
+                    <input
+                      id="addPhoto"
+                      type="file"
+                      className="hidden"
+                      onChange={previewImageHandler}
+                    />
+                    <IoIosCloudUpload className="text-gray-500 text-2xl" />
+                    <span className="text-xs text-gray-500 mt-2">
+                      Upload image
+                    </span>
+                  </label>
+                  <small className="text-gray-500">
+                    Upload an image that represents the voting option For
+                    election.
+                  </small>
+                </div>
+              )}
+
               {/* Title */}
               <div>
                 <label

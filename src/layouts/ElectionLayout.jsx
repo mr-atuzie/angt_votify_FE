@@ -35,6 +35,7 @@ const ElectionLayout = () => {
       <div className="flex-1 ml-[20%] bg-gray-100">
         <ElectionHeader
           electionName={electionData?.title}
+          electionImage={electionData?.image}
           electionStatus={electionData?.status}
           electionType={electionData?.electionType}
         />

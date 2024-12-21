@@ -111,8 +111,13 @@ const Dashboard = () => {
                 >
                   <div className="w-full bg-white h-fit mb-4 border rounded-lg shadow-md p-6 flex justify-between items-center hover:shadow-lg transition duration-300">
                     {/* Election Title and Status */}
+                    <img
+                      className="w-10 h-10  items-end  rounded-full"
+                      src={election.image}
+                      alt=""
+                    />
                     <div>
-                      <h2 className="text-lg capitalize font-semibold text-gray-800 mb-2">
+                      <h2 className="capitalize font-semibold text-gray-800 ">
                         {election.title}
                       </h2>
                       <span

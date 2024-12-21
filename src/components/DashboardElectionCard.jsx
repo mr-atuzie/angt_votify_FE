@@ -40,7 +40,14 @@ const DashboardElectionCard = ({ election, setElections }) => {
     >
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-medium capitalize">{election?.title}</h2>
+        <div className=" flex gap-2 items-center">
+          <img
+            className=" w-10 h-10 rounded-lg object-contain"
+            src={election?.image}
+            alt=""
+          />
+          <h2 className="text-lg font-medium capitalize">{election?.title}</h2>
+        </div>
         <span
           className={`text-sm px-3 py-1 rounded-lg ${
             election?.status === "Upcoming"

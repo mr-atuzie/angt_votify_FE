@@ -5,7 +5,12 @@ import { selectUser } from "../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { getUserInitials } from "../utils";
 
-const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
+const ElectionHeader = ({
+  electionName,
+  electionStatus,
+  electionType,
+  electionImage,
+}) => {
   //   const [currentPage, setCurrentPage] = useState("");
   //   const location = useLocation();
 
@@ -21,11 +26,17 @@ const ElectionHeader = ({ electionName, electionStatus, electionType }) => {
     <header className=" bg-blue-900 py-4 shadow-lg px-6">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
+          <img src={electionImage} className=" w-14 h-14 rounded-lg" alt="" />
           <h1 className="text-xl capitalize text-white font-medium">
             {electionName}
           </h1>
 
-          <span className="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-lg">
+          <span
+            className={`text-xs px-3 py-1 rounded-lg 
+    ${electionStatus === "Upcoming" ? "bg-yellow-100 text-yellow-600" : ""} 
+    ${electionStatus === "Ongoing" ? "bg-green-100 text-green-600" : ""} 
+    ${electionStatus === "Ended" ? "bg-blue-100 text-blue-600" : ""}`}
+          >
             {electionStatus}
           </span>
         </div>
