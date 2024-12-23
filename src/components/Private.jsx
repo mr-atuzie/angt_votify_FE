@@ -1,16 +1,19 @@
 import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../redux/features/auth/authSlice";
+import { useEffect } from "react";
 
 const Private = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
 
-  if (!isLoggedIn) {
-    // Redirect to login page if session is expired
-    return <Navigate to="/login" replace />;
-  }
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login", { replace: true }); // Avoids adding a new history entry
+    }
+  }, [isLoggedIn, navigate]);
 
-  return <Outlet />;
+  return isLoggedIn ? <Outlet /> : null; // Ensures nothing renders while redirecting
 };
 
 export default Private;
