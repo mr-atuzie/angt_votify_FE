@@ -4,8 +4,15 @@ import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import Loader from "../../components/Loader";
+import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
@@ -17,6 +24,10 @@ const ElectionVoters = () => {
 
   const [fileLoader, setFileLoader] = useState(false);
   const [file, setFile] = useState(null);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -46,6 +57,12 @@ const ElectionVoters = () => {
   };
 
   const { id } = useParams();
+
+  useEffect(() => {
+    if (isLoggedIn === false) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -87,6 +104,16 @@ const ElectionVoters = () => {
   // const handleEdit = (voterId) => {};
 
   // const handleDelete = (voterId) => {};
+
+  console.log("test");
+
+  console.log(isLoggedIn);
+
+  // if (!isLoggedIn) {
+  //   navigate("/login");
+  //   // Redirect to login page if session is expired
+  //   // return <Navigate to="/login" replace />;
+  // }
 
   if (!electionData) {
     return <div>No election data available</div>;
