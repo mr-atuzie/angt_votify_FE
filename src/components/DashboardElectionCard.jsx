@@ -40,11 +40,11 @@ const DashboardElectionCard = ({ election, setElections }) => {
     >
       {/* Header Section */}
       <div className="flex items-center justify-between mb-4">
-        <div className=" flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <img
-            className=" w-10 h-10 rounded-lg object-contain"
             src={election?.image}
-            alt=""
+            alt={election?.title}
+            className="w-10 h-10 rounded-lg object-contain"
           />
           <h2 className="text-lg font-medium capitalize">{election?.title}</h2>
         </div>
@@ -64,53 +64,48 @@ const DashboardElectionCard = ({ election, setElections }) => {
       {/* Date Section */}
       <div className="border-t border-gray-200 pt-4">
         <div className="grid grid-cols-3 gap-4 text-sm">
-          {/* Start Date */}
-          <div>
-            <div className="flex gap-2 ">
-              <FaRegCalendarCheck size={15} />
-              <h4 className="font-medium text-xs uppercase mb-1">Start Date</h4>
+          {[
+            {
+              icon: <FaRegCalendarCheck size={15} />,
+              label: "Start Date",
+              value: moment(election?.startDate).format("MMM DD, YYYY hh:mm A"),
+            },
+            {
+              icon: <FaRegCalendarXmark size={15} />,
+              label: "End Date",
+              value: moment(election?.endDate).format("MMM DD, YYYY hh:mm A"),
+            },
+            {
+              icon: <FaVoteYea size={15} />,
+              label: "Election Type",
+              value: (
+                <span className="text-blue-600 capitalize">
+                  {election?.electionType}
+                </span>
+              ),
+            },
+          ].map(({ icon, label, value }, index) => (
+            <div key={index}>
+              <div className="flex items-center gap-2">
+                {icon}
+                <h4 className="font-medium text-xs uppercase mb-1">{label}</h4>
+              </div>
+              <p className="text-gray-500">{value}</p>
             </div>
-            <p className="text-gray-500">
-              {moment(election?.startDate).format("MMM DD, YYYY hh:mm A")}
-            </p>
-          </div>
-
-          {/* End Date */}
-          <div>
-            <div className="flex gap-2 ">
-              <FaRegCalendarXmark size={15} />
-              <h4 className="font-medium text-xs  uppercase mb-1">End Date</h4>
-            </div>
-            <p className="text-gray-500">
-              {moment(election?.endDate).format("MMM DD, YYYY hh:mm A")}
-            </p>
-          </div>
-
-          {/* type*/}
-          <div>
-            <div className="flex gap-2 ">
-              <FaVoteYea size={15} />
-              <h4 className="font-medium text-xs uppercase mb-1">
-                Election type
-              </h4>
-            </div>
-            <p className=" text-blue-600 capitalize ">
-              {election?.electionType}
-            </p>
-          </div>
+          ))}
         </div>
       </div>
 
       {/* Footer Section */}
       <div className="mt-6 flex gap-6 items-center">
         <Link to={`/election/${election?._id}/overview`}>
-          <button className="text-sm px-4 py-2 flex justify-center items-center gap-2 font-normal  rounded-lg bg-blue-100 text-blue-400 ">
+          <button className="text-sm px-4 py-2 flex items-center gap-2 font-normal rounded-lg bg-blue-100 text-blue-400">
             <FaEye size={15} /> View Details
           </button>
         </Link>
         <button
           onClick={() => handleDeleteElection(election?._id)}
-          className="flex justify-center items-start gap-2  text-sm px-4 py-2 rounded-lg bg-red-100 text-red-600"
+          className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-red-100 text-red-600"
         >
           <BsTrash3 size={15} />
           {loading ? "Deleting" : "Delete"}

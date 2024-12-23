@@ -51,6 +51,8 @@ const Login = () => {
       const userDetail = {
         fullname: data?.user.fullName,
         id: data?.user._id,
+        email: data?.user.email,
+        phone: data?.user.phone,
       };
 
       console.log(userDetail);

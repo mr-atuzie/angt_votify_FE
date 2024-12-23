@@ -50,8 +50,10 @@ const Register = () => {
       console.log(data);
 
       const userDetail = {
-        fullname: data?.newUser.fullName,
-        id: data?.newUser._id,
+        fullname: data?.user.fullName,
+        id: data?.user._id,
+        email: data?.user.email,
+        phone: data?.user.phone,
       };
 
       dispatch(SET_USER(userDetail));
