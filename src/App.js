@@ -94,8 +94,8 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashbaord" element={<Dashboard />} />
-          <Route path="/frequently-asked-questions" element={<FAQ />} />
-          <Route path="/reviews" element={<Testimonal />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/testimonial" element={<Testimonal />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forget-password" element={<ForgetPassword />} />

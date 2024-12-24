@@ -8,8 +8,8 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md w-full fixed z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <nav className="bg-white shadow-md h-[50px] top-0 flex justify-center items-center  w-full fixed z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2 text-blue-600">
           <FaVoteYea size={20} />
@@ -64,7 +64,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menu && (
-        <div className="bg-white shadow-lg w-full p-6 md:hidden fixed z-40 top-16 left-0">
+        <div className="bg-white shadow-lg w-full p-6 md:hidden fixed z-40 top-[50px] left-0">
           <div className="flex flex-col gap-4">
             {["Home", "Pricing", "FAQ", "Testimonial", "Contact"].map(
               (item, index) => (
