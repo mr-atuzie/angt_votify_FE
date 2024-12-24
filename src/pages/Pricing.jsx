@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { formatter } from "../utils";
@@ -7,29 +7,32 @@ import Faq from "../components/Faq";
 import Banner from "../components/Banner";
 
 const Pricing = () => {
-  //   const plans = [
-  //     {
-  //       title: "Basic",
-  //       subtitle: "Easiest way to try Mentimeter",
-  //       price: 0,
-  //       features: ["1 Election", "Up to 100 voters", "Basic support"],
-  //       color: "blue-500",
-  //     },
-  //     {
-  //       title: "Standard",
-  //       subtitle: "Easiest way to try Mentimeter",
-  //       price: 49,
-  //       features: ["5 Elections", "Up to 500 voters", "Priority support"],
-  //       color: "green-500",
-  //     },
-  //     {
-  //       title: "Premium",
-  //       subtitle: "Easiest way to try Mentimeter",
-  //       price: 99,
-  //       features: ["Unlimited Elections", "Unlimited voters", "24/7 Support"],
-  //       color: "pink-500",
-  //     },
-  //   ];
+  const [amount, setAmount] = useState(0);
+  const [numberOfElection, setNumberOfElection] = useState(0);
+
+  const FeatureItem = ({ text, color }) => (
+    <div className="py-1 flex items-center gap-2">
+      <BiSolidBadgeCheck className={`${color} text-lg`} />
+      <p className="text-sm text-gray-700">{text}</p>
+    </div>
+  );
+
+  let customizePlan = {};
+
+  const handleInputChange = (e) => {
+    const value = Number(e.target.value);
+    setNumberOfElection(value);
+    setAmount((value * 0.147).toFixed(2));
+
+    customizePlan = {
+      tier: "customize",
+      voterLimit: 3000,
+      electionsAllowed: numberOfElection,
+    };
+  };
+
+  console.log(customizePlan);
+
   return (
     <div className="  min-h-screen">
       <Navbar />
@@ -195,60 +198,45 @@ const Pricing = () => {
             </di>
           </div>
 
-          <div className={`bg-gray-100 rounded-xl  p-6 border-2 `}>
-            <h2 className="text-xl font-medium uppercase  tracking-wide">
-              Custom
+          {/* Custom Plan */}
+          <div className="bg-gray-200 rounded-xl p-6 border border-gray-500 shadow-md">
+            <h2 className="text-lg font-semibold uppercase text-gray-800">
+              Custom Plan
             </h2>
-            <h2 className=" text-gray-600 text-sm mb-6 ">
-              Tailor-made solutions to fit the unique needs of your
-              organization.
-            </h2>
-
-            <div className=" gap-2 hidden items-center">
-              <p className="text-4xl font-medium"></p>
-              <h2 className=" text-xs">/ month</h2>
-            </div>
-            <h2 className=" hidden text-sm mb-6 text-gray-600">
-              ${formatter(39.99 * 12)} Anually
-            </h2>
-
+            <p className="text-gray-600 text-sm my-4">
+              Tailor-made solutions for your organization’s unique needs.
+            </p>
+            {amount > 0 && (
+              <div className="flex items-center gap-2">
+                <p className="text-3xl font-semibold">${formatter(amount)}</p>
+                <span className="text-xs">/ month</span>
+              </div>
+            )}
             <input
-              className=" bg-white w-full  py-2 px-4 mb-2  rounded-md  border-none placeholder:font-normal placeholder:text-sm"
-              placeholder="Enter number of voters"
-              type="text"
+              type="number"
+              placeholder="Enter number of elction"
+              className="mt-4 w-full py-2 px-4 rounded-full bg-white border border-gray-300"
+              onChange={handleInputChange}
             />
-            <button className=" bg-black text-sm  mb-6 text-center px-6 py-1 rounded-md text-white ">
-              Enter
+            <p className="text-sm text-gray-600 my-4">
+              ${formatter(amount * 12)} Annually
+            </p>
+
+            <button className="bg-black text-white w-full py-2 rounded-full hover:bg-gray-800 transition">
+              Custom Plan
             </button>
 
-            <di className=" mb-6">
-              <h3 className="mb-1">All custom features plus</h3>
-
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-black">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-sm  text-gray-600">Up to 5,000 Elections</p>
-              </div>
-              <div className=" py-1 gap-1  flex items-center">
-                <span className=" text-black">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600">Up to 2,000 voters</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-black">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Basic support</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-black">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Data export and more</p>
-              </div>
-            </di>
+            {/* <FlutterwavePayment
+              btn_style="bg-black text-white w-full py-2 rounded-full hover:bg-gray-800 transition"
+              btn_text="Customize Plan"
+              amount={amount}
+              subscriptionPlan={customizePlan}
+            /> */}
+            <div className="mt-6">
+              <FeatureItem text="Custom Elections" color="text-black" />
+              <FeatureItem text="Custom Voter Limit" color="text-black" />
+              <FeatureItem text="Premium Support" color="text-black" />
+            </div>
           </div>
         </div>
       </div>
