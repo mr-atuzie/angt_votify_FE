@@ -1,32 +1,38 @@
 import React from "react";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-black pt-24 pb-4 text-gray-200 flex flex-col justify-center items-center">
-      <div className="w-[85%] lg:w-[90%] mx-auto gap-5 flex flex-col lg:flex-row justify-between">
-        {/* Column 1: Logo Section */}
-        <h4 className="text-2xl flex-1 font-semibold">2rueVotes</h4>
+    <footer className="bg-black pt-24 pb-6 text-gray-200">
+      <div className="container mx-auto px-6 lg:px-20 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-10">
+        {/* Logo Section */}
+        <div className="text-center lg:text-left">
+          <h4 className="text-3xl font-bold mb-2">2rueVotes</h4>
+          <p className="text-sm text-gray-400">
+            Simplifying voting, connecting communities.
+          </p>
+        </div>
 
-        {/* Column 2: About Section */}
-        <div className="flex-1">
-          <h2 className="lg:text-xl mb-2 lg:mb-4">About Us</h2>
-          <ul className="text-sm">
-            <li className="mb-2">
+        {/* About Section */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4">About Us</h2>
+          <ul className="space-y-2">
+            <li>
               <a href="#home" className="hover:text-purple-500">
                 Home
               </a>
             </li>
-            <li className="mb-2">
+            <li>
               <a href="#how-it-works" className="hover:text-purple-500">
                 How It Works
               </a>
             </li>
-            <li className="mb-2">
+            <li>
               <a href="#contact" className="hover:text-purple-500">
                 Contact Us
               </a>
             </li>
-            <li className="mb-2">
+            <li>
               <a href="#faq" className="hover:text-purple-500">
                 FAQs
               </a>
@@ -34,85 +40,65 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 3: Quick Links */}
-        <div className="flex-1">
-          <h2 className="lg:text-xl mb-2 lg:mb-4">Quick Links</h2>
-          <ul className="text-sm">
-            <li className="mb-2">
-              <a href="#home" className="hover:text-purple-500">
-                Home
-              </a>
-            </li>
-            <li className="mb-2">
+        {/* Quick Links */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
+          <ul className="space-y-2">
+            <li>
               <a href="#contestants" className="hover:text-purple-500">
                 Contestants
               </a>
             </li>
-            <li className="mb-2">
-              <a href="#how-it-works" className="hover:text-purple-500">
-                How It Works
+            <li>
+              <a href="#rules" className="hover:text-purple-500">
+                Rules
               </a>
             </li>
-            <li className="mb-2">
-              <a href="#contact" className="hover:text-purple-500">
-                Contact Us
+            <li>
+              <a href="#privacy" className="hover:text-purple-500">
+                Privacy Policy
               </a>
             </li>
-            <li className="mb-2">
-              <a href="#faq" className="hover:text-purple-500">
-                FAQs
+            <li>
+              <a href="#terms" className="hover:text-purple-500">
+                Terms of Service
               </a>
             </li>
           </ul>
         </div>
 
-        {/* Column 4: Social Media & Contact */}
-        <div className="flex-1">
-          <h2 className="lg:text-xl font-semibold mb-2 lg:mb-4">
-            Stay Connected
-          </h2>
-          <p className="text-sm">
-            Follow us on social media to stay updated with the latest news.
+        {/* Stay Connected Section */}
+        <div className="text-center lg:text-left">
+          <h2 className="text-xl font-semibold mb-4">Stay Connected</h2>
+          <p className="text-sm text-gray-400 mb-4">
+            Follow us on social media to stay updated.
           </p>
-
-          {/* Social Media Icons */}
-          <div className="flex mt-4 space-x-4">
-            <a href="https://facebook.com" className="hover:text-purple-500">
-              {/* Facebook Icon */}
-              <svg
-                className="w-6 h-6"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M22.675 0h-21.35C.591 0 0 .591 0 1.325v21.351C0 23.409.591 24 1.325 24h11.495v-9.294H9.695v-3.622h3.125V8.432c0-3.099 1.891-4.788 4.655-4.788 1.325 0 2.462.099 2.794.143v3.236h-1.916c-1.504 0-1.796.715-1.796 1.763v2.318h3.592l-.468 3.622h-3.124v9.294h6.124c.733 0 1.324-.591 1.324-1.324V1.325C24 .591 23.409 0 22.675 0z" />
-              </svg>
+          <div className="flex justify-center lg:justify-start gap-4 text-2xl">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-purple-500"
+            >
+              <FaFacebook />
             </a>
-            <a href="https://twitter.com" className="hover:text-purple-500">
-              {/* Twitter Icon */}
-              <svg
-                className="w-6 h-6"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 4.557a9.914 9.914 0 01-2.828.775 4.933 4.933 0 002.165-2.725 9.864 9.864 0 01-3.127 1.196 4.922 4.922 0 00-8.384 4.482 13.959 13.959 0 01-10.141-5.146 4.908 4.908 0 001.523 6.573 4.903 4.903 0 01-2.229-.616v.061a4.924 4.924 0 003.946 4.827 4.927 4.927 0 01-2.224.085 4.927 4.927 0 004.6 3.417 9.868 9.868 0 01-6.102 2.104c-.396 0-.786-.023-1.175-.068a13.943 13.943 0 007.557 2.212c9.054 0 14.01-7.496 14.01-13.986 0-.213-.005-.425-.014-.636a9.936 9.936 0 002.457-2.548z" />
-              </svg>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-purple-500"
+            >
+              <FaTwitter />
             </a>
-            <a href="https://instagram.com" className="hover:text-purple-500">
-              {/* Instagram Icon */}
-              <svg
-                className="w-6 h-6"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.427.407a4.92 4.92 0 011.684 1.103 4.918 4.918 0 011.104 1.684c.168.457.351 1.257.407 2.427.059 1.267.071 1.647.071 4.851s-.012 3.584-.071 4.85c-.056 1.17-.24 1.97-.407 2.427a4.918 4.918 0 01-1.103 1.684 4.92 4.92 0 01-1.684 1.104c-.457.168-1.257.351-2.427.407-1.267.059-1.647.071-4.85.071s-3.584-.012-4.851-.071c-1.17-.056-1.97-.24-2.427-.407a4.92 4.92 0 01-1.684-1.103 4.918 4.918 0 01-1.104-1.684c-.168-.457-.351-1.257-.407-2.427-.059-1.267-.071-1.647-.071-4.85s.012-3.584.071-4.851c.056-1.17.24-1.97.407-2.427a4.918 4.918 0 011.103-1.684 4.92 4.92 0 011.684-1.104c.457-.168 1.257-.351 2.427-.407 1.267-.059 1.647-.071 4.85-.071m0-2.163c-3.259 0-3.667.012-4.947.072-1.263.059-2.134.27-2.88.573a7.104 7.104 0 00-2.561 1.66 7.09 7.09 0 00-1.661 2.561c-.303.745-.514 1.617-.573 2.88-.06 1.279-.072 1.687-.072 4.947s.012 3.667.072 4.947c.059 1.263.27 2.134.573 2.88a7.089 7.089 0 001.66 2.561 7.098 7.098 0 002.561 1.661c.745.303 1.617.514 2.88.573 1.279.06 1.687.072 4.947.072s3.667-.012 4.947-.072c1.263-.059 2.134-.27 2.88-.573a7.104 7.104 0 002.561-1.66 7.09 7.09 0 001.661-2.561c.303-.745.514-1.617.573-2.88.06-1.279.072-1.687.072-4.947s-.012-3.667-.072-4.947c-.059-1.263-.27-2.134-.573-2.88a7.089 7.089 0 00-1.66-2.561 7.098 7.098 0 00-2.561-1.661c-.745-.303-1.617-.514-2.88-.573-1.279-.06-1.687-.072-4.947-.072z" />
-              </svg>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-purple-500"
+            >
+              <FaInstagram />
             </a>
           </div>
-
-          {/* Contact Information */}
           <div className="mt-6">
             <p className="text-sm">Phone: +234 80 1234 5678</p>
             <p className="text-sm">Email: info@2ruevotes.com</p>
@@ -120,8 +106,15 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="text-center w-[90%] mt-8 border-t border-gray-800 pt-4">
-        <p className="text-xs">© 2024 2rueVotes. All rights reserved.</p>
+      {/* Footer Bottom */}
+      <div className="mt-8 border-t border-gray-800 pt-4 text-center">
+        <p className="text-xs text-gray-400">
+          © 2024 2rueVotes. All rights reserved.
+        </p>
+        <p className="text-xs text-gray-400 mt-2">
+          Powered by <span className="font-bold text-purple-500">ANGT Hub</span>
+          .
+        </p>
       </div>
     </footer>
   );

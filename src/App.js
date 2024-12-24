@@ -55,6 +55,7 @@ import { useEffect } from "react";
 import Private from "./components/Private";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
+import How from "./pages/How";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -91,6 +92,7 @@ function App() {
         <ScrollTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/how-it-works" element={<How />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashbaord" element={<Dashboard />} />
