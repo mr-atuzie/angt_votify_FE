@@ -17,11 +17,6 @@ const Footer = () => {
               </a>
             </li>
             <li className="mb-2">
-              <a href="#contestants" className="hover:text-purple-500">
-                Contestants
-              </a>
-            </li>
-            <li className="mb-2">
               <a href="#how-it-works" className="hover:text-purple-500">
                 How It Works
               </a>

@@ -108,22 +108,24 @@ function App() {
               <Route index element={<Dashboard />} />
 
               {/* Individual dashboard sections */}
-              <Route path="elections" element={<DashboardElections />} />
+              <Route path="manage-elections" element={<DashboardElections />} />
               <Route path="voter-management" element={<DashboardVoters />} />
               <Route
                 path="candidate-management"
                 element={<DashboardCandidates />}
               />
-              <Route path="pricing" element={<DashboardPricing />} />
+              <Route path="subscription" element={<DashboardPricing />} />
 
               <Route path="create-election" element={<CreateElection />} />
 
               {/* Settings layout with nested routes */}
               <Route path="setting" element={<DashboardSettingLayout />}>
-                <Route path="general" element={<DashboardGeneralSetting />} />
-                <Route path="security" element={<DashboardSecuritySetting />} />
+                <Route path="profile" element={<DashboardGeneralSetting />} />
+                <Route
+                  path="change-password"
+                  element={<DashboardSecuritySetting />}
+                />
                 <Route path="organisation" element={<OrganisationForm />} />
-                <Route path="delete" element={<ElectionDeleteForm />} />
               </Route>
             </Route>
           </Route>

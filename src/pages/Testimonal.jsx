@@ -9,10 +9,12 @@ const Testimonal = () => {
   return (
     <>
       <Navbar />
-      <Reviews />
-      <Faq />
-      <Banner />
-      <Footer />
+      <div className=" mt-[60px]">
+        <Reviews />
+        <Faq />
+        <Banner />
+        <Footer />
+      </div>
     </>
   );
 };

@@ -37,12 +37,16 @@ const Register = () => {
       return toast.error("All fields are required");
     }
 
+    console.log({ name, email, phone, password });
+
     if (password.length < 8) {
       setLoading(false);
       return toast.error("Password must be up to 8 characters");
     }
 
-    const userData = { fullName: name, email, phone, password };
+    const userData = { name, email, phone, password };
+
+    console.log(userData);
 
     try {
       const { data } = await axios.post(`/api/v1/user/register`, userData);
@@ -50,10 +54,10 @@ const Register = () => {
       console.log(data);
 
       const userDetail = {
-        fullname: data?.user.fullName,
-        id: data?.user._id,
-        email: data?.user.email,
-        phone: data?.user.phone,
+        fullname: data?.newUser.name,
+        id: data?.newUser._id,
+        email: data?.newUser.email,
+        phone: data?.newUser.phone,
       };
 
       dispatch(SET_USER(userDetail));
@@ -80,7 +84,7 @@ const Register = () => {
     <>
       <Navbar />
       <div className="w-full flex justify-center items-center bg-blue-50 py-10 min-h-screen">
-        <div className="w-[90%] bg-white rounded-lg shadow-lg lg:w-[43%] mx-auto px-3 py-10 lg:py-12 lg:px-6  ">
+        <div className="w-[90%] mt-[60px] bg-white rounded-lg shadow-lg lg:w-[43%] mx-auto px-3 py-10 lg:py-12 lg:px-6  ">
           {/* Registration Form */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center text-blue-600">

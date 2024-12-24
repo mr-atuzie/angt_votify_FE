@@ -78,7 +78,7 @@ const Login = () => {
     <>
       <Navbar />
       <div className="w-full py-16  bg-blue-50 min-h-screen">
-        <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[35%] mx-auto px-3 py-10 lg:py-12 lg:px-6 ">
+        <div className="w-[90%] mt-[60px] bg-white shadow-lg rounded-lg lg:w-[35%] mx-auto px-3 py-10 lg:py-12 lg:px-6 ">
           {/* Welcome Back Section */}
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center mb-8 text-blue-600">

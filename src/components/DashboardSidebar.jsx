@@ -51,7 +51,7 @@ const DashboardSidebar = () => {
         {[
           { to: "/dashboard", label: "Dashboard", Icon: MdSpaceDashboard },
           {
-            to: "/dashboard/elections",
+            to: "/dashboard/manage-elections",
             label: "Manage Elections",
             Icon: MdHowToVote,
           },
@@ -66,12 +66,12 @@ const DashboardSidebar = () => {
           //   Icon: FaUsersGear,
           // },
           {
-            to: "/dashboard/pricing",
+            to: "/dashboard/subscription",
             label: "Subscription",
             Icon: PiMoneyDuotone,
           },
           {
-            to: "/dashboard/setting/general",
+            to: "/dashboard/setting/profile",
             label: "Settings",
             Icon: GrSettingsOption,
           },

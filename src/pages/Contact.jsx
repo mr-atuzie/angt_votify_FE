@@ -30,7 +30,7 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <section className=" w-full mt-[50px]  py-10  bg-blue-50 ">
+      <section className=" w-full mt-[60px]  py-10  bg-blue-50 ">
         <div className="  w-[90%] lg:w-[60%] bg-white shadow-xl  rounded-lg  p-6  mx-auto  ">
           <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
             <div className="  text-center px-6 py-1.5 text-sm text-blue-500 bg-blue-50 rounded-md w-fit">

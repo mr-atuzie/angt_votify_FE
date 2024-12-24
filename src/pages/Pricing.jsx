@@ -33,7 +33,7 @@ const Pricing = () => {
   return (
     <div className="  min-h-screen">
       <Navbar />
-      <div className=" mt-[60px] w-[90%] mx-auto bg-white">
+      <div className=" py-5 mt-[60px] w-[90%] mx-auto bg-white">
         <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
           <div className="  text-center text-blue-500 text-sm px-6 py-1.5 bg-blue-50 rounded-md w-fit">
             Pricing

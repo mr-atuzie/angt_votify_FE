@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-// import { FaRegCalendarCheck } from "react-icons/fa6";
-import { IoAddSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import CountUpAnimation from "../../components/CountUpAnimation";
 import axios from "axios";
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
-import { getUserInitials } from "../../utils";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/features/auth/authSlice";
 
 const Dashboard = () => {
   const [preLoader, setPreLoader] = useState(true);
   const [dashboard, setDashBoard] = useState(null);
-
-  const { fullname } = useSelector(selectUser);
 
   useEffect(() => {
     setPreLoader(true);
@@ -50,8 +43,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="flex  justify-between ">
+    <div className="">
+      {/* <div className="flex  justify-between ">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">
             Dashboard Overview
@@ -75,7 +68,7 @@ const Dashboard = () => {
             {getUserInitials(fullname)}
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white shadow-lg rounded-lg p-6">

@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className=" mt-[50px]">
+      <div className=" mt-[60px]">
         <Hero />
         <About />
         <WhatWeOffer />
