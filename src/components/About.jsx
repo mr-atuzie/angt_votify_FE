@@ -2,7 +2,7 @@ import React from "react";
 import election1 from "../assets/election1.jpeg";
 import election2 from "../assets/election2.jpeg";
 import election3 from "../assets/election3.jpeg";
-import election4 from "../assets/election3.jpeg";
+import election4 from "../assets/election4.jpeg";
 
 const About = () => {
   const steps = [
