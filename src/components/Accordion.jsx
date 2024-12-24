@@ -1,42 +1,44 @@
 import React, { useState } from "react";
-import { IoMdArrowUp, IoMdArrowDown } from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const Accordion = ({ title, answer }) => {
   const [accordion, setAccordion] = useState(false);
 
   return (
-    <div className="w-full border-b-2 border-dashed border-blue-600">
+    <div className="w-full border-b border-gray-200">
       <div
-        className="w-full flex justify-between items-center py-4 text-base lg:text-lg mb-4 cursor-pointer transition-all duration-300 ease-in-out"
+        className="w-full flex justify-between items-center py-5 text-lg cursor-pointer transition-all duration-300 ease-in-out hover:bg-gray-100 rounded-md"
         onClick={() => setAccordion(!accordion)}
       >
         <h1
-          className={`text-gray-800 font-semibold ${
-            accordion ? "text-blue-600" : "text-gray-700"
+          className={`font-medium text-gray-800 ${
+            accordion ? "text-blue-700" : "text-gray-600"
           }`}
         >
           {title}
         </h1>
 
-        {accordion ? (
-          <button className="bg-blue-600 text-white p-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
-            <IoMdArrowUp size={20} />
-          </button>
-        ) : (
-          <button className="bg-white text-blue-600 border border-blue-600 p-2 rounded-full shadow-md hover:bg-blue-50 transition duration-300">
-            <IoMdArrowDown size={20} />
-          </button>
-        )}
+        <button
+          className={`p-2 rounded-full transition duration-300 ${
+            accordion
+              ? "bg-blue-700 text-white transform rotate-180"
+              : "bg-white border border-blue-700 text-blue-700"
+          }`}
+        >
+          {accordion ? (
+            <IoIosArrowUp size={20} />
+          ) : (
+            <IoIosArrowDown size={20} />
+          )}
+        </button>
       </div>
 
       <div
-        className={`text-sm lg:text-base text-gray-600 transition-all duration-300 ease-in-out ${
-          accordion
-            ? "max-h-screen opacity-100 block"
-            : "max-h-0 opacity-0 hidden"
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          accordion ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <p>{answer}</p>
+        <p className="text-sm text-gray-600 px-5 pb-5">{answer}</p>
       </div>
     </div>
   );
