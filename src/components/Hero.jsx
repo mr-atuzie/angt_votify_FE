@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="flex items-center justify-center bg-blue-50 lg:min-h-screen py-5 lg:py-10">
+    <section className="flex items-center justify-center bg-blue-50 lg:min-h-[50vh] py-5 lg:py-10">
       <div className="bg-white rounded-2xl shadow-lg px-4 lg:px-8 py-12 w-[90%] lg:w-[70%] flex flex-col items-center gap-4 lg:gap-8 text-center">
         {/* Tagline */}
         <div className="bg-black text-white text-xs lg:text-sm font-medium px-6 py-2 rounded-full">

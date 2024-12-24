@@ -68,7 +68,7 @@ const Navbar = () => {
         <ShowOnLogin>
           <Link
             to="/dashboard"
-            className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
+            className="bg-blue-600 hidden lg:block text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
           >
             Dashboard
           </Link>

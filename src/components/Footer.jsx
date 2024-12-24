@@ -1,13 +1,16 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaVoteYea } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-black pt-24 pb-6 text-gray-200">
       <div className="container mx-auto px-6 lg:px-20 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Logo Section */}
-        <div className="text-center lg:text-left">
-          <h4 className="text-xl lg:text-3xl font-bold mb-2">2rueVotes</h4>
+        <div className="text-left">
+          <div className="flex items-center space-x-2 text-blue-600">
+            <FaVoteYea size={20} />
+            <h1 className="lg:text-xl uppercase font-extrabold ">2ruevote</h1>
+          </div>
           <p className="text-sm text-gray-400">
             Simplifying voting, connecting communities.
           </p>
@@ -15,7 +18,9 @@ const Footer = () => {
 
         {/* About Section */}
         <div>
-          <h2 className="text-xl text-blue-500 font-semibold mb-4">About Us</h2>
+          <h2 className="lg:text-xl text-blue-500 font-semibold mb-4">
+            About Us
+          </h2>
           <ul className="space-y-2">
             <li>
               <a href="#home" className="hover:text-purple-500">
@@ -42,7 +47,9 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
+          <h2 className="lg:text-xl text-blue-500 font-semibold mb-4">
+            Quick Links
+          </h2>
           <ul className="space-y-2">
             <li>
               <a href="#contestants" className="hover:text-purple-500">
@@ -68,12 +75,14 @@ const Footer = () => {
         </div>
 
         {/* Stay Connected Section */}
-        <div className="text-center lg:text-left">
-          <h2 className="text-xl font-semibold mb-4">Stay Connected</h2>
+        <div className="text-left">
+          <h2 className="lg:text-xl text-blue-500 font-semibold mb-4">
+            Stay Connected
+          </h2>
           <p className="text-sm text-gray-400 mb-4">
             Follow us on social media to stay updated.
           </p>
-          <div className="flex justify-center lg:justify-start gap-4 text-2xl">
+          <div className="flex justify-start gap-4 text-2xl">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -83,7 +92,7 @@ const Footer = () => {
               <FaFacebook />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com/2ruevote?s=21"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-500"
@@ -91,7 +100,7 @@ const Footer = () => {
               <FaTwitter />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/2ruevote?igsh=MW9nZGZkeXJjMDd4ag%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-500"
@@ -100,7 +109,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="mt-6">
-            <p className="text-sm">Phone: +234 80 1234 5678</p>
+            {/* <p className="text-sm">Phone: +234 80 1234 5678</p> */}
             <p className="text-sm">Email: info@2ruevotes.com</p>
           </div>
         </div>
@@ -112,7 +121,7 @@ const Footer = () => {
           © 2024 2rueVotes. All rights reserved.
         </p>
         <p className="text-xs text-gray-400 mt-2">
-          Powered by <span className="font-bold text-purple-500">ANGT Hub</span>
+          Powered by <span className="font-bold text-purple-500">ANGT-HUB</span>
           .
         </p>
       </div>
