@@ -49,7 +49,7 @@ const Login = () => {
       setLoading(false);
 
       const userDetail = {
-        fullname: data?.user.fullName,
+        fullname: data?.user.name,
         id: data?.user._id,
         email: data?.user.email,
         phone: data?.user.phone,
