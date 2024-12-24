@@ -32,14 +32,14 @@ const Reviews = () => {
   ];
 
   return (
-    <section className="w-full py-16 bg-gradient-to-r from-blue-50 to-white">
+    <section className="w-full py-5 lg:py-16 bg-gradient-to-r from-blue-50 to-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="px-4 py-1 bg-blue-100 text-blue-700 font-medium text-sm rounded-full tracking-wide">
             Testimonials
           </span>
-          <h1 className="mt-4 lg:text-4xl font-extrabold text-gray-800">
+          <h1 className="mt-4 text-xl lg:text-4xl font-extrabold text-gray-800">
             What Our Users Say
           </h1>
           <p className="mt-2 text-gray-600">
