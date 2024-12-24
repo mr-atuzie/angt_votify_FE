@@ -52,7 +52,7 @@ const About = () => {
                 className={`h-40 ${step.bgColor} rounded-lg mb-6`}
                 aria-hidden="true"
               ></div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+              <h3 className="lg:text-xl font-semibold mb-3 text-gray-800">
                 {step.title}
               </h3>
               <p className="text-sm text-gray-600">{step.description}</p>

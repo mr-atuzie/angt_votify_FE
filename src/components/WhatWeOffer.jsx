@@ -54,7 +54,7 @@ const WhatWeOffer = () => {
           <h2 className="text-sm bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full">
             What We Offer
           </h2>
-          <h1 className="mt-4 text3xl lg:text-5xl font-bold text-gray-800">
+          <h1 className="mt-4 text-xl lg:text-5xl font-bold text-gray-800">
             Empower Your Organization with Our Features
           </h1>
         </div>
@@ -67,7 +67,7 @@ const WhatWeOffer = () => {
               className={`p-6 rounded-xl shadow-lg transition-transform hover:scale-105 ${feature.bgColor}`}
             >
               <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+              <h3 className="lg:text-xl font-semibold mb-3 text-gray-800">
                 {feature.title}
               </h3>
               <p className="text-sm text-gray-600">{feature.description}</p>

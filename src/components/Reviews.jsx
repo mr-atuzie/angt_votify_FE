@@ -65,15 +65,14 @@ const Reviews = () => {
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-100 hover:shadow-xl transition-transform transform hover:-translate-y-1">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {testimonial.role}, {testimonial.location}
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {testimonial.name}
+                  </h3>
+
+                  <p className="text-sm text-gray-500">
+                    {testimonial.role}, {testimonial.location}
+                  </p>
                   <div className="flex items-center gap-1 text-yellow-500">
                     {[...Array(5)].map((_, i) => (
                       <IoStar key={i} size={16} />

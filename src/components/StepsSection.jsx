@@ -41,7 +41,7 @@ const StepsSection = () => {
           <h2 className="text-sm bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full">
             Get Started in 4 Steps
           </h2>
-          <h1 className="lg:mt-4 text-xl lg:text-5xl font-bold text-gray-800">
+          <h1 className="mt-4 text-xl lg:text-5xl font-bold text-gray-800">
             Simplify Your Election Process
           </h1>
           <p className="mt-4 text-sm lg:text-base text-gray-600 lg:w-2/3 mx-auto">
@@ -58,7 +58,7 @@ const StepsSection = () => {
               className={`p-8 rounded-xl shadow-md transition-transform hover:scale-105 ${step.bgColor}`}
             >
               <div className="mb-6 flex justify-center">{step.icon}</div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 text-center">
+              <h3 className="lg:text-xl font-semibold mb-4 text-gray-800 text-center">
                 {step.title}
               </h3>
               <p className="text-sm text-gray-600 text-center">

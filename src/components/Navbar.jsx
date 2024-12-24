@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { MdHowToVote } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdOutlineClose } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -10,8 +11,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <MdHowToVote size={30} className="text-blue-600" />
-          <h1 className="text-2xl font-extrabold text-blue-900">2ruevote</h1>
+          <h1 className="lg:text-2xl font-extrabold text-blue-600">2ruevote</h1>
         </div>
 
         {/* Desktop Navigation */}
@@ -54,22 +54,9 @@ const Navbar = () => {
         {/* Hamburger Menu */}
         <button
           onClick={() => setMenu(!menu)}
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="lg:hidden z-50 text-gray-800"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
+          {menu ? <MdOutlineClose size={25} /> : <RxHamburgerMenu size={25} />}
         </button>
       </div>
 
@@ -95,20 +82,13 @@ const Navbar = () => {
                 </NavLink>
               )
             )}
-            <div className="flex flex-col gap-2 mt-4">
-              <Link
-                to="/login"
-                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
-              >
-                Sign Up
-              </Link>
-            </div>
+
+            <Link
+              to="/register"
+              className="bg-blue-600 text-center text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
+            >
+              Register
+            </Link>
           </div>
         </div>
       )}
