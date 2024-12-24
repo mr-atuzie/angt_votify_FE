@@ -3,6 +3,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineClose } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import { FaVoteYea } from "react-icons/fa";
+import ShowOnLogin, { ShowOnLogout } from "./Protect";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -47,20 +48,31 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Buttons */}
-        <div className="hidden lg:flex items-center gap-4">
+        <ShowOnLogout>
+          <div className="hidden lg:flex items-center gap-4">
+            <Link
+              to="/login"
+              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
+            >
+              Sign Up
+            </Link>
+          </div>
+        </ShowOnLogout>
+
+        <ShowOnLogin>
           <Link
-            to="/login"
-            className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
+            to="/dashboard"
             className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
           >
-            Sign Up
+            Dashboard
           </Link>
-        </div>
+        </ShowOnLogin>
 
         {/* Hamburger Menu */}
         <button
@@ -103,12 +115,23 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            <Link
-              to="/register"
-              className="bg-blue-600 text-center text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
-            >
-              Register
-            </Link>
+            <ShowOnLogout>
+              <Link
+                to="/register"
+                className="bg-blue-600 text-center text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
+              >
+                Register
+              </Link>
+            </ShowOnLogout>
+
+            <ShowOnLogin>
+              <Link
+                to="/dashboard"
+                className="bg-blue-600 text-center text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
+              >
+                Dashbaoard
+              </Link>
+            </ShowOnLogin>
           </div>
         </div>
       )}
