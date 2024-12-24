@@ -54,6 +54,7 @@ const Login = () => {
         email: data?.user.email,
         phone: data?.user.phone,
       };
+      console.log(userDetail);
 
       console.log(userDetail);
 
