@@ -1,14 +1,8 @@
 import React from "react";
 import { IoStar } from "react-icons/io5";
 
-// import Swiper core and required modules
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-} from "swiper/modules";
+// Import Swiper core and required modules
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -20,137 +14,115 @@ import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 
 const Reviews = () => {
-  const testimonals = [
-    "https://www.slido.com/static/wade.42fcba32.1184.png",
-    "https://media.istockphoto.com/id/1352025984/photo/headshot-of-cheerful-young-businessman.jpg?s=612x612&w=0&k=20&c=6LxOFkwfu3XYgfySJfI1uTpP1JUX4ZIgl_1CdpQBk3s=",
-    "https://images.squarespace-cdn.com/content/v1/631ba8eed2196a6795698665/3690ca61-6a9d-4c93-a2a5-83a5f2aa1648/2022-08-16-Trinet-0540-Martinez-Juan.jpg",
-    "https://i0.wp.com/ridethewave.co/wp-content/uploads/2023/11/RTW_9486_websize.jpg?resize=739%2C924&ssl=1",
-    "https://t3.ftcdn.net/jpg/05/83/41/98/360_F_583419866_97XPxjHDJkQ2RKMmGWdgrbqJhEZeQb55.jpg",
-    "https://photos.peterhurley.com/wp-content/uploads/2023/02/alex_0033-2000x1334.jpg",
-    "https://media.istockphoto.com/id/1394347360/photo/confident-young-black-businesswoman-standing-at-a-window-in-an-office-alone.jpg?s=612x612&w=0&k=20&c=tOFptpFTIaBZ8LjQ1NiPrjKXku9AtERuWHOElfBMBvY=",
+  const testimonials = [
+    {
+      name: "Daniel Martinez",
+      role: "Tech Consultant",
+      location: "São Paulo, Brazil",
+      feedback:
+        "This voting system exceeded our expectations. The secure process and real-time tracking made it ideal for our tech conference elections. It’s a fantastic solution for international events.",
+    },
+    {
+      name: "Kwame Mensah",
+      role: "Entrepreneur",
+      location: "Accra, Ghana",
+      feedback:
+        "Running elections in our cooperative society was always a hassle, but this platform simplified everything. The dashboard is user-friendly, and the secure voting gave everyone confidence in the process. Highly recommended for African SMEs!",
+    },
+    {
+      name: "Claire Evans",
+      role: "Project Manager",
+      location: "London, UK",
+      feedback:
+        "The fast, accurate results and customizable setup were just what we needed for our corporate elections. The secure voting process gave us confidence, and the dashboard made monitoring easy. Perfect for global organizations!",
+    },
+    {
+      name: "Emily Thompson",
+      role: "Project Manager",
+      location: "New York, USA",
+      feedback:
+        "We used this system for our company's internal election, and it was a game-changer. The secure voting process and real-time tracking made everything easy to manage. Highly recommended!",
+    },
+    {
+      name: "Samantha Williams",
+      role: "Event Planner",
+      location: "Johannesburg, South Africa",
+      feedback:
+        "The ease of user management and the fast, accurate results were exceptional. It’s the perfect tool for any event organizer.",
+    },
+    {
+      name: "Aisha Bello",
+      role: "NGO Program Coordinator",
+      location: "Abuja, Nigeria",
+      feedback:
+        "The real-time monitoring and instant, accurate results made our elections stress-free. I’m recommending it to everyone in the sector!",
+    },
+    {
+      name: "Chukwuemeka Okafor",
+      role: "HR Manager",
+      location: "Lagos, Nigeria",
+      feedback:
+        "The customizable setup allowed us to meet our specific needs, and the secure voting feature reassured everyone. It's perfect for Nigerian businesses!",
+    },
   ];
+
   return (
-    <div className="w-full  py-16">
-      <div className=" w-[90%]  mx-auto ">
-        <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
-          <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
-            Testimonial
+    <section className="w-full py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <div className="inline-block px-6 py-1 bg-blue-50 text-blue-600 font-medium rounded-full">
+            Testimonials
           </div>
-          <h1 className=" text-4xl font-semibold text-center">
-            What our users say
+          <h1 className="mt-4 text-3xl lg:text-5xl font-bold text-gray-800">
+            What Our Users Say
           </h1>
         </div>
 
-        {/* desktop slider */}
-        <div className="hidden lg:block">
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            spaceBetween={50}
-            slidesPerView={3}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-          >
-            {testimonals.map((testimonal) => {
-              return (
-                <SwiperSlide key={testimonal}>
-                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-5">
-                    <div className=" flex justify-between items-center">
-                      <div className=" flex items-center   my-4 gap-2">
-                        <img
-                          src={testimonal}
-                          className=" w-10 h-10 rounded-full object-cover"
-                          alt=""
-                        />
-                        <div>
-                          <h3 className="">Peter Dury</h3>
-                          <p className=" text-sm text-gray-400 -mt-1">
-                            sport analyst
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className=" flex items-center gap-1 text-yellow-400">
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                        <IoStar size={20} />
-                      </div>
-                    </div>
-
-                    <p className="">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Tempore consequatur neque debitis vel porro, cupiditate
-                      aliquam, consectetur sed quisquam numquam asperiores
-                      accusantium, tempora nesciunt molestias.
+        {/* Swiper Component */}
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            1024: { slidesPerView: 3 },
+            768: { slidesPerView: 2 },
+          }}
+        >
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-200 hover:shadow-2xl transition-shadow">
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {testimonial.role}, {testimonial.location}
                     </p>
                   </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
-
-        <div className=" lgblock lg:hidden">
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            spaceBetween={50}
-            slidesPerView={1}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-          >
-            {testimonals.map((testimonal) => {
-              return (
-                <SwiperSlide key={testimonal}>
-                  <div className=" shadow-lg border-2 border-blue-50 rounded-lg p-2.5 lg:p-5">
-                    <div className=" flex justify-between items-center">
-                      <div className=" flex items-center   my-4 gap-2">
-                        <img
-                          src={testimonal}
-                          className=" w-10 h-10 rounded-full object-cover"
-                          alt=""
-                        />
-                        <div>
-                          <h3 className="">Peter Dury</h3>
-                          <p className=" text-sm text-gray-400 -mt-1">
-                            sport analyst
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className=" flex items-center gap-1 text-yellow-400">
-                        <IoStar size={15} />
-                        <IoStar size={15} />
-                        <IoStar size={15} />
-                        <IoStar size={15} />
-                        <IoStar size={15} />
-                      </div>
-                    </div>
-
-                    <p className="">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Tempore consequatur neque debitis vel porro, cupiditate
-                      aliquam, consectetur sed quisquam numquam asperiores
-                      accusantium, tempora nesciunt molestias.
-                    </p>
+                  <div className="flex items-center text-yellow-500">
+                    <IoStar size={18} />
+                    <IoStar size={18} />
+                    <IoStar size={18} />
+                    <IoStar size={18} />
+                    <IoStar size={18} />
                   </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  {testimonial.feedback}
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </div>
+    </section>
   );
 };
 

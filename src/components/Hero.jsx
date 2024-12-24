@@ -11,7 +11,7 @@ const Hero = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-gray-800">
+        <h1 className="text-xl lg:text-5xl font-bold leading-tight text-gray-800">
           Manage elections effortlessly with a{" "}
           <span className="text-blue-600">cloud-based platform</span> designed
           for secure and interactive voting experiences.
