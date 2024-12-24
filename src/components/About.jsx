@@ -1,4 +1,8 @@
 import React from "react";
+import election1 from "../assets/election1.jpeg";
+import election2 from "../assets/election2.jpeg";
+import election3 from "../assets/election3.jpeg";
+import election4 from "../assets/election3.jpeg";
 
 const About = () => {
   const steps = [
@@ -7,24 +11,28 @@ const About = () => {
       description:
         "We ensure transparency at every stage, eliminating bias and guaranteeing equal opportunities for all participants.",
       bgColor: "bg-pink-200",
+      image: election1,
     },
     {
       title: "Seamless Voting Experience",
       description:
         "From setup to final results, our app simplifies the entire process, saving time and effort for administrators and voters alike.",
       bgColor: "bg-blue-200",
+      image: election2,
     },
     {
       title: "Real-Time Results",
       description:
         "Stay informed with live updates as votes are cast and tallied. Watch the results unfold in real-time for a truly engaging and transparent process.",
       bgColor: "bg-yellow-200",
+      image: election3,
     },
     {
       title: "Unmatched Security",
       description:
         "Built with cutting-edge technology, our platform ensures your election data is encrypted and protected against breaches.",
       bgColor: "bg-green-200",
+      image: election4,
     },
   ];
 
@@ -48,10 +56,16 @@ const About = () => {
               key={index}
               className="border rounded-xl p-3 lg:p-6 bg-white shadow-md transition-transform hover:scale-105"
             >
-              <div
+              {/* <div
                 className={`h-40 ${step.bgColor} rounded-lg mb-6`}
                 aria-hidden="true"
-              ></div>
+              ></div> */}
+
+              <img
+                src={step?.image}
+                className=" h-40 w-full  object-cover  mb-6 rounded-lg"
+                alt=""
+              />
               <h3 className="lg:text-xl font-semibold mb-3 text-gray-800">
                 {step.title}
               </h3>
