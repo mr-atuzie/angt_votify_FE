@@ -1,68 +1,66 @@
 import React from "react";
 
 const About = () => {
+  const steps = [
+    {
+      title: "Free and Fair Elections",
+      description:
+        "We ensure transparency at every stage, eliminating bias and guaranteeing equal opportunities for all participants.",
+      bgColor: "bg-pink-200",
+    },
+    {
+      title: "Seamless Voting Experience",
+      description:
+        "From setup to final results, our app simplifies the entire process, saving time and effort for administrators and voters alike.",
+      bgColor: "bg-blue-200",
+    },
+    {
+      title: "Real-Time Results",
+      description:
+        "Stay informed with live updates as votes are cast and tallied. Watch the results unfold in real-time for a truly engaging and transparent process.",
+      bgColor: "bg-yellow-200",
+    },
+    {
+      title: "Unmatched Security",
+      description:
+        "Built with cutting-edge technology, our platform ensures your election data is encrypted and protected against breaches.",
+      bgColor: "bg-green-200",
+    },
+  ];
+
   return (
-    <div className="w-full lg:h-screen py-10 bg-white ">
-      <div className=" w-[90%]  mx-auto ">
-        <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
-          <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
-            How it works
-          </div>
-          <h1 className=" text-4xl font-semibold text-center">
-            Get started in 4 steps
+    <section className="w-full py-12 bg-blue-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-sm bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full">
+            Why Choose Us
+          </h2>
+          <h1 className="mt-4 text-3xl lg:text-5xl font-bold text-gray-800">
+            Elevate Your Election Experience
           </h1>
         </div>
 
-        <div className=" gap-5 flex flex-col lg:flex-row justify-between items-center">
-          <div className=" border rounded-lg p-5">
-            <div className=" h-52 bg-pink-200 rounded-lg mb-5"></div>
-
-            <h3 className=" font-medium mb-2">Create Ballot</h3>
-            <p className=" text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid
-              quam cum deleniti velit recusandae ipsam autem sed voluptate totam
-              nobis, aperiam quae similique odit enim assumenda. Eum ullam quo
-              hic.
-            </p>
-          </div>
-
-          <div className=" border rounded-lg p-5">
-            <div className=" h-52 rounded-lg bg-blue-200 mb-5"></div>
-            <h3 className=" font-medium mb-2">Add Voters</h3>
-            <p className=" text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid
-              quam cum deleniti velit recusandae ipsam autem sed voluptate totam
-              nobis, aperiam quae similique odit enim assumenda. Eum ullam quo
-              hic.
-            </p>
-          </div>
-
-          <div className=" border rounded-lg p-5">
-            <div className=" h-52 bg-yellow-200 rounded-lg mb-5"></div>
-
-            <h3 className=" font-medium mb-2">Launch Election</h3>
-            <p className=" text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid
-              quam cum deleniti velit recusandae ipsam autem sed voluptate totam
-              nobis, aperiam quae similique odit enim assumenda. Eum ullam quo
-              hic.
-            </p>
-          </div>
-
-          <div className=" border rounded-lg p-5">
-            <div className=" h-52 bg-green-200 rounded-lg mb-5"></div>
-
-            <h3 className=" font-medium mb-2">Monitor Results</h3>
-            <p className=" text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid
-              quam cum deleniti velit recusandae ipsam autem sed voluptate totam
-              nobis, aperiam quae similique odit enim assumenda. Eum ullam quo
-              hic.
-            </p>
-          </div>
+        {/* Steps */}
+        <div className="grid gap-6 lg:grid-cols-4">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="border rounded-xl p-6 bg-white shadow-md transition-transform hover:scale-105"
+            >
+              <div
+                className={`h-40 ${step.bgColor} rounded-lg mb-6`}
+                aria-hidden="true"
+              ></div>
+              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                {step.title}
+              </h3>
+              <p className="text-sm text-gray-600">{step.description}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

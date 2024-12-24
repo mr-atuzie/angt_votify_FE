@@ -3,31 +3,35 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className=" flex items-center bg-blue-50 justify-center">
-      <div className="bg-white py-10  rounded-2xl w-[97%] my-4  flex flex-col items-center gap-5 justify-center">
-        <div className="bg-black font-medium text-sm w-fit px-6 text-white rounded-full  p-2">
-          The Easiest Way to Make Voting Interactive.
+    <section className="flex items-center justify-center bg-blue-50 min-h-screen py-10">
+      <div className="bg-white rounded-2xl shadow-lg px-8 py-12 w-[90%] lg:w-[70%] flex flex-col items-center gap-8 text-center">
+        {/* Tagline */}
+        <div className="bg-black text-white text-sm font-medium px-6 py-2 rounded-full">
+          Streamline Your Organization's Elections with Ease
         </div>
 
-        <h1 className="text-center text-2xl lg:text-5xl w-[85%] lg:w-[60%] font-semibold">
-          Manage elections easily with a{" "}
+        {/* Title */}
+        <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-gray-800">
+          Manage elections effortlessly with a{" "}
           <span className="text-blue-600">cloud-based platform</span> designed
           for secure and interactive voting experiences.
         </h1>
 
-        <p className=" w-[50%] text-center  text-lg">
-          Our platform ensures every vote is counted, empowering organizations
-          to run seamless and secure elections.
+        {/* Subtitle */}
+        <p className="text-gray-600 text-base lg:text-lg leading-relaxed lg:w-[75%]">
+          Simplify the election process for your organization. Our app ensures
+          your next election is free, fair, seamless, and secure.
         </p>
 
+        {/* CTA Button */}
         <Link
-          to={"/register"}
-          className="bg-blue-600 lg:text-base text-white  py-3 px-6 rounded-full transition-all"
+          to="/register"
+          className="bg-blue-600 hover:bg-blue-700 text-white text-sm lg:text-base font-medium py-3 px-8 rounded-full shadow-md transition-all duration-300"
         >
-          Get started
+          Get Started
         </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

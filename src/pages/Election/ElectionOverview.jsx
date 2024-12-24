@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
+import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
@@ -12,7 +19,17 @@ const ElectionOverview = () => {
   const [voters, setVoters] = useState(0);
   const [preLoader, setPreLoader] = useState(false);
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const navigate = useNavigate();
+
   const { id } = useParams();
+
+  useEffect(() => {
+    if (isLoggedIn === false) {
+      navigate("/login");
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     setPreLoader(true);

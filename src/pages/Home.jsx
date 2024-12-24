@@ -7,6 +7,7 @@ import Reviews from "../components/Reviews";
 import Features from "../components/Features";
 import Faq from "../components/Faq";
 import Banner from "../components/Banner";
+import WhatWeOffer from "../components/WhatWeOffer";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <About />
+      <WhatWeOffer />
       <Features />
       <Reviews />
       <Faq />
