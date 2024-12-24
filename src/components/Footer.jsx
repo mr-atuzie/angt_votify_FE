@@ -4,10 +4,10 @@ import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-black pt-24 pb-6 text-gray-200">
-      <div className="container mx-auto px-6 lg:px-20 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-10">
+      <div className="container mx-auto px-6 lg:px-20 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Logo Section */}
         <div className="text-center lg:text-left">
-          <h4 className="text-3xl font-bold mb-2">2rueVotes</h4>
+          <h4 className="text-xl lg:text-3xl font-bold mb-2">2rueVotes</h4>
           <p className="text-sm text-gray-400">
             Simplifying voting, connecting communities.
           </p>
@@ -15,7 +15,7 @@ const Footer = () => {
 
         {/* About Section */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">About Us</h2>
+          <h2 className="text-xl text-blue-500 font-semibold mb-4">About Us</h2>
           <ul className="space-y-2">
             <li>
               <a href="#home" className="hover:text-purple-500">

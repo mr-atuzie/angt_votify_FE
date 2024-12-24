@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md h-[60px] top-0 flex justify-center items-center  w-full fixed z-50">
-      <div className=" w-[95%] mx-auto  flex items-center justify-between">
+      <div className=" w-[90%] mx-auto  flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2 text-blue-600">
           <FaVoteYea size={20} />

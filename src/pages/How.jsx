@@ -11,8 +11,8 @@ const How = () => {
     <div>
       <Navbar />
       <div className=" mt-[60px]">
-        <About />
         <StepsSection />
+        <About />
         <WhatWeOffer />
         <Banner />
         <Footer />

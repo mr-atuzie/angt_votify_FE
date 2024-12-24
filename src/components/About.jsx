@@ -46,7 +46,7 @@ const About = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="border rounded-xl p-6 bg-white shadow-md transition-transform hover:scale-105"
+              className="border rounded-xl p-3 lg:p-6 bg-white shadow-md transition-transform hover:scale-105"
             >
               <div
                 className={`h-40 ${step.bgColor} rounded-lg mb-6`}
