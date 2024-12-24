@@ -4,20 +4,6 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div>
-      {/* Banner Section */}
-      <div className="h-[30vh] lg:h-[50vh] bg-blue-600 flex-col gap-4 flex justify-center items-center">
-        <h1 className="text-center text-3xl w-[90%] lg:text-5xl lg:w-[50%] text-white font-semibold">
-          Manage elections easily with real-time results.
-        </h1>
-
-        <Link
-          to={"/register"}
-          className="bg-white text-blue-600 lg:text-base text-lg py-3 px-6 rounded-full mt-4"
-        >
-          Get Started Now
-        </Link>
-      </div>
-
       {/* Main Content Section */}
       <section className="px-6 lg:px-20 py-12">
         <div className="max-w-4xl mx-auto text-center">
@@ -48,13 +34,6 @@ const Banner = () => {
           </Link>
         </div>
       </section>
-
-      {/* Footer Section */}
-      <footer className="bg-gray-800 text-white text-center py-6">
-        <p className="text-sm">
-          © 2024 Election Platform. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 };

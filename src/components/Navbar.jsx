@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineClose } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import { FaVoteYea } from "react-icons/fa";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -10,8 +11,9 @@ const Navbar = () => {
     <nav className="bg-white shadow-md w-full fixed z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <h1 className="lg:text-2xl font-extrabold text-blue-600">2ruevote</h1>
+        <div className="flex items-center space-x-2 text-blue-600">
+          <FaVoteYea size={20} />
+          <h1 className="lg:text-2xl uppercase font-extrabold ">2ruevote</h1>
         </div>
 
         {/* Desktop Navigation */}

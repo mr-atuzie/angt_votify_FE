@@ -70,7 +70,7 @@ const Reviews = () => {
                     {testimonial.name}
                   </h3>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-blue-500">
                     {testimonial.role}, {testimonial.location}
                   </p>
                   <div className="flex items-center gap-1 text-yellow-500">
@@ -79,7 +79,7 @@ const Reviews = () => {
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-600 italic leading-relaxed">
+                <p className="text-gray-600 italic  my-2 leading-relaxed">
                   "{testimonial.feedback}"
                 </p>
               </div>
