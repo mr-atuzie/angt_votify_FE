@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md h-[50px] top-0 flex justify-center items-center  w-full fixed z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <div className=" w-[95%] mx-auto  flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2 text-blue-600">
           <FaVoteYea size={20} />
@@ -70,7 +70,11 @@ const Navbar = () => {
               (item, index) => (
                 <NavLink
                   key={index}
-                  to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  to={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(/\s+/g, "-")}`
+                  }
                   onClick={() => setMenu(false)}
                   className={({ isActive }) =>
                     `text-base font-medium transition ${

@@ -33,12 +33,12 @@ const Pricing = () => {
   return (
     <div className="  min-h-screen">
       <Navbar />
-      <div className=" my-10 w-[90%] mx-auto bg-white">
+      <div className=" mt-[60px] w-[90%] mx-auto bg-white">
         <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
-          <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
+          <div className="  text-center text-blue-500 text-sm px-6 py-1.5 bg-blue-50 rounded-md w-fit">
             Pricing
           </div>
-          <h1 className=" text-4xl -mt-2 text-center   max-w-lg">
+          <h1 className=" font-semibold capitalize text-xl lg:text-4xl -mt-2 text-center   max-w-lg">
             Give everyone a voice with the plan that’s right for you
           </h1>
         </div>

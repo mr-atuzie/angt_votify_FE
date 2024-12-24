@@ -7,7 +7,7 @@ const Accordion = ({ title, answer }) => {
   return (
     <div className="w-full border-b border-gray-200">
       <div
-        className="w-full flex justify-between items-center py-5 text-lg cursor-pointer transition-all duration-300 ease-in-out hover:bg-gray-100 rounded-md"
+        className="w-full flex justify-between items-center py-2.5 lg:py-5 text-base  lg:text-lg cursor-pointer transition-all duration-300 ease-in-out hover:bg-gray-100 rounded-md"
         onClick={() => setAccordion(!accordion)}
       >
         <h1
@@ -26,9 +26,9 @@ const Accordion = ({ title, answer }) => {
           }`}
         >
           {accordion ? (
-            <IoIosArrowUp size={20} />
+            <IoIosArrowUp size={15} />
           ) : (
-            <IoIosArrowDown size={20} />
+            <IoIosArrowDown size={15} />
           )}
         </button>
       </div>
@@ -38,7 +38,7 @@ const Accordion = ({ title, answer }) => {
           accordion ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <p className="text-sm text-gray-600 px-5 pb-5">{answer}</p>
+        <p className="text-sm text-gray-600 pb-5">{answer}</p>
       </div>
     </div>
   );

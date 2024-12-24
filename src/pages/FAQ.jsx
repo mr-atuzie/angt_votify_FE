@@ -9,10 +9,12 @@ const FAQ = () => {
   return (
     <>
       <Navbar />
-      <Faq />
-      <Reviews />
-      <Banner />
-      <Footer />
+      <div className=" mt-[60px]">
+        <Faq />
+        <Reviews />
+        <Banner />
+        <Footer />
+      </div>
     </>
   );
 };

@@ -30,13 +30,13 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <section className=" w-full  lg:py-10  bg-blue-50 ">
-        <div className="  w-[90%] lg:w-[60%] bg-white shadow-xl  rounded-lg  py-6  mx-auto  ">
+      <section className=" w-full mt-[50px]  py-10  bg-blue-50 ">
+        <div className="  w-[90%] lg:w-[60%] bg-white shadow-xl  rounded-lg  p-6  mx-auto  ">
           <div className=" flex flex-col gap-4 justify-center mb-10 items-center">
-            <div className="  text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit">
+            <div className="  text-center px-6 py-1.5 text-sm text-blue-500 bg-blue-50 rounded-md w-fit">
               Contact us
             </div>
-            <h1 className=" text-4xl font-semibold -mt-2 text-center   max-w-lg">
+            <h1 className=" text-xl lg:text-4xl font-semibold -mt-2 text-center   max-w-lg">
               Want to get in touch with our team? We're all ears.
             </h1>
           </div>
@@ -46,7 +46,10 @@ const Contact = () => {
             className=" lg:w-[75%] mx-auto my-8 "
           >
             <div className=" mb-8">
-              <label className=" font-semibold " htmlFor="from_name">
+              <label
+                className=" font-medium lg:font-semibold "
+                htmlFor="from_name"
+              >
                 Name
               </label>
               <input
@@ -58,7 +61,10 @@ const Contact = () => {
             </div>
 
             <div className=" mb-8">
-              <label className=" font-semibold " htmlFor="from_email">
+              <label
+                className=" font-medium lg:font-semibold "
+                htmlFor="from_email"
+              >
                 Email
               </label>
               <input
@@ -70,7 +76,10 @@ const Contact = () => {
             </div>
 
             <div className=" mb-8">
-              <label className=" font-semibold" htmlFor="message">
+              <label
+                className=" font-medium lg:font-semibold"
+                htmlFor="message"
+              >
                 Message
               </label>
 

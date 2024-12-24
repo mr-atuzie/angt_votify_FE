@@ -102,7 +102,7 @@ const Reviews = () => {
                     <h3 className="text-lg font-semibold text-gray-800">
                       {testimonial.name}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm font-medium text-blue-500">
                       {testimonial.role}, {testimonial.location}
                     </p>
                   </div>
@@ -114,7 +114,7 @@ const Reviews = () => {
                     <IoStar size={18} />
                   </div>
                 </div>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 my-2 leading-relaxed">
                   {testimonial.feedback}
                 </p>
               </div>

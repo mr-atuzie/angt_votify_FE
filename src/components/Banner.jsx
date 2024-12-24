@@ -29,7 +29,7 @@ const Banner = () => {
 
           <Link
             to={"/register"}
-            className="bg-white text-blue-700 text-lg font-semibold py-3 px-8 rounded-full shadow-lg transition-all hover:bg-blue-100"
+            className="bg-white text-blue-700 lg:text-lg font-semibold py-3 px-8 rounded-full shadow-lg transition-all hover:bg-blue-100"
           >
             Get Started Now
           </Link>
