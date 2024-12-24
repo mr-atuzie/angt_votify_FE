@@ -47,14 +47,14 @@ const WhatWeOffer = () => {
   ];
 
   return (
-    <section className="w-full py-12 bg-gray-50">
+    <section className="w-full py-5 lg:py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-sm bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full">
             What We Offer
           </h2>
-          <h1 className="mt-4 text-3xl lg:text-5xl font-bold text-gray-800">
+          <h1 className="mt-4 text3xl lg:text-5xl font-bold text-gray-800">
             Empower Your Organization with Our Features
           </h1>
         </div>

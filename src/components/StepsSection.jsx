@@ -34,17 +34,17 @@ const StepsSection = () => {
   ];
 
   return (
-    <section className="w-full py-16 bg-gray-50">
+    <section className="w-full py-5 lg:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-sm bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full">
             Get Started in 4 Steps
           </h2>
-          <h1 className="mt-4 text-3xl lg:text-5xl font-bold text-gray-800">
+          <h1 className="lg:mt-4 text-xl lg:text-5xl font-bold text-gray-800">
             Simplify Your Election Process
           </h1>
-          <p className="mt-4 text-gray-600 lg:w-2/3 mx-auto">
+          <p className="mt-4 text-sm lg:text-base text-gray-600 lg:w-2/3 mx-auto">
             Follow these straightforward steps to ensure your organization's
             election is streamlined, secure, and efficient.
           </p>
