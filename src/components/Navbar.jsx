@@ -6,84 +6,56 @@ const Navbar = () => {
   const [menu, setMenu] = useState(false);
 
   return (
-    <nav className=" bg-white w-full ">
-      <div className=" mx-auto w-[90%]  lg:w-[85%] py-4 flex items-center justify-between ">
-        <div>
-          <h4 className="text-2xl font-extrabold text-blue-900">2ruevote</h4>
+    <nav className="bg-white shadow-md w-full fixed z-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <MdHowToVote size={30} className="text-blue-600" />
+          <h1 className="text-2xl font-extrabold text-blue-900">2ruevote</h1>
         </div>
 
-        {/* Links */}
-        <div className=" gap-10  hidden md:flex">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `tracking-wide cursor-pointer ${
-                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
-              }`
-            }
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/pricing"
-            className={({ isActive }) =>
-              `tracking-wide cursor-pointer ${
-                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
-              }`
-            }
-          >
-            Pricing
-          </NavLink>
-
-          <NavLink
-            to="/frequently-asked-questions"
-            className={({ isActive }) =>
-              `tracking-wide cursor-pointer ${
-                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
-              }`
-            }
-          >
-            FAQ
-          </NavLink>
-
-          <NavLink
-            to="/reviews"
-            className={({ isActive }) =>
-              `tracking-wide cursor-pointer ${
-                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
-              }`
-            }
-          >
-            Testimonal
-          </NavLink>
-
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              `tracking-wide cursor-pointer ${
-                isActive ? " text-blue-600 " : "text-black hover:text-blue-600"
-              }`
-            }
-          >
-            Contact
-          </NavLink>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-8">
+          {["Home", "Pricing", "FAQ", "Testimonial", "Contact"].map(
+            (item, index) => (
+              <NavLink
+                key={index}
+                to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className={({ isActive }) =>
+                  `text-base font-medium transition ${
+                    isActive
+                      ? "text-blue-600"
+                      : "text-gray-700 hover:text-blue-600"
+                  }`
+                }
+              >
+                {item}
+              </NavLink>
+            )
+          )}
         </div>
 
-        <div className=" hidden  lg:flex items-center tracking-wide gap-1 lg:gap-5">
-          <Link className=" cursor-pointer " to={"/login"}>
+        {/* Desktop Buttons */}
+        <div className="hidden lg:flex items-center gap-4">
+          <Link
+            to="/login"
+            className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+          >
             Login
           </Link>
           <Link
-            className=" cursor-pointer hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600 bg-blue-600 rounded-full px-6 py-1.5 text-white"
-            to={"/register"}
+            to="/register"
+            className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
           >
-            Sign up
+            Sign Up
           </Link>
         </div>
 
-        {/* Hamburger Menu for mobile */}
-        <button onClick={() => setMenu(!menu)} className="md:hidden text-black">
+        {/* Hamburger Menu */}
+        <button
+          onClick={() => setMenu(!menu)}
+          className="md:hidden text-gray-700 focus:outline-none"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -100,95 +72,41 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+
+      {/* Mobile Menu */}
       {menu && (
-        <div className=" w-[80%] p-4 bg-white h-screen fixed z-50 top-0 left-0">
-          {/* Dashboard header */}
-
-          <div className="flex items-center text-blue-800  space-x-2 ">
-            <div className="">
-              <MdHowToVote size={20} />
-            </div>
-            <h4 className="text-2xl font-bold ">The Grand Stage</h4>
-          </div>
-
-          <div className=" flex flex-col my-6 gap-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `tracking-wide cursor-pointer ${
-                  isActive
-                    ? " text-blue-600 "
-                    : "text-black hover:text-blue-600"
-                }`
-              }
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              to="/pricing"
-              className={({ isActive }) =>
-                `tracking-wide cursor-pointer ${
-                  isActive
-                    ? " text-blue-600 "
-                    : "text-black hover:text-blue-600"
-                }`
-              }
-            >
-              Pricing
-            </NavLink>
-
-            <NavLink
-              to="/frequently-asked-questions"
-              className={({ isActive }) =>
-                `tracking-wide cursor-pointer ${
-                  isActive
-                    ? " text-blue-600 "
-                    : "text-black hover:text-blue-600"
-                }`
-              }
-            >
-              FAQ
-            </NavLink>
-
-            <NavLink
-              to="/reviews"
-              className={({ isActive }) =>
-                `tracking-wide cursor-pointer ${
-                  isActive
-                    ? " text-blue-600 "
-                    : "text-black hover:text-blue-600"
-                }`
-              }
-            >
-              Testimonal
-            </NavLink>
-
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `tracking-wide cursor-pointer ${
-                  isActive
-                    ? " text-blue-600 "
-                    : "text-black hover:text-blue-600"
-                }`
-              }
-            >
-              Contact
-            </NavLink>
-
-            <div className="grid grid-cols-1 gap-4">
+        <div className="bg-white shadow-lg w-full p-6 md:hidden fixed z-40 top-16 left-0">
+          <div className="flex flex-col gap-4">
+            {["Home", "Pricing", "FAQ", "Testimonial", "Contact"].map(
+              (item, index) => (
+                <NavLink
+                  key={index}
+                  to={`/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  onClick={() => setMenu(false)}
+                  className={({ isActive }) =>
+                    `text-base font-medium transition ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-gray-700 hover:text-blue-600"
+                    }`
+                  }
+                >
+                  {item}
+                </NavLink>
+              )
+            )}
+            <div className="flex flex-col gap-2 mt-4">
               <Link
-                className=" cursor-pointer hover:bg-blue-600 hover:text-white bg-white border-blue-600 text-blue-600   rounded-full px-6 py-1.5 "
-                to={"/login"}
+                to="/login"
+                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
               >
                 Login
               </Link>
               <Link
-                className=" cursor-pointer hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600 bg-blue-600 rounded-full px-6 py-1.5 text-white"
-                to={"/register"}
+                to="/register"
+                className="bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
               >
-                Sign up
+                Sign Up
               </Link>
             </div>
           </div>
