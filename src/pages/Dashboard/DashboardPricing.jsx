@@ -50,7 +50,7 @@ const DashboardPricing = () => {
           <FlutterwavePayment
             btn_style="rounded-full w-full py-2 bg-pink-600 text-white hover:bg-pink-700 transition"
             btn_text="Try Free Plan"
-            amount={0}
+            amount={1}
             subscriptionPlan={{
               tier: "Free",
               voterLimit: 100,
@@ -142,7 +142,7 @@ const DashboardPricing = () => {
           {amount > 0 && (
             <div className="flex items-center gap-2">
               <p className="text-3xl font-semibold">${formatter(amount)}</p>
-              <span className="text-xs">/ month</span>
+              <span className="text-xs">/ voters</span>
             </div>
           )}
           <input
