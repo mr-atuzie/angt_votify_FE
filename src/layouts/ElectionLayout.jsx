@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
 import Loader from "../components/Loader";
+import ElectionMobileNav from "../components/ElectionMobileNav";
 
 const ElectionLayout = () => {
   const { id } = useParams();
@@ -42,6 +43,8 @@ const ElectionLayout = () => {
 
         <Outlet context={electionData} />
       </div>
+
+      <ElectionMobileNav id={electionData?._id} />
     </div>
   );
 };

@@ -44,7 +44,7 @@ const ElectionHeader = ({
         </div>
 
         {/* User Actions */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 lg:gap-5">
           <Link
             to="/dashboard"
             className="hidden lg:flex items-center text-white gap-2"
@@ -52,6 +52,14 @@ const ElectionHeader = ({
             <MdSpaceDashboard className="text-xl" />
             <span>Dashboard</span>
           </Link>
+
+          <Link
+            to="/dashboard"
+            className="lg:hidden flex items-center text-white gap-2"
+          >
+            <MdSpaceDashboard size={25} />
+          </Link>
+
           <button
             className="w-10 h-10 bg-blue-600 text-white text-lg rounded-full flex items-center justify-center hover:bg-blue-700 transition"
             title="User Profile"
