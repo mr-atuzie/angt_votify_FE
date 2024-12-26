@@ -4,8 +4,8 @@ import { PiUsersFourDuotone } from "react-icons/pi";
 // import { SlLogout } from "react-icons/sl";
 import { GrSettingsOption } from "react-icons/gr";
 import { MdSpaceDashboard } from "react-icons/md";
-// import { PiMoneyDuotone } from "react-icons/pi";
-import { IoAddSharp } from "react-icons/io5";
+import { PiMoneyDuotone } from "react-icons/pi";
+// import { IoAddSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 const fontSize = 20;
@@ -26,16 +26,16 @@ const MobileNav = () => {
             label: "Voters ",
             Icon: PiUsersFourDuotone,
           },
-          {
-            to: "/dashboard/create-election",
-            label: "Add",
-            Icon: IoAddSharp,
-          },
           // {
-          //   to: "/dashboard/subscription",
-          //   label: "Subscription",
-          //   Icon: PiMoneyDuotone,
+          //   to: "/dashboard/create-election",
+          //   label: "Add",
+          //   Icon: IoAddSharp,
           // },
+          {
+            to: "/dashboard/subscription",
+            label: "Subscription",
+            Icon: PiMoneyDuotone,
+          },
           {
             to: "/dashboard/setting/profile",
             label: "Settings",

@@ -53,7 +53,7 @@ const DashboardElectionCard = ({ election, setElections }) => {
               {election.title}
             </h2>
             <span
-              className={`inline-block text-xs lg:text-sm font-medium px-3 py-1 rounded-full ${
+              className={`inline-block text-xs lg:text-sm font-medium px-3 py-1 rounded-lg ${
                 election?.status === "Upcoming"
                   ? "text-yellow-600 bg-yellow-100"
                   : election?.status === "Ongoing"

@@ -122,7 +122,7 @@ const DashboardVoters = () => {
               className="block text-sm font-medium mb-1"
               htmlFor="election"
             >
-              Election
+              Select Election
             </label>
             <select
               id="election"
@@ -159,7 +159,7 @@ const DashboardVoters = () => {
           {/* Name */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1" htmlFor="name">
-              Full Name
+              Voter Name
             </label>
             <input
               className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -178,7 +178,7 @@ const DashboardVoters = () => {
           {/* Email */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1" htmlFor="email">
-              Email Address
+              Voter Email
             </label>
             <input
               className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"

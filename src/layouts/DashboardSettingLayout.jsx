@@ -5,16 +5,17 @@ import { LiaCogSolid } from "react-icons/lia";
 // import { HiBuildingOffice2 } from "react-icons/hi2";
 
 import { FaKey } from "react-icons/fa6";
+import { PiMoneyDuotone } from "react-icons/pi";
 
 const DashboardSettingLayout = () => {
   return (
-    <div className="flex flex-col lg:flex-row px-3 lg:px-6 gap-10">
-      <div className="h-fit bg-white w-full sm:w-[90%] lg:w-[25%] mx-auto p-5 mt-8 shadow-lg rounded-lg flex flex-col">
-        <h2 className="text-lg text-blue-800 uppercase tracking-wide font-semibold mb-6">
+    <div className="flex flex-col lg:flex-row px-3 lg:px-6 gap-5 lg:gap-10">
+      <div className="h-fit bg-white w-full lg:w-[25%] mx-auto p-2 lg:p-5 mt-8 shadow-lg rounded-lg flex flex-col">
+        <h2 className="text-lg text-blue-800 uppercase tracking-wide font-semibold mb-3 lg:mb-6">
           Account Setting
         </h2>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
           {[
             {
               to: `/dashboard/setting/profile`,
@@ -26,21 +27,26 @@ const DashboardSettingLayout = () => {
               label: "Change Password",
               Icon: FaKey,
             },
+            {
+              to: "/dashboard/subscription",
+              label: "Subscription",
+              Icon: PiMoneyDuotone,
+            },
           ].map(({ to, label, Icon }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `flex items-center gap-3 p-3 rounded-md transition-all duration-300 ${
+                `flex items-center gap-2  rounded-md transition-all duration-300 ${
                   isActive
-                    ? "bg-blue-100 text-blue-600 shadow-md"
-                    : "bg-gray-50 text-gray-600 hover:bg-blue-50 hover:text-blue-500"
+                    ? " text-blue-600"
+                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-500"
                 }`
               }
               end
             >
               <Icon size={20} />
-              <span className="text-sm font-medium">{label}</span>
+              <span className=" text-xs  lg:text-sm font-medium">{label}</span>
             </NavLink>
           ))}
         </div>

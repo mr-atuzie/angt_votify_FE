@@ -16,32 +16,33 @@ const DashboardHeader = ({ fullname }) => {
   return (
     <div className="flex flex-wrap justify-between items-center gap-4">
       {/* Page Title Section */}
-      <div className="flex items-center gap-2">
-        <button className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-white hover:text-blue-600 transition duration-300">
-          {getUserInitials(fullname)}
-        </button>
-        <div>
-          <h1 className="text-xl font-semibold text-gray-800 lg:text-2xl">
-            {pageName || "Dashboard Overview"}
-          </h1>
-          <p className="text-sm text-gray-500 lg:text-base">
-            Welcome <span className="text-blue-600">{fullname}</span>
-          </p>
-        </div>
+      <div className="flex-1">
+        <h1 className="text-xl font-semibold text-gray-800 lg:text-2xl">
+          {pageName || "Dashboard Overview"}
+        </h1>
+        <p className="text-sm text-gray-500 lg:text-base">
+          Welcome <span className="text-blue-600">{fullname}</span>
+        </p>
       </div>
 
       {/* Actions Section */}
       <div className="flex items-center gap-4">
         {/* Hide Add Election button on small screens */}
         <Link to="/dashboard/create-election">
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-2 lg:px-4 py-2 rounded-md text-xs lg:text-sm font-medium hover:bg-blue-700 transition duration-300">
+          <button className="hidden lg:flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">
             <IoAddSharp size={20} />
             <span>Add Election</span>
           </button>
         </Link>
 
+        <Link to="/dashboard/create-election">
+          <button className="flex justify-center border-2 border-blue-500 items-center w-10 h-10 rounded-full bg-white text-blue-600 shadow-md  transition duration-300">
+            <IoAddSharp size={20} />
+          </button>
+        </Link>
+
         {/* Get Initials Button */}
-        <button className="hidden justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md hover:bg-white hover:text-blue-600 transition duration-300">
+        <button className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md  transition duration-300">
           {getUserInitials(fullname)}
         </button>
       </div>

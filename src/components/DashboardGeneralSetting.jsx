@@ -49,7 +49,7 @@ const DashboardGeneralSetting = () => {
 
         <form className="space-y-6 py-6 p-3 lg:p-6">
           {/* Instruction Text */}
-          <p className="mb-6 text-gray-600 text-center text-sm">
+          <p className="mb-6 text-gray-600 text-center text-xs lg:text-sm">
             Fill out the form below to create a new election.
           </p>
 
