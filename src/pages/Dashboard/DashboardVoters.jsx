@@ -56,9 +56,9 @@ const DashboardVoters = () => {
       setElectionId("");
       toast.success("Voter added to election");
 
-      // const redirectPath = `/election/${electionId}/voters`;
+      const redirectPath = `/election/${electionId}/voters`;
 
-      // navigate(redirectPath);
+      navigate(redirectPath);
     } catch (error) {
       const message =
         (error.response &&
@@ -116,6 +116,46 @@ const DashboardVoters = () => {
             Add a voter to the election of your choice
           </p>
 
+          {/* Election Type */}
+          <div className=" mb-6">
+            <label
+              className="block text-sm font-medium mb-1"
+              htmlFor="election"
+            >
+              Election
+            </label>
+            <select
+              id="election"
+              name="election"
+              // value={election}
+              onChange={(e) => {
+                setElectionId(e.target.value);
+              }}
+              className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <option disabled value={""}>
+                Select Election
+              </option>
+              {elections.length > 0 &&
+                elections.map((election) => {
+                  return (
+                    <option
+                      className=" text-sm"
+                      key={election?._id}
+                      value={election?._id}
+                    >
+                      {election?.title}
+                    </option>
+                  );
+                })}
+              {/* <option value="multiple">Class President 2024/2025</option>
+              <option value="ranked">Employee of the month</option> */}
+            </select>
+            <small className="text-gray-500">
+              Select Election you will like to add voter to
+            </small>
+          </div>
+
           {/* Name */}
           <div className="mb-6">
             <label className="block text-sm font-medium mb-1" htmlFor="name">
@@ -171,44 +211,6 @@ const DashboardVoters = () => {
             <small className="text-gray-500">
               Ensure this number is correct to receive the verification code via
               SMS.
-            </small>
-          </div>
-
-          {/* Election Type */}
-          <div className=" mb-14">
-            <label
-              className="block text-sm font-medium mb-1"
-              htmlFor="election"
-            >
-              Election
-            </label>
-            <select
-              id="election"
-              name="election"
-              value={election}
-              onChange={(e) => setElectionId(e.target.value)}
-              className="border placeholder:text-gray-500 border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-              <option disabled value={""}>
-                Select Election
-              </option>
-              {elections.length > 0 &&
-                elections.map((election) => {
-                  return (
-                    <option
-                      className=" text-sm"
-                      key={election?._id}
-                      value={election?._id}
-                    >
-                      {election?.title}
-                    </option>
-                  );
-                })}
-              {/* <option value="multiple">Class President 2024/2025</option>
-              <option value="ranked">Employee of the month</option> */}
-            </select>
-            <small className="text-gray-500">
-              Select Election you will like to add voter to
             </small>
           </div>
 

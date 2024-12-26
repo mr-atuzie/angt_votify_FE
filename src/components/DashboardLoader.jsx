@@ -2,7 +2,7 @@ import React from "react";
 
 const DashboardLoader = () => {
   return (
-    <div className="min-h-screen bg-gray-100 p-3 md:p-6 flex flex-col gap-4 animate-pulse">
+    <div className="min-h-screen bg-gray-100 md:p-6 flex flex-col gap-4 animate-pulse">
       {/* Header Loader */}
       <div className="hidden flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>

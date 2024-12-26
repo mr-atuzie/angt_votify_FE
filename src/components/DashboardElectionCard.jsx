@@ -1,120 +1,105 @@
-import axios from "axios";
+// import axios from "axios";
 import moment from "moment";
-import React, { useState } from "react";
-import toast from "react-hot-toast";
-import { BsTrash3 } from "react-icons/bs";
-import { FaEye, FaRegCalendarCheck, FaVoteYea } from "react-icons/fa";
-import { FaRegCalendarXmark } from "react-icons/fa6";
+import React from "react";
+// import toast from "react-hot-toast";
+// import { BsTrash3 } from "react-icons/bs";
+// import { FaEye, FaRegCalendarCheck } from "react-icons/fa";
+// import { FaRegCalendarXmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const DashboardElectionCard = ({ election, setElections }) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const handleDeleteElection = async (id) => {
-    setLoading(true);
+  // const handleDeleteElection = async (id) => {
+  //   setLoading(true);
 
-    try {
-      await axios.delete(`/api/v1/election/${id}`);
+  //   try {
+  //     await axios.delete(`/api/v1/election/${id}`);
 
-      const response = await axios.get(`/api/v1/user/election`);
-      setElections(response.data);
-      toast.success(`election has been deleted`);
-      setLoading(false);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+  //     const response = await axios.get(`/api/v1/user/election`);
+  //     setElections(response.data);
+  //     toast.success(`election has been deleted`);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     const message =
+  //       (error.response &&
+  //         error.response.data &&
+  //         error.response.data.message) ||
+  //       error.message ||
+  //       error.toString();
 
-      setLoading(false);
-      toast.error(message);
-    }
-  };
+  //     setLoading(false);
+  //     toast.error(message);
+  //   }
+  // };
 
   return (
-    <div
-      key={election?._id}
-      className="w-full bg-white border border-gray-300 rounded-lg shadow-md p-5 hover:shadow-lg transition-shadow"
+    <Link
+      key={election._id}
+      to={`/election/${election?._id}/overview`}
+      className="block"
     >
-      {/* Header Section */}
-      <div className="flex flex-col sm:flex-row lg:items-center justify-between mb-4 gap-3 sm:gap-0">
-        <div className="flex items-center gap-2">
+      <div className="w-full bg-white h-fit border rounded-lg shadow-md p-3 lg:p-6 hover:shadow-lg transition duration-300 flex justify-between lg:items-center flex-col lg:flex-row  gap-4">
+        <div className="flex gap-4">
+          {/* Election Image */}
           <img
-            src={election?.image}
-            alt={election?.title}
-            className="w-16 h-16 rounded-lg object-cover"
+            className="w-16 h-16 object-cover rounded-md"
+            src={election.image}
+            alt={election.title}
           />
-          <h2 className="text-lg font-medium capitalize">{election?.title}</h2>
+          {/* Election Details */}
+          <div>
+            <h2 className="capitalize font-semibold text-gray-800 lg:text-lg">
+              {election.title}
+            </h2>
+            <span
+              className={`inline-block text-xs lg:text-sm font-medium px-3 py-1 rounded-full ${
+                election?.status === "Upcoming"
+                  ? "text-yellow-600 bg-yellow-100"
+                  : election?.status === "Ongoing"
+                  ? "text-green-600 bg-green-100"
+                  : "text-blue-600 bg-blue-100"
+              }`}
+            >
+              {election?.status}
+            </span>
+          </div>
         </div>
-        <span
-          className={`text-sm px-3 py-1 rounded-lg w-fit ${
-            election?.status === "Upcoming"
-              ? "text-yellow-600 bg-yellow-100"
-              : election?.status === "Ongoing"
-              ? "text-green-600 bg-green-100"
-              : "text-blue-600 bg-blue-100"
-          }`}
-        >
-          {election?.status}
-        </span>
-      </div>
 
-      {/* Date Section */}
-      <div className="border-t border-gray-200 pt-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-          {[
-            {
-              icon: <FaRegCalendarCheck size={15} />,
-              label: "Start Date",
-              value: moment(election?.startDate).format("MMM DD, YYYY hh:mm A"),
-            },
-            {
-              icon: <FaRegCalendarXmark size={15} />,
-              label: "End Date",
-              value: moment(election?.endDate).format("MMM DD, YYYY hh:mm A"),
-            },
-            {
-              icon: <FaVoteYea size={15} />,
-              label: "Election Type",
-              value: (
-                <span className="text-blue-600 capitalize">
-                  {election?.electionType}
-                </span>
-              ),
-            },
-          ].map(({ icon, label, value }, index) => (
-            <div key={index} className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                {icon}
-                <h4 className="font-medium text-xs uppercase">{label}</h4>
-              </div>
-              <p className="text-gray-500">{value}</p>
+        {/* Dates Section */}
+        <div className="flex items-center gap-4">
+          {/* Start Date */}
+          <div className="flex flex-col items-center text-gray-600">
+            <div className="bg-blue-100 p-3 rounded-lg shadow-md flex flex-col items-center w-28">
+              <span className="text-xs font-medium uppercase text-blue-500">
+                Start Date
+              </span>
+              <p className="text-sm font-semibold text-gray-800">
+                {moment(election?.startDate).format("MMM DD")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {moment(election?.startDate).format("YYYY, hh:mm A")}
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* End Date */}
+          <div className="flex flex-col items-center text-gray-600">
+            <div className="bg-green-100 p-3 rounded-lg shadow-md flex flex-col items-center w-28">
+              <span className="text-xs font-medium uppercase text-green-500">
+                End Date
+              </span>
+              <p className="text-sm font-semibold text-gray-800">
+                {moment(election?.endDate).format("MMM DD")}
+              </p>
+              <p className="text-xs text-gray-500">
+                {moment(election?.endDate).format("YYYY, hh:mm A")}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Footer Section */}
-      <div className="mt-6 flex  gap-4">
-        <Link
-          to={`/election/${election?._id}/overview`}
-          className="w-full sm:w-auto"
-        >
-          <button className="w-full sm:w-auto text-sm px-4 py-2 flex items-center justify-center gap-2 font-normal rounded-lg bg-blue-100 text-blue-400">
-            <FaEye size={15} /> View Details
-          </button>
-        </Link>
-        <button
-          onClick={() => handleDeleteElection(election?._id)}
-          className="w-full sm:w-auto flex items-center justify-center gap-2 text-sm px-4 py-2 rounded-lg bg-red-100 text-red-600"
-        >
-          <BsTrash3 size={15} />
-          {loading ? "Deleting" : "Delete"}
-        </button>
-      </div>
-    </div>
+    </Link>
   );
 };
 
