@@ -27,10 +27,10 @@ const ElectionHeader = ({
           <img
             src={electionImage}
             alt={`${electionName} logo`}
-            className="w-14 h-14 rounded-lg object-cover"
+            className="w-14 h-10 lg:h-14 rounded-lg object-cover"
           />
           <div>
-            <h1 className="text-xl font-medium capitalize text-white">
+            <h1 className="lg:text-xl font-medium capitalize text-white">
               {electionName}
             </h1>
             <span
@@ -45,7 +45,10 @@ const ElectionHeader = ({
 
         {/* User Actions */}
         <div className="flex items-center gap-5">
-          <Link to="/dashboard" className="flex items-center text-white gap-2">
+          <Link
+            to="/dashboard"
+            className="hidden lg:flex items-center text-white gap-2"
+          >
             <MdSpaceDashboard className="text-xl" />
             <span>Dashboard</span>
           </Link>
