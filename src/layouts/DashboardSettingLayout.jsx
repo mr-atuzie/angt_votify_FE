@@ -1,69 +1,51 @@
 import React from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { NavLink, Outlet } from "react-router-dom";
+// import { FaRegTrashAlt } from "react-icons/fa";
 import { LiaCogSolid } from "react-icons/lia";
-import { HiBuildingOffice2 } from "react-icons/hi2";
+// import { HiBuildingOffice2 } from "react-icons/hi2";
 
 import { FaKey } from "react-icons/fa6";
 
 const DashboardSettingLayout = () => {
-  const fontSize = 15;
-  const { id } = useParams();
-
   return (
-    <div className="flex px-6 gap-10">
-      <div className=" h-fit bg-white w-[25%] mx-auto p-3 mt-8 shadow-lg rounded-lg flex flex-col ">
-        <h2 className="text-lg text-blue-800 uppercase te tracking-wide font-semibold mb-3">
-          ACCOUNT SETTING
+    <div className="flex flex-col lg:flex-row px-3 lg:px-6 gap-10">
+      <div className="h-fit bg-white w-full sm:w-[90%] lg:w-[25%] mx-auto p-5 mt-8 shadow-lg rounded-lg flex flex-col">
+        <h2 className="text-lg text-blue-800 uppercase tracking-wide font-semibold mb-6">
+          Account Setting
         </h2>
-        {[
-          {
-            to: `/dashboard/setting/general`,
-            label: "Profile Setting",
-            Icon: LiaCogSolid,
-          },
-          {
-            to: `/dashboard/setting/security`,
-            label: "Change Password",
-            Icon: FaKey,
-          },
-          {
-            to: `/dashboard/setting/organisation`,
-            label: "Organization Setting",
-            Icon: HiBuildingOffice2,
-          },
-          {
-            to: `/election/${id}/setting/delete`,
-            label: "Delete",
-            Icon: FaRegTrashAlt,
-          },
-          // { to: "/dashboard/pricing", label: "Pricing", Icon: IoMdPricetags },
-          // {
-          //   to: "/dashboard/settings",
-          //   label: "Settings",
-          //   Icon: GrSettingsOption,
-          // },
-        ].map(({ to, label, Icon }) => (
-          <div key={to}>
+
+        <div className="flex flex-col gap-4">
+          {[
+            {
+              to: `/dashboard/setting/profile`,
+              label: "Profile Setting",
+              Icon: LiaCogSolid,
+            },
+            {
+              to: `/dashboard/setting/change-password`,
+              label: "Change Password",
+              Icon: FaKey,
+            },
+          ].map(({ to, label, Icon }) => (
             <NavLink
+              key={to}
               to={to}
               className={({ isActive }) =>
-                `tracking-wide cursor-pointer py-2 mb-1 flex items-center rounded-md gap-2 px-4 transition-all duration-300 ${
+                `flex items-center gap-3 p-3 rounded-md transition-all duration-300 ${
                   isActive
-                    ? "bg-blue-800 text-white"
-                    : "hover:bg-blue-100 hover:text-blue-500 text-gray-600"
+                    ? "bg-blue-100 text-blue-600 shadow-md"
+                    : "bg-gray-50 text-gray-600 hover:bg-blue-50 hover:text-blue-500"
                 }`
               }
               end
             >
-              <span>
-                <Icon size={fontSize} />
-              </span>
-              <span>{label}</span>
+              <Icon size={20} />
+              <span className="text-sm font-medium">{label}</span>
             </NavLink>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
       <div className=" flex-1">
         <Outlet />
       </div>

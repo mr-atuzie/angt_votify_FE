@@ -38,6 +38,8 @@ const Dashboard = () => {
     getElection();
   }, []);
 
+  // setPreLoader(true);
+
   if (preLoader) {
     return <DashboardLoader />;
   }
@@ -67,7 +69,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className=" flex gap-6">
+      <div className=" hidden lg:flex gap-6">
         <div className="w-[70%] space-y-4">
           {dashboard?.recentElections?.length > 0 &&
             dashboard?.recentElections?.map((election) => (

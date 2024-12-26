@@ -103,16 +103,16 @@ const DashboardVoters = () => {
     return <DashboardLoader />;
   }
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="bg-white w-[90%] rounded-lg shadow-lg lg:w-[60%] mx-auto">
+    <div className="min-h-screen">
+      <div className="bg-white w-full rounded-lg shadow-lg lg:w-[60%] mx-auto">
         {/* Header */}
-        <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
+        <div className="bg-blue-800 rounded-t-lg uppercase py-4 text-center text-white text-lg font-bold">
           Add Voter
         </div>
 
         {/* Form */}
-        <form className="p-8" onSubmit={handleSubmit}>
-          <p className="text-center text-gray-700 mb-8">
+        <form className=" p-4 lg:p-8" onSubmit={handleSubmit}>
+          <p className="text-center text-sm  text-gray-700 mb-8">
             Add a voter to the election of your choice
           </p>
 

@@ -10,7 +10,7 @@ const SettingLayout = () => {
   const { id } = useParams();
 
   return (
-    <div className="flex px-6 gap-10">
+    <div className="flex flex-col lg:flex-row px-6 gap-10">
       <div className=" h-fit bg-white w-[25%] mx-auto p-3 mt-8 shadow-lg rounded-lg flex flex-col ">
         <h2 className="text-lg text-blue-800 uppercase te tracking-wide font-semibold mb-3">
           Edit Election
