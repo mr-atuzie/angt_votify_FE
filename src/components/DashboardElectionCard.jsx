@@ -39,7 +39,7 @@ const DashboardElectionCard = ({ election, setElections }) => {
       to={`/election/${election?._id}/overview`}
       className="block"
     >
-      <div className="w-full bg-white h-fit border rounded-lg shadow-md p-3 lg:p-6 hover:shadow-lg transition duration-300 flex justify-between lg:items-center flex-col lg:flex-row  gap-4">
+      <div className="w-full bg-white h-fit border rounded-lg shadow-md p-4 lg:p-6 hover:shadow-lg transition duration-300 flex justify-between lg:items-center flex-col lg:flex-row  gap-4">
         <div className="flex gap-4">
           {/* Election Image */}
           <img
