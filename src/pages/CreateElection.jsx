@@ -104,14 +104,14 @@ const CreateElection = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-cente py-16 bg-blue-50 min-h-screen">
-      <div className="w-[90%] bg-white shadow-lg rounded-lg lg:w-[60%] mx-auto">
+    <div className="w-full flex justify-center items-cente lg:py-16 bg-blue-50 min-h-screen">
+      <div className="w-full bg-white shadow-lg rounded-lg lg:w-[60%] mx-auto">
         {/* Header */}
-        <div className="w-full bg-blue-800 text-white text-center py-4 ">
+        <div className="w-full bg-blue-800 rounded-t-lg text-white text-center py-4 ">
           <h1 className="text-xl uppercase font-semibold">Create Election</h1>
         </div>
 
-        <div className="py-10 px-6 lg:px-8">
+        <div className="py-10 px-4 lg:px-8">
           {/* Instruction */}
           <p className="mb-6 text-gray-600 text-center text-sm">
             Fill out the form below to create a new election.
@@ -139,7 +139,7 @@ const CreateElection = () => {
               ) : (
                 <div>
                   <p className="block text-sm font-medium mb-1">
-                    Organization logo
+                    Election logo
                   </p>
                   <label
                     htmlFor="addPhoto"
@@ -206,10 +206,10 @@ const CreateElection = () => {
               </div>
 
               {/* Dates */}
-              <div className="flex gap-4">
+              <div className="flex flex-col lg:flex-row gap-4">
                 <div className="w-full">
                   <label
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium  mb-1"
                     htmlFor="startDate"
                   >
                     Start Date
@@ -226,7 +226,7 @@ const CreateElection = () => {
 
                 <div className="w-full">
                   <label
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    className="block text-sm font-medium mb-1"
                     htmlFor="endDate"
                   >
                     End Date
@@ -245,7 +245,7 @@ const CreateElection = () => {
               {/* Election Type */}
               <div>
                 <label
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium  mb-1"
                   htmlFor="electionType"
                 >
                   Election Type

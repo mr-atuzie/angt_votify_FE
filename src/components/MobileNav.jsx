@@ -47,7 +47,9 @@ const MobileNav = () => {
             to={to}
             className={({ isActive }) =>
               `tracking-wide cursor-pointer py-2 flex flex-col items-center rounded-md gap-2  transition-all duration-300 ${
-                isActive ? "bg-white text-blue-900" : "hover:bg-blue-800"
+                isActive
+                  ? "bg-white text-blue-900"
+                  : "hover:bg-blue-800 text-gray-500"
               }`
             }
             end

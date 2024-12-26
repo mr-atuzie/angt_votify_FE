@@ -52,8 +52,8 @@ const DashboardElections = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
-      <div className=" w-[90%] mx-auto flex flex-col gap-5">
+    <div className="min-h-screen ">
+      <div className=" w-full mx-auto flex flex-col gap-5">
         {elections.length > 0 ? (
           <>
             <div className=" flex justify-between items-center mb-4">

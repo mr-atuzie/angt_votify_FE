@@ -8,7 +8,7 @@ import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
 
 const Dashboard = () => {
-  const [preLoader, setPreLoader] = useState(true);
+  const [preLoader, setPreLoader] = useState(false);
   const [dashboard, setDashBoard] = useState(null);
 
   useEffect(() => {
