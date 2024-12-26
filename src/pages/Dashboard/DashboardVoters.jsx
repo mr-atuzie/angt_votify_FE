@@ -127,7 +127,7 @@ const DashboardVoters = () => {
             <select
               id="election"
               name="election"
-              // value={election}
+              value={election}
               onChange={(e) => {
                 setElectionId(e.target.value);
               }}

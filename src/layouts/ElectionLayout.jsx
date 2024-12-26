@@ -28,11 +28,11 @@ const ElectionLayout = () => {
   // console.log("Fetched Election Data:", electionData);
 
   return (
-    <div className="min-h-screen relative flex">
-      <div className="fixed h-full w-[20%]">
+    <div className="min-h-screen relative flex flex-col lg:flex-row">
+      <div className="fixed h-full w-[20%] hidden lg:block">
         <ElectionSidebar id={electionData?._id} />
       </div>
-      <div className="flex-1 ml-[20%] bg-gray-100">
+      <div className="flex-1 lg:ml-[20%] bg-gray-100">
         <ElectionHeader
           electionName={electionData?.title}
           electionImage={electionData?.image}
