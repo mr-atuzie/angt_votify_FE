@@ -66,7 +66,7 @@ const ElectionResult = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="">
       {ballots.length > 0 ? (
         <>
           <h2 className="text-center text-lg font-medium text-gray-700">

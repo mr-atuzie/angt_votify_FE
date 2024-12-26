@@ -4,7 +4,7 @@ import { Outlet, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
 import ElectionMobileNav from "../components/ElectionMobileNav";
 
 const ElectionLayout = () => {
@@ -12,7 +12,7 @@ const ElectionLayout = () => {
 
   const dispatch = useDispatch();
 
-  const { electionData, loading } = useSelector((state) => state.election);
+  const { electionData } = useSelector((state) => state.election);
 
   useEffect(() => {
     // Dispatch the action to fetch election data
@@ -21,7 +21,7 @@ const ElectionLayout = () => {
     // console.log("Fetching election with ID:", id); // Log the ID
   }, [dispatch, id]); // Make sure to include dispatch and id as dependencies
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
   // if (error) return <div>Error: {error}</div>;
 
   if (!electionData) return <div>No election found for ID: {id}</div>;
@@ -33,7 +33,7 @@ const ElectionLayout = () => {
       <div className="fixed h-full w-[20%] hidden lg:block">
         <ElectionSidebar id={electionData?._id} />
       </div>
-      <div className="flex-1 lg:ml-[20%] bg-gray-100">
+      <div className="flex-1 lg:ml-[20%] bg-gray-100 p-3 lg:p-6">
         <ElectionHeader
           electionName={electionData?.title}
           electionImage={electionData?.image}

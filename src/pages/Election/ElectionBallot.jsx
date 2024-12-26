@@ -121,7 +121,7 @@ const ElectionBallot = () => {
 
   return (
     <div>
-      <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
+      <div className="min-h-screen   flex flex-col gap-6">
         {ballots.length > 0 ? (
           <div className=" flex flex-col gap-10">
             <div className=" flex gap-2 mt-4">

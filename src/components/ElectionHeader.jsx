@@ -61,7 +61,7 @@ const ElectionHeader = ({
           </Link>
 
           <button
-            className="w-10 h-10 bg-blue-600 text-white text-lg rounded-full flex items-center justify-center hover:bg-blue-700 transition"
+            className="lg:w-10 w-7 h-7 lg:h-10 bg-blue-600 text-white text-lg rounded-full flex items-center justify-center hover:bg-blue-700 transition"
             title="User Profile"
           >
             {getUserInitials(fullname)}

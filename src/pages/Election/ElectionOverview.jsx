@@ -62,7 +62,7 @@ const ElectionOverview = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
+    <div className="min-h-screen flex flex-col gap-6">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white shadow-md p-4 rounded-lg">

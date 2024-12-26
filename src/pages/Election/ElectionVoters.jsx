@@ -125,7 +125,7 @@ const ElectionVoters = () => {
 
   return (
     <>
-      <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
+      <div className="min-h-screen   flex flex-col gap-6">
         {voters.length > 0 ? (
           <>
             <div className=" flex justify-between items-center ">
