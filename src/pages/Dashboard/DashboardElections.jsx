@@ -56,8 +56,8 @@ const DashboardElections = () => {
       <div className=" w-full mx-auto flex flex-col gap-5">
         {elections.length > 0 ? (
           <>
-            <div className=" flex justify-between items-center mb-4">
-              <form onSubmit={handleSearchSubmit} className=" w-[45%]">
+            <div className=" flex flex-col lg:flex-row justify-between gap-4 lg:items-center mb-4">
+              <form onSubmit={handleSearchSubmit} className=" lg:w-[45%]">
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
@@ -94,7 +94,7 @@ const DashboardElections = () => {
                 </div>
               </form>
 
-              <form className=" w-[30%]">
+              <form className=" w-full lg:w-[30%]">
                 <select
                   id="countries"
                   className="bg-gray-50 border p-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
