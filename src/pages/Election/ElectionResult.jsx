@@ -84,7 +84,7 @@ const ElectionResult = () => {
           </div>
 
           <div className="flex flex-col gap-10">
-            <div className="w-[60%] mx-auto">
+            <div className=" w-full lg:w-[60%] mx-auto">
               {ballots.map((ballot) => (
                 <ResultTable key={ballot._id} ballot={ballot} />
               ))}
