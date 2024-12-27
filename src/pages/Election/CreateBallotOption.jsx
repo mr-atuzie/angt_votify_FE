@@ -85,7 +85,7 @@ const CreateBallotOption = () => {
   };
 
   return (
-    <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
+    <div className="min-h-screen  bg-gray-100 lg:p-6 flex flex-col gap-6">
       {/* header */}
       {/* <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
@@ -99,14 +99,14 @@ const CreateBallotOption = () => {
         </div>
       </div> */}
 
-      <div className="bg-white rounded-lg shadow-md h-full w-[60%] mx-auto">
+      <div className="bg-white rounded-lg shadow-md h-full w-full lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
           Ballot Option
         </div>
 
         {/* Form */}
-        <form className="p-8">
+        <form className=" p-4 lg:p-8">
           <p className="text-center text-gray-600 mb-6">
             Add a voting option for{" "}
             <span className="text-blue-600 font-semibold">

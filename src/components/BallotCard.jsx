@@ -23,16 +23,16 @@ const BallotCard = ({
   };
 
   return (
-    <div className="flex justify-between items-center bg-white shadow-md p-6 rounded-xl border border-gray-200">
+    <div className="flex justify-between items-center bg-white shadow-md p-3 lg:p-6 rounded-xl border border-gray-200">
       {/* Profile Section */}
       <div className="flex items-center gap-4">
         <img
-          className="w-16 h-16 object-cover rounded-full border-2 border-blue-500"
+          className="lg:w-16 lg:h-16 w-10 h-10 object-cover rounded-full border-2 border-blue-500"
           src={option?.image}
           alt="Profile"
         />
         <div>
-          <h2 className="text-lg font-medium capitalize text-gray-800">
+          <h2 className="lg:text-lg font-medium capitalize text-gray-800">
             {option?.name}
           </h2>
           <p className="text-sm text-gray-500">{option?.description}</p>

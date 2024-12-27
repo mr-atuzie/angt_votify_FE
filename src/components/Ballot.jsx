@@ -19,13 +19,17 @@ const Ballot = ({
   const [isTooltipVisible, setTooltipVisible] = useState(false);
 
   return (
-    <div className="w-[70%] mx-auto bg-white rounded-lg shadow-lg">
+    <div className=" w-full lg:w-[70%] mx-auto bg-white rounded-lg shadow-lg">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-blue-700 flex justify-between items-center to-blue-800 text-white rounded-t-lg">
+      <div className=" px-3 lg:px-6 py-4 bg-gradient-to-r from-blue-700 flex justify-between items-center to-blue-800 text-white rounded-t-lg">
         <div>
-          <h1 className="text-xl capitalize font-semibold">{ballot?.title}</h1>
+          <h1 className=" text-lg lg:text-xl capitalize font-semibold">
+            {ballot?.title}
+          </h1>
           {/* <p className="text-sm opacity-80">Select your preferred candidate</p> */}
-          <p className="opacity-80 capitalize">{ballot?.description}</p>
+          <p className="opacity-80 text-sm lg:text-base capitalize">
+            {ballot?.description}
+          </p>
         </div>
 
         {/* Options Dropdown */}
@@ -87,7 +91,7 @@ const Ballot = ({
       </div>
 
       {/* Ballot Cards */}
-      <div className="p-6 grid grid-cols-1  gap-4">
+      <div className=" p-3 lg:p-6 grid grid-cols-1  gap-4">
         {ballot?.votingOptions.length > 0 ? (
           ballot?.votingOptions.map((option) => (
             <BallotCard
