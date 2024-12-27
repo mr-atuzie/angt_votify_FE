@@ -47,10 +47,12 @@ const ElectionGeneralSetting = () => {
       <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 rounded-t-lg">
-          <h1 className="text-2xl uppercase font-semibold">General Settings</h1>
+          <h1 className=" text-lg lg:text-2xl uppercase font-semibold">
+            General Settings
+          </h1>
         </div>
 
-        <form className="space-y-6 p-6">
+        <form className="space-y-6 p-3 lg:p-6">
           {/* Instruction Text */}
           <p className="mb-6 text-gray-600 text-center text-sm">
             Fill out the form below to create a new election.
@@ -107,7 +109,7 @@ const ElectionGeneralSetting = () => {
               type="button"
               onClick={handleSaveChanges}
               disabled={loading}
-              className={`px-6 py-3 text-white font-medium rounded-lg ${
+              className={`px-6 py-3 text-sm lg:text-base text-white font-medium rounded-lg ${
                 loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
               } focus:outline-none`}
             >

@@ -36,10 +36,12 @@ const ElectionDeleteForm = () => {
       <div className="bg-white rounded-lg shadow-md w-full mt-8 mx-auto">
         {/* Header */}
         <div className="w-full bg-red-600 text-white text-center py-4">
-          <h1 className="text-xl uppercase font-semibold">Delete Election</h1>
+          <h1 className="text-lime-50 lg:text-xl uppercase font-semibold">
+            Delete Election
+          </h1>
         </div>
 
-        <form className="space-y-6 p-6">
+        <form className="space-y-6 p-3 lg:p-6">
           {/* Instruction */}
           <p className="mb-6 text-gray-600 text-center text-sm">
             Are you sure you want to delete this election? This action is not
@@ -75,7 +77,7 @@ const ElectionDeleteForm = () => {
               type="button"
               onClick={handleDeleteElection}
               disabled={loading}
-              className={`px-6 py-3 text-white font-medium disabled:bg-red-300 rounded-lg bg-red-600 hover:bg-red-700" focus:outline-none`}
+              className={`px-6 py-3 text-sm lg:text-base text-white font-medium disabled:bg-red-300 rounded-lg bg-red-600 hover:bg-red-700" focus:outline-none`}
             >
               {loading ? "Deleting" : "Delete Election"}
             </button>

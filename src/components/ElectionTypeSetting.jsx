@@ -44,10 +44,12 @@ const ElectionTypeSetting = () => {
       <div className="bg-white rounded-lg shadow-md mt-8 w-full mx-auto">
         {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4">
-          <h1 className="text-xl uppercase font-semibold">Election Type</h1>
+          <h1 className=" text-lg lg:text-xl uppercase font-semibold">
+            Election Type
+          </h1>
         </div>
 
-        <form className="space-y-6 p-6">
+        <form className="space-y-6 p-3 lg:p-6">
           {/* Instruction */}
           <p className="mb-6 text-gray-600 text-center text-sm">
             Select a new election type for this election.
@@ -82,7 +84,7 @@ const ElectionTypeSetting = () => {
               type="button"
               onClick={handleSaveChanges}
               disabled={loading}
-              className={`px-6 py-3 text-white font-medium rounded-lg ${
+              className={`px-6 py-3 text-sm lg:text-base text-white font-medium rounded-lg ${
                 loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
               } focus:outline-none`}
             >

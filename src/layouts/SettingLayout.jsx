@@ -50,7 +50,7 @@ const SettingLayout = () => {
                 className={({ isActive }) =>
                   `tracking-wide cursor-pointer  py-2 mb-1 flex items-center rounded-md gap-2 px-4 transition-all duration-300 ${
                     isActive
-                      ? "bg-blue-100 text-blue-600"
+                      ? "bg-blue-100 text-blue-600 font-medium"
                       : "hover:bg-blue-100 hover:text-blue-500 text-gray-600"
                   }`
                 }
