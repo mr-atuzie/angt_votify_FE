@@ -6,18 +6,23 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 const Register = () => {
   const initialState = {
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
-    phone: "",
     password: "",
+    confirmPassword: "",
   };
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [phone, setPhone] = useState("");
 
-  const { name, email, password, phone } = formData;
+  const { firstname, email, password, lastname, confirmPassword } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,18 +37,20 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!name || !email || !phone || !password) {
+    if (!firstname || !email || !phone || !password || !lastname) {
       setLoading(false);
       return toast.error("All fields are required");
     }
-
-    console.log({ name, email, phone, password });
+    if (!password || !confirmPassword) {
+      setLoading(false);
+      return toast.error("All fields are required.");
+    }
 
     if (password.length < 8) {
       setLoading(false);
       return toast.error("Password must be up to 8 characters");
     }
-
+    const name = `${firstname} ${lastname}`;
     const userData = { name, email, phone, password };
 
     console.log(userData);
@@ -99,18 +106,41 @@ const Register = () => {
               <div>
                 <label
                   className="block text-sm font-medium text-gray-700 mb-1"
-                  htmlFor="name"
+                  htmlFor="firstname"
                 >
-                  Full Name
+                  Firstname
                 </label>
                 <input
                   className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="text"
-                  name="name"
-                  value={name}
+                  name="firstname"
+                  value={firstname}
                   onChange={handleInputChange}
-                  id="name"
-                  placeholder="Enter your Name"
+                  id="firstname"
+                  placeholder="Enter your firstname"
+                  required
+                />
+                <small className="text-xs text-gray-600 mt-1 block">
+                  Name as you'd like it to appear in the contest.
+                </small>
+              </div>
+
+              {/* Last Name */}
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="lastname"
+                >
+                  Lastname
+                </label>
+                <input
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  type="text"
+                  name="lastname"
+                  value={lastname}
+                  onChange={handleInputChange}
+                  id="lastname"
+                  placeholder="Enter your lastname"
                   required
                 />
                 <small className="text-xs text-gray-600 mt-1 block">
@@ -143,7 +173,7 @@ const Register = () => {
 
               {/* Phone Number */}
               <div>
-                <label
+                {/* <label
                   className="block text-sm font-medium text-gray-700 mb-1"
                   htmlFor="phone"
                 >
@@ -158,6 +188,22 @@ const Register = () => {
                   id="phone"
                   placeholder="Enter your Phone Number"
                   required
+                /> */}
+
+                <label
+                  className="block text-sm font-medium mb-1"
+                  htmlFor="phone"
+                >
+                  Phone Number
+                </label>
+
+                <PhoneInput
+                  country={"ng"} // Default country
+                  value={phone}
+                  onChange={setPhone} // Update state with selected number
+                  inputClass="phone-input-field" // Apply custom class to input field
+                  buttonClass="phone-input-button" // Apply custom class to button
+                  containerClass="phone-input-container" // Apply custom class to container
                 />
                 <small className="text-xs text-gray-600 mt-1 block">
                   Make sure your phone number is valid.
@@ -185,6 +231,26 @@ const Register = () => {
                 <small className="text-xs text-gray-600 mt-1 block">
                   Password must be at least 8 characters.
                 </small>
+              </div>
+
+              {/* Confirm Password */}
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  type="password"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleInputChange}
+                  id="confirmPassword"
+                  placeholder="Re-enter your new password"
+                  required
+                />
               </div>
             </div>
 

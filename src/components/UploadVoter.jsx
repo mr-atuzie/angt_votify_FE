@@ -1,16 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { VscFileSubmodule } from "react-icons/vsc";
+import { IoMdArrowBack } from "react-icons/io";
 
-const UploadVoter = () => {
+const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
 
   const handleFileChange = (e) => {
+    setMessage("");
     setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
   };
 
   const handleUpload = async () => {
+    setMessage("");
     if (!file) {
       setMessage("Please select a file before uploading.");
       return;
@@ -20,9 +24,13 @@ const UploadVoter = () => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("/upload-voters", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(
+        "/api/v1/voter/upload-voters/" + electionData?._id,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       setMessage(response.data.message);
     } catch (error) {
       setMessage(
@@ -34,8 +42,13 @@ const UploadVoter = () => {
   return (
     <div className=" z-50 absolute bg-black/60  flex justify-center  min-h-screen  w-full inset-0">
       <div className="bg-white rounded-lg w-[95%] h-fit mt-8 lg:mt-16 lg:w-[50%] mx-auto shadow-md">
-        <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
-          Upload Voter File
+        <div className="bg-blue-800 p-4 flex items-center gap-10 uppercase text-white ">
+          <button onClick={() => setFileMenu(!fileMenu)}>
+            <IoMdArrowBack size={25} />
+          </button>
+          <h1 className=" text-center text-lg font-semibold">
+            Upload Voter File
+          </h1>
         </div>
         <div className="w-full p-6 ">
           <p className="text-gray-600 mb-6 text-sm lg:text-base">
@@ -67,30 +80,31 @@ const UploadVoter = () => {
             </div>
           )}
 
-          <div className="mb-4 h-40  flex justify-center border-2 border-gray-400 rounded-lg border-dashed  items-center  w-60 bg-gray-200">
+          <div className="mb-4 h-40 flex justify-center border-2 border-gray-400 rounded-lg border-dashed items-center w-60 bg-gray-200">
             <label
-              id="file"
               htmlFor="file"
-              className="text-sm flex items-center gap-2  font-medium text-gray-500"
+              className="text-sm flex items-center gap-2 font-medium text-gray-500 cursor-pointer"
             >
               <VscFileSubmodule size={25} /> Click to select file
+              <input
+                id="file"
+                name="file"
+                type="file"
+                accept=".xlsx,.csv"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </label>
-            <input
-              id="file"
-              name="file"
-              type="file"
-              accept=".xlsx,.csv"
-              onChange={handleFileChange}
-              className="mt-1 hidden  w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
           </div>
 
-          <button
-            onClick={handleUpload}
-            className=" bg-blue-600 text-white px-4 py-2 rounded-md w-60 hover:bg-blue-700 transition"
-          >
-            Upload File
-          </button>
+          {file && (
+            <button
+              onClick={handleUpload}
+              className=" bg-blue-600 text-white px-4 py-2 rounded-md w-60 hover:bg-blue-700 transition"
+            >
+              Upload File
+            </button>
+          )}
         </div>
       </div>
     </div>

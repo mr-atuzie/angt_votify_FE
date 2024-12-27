@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-// import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 import {
@@ -17,48 +16,14 @@ import { VscFileSubmodule } from "react-icons/vsc";
 import DashboardLoader from "../../components/DashboardLoader";
 
 const ElectionVoters = () => {
-  const [menu, setMenu] = useState(false);
   const [voters, setVoters] = useState([]);
-
   const [searchQuery, setSearchQuery] = useState("");
   const [preLoader, setPreLoader] = useState(false);
   const electionData = useOutletContext();
-
-  // const [fileLoader, setFileLoader] = useState(false);
-  // const [file, setFile] = useState(null);
   const [fileMenu, setFileMenu] = useState(false);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
   const navigate = useNavigate();
-
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  // };
-
-  // const handleUpload = async () => {
-  //   setFileLoader(true);
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-
-  //   try {
-  //     const response = await axios.post(
-  //       `/api/upload-excel/${electionData?._id}`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     setFileLoader(false);
-  //     toast.success(response.data.message);
-  //   } catch (error) {
-  //     setFileLoader(false);
-  //     toast.error("Error uploading the file.");
-  //   }
-  // };
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -67,19 +32,13 @@ const ElectionVoters = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   useEffect(() => {
     setPreLoader(true);
     const getVoters = async () => {
       try {
         const response = await axios.get(`/api/v1/voter/election/${id}`);
-        // console.log(response.data.voters);
         setPreLoader(false);
         setVoters(response.data.voters);
-        return response.data;
       } catch (error) {
         const message =
           (error.response &&
@@ -87,32 +46,35 @@ const ElectionVoters = () => {
             error.response.data.message) ||
           error.message ||
           error.toString();
-
-        //  setLoading(false);
         setPreLoader(false);
         toast.error(message);
       }
     };
-
     getVoters();
   }, [id]);
 
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Handle the search submit logic here
     console.log("Search submitted for:", searchQuery);
-    // setVoters(true);
   };
 
-  // const handleEdit = (voterId) => {};
-
-  // const handleDelete = (voterId) => {};
-
-  // if (!isLoggedIn) {
-  //   navigate("/login");
-  //   // Redirect to login page if session is expired
-  //   // return <Navigate to="/login" replace />;
-  // }
+  const downloadCSV = () => {
+    const csvHeaders = ["Name,Email,Phone,Voted"];
+    const csvRows = voters.map((voter) => {
+      const voted = voter.isVerified ? "Yes" : "No";
+      return `${voter.fullName},${voter.email},${voter.phone},${voted}`;
+    });
+    const csvContent = [csvHeaders, ...csvRows].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${electionData?.title || "voters"}_details.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   if (!electionData) {
     return <div>No election data available</div>;
@@ -124,151 +86,87 @@ const ElectionVoters = () => {
 
   return (
     <>
-      {fileMenu && <UploadVoter />}
-      <div className="min-h-screen   flex flex-col gap-6">
+      {fileMenu && (
+        <UploadVoter
+          electionData={electionData}
+          fileMenu={fileMenu}
+          setFileMenu={setFileMenu}
+        />
+      )}
+      <div className="min-h-screen flex flex-col gap-6">
         {voters.length > 0 ? (
           <>
-            <div className=" flex flex-col lg:flex-row justify-between items-center ">
-              {/* Search Bar with Button */}
-              <form
-                onSubmit={handleSearchSubmit}
-                className=" w-full lg:w-[45%] "
-              >
-                <label
-                  htmlFor="default-search"
-                  className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                >
-                  Search
-                </label>
+            <div className="flex flex-col gap-4 lg:flex-row justify-between items-center">
+              <form onSubmit={handleSearchSubmit} className="w-full lg:w-[45%]">
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg
-                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                      />
-                    </svg>
-                  </div>
                   <input
                     type="search"
                     id="default-search"
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                     placeholder="Search voter name"
                     required
                   />
                   <button
                     type="submit"
-                    className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-4 py-2"
                   >
                     Search
                   </button>
                 </div>
               </form>
 
-              <div className=" flex items-center gap-2 ">
-                {/* <input type="file" accept=".xlsx" onChange={handleFileChange} />
-
-                {file && (
-                  <button
-                    onClick={handleUpload}
-                    className="bg-white shadow-md w-36  text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition"
-                  >
-                    <span>
-                      <IoIosCloudUpload size={20} />
-                    </span>
-                    <span>{fileLoader ? "Uploading" : "Upload File"}</span>
-                  </button>
-                )} */}
-
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => setFileMenu(!fileMenu)}
-                  className="bg-blue-600 text-sm lg:text-base  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
+                  className="bg-blue-600 text-sm lg:text-base text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
                 >
-                  <span>
-                    <VscFileSubmodule size={20} />
-                  </span>
-                  Upload fle
+                  <VscFileSubmodule size={20} />
+                  Upload File
                 </button>
 
                 <Link to={`/election/${electionData?._id}/voters/create`}>
-                  <button
-                    onClick={() => setMenu(!menu)}
-                    className="bg-blue-600  text-white text-sm lg:text-base px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
-                  >
-                    <span>
-                      <IoAddSharp size={20} />
-                    </span>
+                  <button className="bg-blue-600 text-sm lg:text-base text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                    <IoAddSharp size={20} />
                     Add Voter
                   </button>
                 </Link>
               </div>
+
+              <button
+                onClick={downloadCSV}
+                className="bg-green-600 text-sm lg:text-base text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-green-700 transition"
+              >
+                Download Voters
+              </button>
             </div>
+
             <div className="relative overflow-x-auto shadow-lg sm:rounded-lg bg-white">
-              {/* Table Header */}
               <table className="w-full text-sm text-left text-gray-700">
                 <thead className="bg-blue-800 text-white uppercase text-xs">
                   <tr>
-                    <th scope="col" className="px-6 py-3">
-                      Name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Email
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Phone
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Voted
-                    </th>
-                    {/* <th scope="col" className="px-6 py-3">
-                      Actions
-                    </th> */}
+                    <th className="px-4 py-3">Name</th>
+                    <th className="px-4 py-3">Email</th>
+                    <th className="px-4 py-3">Phone</th>
+                    <th className="px-4 py-3">Voted</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
                   {voters.map((voter) => (
                     <tr key={voter._id} className="bg-white hover:bg-gray-50">
-                      <td className="px-6 py-4 font-medium text-gray-900">
+                      <td className="px-4 whitespace-nowrap py-4 font-medium text-gray-900">
                         {voter.fullName}
                       </td>
-                      <td className="px-6 py-4">{voter.email}</td>
-                      <td className="px-6 py-4">{voter.phone}</td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`px-2.5 py-1 rounded ${
-                            voter.isVerified
-                              ? "text-green-500"
-                              : "text-gray-600"
-                          }`}
-                        >
-                          {voter.isVerified ? "Voted" : "null"}
-                        </span>
+                      <td className="px-4 whitespace-nowrap py-4">
+                        {voter.email}
                       </td>
-                      {/* <td className="px-6 py-4 flex items-center space-x-4">
-                        <button
-                          onClick={() => handleEdit(voter._id)}
-                          className="text-green-500 hover:text-blue-700"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(voter._id)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          Delete
-                        </button>
-                      </td> */}
+                      <td className="px-4 whitespace-nowrap py-4">
+                        {voter.phone}
+                      </td>
+                      <td className="px-4 whitespace-nowrap py-4">
+                        {voter.isVerified ? "Voted" : "null"}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -276,43 +174,22 @@ const ElectionVoters = () => {
             </div>
           </>
         ) : (
-          <div className=" flex justify-center min-h-[70vh] items-center h-full w-full">
-            <div className=" flex flex-col justify-center items-center gap-2">
-              <div className=" flex items-center gap-2">
-                <span>
-                  <PiUsersFourFill size={50} />
-                </span>
-                <h1 className=" text-xl lg:text-4xl ">Add Voters</h1>
-              </div>
-
-              <p className=" text-center lg:text-base text-sm">
-                Get started by adding Voters to{" "}
+          <div className="flex justify-center min-h-[70vh] items-center h-full w-full">
+            <div className="flex flex-col justify-center items-center gap-2">
+              <PiUsersFourFill size={50} />
+              <h1 className="text-xl lg:text-4xl">Add Voters</h1>
+              <p className="text-center lg:text-base text-sm">
+                Get started by adding voters to{" "}
                 <span className="text-blue-600 font-medium">
                   {electionData?.title}
-                </span>{" "}
-                Election
+                </span>
               </p>
-
-              <div className=" flex justify-center gap-2 mt-4">
-                {/* <button className="bg-white border w-36 border-blue-500 text-blue-500 flex items-center justify-center gap-2    rounded-md hover:bg-blue-700 transition">
-                  <span>
-                    <IoIosCloudUpload size={20} />
-                  </span>
-                  <span>Import</span>
-                </button> */}
-
-                <Link to={`/election/${electionData?._id}/voters/create`}>
-                  <button
-                    onClick={() => setMenu(!menu)}
-                    className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
-                  >
-                    <span>
-                      <IoAddSharp size={20} />
-                    </span>
-                    Add Voter
-                  </button>
-                </Link>
-              </div>
+              <Link to={`/election/${electionData?._id}/voters/create`}>
+                <button className="bg-blue-600 text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                  <IoAddSharp size={20} />
+                  Add Voter
+                </button>
+              </Link>
             </div>
           </div>
         )}
