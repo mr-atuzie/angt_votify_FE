@@ -5,7 +5,7 @@ import { LiaCogSolid } from "react-icons/lia";
 // import { HiBuildingOffice2 } from "react-icons/hi2";
 
 import { FaKey } from "react-icons/fa6";
-// import { PiMoneyDuotone } from "react-icons/pi";
+import { PiMoneyDuotone } from "react-icons/pi";
 
 const DashboardSettingLayout = () => {
   return (
@@ -27,19 +27,19 @@ const DashboardSettingLayout = () => {
               label: "Change Password",
               Icon: FaKey,
             },
-            // {
-            //   to: "/dashboard/subscription",
-            //   label: "Subscription",
-            //   Icon: PiMoneyDuotone,
-            // },
+            {
+              to: "/dashboard/subscription",
+              label: "Subscription",
+              Icon: PiMoneyDuotone,
+            },
           ].map(({ to, label, Icon }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `flex items-center gap-2  rounded-md transition-all duration-300 ${
+                `flex items-center gap-2 p-2  rounded-md transition-all duration-300 ${
                   isActive
-                    ? " text-blue-600"
+                    ? " text-blue-600 bg-blue-100"
                     : "text-gray-600 hover:bg-blue-50 hover:text-blue-500"
                 }`
               }

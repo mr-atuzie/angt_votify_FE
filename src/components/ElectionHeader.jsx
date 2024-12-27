@@ -27,14 +27,14 @@ const ElectionHeader = ({
           <img
             src={electionImage}
             alt={`${electionName} logo`}
-            className="w-14 h-10 lg:h-14 rounded-lg object-cover"
+            className="lg:w- w-10 h-10 lg:h-14 rounded-lg object-cover"
           />
           <div>
             <h1 className="lg:text-xl font-medium capitalize text-white">
               {electionName}
             </h1>
             <span
-              className={`text-xs px-3 py-1 rounded-lg ${
+              className={`text-xs px-2 lg:px-3 py-1 rounded-lg ${
                 statusStyles[electionStatus] || "bg-gray-100 text-gray-600"
               }`}
             >

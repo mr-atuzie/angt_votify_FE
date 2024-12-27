@@ -12,7 +12,7 @@ const SettingLayout = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
       <div className=" w-full h-fit bg-white lg:w-[25%] mx-auto p-3 lg:mt-8 shadow-lg rounded-lg flex flex-col ">
-        <h2 className="text-lg text-blue-600 uppercase te tracking-wide font-semibold mb-3">
+        <h2 className="lg:text-lg text-blue-600 uppercase te tracking-wide font-semibold mb-3">
           Edit Election
         </h2>
         <div className=" flex lg:flex-col overflow-scroll">
