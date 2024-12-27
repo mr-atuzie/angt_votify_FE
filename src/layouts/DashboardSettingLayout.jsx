@@ -46,7 +46,9 @@ const DashboardSettingLayout = () => {
               end
             >
               <Icon size={20} />
-              <span className=" text-xs  lg:text-sm font-medium">{label}</span>
+              <span className=" text-xs  whitespace-nowrap  lg:text-sm font-medium">
+                {label}
+              </span>
             </NavLink>
           ))}
         </div>

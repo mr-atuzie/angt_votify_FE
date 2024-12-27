@@ -20,10 +20,10 @@ const ElectionHeader = ({
   };
 
   return (
-    <header className="bg-blue-900 py-4 px-6 shadow-lg">
+    <header className="bg-blue-900 py-4 px-3 lg:px-6 shadow-lg">
       <div className="flex justify-between items-center">
         {/* Election Info */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 lg:gap-4">
           <img
             src={electionImage}
             alt={`${electionName} logo`}

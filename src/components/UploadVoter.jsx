@@ -33,7 +33,7 @@ const UploadVoter = () => {
 
   return (
     <div className=" z-50 absolute bg-black/60  flex justify-center  min-h-screen  w-full inset-0">
-      <div className="bg-white rounded-lg w-[95%] mt-8 lg:mt-16 lg:w-[50%] mx-auto shadow-md">
+      <div className="bg-white rounded-lg w-[95%] h-fit mt-8 lg:mt-16 lg:w-[50%] mx-auto shadow-md">
         <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
           Upload Voter File
         </div>

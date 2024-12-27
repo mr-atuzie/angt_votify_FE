@@ -130,7 +130,10 @@ const ElectionVoters = () => {
           <>
             <div className=" flex flex-col lg:flex-row justify-between items-center ">
               {/* Search Bar with Button */}
-              <form onSubmit={handleSearchSubmit} className=" w-[45%] ">
+              <form
+                onSubmit={handleSearchSubmit}
+                className=" w-full lg:w-[45%] "
+              >
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -190,7 +193,7 @@ const ElectionVoters = () => {
 
                 <button
                   onClick={() => setFileMenu(!fileMenu)}
-                  className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
+                  className="bg-blue-600 text-sm lg:text-base  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
                 >
                   <span>
                     <VscFileSubmodule size={20} />
@@ -201,7 +204,7 @@ const ElectionVoters = () => {
                 <Link to={`/election/${electionData?._id}/voters/create`}>
                   <button
                     onClick={() => setMenu(!menu)}
-                    className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
+                    className="bg-blue-600  text-white text-sm lg:text-base px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
                   >
                     <span>
                       <IoAddSharp size={20} />
