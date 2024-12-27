@@ -43,7 +43,7 @@ const DashboardElectionCard = ({ election, setElections }) => {
         <div className="flex gap-4">
           {/* Election Image */}
           <img
-            className="w-16 h-16 object-cover rounded-md"
+            className=" w-10 h-10 lg:w-16 lg:h-16 object-cover rounded-md"
             src={election.image}
             alt={election.title}
           />

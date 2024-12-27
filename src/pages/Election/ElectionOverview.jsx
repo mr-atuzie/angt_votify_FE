@@ -8,9 +8,9 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loader from "../../components/Loader";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
+import DashboardLoader from "../../components/DashboardLoader";
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
@@ -58,7 +58,7 @@ const ElectionOverview = () => {
   }, [id]);
 
   if (preLoader) {
-    return <Loader />;
+    return <DashboardLoader />;
   }
 
   return (

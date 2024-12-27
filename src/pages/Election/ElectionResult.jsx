@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loader from "../../components/Loader";
 import ResultTable from "../../components/ResultTable";
 import * as XLSX from "xlsx";
+import DashboardLoader from "../../components/DashboardLoader";
 
 const ElectionResult = () => {
   const { id } = useParams();
@@ -32,7 +32,7 @@ const ElectionResult = () => {
   }, [id]);
 
   if (preLoader) {
-    return <Loader />;
+    return <DashboardLoader />;
   }
 
   const generateExcel = () => {

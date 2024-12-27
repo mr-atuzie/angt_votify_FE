@@ -32,8 +32,8 @@ const UploadVoter = () => {
   };
 
   return (
-    <div className=" z-50 absolute bg-black/60  flex justify-center items-center  min-h-screen  w-full inset-0">
-      <div className="bg-white rounded-lg  lg:w-[50%] mx-auto shadow-md">
+    <div className=" z-50 absolute bg-black/60  flex justify-center  min-h-screen  w-full inset-0">
+      <div className="bg-white rounded-lg w-[95%] mt-8 lg:mt-16 lg:w-[50%] mx-auto shadow-md">
         <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
           Upload Voter File
         </div>
@@ -70,11 +70,13 @@ const UploadVoter = () => {
           <div className="mb-4 h-40  flex justify-center border-2 border-gray-400 rounded-lg border-dashed  items-center  w-60 bg-gray-200">
             <label
               id="file"
+              htmlFor="file"
               className="text-sm flex items-center gap-2  font-medium text-gray-500"
             >
-              <VscFileSubmodule size={25} /> Select File
+              <VscFileSubmodule size={25} /> Click to select file
             </label>
             <input
+              id="file"
               name="file"
               type="file"
               accept=".xlsx,.csv"

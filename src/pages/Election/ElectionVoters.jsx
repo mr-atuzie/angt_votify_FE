@@ -10,11 +10,11 @@ import {
   useOutletContext,
   useParams,
 } from "react-router-dom";
-import Loader from "../../components/Loader";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import UploadVoter from "../../components/UploadVoter";
 import { VscFileSubmodule } from "react-icons/vsc";
+import DashboardLoader from "../../components/DashboardLoader";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
@@ -119,7 +119,7 @@ const ElectionVoters = () => {
   }
 
   if (preLoader) {
-    return <Loader />;
+    return <DashboardLoader />;
   }
 
   return (
@@ -128,7 +128,7 @@ const ElectionVoters = () => {
       <div className="min-h-screen   flex flex-col gap-6">
         {voters.length > 0 ? (
           <>
-            <div className=" flex justify-between items-center ">
+            <div className=" flex flex-col lg:flex-row justify-between items-center ">
               {/* Search Bar with Button */}
               <form onSubmit={handleSearchSubmit} className=" w-[45%] ">
                 <label

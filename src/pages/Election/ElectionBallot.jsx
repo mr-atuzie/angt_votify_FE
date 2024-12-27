@@ -7,7 +7,7 @@ import Ballot from "../../components/Ballot";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loader from "../../components/Loader";
+import DashboardLoader from "../../components/DashboardLoader";
 
 const ElectionBallot = () => {
   const { id } = useParams();
@@ -116,7 +116,7 @@ const ElectionBallot = () => {
   };
 
   if (preLoader) {
-    return <Loader />;
+    return <DashboardLoader />;
   }
 
   return (
