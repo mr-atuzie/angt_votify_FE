@@ -161,10 +161,10 @@ const ElectionBallot = () => {
                 <span>
                   <MdBallot size={50} />
                 </span>
-                <h1 className=" text-4xl ">Build Your Ballot</h1>
+                <h1 className=" text-xl lg:text-4xl ">Build Your Ballot</h1>
               </div>
 
-              <p>
+              <p className=" text-sm lg:text-base text-center">
                 Get started by adding questions to{" "}
                 <span className="text-blue-600 font-medium">
                   {electionData?.title}
@@ -181,11 +181,11 @@ const ElectionBallot = () => {
                 </button> */}
 
                 <Link to={`/election/${id}/ballot/create-question`}>
-                  <button className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                  <button className="bg-blue-600 text-sm lg:text-base  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
                     <span>
                       <IoAddSharp size={20} />
                     </span>
-                    Add Questions
+                    Add Ballot
                   </button>
                 </Link>
               </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { IoIosCloudUpload } from "react-icons/io";
+// import { IoIosCloudUpload } from "react-icons/io";
 import { IoAddSharp } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 import {
@@ -13,6 +13,8 @@ import {
 import Loader from "../../components/Loader";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
+import UploadVoter from "../../components/UploadVoter";
+import { VscFileSubmodule } from "react-icons/vsc";
 
 const ElectionVoters = () => {
   const [menu, setMenu] = useState(false);
@@ -22,39 +24,40 @@ const ElectionVoters = () => {
   const [preLoader, setPreLoader] = useState(false);
   const electionData = useOutletContext();
 
-  const [fileLoader, setFileLoader] = useState(false);
-  const [file, setFile] = useState(null);
+  // const [fileLoader, setFileLoader] = useState(false);
+  // const [file, setFile] = useState(null);
+  const [fileMenu, setFileMenu] = useState(false);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const navigate = useNavigate();
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
 
-  const handleUpload = async () => {
-    setFileLoader(true);
-    const formData = new FormData();
-    formData.append("file", file);
+  // const handleUpload = async () => {
+  //   setFileLoader(true);
+  //   const formData = new FormData();
+  //   formData.append("file", file);
 
-    try {
-      const response = await axios.post(
-        `/api/upload-excel/${electionData?._id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      setFileLoader(false);
-      toast.success(response.data.message);
-    } catch (error) {
-      setFileLoader(false);
-      toast.error("Error uploading the file.");
-    }
-  };
+  //   try {
+  //     const response = await axios.post(
+  //       `/api/upload-excel/${electionData?._id}`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     setFileLoader(false);
+  //     toast.success(response.data.message);
+  //   } catch (error) {
+  //     setFileLoader(false);
+  //     toast.error("Error uploading the file.");
+  //   }
+  // };
 
   const { id } = useParams();
 
@@ -105,10 +108,6 @@ const ElectionVoters = () => {
 
   // const handleDelete = (voterId) => {};
 
-  console.log("test");
-
-  console.log(isLoggedIn);
-
   // if (!isLoggedIn) {
   //   navigate("/login");
   //   // Redirect to login page if session is expired
@@ -125,6 +124,7 @@ const ElectionVoters = () => {
 
   return (
     <>
+      {fileMenu && <UploadVoter />}
       <div className="min-h-screen   flex flex-col gap-6">
         {voters.length > 0 ? (
           <>
@@ -174,7 +174,7 @@ const ElectionVoters = () => {
               </form>
 
               <div className=" flex items-center gap-2 ">
-                <input type="file" accept=".xlsx" onChange={handleFileChange} />
+                {/* <input type="file" accept=".xlsx" onChange={handleFileChange} />
 
                 {file && (
                   <button
@@ -186,7 +186,17 @@ const ElectionVoters = () => {
                     </span>
                     <span>{fileLoader ? "Uploading" : "Upload File"}</span>
                   </button>
-                )}
+                )} */}
+
+                <button
+                  onClick={() => setFileMenu(!fileMenu)}
+                  className="bg-blue-600  text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
+                >
+                  <span>
+                    <VscFileSubmodule size={20} />
+                  </span>
+                  Upload fle
+                </button>
 
                 <Link to={`/election/${electionData?._id}/voters/create`}>
                   <button
@@ -269,10 +279,10 @@ const ElectionVoters = () => {
                 <span>
                   <PiUsersFourFill size={50} />
                 </span>
-                <h1 className=" text-4xl ">Add Voters</h1>
+                <h1 className=" text-xl lg:text-4xl ">Add Voters</h1>
               </div>
 
-              <p>
+              <p className=" text-center lg:text-base text-sm">
                 Get started by adding Voters to{" "}
                 <span className="text-blue-600 font-medium">
                   {electionData?.title}

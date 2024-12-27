@@ -85,6 +85,23 @@ function App() {
     getLoginStatus();
   }, [dispatch]);
 
+  useEffect(() => {
+    const axiosInterceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          // navigate("/login", { replace: true });
+          console.log("session expired");
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(axiosInterceptor);
+    };
+  }, []);
+
   return (
     <>
       <BrowserRouter>
