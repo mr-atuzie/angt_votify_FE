@@ -15,7 +15,7 @@ const DashboardSettingLayout = () => {
           Account Setting
         </h2>
 
-        <div className="flex flex-col gap-4">
+        <div className=" flex lg:flex-col overflow-scroll">
           {[
             {
               to: `/dashboard/setting/profile`,
