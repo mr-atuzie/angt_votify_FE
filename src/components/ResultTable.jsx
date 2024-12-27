@@ -67,7 +67,7 @@ const ResultTable = ({ ballot }) => {
   };
 
   return (
-    <div className="shadow-lg rounded-lg bg-white p-6 mb-6 space-y-8">
+    <div className="shadow-lg rounded-lg bg-white p-3 lg:p-6 mb-6 space-y-8">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 rounded-lg">
         <h1 className="text-3xl font-bold">{ballot?.title}</h1>
