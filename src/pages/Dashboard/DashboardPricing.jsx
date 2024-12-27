@@ -3,6 +3,9 @@ import { BiSolidBadgeCheck } from "react-icons/bi";
 import { formatter } from "../../utils";
 import FlutterwavePayment from "../../components/FlutterwavePayment";
 
+import axios from "axios";
+import toast from "react-hot-toast";
+
 const DashboardPricing = () => {
   // Helper Components
   const FeatureItem = ({ text, color }) => (
@@ -29,6 +32,27 @@ const DashboardPricing = () => {
     };
   };
 
+  const handleSubscribe = async ({ subscriptionPlan }) => {
+    try {
+      const { data } = await axios.patch(`/api/v1/user/subscribe`, {
+        subscriptionPlan,
+      });
+
+      console.log(data);
+
+      toast.success("subscription to free paln successfull");
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      toast.error(message);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -42,12 +66,25 @@ const DashboardPricing = () => {
           </p>
           <div className="flex items-center gap-2">
             <p className="text-3xl font-semibold">$0</p>
-            <span className="text-xs">/ month</span>
+            {/* <span className="text-xs">/per month</span> */}
           </div>
-          <p className="text-sm text-gray-600 mb-4">
+          {/* <p className="text-sm text-gray-600 mb-4">
             ${formatter(0 * 12)} Annually
-          </p>
-          <FlutterwavePayment
+          </p> */}
+
+          <button
+            onClick={() =>
+              handleSubscribe({
+                tier: "Free",
+                voterLimit: 100,
+                electionsAllowed: 50,
+              })
+            }
+            className="rounded-full w-full py-2 bg-pink-600 text-white hover:bg-pink-700 transition"
+          >
+            Try Free Plan
+          </button>
+          {/* <FlutterwavePayment
             btn_style="rounded-full w-full py-2 bg-pink-600 text-white hover:bg-pink-700 transition"
             btn_text="Try Free Plan"
             amount={1}
@@ -56,7 +93,7 @@ const DashboardPricing = () => {
               voterLimit: 100,
               electionsAllowed: 50,
             }}
-          />
+          /> */}
           <div className="mt-6">
             <FeatureItem text="Up to 10 Elections" color="text-pink-600" />
             <FeatureItem text="Up to 100 voters" color="text-pink-600" />
