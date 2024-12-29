@@ -35,11 +35,11 @@ const DashboardHeader = ({ fullname }) => {
           </button>
         </Link>
 
-        <Link className=" lg:hidden" to="/dashboard/create-election">
+        {/* <Link className=" lg:hidden" to="/dashboard/create-election">
           <button className="flex justify-center border-2 border-blue-500 items-center w-10 h-10 rounded-full bg-white text-blue-600 shadow-md  transition duration-300">
             <IoAddSharp size={20} />
           </button>
-        </Link>
+        </Link> */}
 
         {/* Get Initials Button */}
         <button className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md  transition duration-300">

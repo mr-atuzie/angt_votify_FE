@@ -6,6 +6,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
+import { FaCalendarAlt, FaCheckCircle, FaCalendarCheck } from "react-icons/fa";
+import { MdBallot } from "react-icons/md";
 
 const Dashboard = () => {
   const [preLoader, setPreLoader] = useState(false);
@@ -47,28 +49,42 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100  flex flex-col gap-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium">Total Elections</h2>
-
-          <CountUpAnimation count={dashboard?.totalElections} />
-        </div>
-
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium">Ongoing Elections</h2>
-          <CountUpAnimation count={dashboard?.ongoingElections} />
-        </div>
-
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium">Upcoming Elections</h2>
-          <CountUpAnimation count={dashboard?.upcomingElections} />
-        </div>
-
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-lg font-medium 0">Completed Elections</h2>
-          <CountUpAnimation count={dashboard?.compeletedElections} />
-        </div>
+        {[
+          {
+            title: "Total Elections",
+            count: dashboard?.totalElections,
+            icon: <MdBallot className="text-yellow-500 text-2xl" />,
+          },
+          {
+            title: "Ongoing Elections",
+            count: dashboard?.ongoingElections,
+            icon: <FaCalendarCheck className="text-red-500 text-2xl" />,
+          },
+          {
+            title: "Upcoming Elections",
+            count: dashboard?.upcomingElections,
+            icon: <FaCalendarAlt className="text-blue-500 text-2xl" />,
+          },
+          {
+            title: "Completed Elections",
+            count: dashboard?.completedElections,
+            icon: <FaCheckCircle className="text-green-500 text-2xl" />,
+          },
+        ].map((card, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-medium">{card.title}</h2>
+              <div>{card.icon}</div>
+            </div>
+            <div className="text-4xl font-bold text-gray-700">
+              <CountUpAnimation count={card.count} />
+            </div>
+          </div>
+        ))}
       </div>
-
       <div className=" hidden lg:flex gap-6">
         <div className="w-[70%] space-y-4">
           {dashboard?.recentElections?.length > 0 &&

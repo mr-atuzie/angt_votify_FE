@@ -1,12 +1,13 @@
 import React from "react";
-import { MdHowToVote } from "react-icons/md";
-import { PiUsersFourDuotone } from "react-icons/pi";
+// import { MdHowToVote } from "react-icons/md";
+// import { PiUsersFourDuotone } from "react-icons/pi";
 // import { SlLogout } from "react-icons/sl";
 import { GrSettingsOption } from "react-icons/gr";
 import { MdSpaceDashboard } from "react-icons/md";
-import { PiMoneyDuotone } from "react-icons/pi";
-// import { IoAddSharp } from "react-icons/io5";
+// import { PiMoneyDuotone } from "react-icons/pi";
+import { IoAddSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { FaVoteYea } from "react-icons/fa";
 
 const fontSize = 20;
 
@@ -17,25 +18,26 @@ const MobileNav = () => {
         {[
           { to: "/dashboard", label: "Dashboard", Icon: MdSpaceDashboard },
           {
+            to: "/dashboard/create-election",
+            label: "Craete Election",
+            Icon: IoAddSharp,
+          },
+          {
             to: "/dashboard/manage-elections",
             label: "Elections",
-            Icon: MdHowToVote,
-          },
-          {
-            to: "/dashboard/voter-management",
-            label: "Voters ",
-            Icon: PiUsersFourDuotone,
+            Icon: FaVoteYea,
           },
           // {
-          //   to: "/dashboard/create-election",
-          //   label: "Add",
-          //   Icon: IoAddSharp,
+          //   to: "/dashboard/voter-management",
+          //   label: "Voters ",
+          //   Icon: PiUsersFourDuotone,
           // },
-          {
-            to: "/dashboard/subscription",
-            label: "Subscription",
-            Icon: PiMoneyDuotone,
-          },
+
+          // {
+          //   to: "/dashboard/subscription",
+          //   label: "Subscription",
+          //   Icon: PiMoneyDuotone,
+          // },
           {
             to: "/dashboard/setting/profile",
             label: "Settings",

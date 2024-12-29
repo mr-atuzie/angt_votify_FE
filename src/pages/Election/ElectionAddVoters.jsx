@@ -67,7 +67,7 @@ const ElectionAddVoters = () => {
   const electionData = useOutletContext();
 
   return (
-    <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
+    <div className="min-h-screen  bg-gray-100 p-3 lg:p-6 flex flex-col gap-6">
       {/* header */}
       {/* <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
@@ -81,15 +81,15 @@ const ElectionAddVoters = () => {
         </div>
       </div> */}
 
-      <div className="bg-white rounded-lg shadow-lg w-[60%] mx-auto">
+      <div className="bg-white rounded-lg shadow-lg w-full lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
           Add Voter
         </div>
 
         {/* Form */}
-        <form className="p-8" onSubmit={handleSubmit}>
-          <p className="text-center text-gray-700 mb-8">
+        <form className="p-3 lg:p-8" onSubmit={handleSubmit}>
+          <p className="text-center text-sm lg:text-base text-gray-700 mb-8">
             Add a voter to the election:{" "}
             <span className="text-blue-600 font-semibold">
               {electionData?.title}
