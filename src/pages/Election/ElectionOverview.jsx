@@ -93,7 +93,7 @@ const ElectionOverview = () => {
         </div>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6 max-w-md">
+      <div className="bg-white shadow-md  hidden rounded-lg p-6 max-w-md">
         <h2 className="text-LG font-medium mb-4">Election URLS</h2>
 
         <div className="mb-4">

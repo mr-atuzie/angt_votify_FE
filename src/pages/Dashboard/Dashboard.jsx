@@ -18,7 +18,7 @@ const Dashboard = () => {
     const getElection = async () => {
       try {
         const response = await axios.get(`/api/v1/user/dashboard`);
-        console.log(response.data);
+
         setDashBoard(response.data);
         setPreLoader(false);
         return response.data;
