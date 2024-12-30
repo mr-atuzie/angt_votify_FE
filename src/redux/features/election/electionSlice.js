@@ -7,7 +7,7 @@ export const fetchElectionData = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/api/v1/election/${id}`);
-      console.log("Fetched Election Data: ", response.data);
+      // console.log("Fetched Election Data: ", response.data);
 
       return response.data;
     } catch (error) {
@@ -26,7 +26,7 @@ export const fetchBallotData = createAsyncThunk(
       console.log("Election ID:", electionId); // Debugging
       const response = await axios.get(`/api/v1/ballot/election/${electionId}`);
       // Log the response
-      console.log({ re: response.data });
+      // console.log({ re: response.data });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(

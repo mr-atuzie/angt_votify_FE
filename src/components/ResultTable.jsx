@@ -1,77 +1,111 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useState } from "react";
+import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
   BarElement,
+  ArcElement,
   CategoryScale,
   LinearScale,
 } from "chart.js";
 
-// Registering the necessary components for Chart.js
+// Registering necessary components for Chart.js
 ChartJS.register(
   Title,
   Tooltip,
   Legend,
   BarElement,
+  ArcElement,
   CategoryScale,
   LinearScale
 );
 
 const ResultTable = ({ ballot }) => {
-  // Calculate total votes, considering multiple votes per user
+  const [chartType, setChartType] = useState("bar"); // State to toggle between bar and pie charts
+
+  // Calculate total votes
   const totalVotes = ballot.votingOptions.reduce(
     (sum, option) => sum + option.votes.length,
     0
   );
 
-  // Prepare the data for the Bar chart (converted to percentage)
+  // Colors for the pie chart
+  const pieColors = [
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#4CAF50",
+    "#FF9F40",
+    "#9966FF",
+  ];
+
+  // Bar chart data
   const barChartData = {
     labels: ballot.votingOptions.map((option) => option.name),
     datasets: [
       {
         label: "Votes",
         data: ballot.votingOptions.map((option) => {
-          // Calculate the percentage for each option
           return totalVotes > 0 ? (option.votes.length / totalVotes) * 100 : 0;
         }),
-        backgroundColor: "#4CAF50", // Bar color
-        borderColor: "#388E3C", // Bar border color
+        backgroundColor: "#4CAF50",
+        borderColor: "#388E3C",
         borderWidth: 1,
       },
     ],
   };
 
-  // Chart Options
+  // Pie chart data
+  const pieChartData = {
+    labels: ballot.votingOptions.map((option) => option.name),
+    datasets: [
+      {
+        data: ballot.votingOptions.map((option) => option.votes.length),
+        backgroundColor: pieColors.slice(0, ballot.votingOptions.length), // Assign colors dynamically
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart options
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Maintain consistent aspect ratio
     plugins: {
       tooltip: {
         callbacks: {
-          // Customize tooltips to show votes and percentages
           label: (tooltipItem) => {
-            const percentage = tooltipItem.raw.toFixed(2);
-            return `${tooltipItem.label}: ${percentage}%`;
+            if (chartType === "bar") {
+              const percentage = tooltipItem.raw.toFixed(2);
+              return `${tooltipItem.label}: ${percentage}%`;
+            } else {
+              return `${tooltipItem.label}: ${tooltipItem.raw} votes`;
+            }
           },
         },
       },
     },
-    scales: {
-      y: {
-        beginAtZero: true, // Ensure the y-axis starts at 0
-        max: 100, // The y-axis will now scale from 0% to 100%
-      },
-    },
+    scales:
+      chartType === "bar"
+        ? {
+            y: {
+              beginAtZero: true,
+              max: 100,
+            },
+          }
+        : {},
   };
 
   return (
     <div className="shadow-lg rounded-lg bg-white p-3 lg:p-6 mb-6 space-y-8">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-3 lg:p-6 rounded-lg">
-        <h1 className="lg:text-3xl font-bold">{ballot?.title}</h1>
-        <p className="text-sm mt-2">{ballot?.description}</p>
+        <h1 className="lg:text-3xl capitalize font-bold">{ballot?.title}</h1>
+        <p className="text-xs capitalize lg:text-sm lg:mt-2">
+          {ballot?.description}
+        </p>
       </div>
 
       {/* Voting Options Table */}
@@ -115,12 +149,37 @@ const ResultTable = ({ ballot }) => {
         </table>
       </div>
 
-      {/* Bar Chart Section */}
-      <div className="max-w-md mx-auto mt-6">
-        <h2 className="text-center text-lg font-semibold mb-4">
-          Vote Distribution
-        </h2>
-        <Bar data={barChartData} options={options} />
+      {/* Chart Section */}
+      <div className="max-w-md mx-auto mt-6 space-y-4">
+        <h2 className="text-center text-lg font-semibold">Vote Distribution</h2>
+
+        <div className="flex justify-center items-center space-x-4">
+          <label
+            htmlFor="chartType"
+            className="font-medium text-sm lg:text-base text-gray-700"
+          >
+            Chart Type:
+          </label>
+          <select
+            id="chartType"
+            value={chartType}
+            onChange={(e) => setChartType(e.target.value)}
+            className="p-2 border text-xs lg:text-sm border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="bar">Bar Chart</option>
+            <option value="pie">Pie Chart</option>
+          </select>
+        </div>
+
+        <div className="relative w-full h-64">
+          {" "}
+          {/* Fixed height */}
+          {chartType === "bar" ? (
+            <Bar data={barChartData} options={options} />
+          ) : (
+            <Pie data={pieChartData} options={options} />
+          )}
+        </div>
       </div>
     </div>
   );

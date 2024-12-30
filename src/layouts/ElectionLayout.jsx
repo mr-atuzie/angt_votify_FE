@@ -21,7 +21,7 @@ const ElectionLayout = () => {
     // Check login status and fetch election data
     const initialize = async () => {
       const loginStatus = await dispatch(fetchLoginStatus());
-      console.log("election layout check session.....");
+      // console.log("election layout check session.....");
 
       if (!loginStatus.payload) {
         navigate("/login");

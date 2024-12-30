@@ -56,40 +56,44 @@ const VoteCard = ({
   return (
     <div
       key={ballot._id}
-      className=" w-full lg:w-[50%] mx-auto my-12 bg-white rounded-lg shadow-2xl overflow-hidden"
+      className="w-[95%] lg:w-[50%] mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden"
     >
       {/* Election Info */}
-      <div className="lg:px-8  lg:py-6 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
-        <h1 className="text-xl lg:text-2xl uppercase font-bold tracking-wide">
+      <div className="px-4 py-6 sm:px-6 sm:py-8 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
+        <h1 className="text-lg sm:text-xl font-bold uppercase tracking-wide">
           {ballot.title}
         </h1>
-        <p className="text-gray-200 text-sm">{ballot.description}</p>
+        <p className="text-sm sm:text-base text-gray-200 lg:mt-2">
+          {ballot.description}
+        </p>
       </div>
 
       {/* Ballot Options */}
       <form>
-        <div className=" p-4  lg:p-8 grid grid-cols-1 gap-6">
+        <div className="p-4 sm:p-6 grid gap-4">
           {ballot.votingOptions.length > 0 ? (
             ballot.votingOptions.map((option) => (
               <label
                 key={option._id}
-                className="flex flex-col lg:flex-row items-center gap-6 bg-gradient-to-b from-gray-50 to-gray-100 shadow-lg p-6 rounded-xl border border-gray-300 cursor-pointer"
+                className="flex items-center justify-between gap-4 bg-gray-50 shadow-md p-4 sm:p-6 rounded-lg border border-gray-300 cursor-pointer"
               >
-                {/* Profile Picture */}
-                <img
-                  className="lg:w-20 lg:h-20 h-14 w14 object-cover rounded-full border-4 border-blue-600"
-                  src={option.image}
-                  alt={option.name || "Option Image"}
-                />
+                <div className=" flex gap-2 lg:gap-4 items-center">
+                  {/* Profile Picture */}
+                  <img
+                    className="w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-full border-4 border-blue-600"
+                    src={option.image}
+                    alt={option.name || "Option Image"}
+                  />
 
-                {/* Option Details */}
-                <div className="flex-1">
-                  <h2 className="font-semibold text-gray-800 capitalize">
-                    {option.name}
-                  </h2>
-                  <p className="text-gray-500 text-sm lg:text-base capitalize">
-                    {option.description}
-                  </p>
+                  {/* Option Details */}
+                  <div>
+                    <h2 className="font-semibold text-gray-800 capitalize">
+                      {option.name}
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-1 capitalize">
+                      {option.description}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Radio Button */}
@@ -98,7 +102,7 @@ const VoteCard = ({
                   name={`candidate-${ballot._id}`}
                   value={option._id}
                   onChange={(e) => setVoteFor(e.target.value)}
-                  className="w-6 h-6 border-2 border-gray-300 text-blue-700 focus:ring-2 focus:ring-blue-400 rounded-full"
+                  className="w-5 h-5 border-gray-300 text-blue-600 focus:ring-blue-400 rounded-full"
                 />
               </label>
             ))
@@ -108,25 +112,25 @@ const VoteCard = ({
         </div>
 
         {/* Vote Button */}
-        <div className="flex justify-center items-center mt-8 mb-10">
+        <div className="flex justify-center items-center mt-6 mb-4">
           {hasVoted ? (
             <button
               disabled
-              className="flex text-sm lg:text-base items-center bg-gray-600 cursor-not-allowed tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md"
+              className="text-sm sm:text-base bg-gray-600 cursor-not-allowed text-white font-medium rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md flex items-center"
             >
-              <span className="mr-3 text-lg">Vote Already Submitted</span>
-              <IoFingerPrintSharp size={35} />
+              <span className="mr-2">Vote Already Submitted</span>
+              <IoFingerPrintSharp size={24} />
             </button>
           ) : (
             <button
               type="button"
               onClick={(e) => handleCastVote(e, ballot._id)}
-              className="flex  text-sm lg:text-base items-center bg-blue-700 hover:bg-blue-800 tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md transition transform hover:scale-105"
+              className="text-sm sm:text-base bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md flex items-center transition-transform transform hover:scale-105"
             >
-              <span className="mr-3">
+              <span className="mr-2">
                 {loading ? "Loading..." : "Submit Your Vote"}
               </span>
-              <IoFingerPrintSharp size={35} />
+              <IoFingerPrintSharp size={24} />
             </button>
           )}
         </div>

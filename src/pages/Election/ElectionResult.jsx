@@ -69,15 +69,15 @@ const ElectionResult = () => {
     <div className="">
       {ballots.length > 0 ? (
         <>
-          <h2 className="text-center text-lg font-medium text-gray-700">
-            Track results of{" "}
-            <span className="text-blue-500">{electionData.title}</span>
+          <h2 className="text-center  lg:text-lg font-medium text-gray-700">
+            Track real time results of{" "}
+            <span className="text-blue-500">{electionData.title}</span> Election
           </h2>
 
           <div className="flex justify-center my-5">
             <button
               onClick={generateExcel}
-              className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600"
+              className="bg-green-500 text-sm lg:text-base text-white py-2 px-6 rounded-lg hover:bg-green-600"
             >
               Download Results
             </button>

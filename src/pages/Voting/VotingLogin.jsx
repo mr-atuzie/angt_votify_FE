@@ -159,7 +159,7 @@ const VotingLogin = () => {
   }
   return (
     <>
-      <header className="w-full py-6 flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
+      <header className="w-full py-6 flex gap-2 lg:gap-4 items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
         <img
           className=" w-14 h-10 rounded-lg object-cover"
           src={voting?.election.image}

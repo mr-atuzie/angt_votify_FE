@@ -78,27 +78,27 @@ const Voting = () => {
   return (
     <div className="bg-gray-100 min-h-screen pb-10">
       {/* Header */}
-      <header className="w-full py-10 flex items-center flex-col justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
-        {/* <img
+      <header className="w-full py-10 flex items-center  gap-2 lg:gap-4 justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
+        <img
           className=" w-14 h-10 rounded-lg object-cover"
-          src={ballots[0].electionId.image}
-          alt={ballots[0].electionId.title}
-        /> */}
+          src={ballots[0]?.electionId.image}
+          alt={ballots[0]?.electionId.title}
+        />
 
         <div>
           <h1 className=" text-xl lg:text-4xl font-extrabold uppercase tracking-widest text-center">
-            {ballots.length > 0 && ballots[0].electionId.title}
+            {ballots?.length > 0 && ballots[0]?.electionId.title}
           </h1>
           <p className=" text-sm lg:text-base capitalize">
-            {ballots.length > 0 && ballots[0].electionId.description}
+            {ballots?.length > 0 && ballots[0].electionId.description}
           </p>
         </div>
       </header>
       <>
-        {ballots.length > 0 &&
-          ballots.map((ballot) => {
+        {ballots?.length > 0 &&
+          ballots?.map((ballot) => {
             // Use a fallback for votes if undefined
-            const hasVoted = ballot.voters?.includes(voterId) || false;
+            const hasVoted = ballot?.voters?.includes(voterId) || false;
 
             return (
               <VoteCard

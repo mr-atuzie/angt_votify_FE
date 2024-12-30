@@ -26,7 +26,6 @@ const ElectionOverview = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log("isLoggedIn:", isLoggedIn);
     if (isLoggedIn === false) {
       navigate("/login");
     }

@@ -17,7 +17,7 @@ export const fetchLoginStatus = createAsyncThunk(
     try {
       const { data } = await axios.get(`/api/v1/user/loginStatus`);
       // Log the response
-      console.log("loginStatus", data);
+      // console.log("loginStatus", data);
 
       return data;
     } catch (error) {
