@@ -3,8 +3,8 @@ import { BiSolidBadgeCheck } from "react-icons/bi";
 import { formatter } from "../../utils";
 import FlutterwavePayment from "../../components/FlutterwavePayment";
 
-import axios from "axios";
-import toast from "react-hot-toast";
+// import axios from "axios";
+// import toast from "react-hot-toast";
 
 const DashboardPricing = () => {
   // Helper Components
@@ -32,71 +32,59 @@ const DashboardPricing = () => {
     };
   };
 
-  const handleSubscribe = async ({ subscriptionPlan }) => {
-    try {
-      const { data } = await axios.patch(`/api/v1/user/subscribe`, {
-        subscriptionPlan,
-      });
+  // const handleSubscribe = async ({ subscriptionPlan }) => {
+  //   try {
+  //     const { data } = await axios.patch(`/api/v1/user/subscribe`, {
+  //       subscriptionPlan,
+  //     });
 
-      console.log(data);
+  //     console.log(data);
 
-      toast.success("subscription to free paln successfull");
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+  //     toast.success("subscription to free paln successfull");
+  //   } catch (error) {
+  //     const message =
+  //       (error.response &&
+  //         error.response.data &&
+  //         error.response.data.message) ||
+  //       error.message ||
+  //       error.toString();
 
-      toast.error(message);
-    }
-  };
+  //     toast.error(message);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col gap-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Free Plan */}
+        {/* demo Plan */}
         <div className="bg-pink-100 rounded-xl p-6 border border-pink-500 shadow-md">
           <h2 className="text-lg font-semibold uppercase text-pink-600">
-            Free Plan
+            DEMO PLAN
           </h2>
-          <p className="text-gray-600 text-sm my-4">
-            Get started at no cost—ideal for small-scale elections.
+          <p className="text-gray-600 text-sm my-2 lg:my-4">
+            Get started to explore how the voting app works.
           </p>
-          <div className="flex items-center gap-2">
-            <p className="text-3xl font-semibold">$0</p>
+          <div className="flex items-center gap-2 mb-2">
+            <p className="text-3xl font-semibold">$8.00</p>
             {/* <span className="text-xs">/per month</span> */}
           </div>
           {/* <p className="text-sm text-gray-600 mb-4">
             ${formatter(0 * 12)} Annually
           </p> */}
 
-          <button
-            onClick={() =>
-              handleSubscribe({
-                tier: "Free",
-                voterLimit: 100,
-                electionsAllowed: 50,
-              })
-            }
-            className="rounded-full w-full py-2 bg-pink-600 text-white hover:bg-pink-700 transition"
-          >
-            Try Free Plan
-          </button>
-          {/* <FlutterwavePayment
+          <FlutterwavePayment
             btn_style="rounded-full w-full py-2 bg-pink-600 text-white hover:bg-pink-700 transition"
             btn_text="Try Free Plan"
-            amount={1}
+            amount={8}
             subscriptionPlan={{
-              tier: "Free",
-              voterLimit: 100,
-              electionsAllowed: 50,
+              tier: "Demo",
+              voterLimit: 15,
+              electionsAllowed: 3,
             }}
-          /> */}
+          />
           <div className="mt-6">
-            <FeatureItem text="Up to 10 Elections" color="text-pink-600" />
-            <FeatureItem text="Up to 100 voters" color="text-pink-600" />
+            <FeatureItem text="Up to 3 Elections" color="text-pink-600" />
+            <FeatureItem text="Up to 15 voters" color="text-pink-600" />
             <FeatureItem text="Basic support" color="text-pink-600" />
           </div>
         </div>
@@ -106,29 +94,29 @@ const DashboardPricing = () => {
           <h2 className="text-lg font-semibold uppercase text-green-600">
             Standard Plan
           </h2>
-          <p className="text-gray-600 text-sm my-4">
-            Perfect for growing organizations with moderate voting needs.
+          <p className="text-gray-600 text-sm my-2 lg:my-4">
+            Ideal for small groups or organizations with moderate voting needs.
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-2">
             <p className="text-3xl font-semibold">$17.00</p>
-            <span className="text-xs">/ month</span>
+            {/* <span className="text-xs">/ month</span> */}
           </div>
-          <p className="text-sm text-gray-600 mb-4">
+          {/* <p className="text-sm text-gray-600 mb-4">
             ${formatter(17 * 12)} Annually
-          </p>
+          </p> */}
           <FlutterwavePayment
             btn_style="rounded-full w-full py-2 bg-green-600 text-white hover:bg-green-700 transition"
             btn_text="Get Standard Plan"
             amount={17}
             subscriptionPlan={{
               tier: "Standard",
-              voterLimit: 1000,
-              electionsAllowed: 500,
+              voterLimit: 30,
+              electionsAllowed: 5,
             }}
           />
           <div className="mt-6">
-            <FeatureItem text="Up to 2,000 Elections" color="text-green-600" />
-            <FeatureItem text="Up to 1,000 voters" color="text-green-600" />
+            <FeatureItem text="Up to 5 Elections" color="text-green-600" />
+            <FeatureItem text="Up to 30 voters" color="text-green-600" />
             <FeatureItem text="Data export and more" color="text-green-600" />
           </div>
         </div>
@@ -138,29 +126,29 @@ const DashboardPricing = () => {
           <h2 className="text-lg font-semibold uppercase text-purple-600">
             Pro Plan
           </h2>
-          <p className="text-gray-600 text-sm my-4">
+          <p className="text-gray-600 text-sm my-2 lg:my-4">
             Advanced features for managing large-scale elections seamlessly.
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-2">
             <p className="text-3xl font-semibold">$30.00</p>
-            <span className="text-xs">/ month</span>
+            {/* <span className="text-xs">/ month</span> */}
           </div>
-          <p className="text-sm text-gray-600 mb-4">
+          {/* <p className="text-sm text-gray-600 mb-4">
             ${formatter(30 * 12)} Annually
-          </p>
+          </p> */}
           <FlutterwavePayment
             btn_style="rounded-full w-full py-2 bg-purple-600 text-white hover:bg-purple-700 transition"
             btn_text="Get Pro Plan"
             amount={30}
             subscriptionPlan={{
               tier: "Pro",
-              voterLimit: 2000,
-              electionsAllowed: 1000,
+              voterLimit: 300,
+              electionsAllowed: 15,
             }}
           />
           <div className="mt-6">
-            <FeatureItem text="Up to 5,000 Elections" color="text-purple-600" />
-            <FeatureItem text="Up to 2,000 voters" color="text-purple-600" />
+            <FeatureItem text="Up to 15 Elections" color="text-purple-600" />
+            <FeatureItem text="Up to 300 voters" color="text-purple-600" />
             <FeatureItem
               text="Priority support and data export"
               color="text-purple-600"
@@ -173,7 +161,7 @@ const DashboardPricing = () => {
           <h2 className="text-lg font-semibold uppercase text-gray-800">
             Custom Plan
           </h2>
-          <p className="text-gray-600 text-sm my-4">
+          <p className="text-gray-600 text-sm my-2 lg:my-4">
             Tailor-made solutions for your organization’s unique needs.
           </p>
           {amount > 0 && (
@@ -188,9 +176,9 @@ const DashboardPricing = () => {
             className="mt-4 w-full py-2 px-4 rounded-full bg-white border border-gray-300"
             onChange={handleInputChange}
           />
-          <p className="text-sm text-gray-600 my-4">
+          {/* <p className="text-sm text-gray-600 my-4">
             ${formatter(amount * 12)} Annually
-          </p>
+          </p> */}
 
           <FlutterwavePayment
             btn_style="bg-black text-white w-full py-2 rounded-full hover:bg-gray-800 transition"
