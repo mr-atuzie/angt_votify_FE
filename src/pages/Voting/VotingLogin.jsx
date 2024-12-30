@@ -160,8 +160,13 @@ const VotingLogin = () => {
   return (
     <>
       <header className="w-full py-6 flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
-        <h1 className="text-3xl font-bold uppercase tracking-wide text-center">
-          {voting?.election.title} <br /> Election
+        <img
+          className=" w-14 h-10 rounded-lg object-cover"
+          src={voting?.election.image}
+          alt=""
+        />
+        <h1 className="text-xl  lg:text-3xl font-bold uppercase tracking-wide text-center">
+          {voting?.election.title} Election
         </h1>
       </header>
 
@@ -173,7 +178,7 @@ const VotingLogin = () => {
               <h2 className="text-2xl font-semibold uppercase">
                 Login to Vote
               </h2>
-              <p className="text-sm mt-2 tracking-wide">
+              <p className="text-sm lg:mt-2 tracking-wide">
                 Secure your vote with confidence
               </p>
             </div>

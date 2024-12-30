@@ -79,12 +79,20 @@ const Voting = () => {
     <div className="bg-gray-100 min-h-screen pb-10">
       {/* Header */}
       <header className="w-full py-10 flex items-center flex-col justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white shadow-lg">
-        <h1 className="text-4xl font-extrabold uppercase tracking-widest text-center">
-          {ballots.length > 0 && ballots[0].electionId.title}
-        </h1>
-        <p className=" capitalize">
-          {ballots.length > 0 && ballots[0].electionId.description}
-        </p>
+        <img
+          className=" w-14 h-10 rounded-lg object-cover"
+          src={ballots[0].electionId.image}
+          alt={ballots[0].electionId.title}
+        />
+
+        <div>
+          <h1 className=" text-xl lg:text-4xl font-extrabold uppercase tracking-widest text-center">
+            {ballots.length > 0 && ballots[0].electionId.title}
+          </h1>
+          <p className=" text-sm lg:text-base capitalize">
+            {ballots.length > 0 && ballots[0].electionId.description}
+          </p>
+        </div>
       </header>
       <>
         {ballots.length > 0 &&

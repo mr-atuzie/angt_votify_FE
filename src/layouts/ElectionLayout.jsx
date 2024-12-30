@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchElectionData } from "../redux/features/election/electionSlice";
-import { Outlet, useParams } from "react-router-dom";
+import { fetchLoginStatus } from "../redux/features/auth/authSlice";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
@@ -9,31 +10,39 @@ import ElectionMobileNav from "../components/ElectionMobileNav";
 
 const ElectionLayout = () => {
   const { id } = useParams();
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { electionData, loading } = useSelector((state) => state.election);
+  const { electionData, loading: electionLoading } = useSelector(
+    (state) => state.election
+  );
 
   useEffect(() => {
-    // Dispatch the action to fetch election data
-    dispatch(fetchElectionData(id));
+    // Check login status and fetch election data
+    const initialize = async () => {
+      const loginStatus = await dispatch(fetchLoginStatus());
+      console.log("election layout check session.....");
 
-    // console.log("Fetching election with ID:", id); // Log the ID
-  }, [dispatch, id]); // Make sure to include dispatch and id as dependencies
+      if (!loginStatus.payload) {
+        navigate("/login");
+        return;
+      }
+      dispatch(fetchElectionData(id));
+    };
 
-  if (loading) return <Loader />;
-  // if (error) return <div>Error: {error}</div>;
+    initialize();
+  }, [dispatch, id, navigate]);
+
+  if (electionLoading) return <Loader />;
 
   if (!electionData) return <div>No election found for ID: {id}</div>;
-
-  // console.log("Fetched Election Data:", electionData);
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       <div className="fixed h-full w-[20%] hidden lg:block">
         <ElectionSidebar id={electionData?._id} />
       </div>
-      <div className="flex-1 lg:ml-[20%] relative  bg-gray-100 flex flex-col gap-6 ">
+      <div className="flex-1 lg:ml-[20%] relative bg-gray-100 flex flex-col gap-6">
         <ElectionHeader
           electionName={electionData?.title}
           electionImage={electionData?.image}
@@ -44,7 +53,6 @@ const ElectionLayout = () => {
           <Outlet context={electionData} />
         </div>
       </div>
-
       <ElectionMobileNav id={electionData?._id} />
     </div>
   );

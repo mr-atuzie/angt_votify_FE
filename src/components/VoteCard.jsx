@@ -56,11 +56,11 @@ const VoteCard = ({
   return (
     <div
       key={ballot._id}
-      className="w-[50%] mx-auto my-12 bg-white rounded-lg shadow-2xl overflow-hidden"
+      className=" w-full lg:w-[50%] mx-auto my-12 bg-white rounded-lg shadow-2xl overflow-hidden"
     >
       {/* Election Info */}
-      <div className="px-8 py-6 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
-        <h1 className="text-2xl uppercase font-bold tracking-wide">
+      <div className="lg:px-8  lg:py-6 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
+        <h1 className="text-xl lg:text-2xl uppercase font-bold tracking-wide">
           {ballot.title}
         </h1>
         <p className="text-gray-200 text-sm">{ballot.description}</p>
@@ -68,7 +68,7 @@ const VoteCard = ({
 
       {/* Ballot Options */}
       <form>
-        <div className="p-8 grid grid-cols-1 gap-6">
+        <div className=" p-4  lg:p-8 grid grid-cols-1 gap-6">
           {ballot.votingOptions.length > 0 ? (
             ballot.votingOptions.map((option) => (
               <label
@@ -77,7 +77,7 @@ const VoteCard = ({
               >
                 {/* Profile Picture */}
                 <img
-                  className="w-20 h-20 object-cover rounded-full border-4 border-blue-600"
+                  className="lg:w-20 lg:h-20 h-14 w14 object-cover rounded-full border-4 border-blue-600"
                   src={option.image}
                   alt={option.name || "Option Image"}
                 />
@@ -87,7 +87,7 @@ const VoteCard = ({
                   <h2 className="font-semibold text-gray-800 capitalize">
                     {option.name}
                   </h2>
-                  <p className="text-gray-500 capitalize">
+                  <p className="text-gray-500 text-sm lg:text-base capitalize">
                     {option.description}
                   </p>
                 </div>
@@ -112,7 +112,7 @@ const VoteCard = ({
           {hasVoted ? (
             <button
               disabled
-              className="flex items-center bg-gray-600 cursor-not-allowed tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md"
+              className="flex text-sm lg:text-base items-center bg-gray-600 cursor-not-allowed tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md"
             >
               <span className="mr-3 text-lg">Vote Already Submitted</span>
               <IoFingerPrintSharp size={35} />
@@ -121,7 +121,7 @@ const VoteCard = ({
             <button
               type="button"
               onClick={(e) => handleCastVote(e, ballot._id)}
-              className="flex items-center bg-blue-700 hover:bg-blue-800 tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md transition transform hover:scale-105"
+              className="flex  text-sm lg:text-base items-center bg-blue-700 hover:bg-blue-800 tracking-wide text-white font-semibold rounded-full px-6 py-3 shadow-md transition transform hover:scale-105"
             >
               <span className="mr-3">
                 {loading ? "Loading..." : "Submit Your Vote"}

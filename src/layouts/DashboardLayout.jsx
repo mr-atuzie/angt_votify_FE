@@ -1,20 +1,30 @@
-import React from "react";
-import { Outlet, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import DashboardSidebar from "../components/DashboardSidebar";
 import DashboardHeader from "../components/DashboardHeader";
-import { selectUser } from "../redux/features/auth/authSlice";
-import { useSelector } from "react-redux";
+import { fetchLoginStatus, selectUser } from "../redux/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import MobileNav from "../components/MobileNav";
 
 const DashboardLayout = () => {
-  const { pageName } = useParams();
-
-  // Fallback to a default value if no parameter is found
-  const displayName = pageName ? pageName.replace("-", " ") : "Dashboard";
-
-  console.log({ params: displayName, location: "" });
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { fullname } = useSelector(selectUser);
+
+  useEffect(() => {
+    // Check login status and fetch election data
+    const initialize = async () => {
+      const loginStatus = await dispatch(fetchLoginStatus());
+      console.log("dashbaord layout check session.....");
+
+      if (!loginStatus.payload) {
+        navigate("/login");
+        return;
+      }
+    };
+
+    initialize();
+  }, [dispatch, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
