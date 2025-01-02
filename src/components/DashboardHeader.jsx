@@ -1,6 +1,8 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoAddSharp } from "react-icons/io5";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const DashboardHeader = ({ fullname }) => {
   const location = useLocation();
@@ -12,6 +14,29 @@ const DashboardHeader = ({ fullname }) => {
     .pop()
     .replace("-", " ")
     .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize words
+
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      const { data } = await axios.get(`/api/v1/user/logout`);
+
+      toast.success(data);
+
+      console.log(data);
+
+      navigate(`/login`);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      toast.error(message);
+    }
+  };
 
   return (
     <div className="flex flex-wrap justify-between items-center gap-4">
@@ -42,7 +67,10 @@ const DashboardHeader = ({ fullname }) => {
         </Link> */}
 
         {/* Get Initials Button */}
-        <button className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md  transition duration-300">
+        <button
+          onClick={logout}
+          className="flex justify-center items-center w-10 h-10 rounded-full bg-blue-600 text-white shadow-md  transition duration-300"
+        >
           {getUserInitials(fullname)}
         </button>
       </div>
