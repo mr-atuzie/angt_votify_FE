@@ -76,10 +76,10 @@ const Dashboard = () => {
             className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-medium">{card.title}</h2>
+              <h2 className="lg:text-lg font-medium">{card.title}</h2>
               <div>{card.icon}</div>
             </div>
-            <div className="text-4xl font-bold text-gray-700">
+            <div className=" text-xl g:text-4xl font-bold text-gray-700">
               <CountUpAnimation count={card.count} />
             </div>
           </div>

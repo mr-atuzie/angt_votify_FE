@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Login = () => {
   const initialState = {
@@ -18,6 +19,7 @@ const Login = () => {
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const { email, password } = formData;
 
@@ -119,6 +121,35 @@ const Login = () => {
                 >
                   Password
                 </label>
+                <div className="relative">
+                  <input
+                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    type={passwordVisible ? "text" : "password"} // Toggle input type
+                    name="password"
+                    value={password}
+                    onChange={handleInputChange}
+                    id="password"
+                    placeholder="Enter your Password"
+                    required
+                  />
+                  <span
+                    onClick={() => setPasswordVisible(!passwordVisible)} // Toggle visibility
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                  >
+                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+                <small className="text-xs text-gray-600 mt-1 block">
+                  Password must be at least 8 characters.
+                </small>
+              </div>
+              {/* <div>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
                 <input
                   className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                   type="password"
@@ -129,7 +160,7 @@ const Login = () => {
                   placeholder="Enter your Password"
                   required
                 />
-              </div>
+              </div> */}
               <Link className=" text-end" to="/forget-password">
                 <small className=" capitalize text-end text-blue-500 font-medium">
                   Forget password

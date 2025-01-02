@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import DashboardLoader from "../../components/DashboardLoader";
+import { FaCalendarCheck } from "react-icons/fa6";
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
@@ -66,7 +67,15 @@ const ElectionOverview = () => {
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium ">Start Date</h2>
+          {/* <h2 className="text-sm font-medium ">Start Date</h2> */}
+
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="lg:text-lg font-medium">Start Date</h2>
+            <div>
+              {" "}
+              <FaCalendarCheck className="text-purple-500 text-2xl" />
+            </div>
+          </div>
           <p className="text-lg font-bold text-blue-600">
             {moment(electionData?.startDate).format("MMM DD, YYYY hh:mm A")}
           </p>

@@ -8,6 +8,7 @@ import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Register = () => {
   const initialState = {
@@ -21,6 +22,8 @@ const Register = () => {
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const { firstname, email, password, lastname, confirmPassword } = formData;
 
@@ -211,7 +214,7 @@ const Register = () => {
               </div>
 
               {/* Password */}
-              <div>
+              {/* <div>
                 <label
                   className="block text-sm font-medium text-gray-700 mb-1"
                   htmlFor="password"
@@ -231,10 +234,41 @@ const Register = () => {
                 <small className="text-xs text-gray-600 mt-1 block">
                   Password must be at least 8 characters.
                 </small>
+              </div> */}
+
+              {/* Password Field */}
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    type={passwordVisible ? "text" : "password"} // Toggle input type
+                    name="password"
+                    value={password}
+                    onChange={handleInputChange}
+                    id="password"
+                    placeholder="Enter your Password"
+                    required
+                  />
+                  <span
+                    onClick={() => setPasswordVisible(!passwordVisible)} // Toggle visibility
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                  >
+                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+                <small className="text-xs text-gray-600 mt-1 block">
+                  Password must be at least 8 characters.
+                </small>
               </div>
 
               {/* Confirm Password */}
-              <div>
+              {/* <div>
                 <label
                   className="block text-sm font-medium text-gray-700 mb-1"
                   htmlFor="confirmPassword"
@@ -251,6 +285,36 @@ const Register = () => {
                   placeholder="Re-enter your new password"
                   required
                 />
+              </div> */}
+
+              {/* Confirm Password Field */}
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <input
+                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    type={confirmPasswordVisible ? "text" : "password"} // Toggle input type
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={handleInputChange}
+                    id="confirmPassword"
+                    placeholder="Re-enter your new password"
+                    required
+                  />
+                  <span
+                    onClick={() =>
+                      setConfirmPasswordVisible(!confirmPasswordVisible)
+                    } // Toggle visibility
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                  >
+                    {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </div>
             </div>
 
