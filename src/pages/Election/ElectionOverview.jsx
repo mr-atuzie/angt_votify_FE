@@ -11,7 +11,12 @@ import toast from "react-hot-toast";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import DashboardLoader from "../../components/DashboardLoader";
-import { FaCalendarCheck } from "react-icons/fa6";
+import {
+  FaCalendarCheck,
+  FaCalendarXmark,
+  FaPeopleGroup,
+} from "react-icons/fa6";
+import { MdBallot } from "react-icons/md";
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
@@ -72,7 +77,6 @@ const ElectionOverview = () => {
           <div className="flex items-center justify-between mb-4">
             <h2 className="lg:text-lg font-medium">Start Date</h2>
             <div>
-              {" "}
               <FaCalendarCheck className="text-purple-500 text-2xl" />
             </div>
           </div>
@@ -80,21 +84,39 @@ const ElectionOverview = () => {
             {moment(electionData?.startDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
+
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium ">End Date</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="lg:text-lg font-medium">End Date</h2>
+            <div>
+              <FaCalendarXmark className="text-red-500 text-2xl" />
+            </div>
+          </div>
           <p className="text-lg font-bold text-blue-600">
             {moment(electionData?.endDate).format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
+
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium">Total Ballots</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="lg:text-lg font-medium">Total ballots</h2>
+            <div>
+              <MdBallot className="text-yellow-500 text-2xl" />
+            </div>
+          </div>
           <p className="text-lg font-bold text-blue-600">
             {electionData?.ballots.length}
           </p>
           {/* <CountUpAnimation count={electionData?.ballots.length} /> */}
         </div>
+
         <div className="bg-white shadow-md p-4 rounded-lg">
-          <h2 className="text-sm font-medium ">Voters</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="lg:text-lg font-medium">Voters</h2>
+            <div>
+              <FaPeopleGroup className="text-blue-500 text-2xl" />
+            </div>
+          </div>
 
           {/* <CountUpAnimation count={voters} /> */}
           <p className="text-lg font-bold text-blue-600">{voters}</p>
