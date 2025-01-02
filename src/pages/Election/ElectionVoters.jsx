@@ -184,12 +184,22 @@ const ElectionVoters = () => {
                   {electionData?.title}
                 </span>
               </p>
-              <Link to={`/election/${electionData?._id}/voters/create`}>
-                <button className="bg-blue-600 text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
-                  <IoAddSharp size={20} />
-                  Add Voter
+              <div className=" flex items-center gap-3">
+                <Link to={`/election/${electionData?._id}/voters/create`}>
+                  <button className="bg-blue-600 text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition">
+                    <IoAddSharp size={20} />
+                    Add Voter
+                  </button>
+                </Link>
+
+                <button
+                  onClick={() => setFileMenu(!fileMenu)}
+                  className="bg-blue-600 text-sm lg:text-base text-white px-4 py-2 gap-2 flex items-center justify-center rounded-md hover:bg-blue-700 transition"
+                >
+                  <VscFileSubmodule size={20} />
+                  Upload File
                 </button>
-              </Link>
+              </div>
             </div>
           </div>
         )}

@@ -56,6 +56,7 @@ import Private from "./components/Private";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 import How from "./pages/How";
+import VerifyEmail from "./pages/VerifyEmail";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -116,6 +117,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/testimonial" element={<Testimonal />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/reset-password/:id" element={<ResetPassword />} />

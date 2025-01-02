@@ -53,7 +53,7 @@ const Register = () => {
     }
     if (password !== confirmPassword) {
       setLoading(false);
-      return toast.error("All fields are required.");
+      return toast.error("Passwords do not match");
     }
 
     if (password.length < 8) {

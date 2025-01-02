@@ -17,15 +17,22 @@ import {
   FaPeopleGroup,
 } from "react-icons/fa6";
 import { MdBallot } from "react-icons/md";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ElectionOverview = () => {
   // const electionData = useSelector((state) => state.election.data);
 
   const electionData = useOutletContext();
   const [voters, setVoters] = useState(0);
+  const [verifiedVoters, setVerifiedVoters] = useState(0);
   const [preLoader, setPreLoader] = useState(false);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  console.log(electionData);
 
   const navigate = useNavigate();
 
@@ -43,7 +50,10 @@ const ElectionOverview = () => {
       try {
         const { data } = await axios.get(`/api/v1/election/${id}/total`);
 
-        setVoters(data);
+        console.log(data);
+
+        setVoters(data.totalVoters);
+        setVerifiedVoters(data.verifiedVoters);
         setPreLoader(false);
         // return response.data;
       } catch (error) {
@@ -66,6 +76,27 @@ const ElectionOverview = () => {
   if (preLoader) {
     return <DashboardLoader />;
   }
+
+  // const data = {
+  //   labels: ["Verified Voters", "Non-Verified Voters"],
+  //   datasets: [
+  //     {
+  //       data: [verifiedVoters, voters - verifiedVoters],
+  //       backgroundColor: ["#4caf50", "#f44336"],
+  //       hoverBackgroundColor: ["#66bb6a", "#ef5350"],
+  //     },
+  //   ],
+  // };
+
+  // const options = {
+  //   responsive: true,
+  //   maintainAspectRatio: false,
+  //   plugins: {
+  //     legend: {
+  //       position: "bottom",
+  //     },
+  //   },
+  // };
 
   return (
     <div className="min-h-screen flex flex-col gap-6">
@@ -150,34 +181,37 @@ const ElectionOverview = () => {
         </button>
       </div>
 
-      {/* Ballots Table */}
-      {/* <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
-          Ballot Forms
-        </h2>
-        <table className="w-full table-auto text-left text-sm">
-          <thead>
-            <tr className="text-gray-600 border-b">
-              <th className="py-2">Ballot Title</th>
-              <th className="py-2">Description</th>
-              <th className="py-2">Questions</th>
-              <th className="py-2">Responses</th>
-              <th className="py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b">
-              <td className="py-2">Presidential Ballot</td>
-              <td className="py-2">Select the President</td>
-              <td className="py-2">5</td>
-              <td className="py-2">80</td>
-              <td className="py-2">
-                <button className="text-blue-600 hover:underline">View</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
+      {/* pie Table */}
+      <div className="bg-white shadow-md hidden rounded-lg p-6">
+        <h2 className="text-lg font-medium mb-4">Voter Statistics</h2>
+        {voters === 0 ? (
+          <p className="text-gray-600 text-center">
+            No voter data available yet.
+          </p>
+        ) : (
+          <div className="relative h-64 w-full">
+            <Doughnut
+              data={{
+                labels: ["Verified Voters", "Non-Verified Voters"],
+                datasets: [
+                  {
+                    data: [verifiedVoters, voters - verifiedVoters],
+                    backgroundColor: ["#4caf50", "#f44336"],
+                    hoverBackgroundColor: ["#66bb6a", "#ef5350"],
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { position: "bottom" },
+                },
+              }}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
