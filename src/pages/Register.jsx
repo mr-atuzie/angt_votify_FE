@@ -40,11 +40,18 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!firstname || !email || !phone || !password || !lastname) {
+    if (
+      !firstname ||
+      !email ||
+      !phone ||
+      !password ||
+      !lastname ||
+      !confirmPassword
+    ) {
       setLoading(false);
       return toast.error("All fields are required");
     }
-    if (!password || !confirmPassword) {
+    if (password !== confirmPassword) {
       setLoading(false);
       return toast.error("All fields are required.");
     }
