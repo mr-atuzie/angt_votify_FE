@@ -111,7 +111,7 @@ const Register = () => {
                   className="block text-sm font-medium text-gray-700 mb-1"
                   htmlFor="firstname"
                 >
-                  Firstname
+                  First name
                 </label>
                 <input
                   className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -134,7 +134,7 @@ const Register = () => {
                   className="block text-sm font-medium text-gray-700 mb-1"
                   htmlFor="lastname"
                 >
-                  Lastname
+                  Last name
                 </label>
                 <input
                   className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
