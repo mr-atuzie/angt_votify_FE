@@ -182,7 +182,7 @@ const ElectionOverview = () => {
       </div>
 
       {/* pie Table */}
-      <div className="bg-white shadow-md hidden rounded-lg p-6">
+      <div className="bg-white shadow-md  rounded-lg p-6">
         <h2 className="text-lg font-medium mb-4">Voter Statistics</h2>
         {voters === 0 ? (
           <p className="text-gray-600 text-center">

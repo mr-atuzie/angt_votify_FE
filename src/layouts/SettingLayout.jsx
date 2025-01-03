@@ -15,7 +15,7 @@ const SettingLayout = () => {
         <h2 className="lg:text-lg text-blue-600 uppercase te tracking-wide font-semibold mb-3">
           Edit Election
         </h2>
-        <div className=" flex lg:flex-col overflow-scroll">
+        <div className=" flex lg:flex-col overflow-scroll lg:overflow-auto">
           {[
             {
               to: `/election/${id}/setting/general`,
