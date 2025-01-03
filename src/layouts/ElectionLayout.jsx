@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchElectionData } from "../redux/features/election/electionSlice";
-// import { fetchLoginStatus } from "../redux/features/auth/authSlice";
+import { fetchLoginStatus } from "../redux/features/auth/authSlice";
 import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import ElectionSidebar from "../components/ElectionSidebar";
@@ -20,13 +20,13 @@ const ElectionLayout = () => {
   useEffect(() => {
     // Check login status and fetch election data
     const initialize = async () => {
-      // const loginStatus = await dispatch(fetchLoginStatus());
+      const loginStatus = await dispatch(fetchLoginStatus());
       // console.log("election layout check session.....");
 
-      // if (!loginStatus.payload) {
-      //   navigate("/login");
-      //   return;
-      // }
+      if (!loginStatus.payload) {
+        navigate("/login");
+        return;
+      }
       dispatch(fetchElectionData(id));
     };
 

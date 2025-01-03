@@ -154,7 +154,7 @@ function App() {
           {/* Election layout */}
           {/* Election Routes */}
           {/* <Route path="/election/:id" element={<Private />}> */}
-          <Route ath="/election/:id" element={<ElectionLayout />}>
+          <Route path="/election/:id" element={<ElectionLayout />}>
             {/* Overview Route */}
             <Route path="overview" element={<ElectionOverview />} />
 

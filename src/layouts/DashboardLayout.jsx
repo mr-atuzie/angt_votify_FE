@@ -17,10 +17,10 @@ const DashboardLayout = () => {
       const loginStatus = await dispatch(fetchLoginStatus());
       console.log("dashbaord layout check session.....");
 
-      // if (!loginStatus.payload) {
-      //   navigate("/login");
-      //   return;
-      // }
+      if (!loginStatus.payload) {
+        navigate("/login");
+        return;
+      }
 
       console.log(loginStatus);
     };
