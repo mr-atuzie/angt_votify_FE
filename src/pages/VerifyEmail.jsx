@@ -9,12 +9,10 @@ const VerifyEmail = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
   const sentTo = sessionStorage.getItem("sentTo");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     if (!OTP) {
@@ -44,7 +42,7 @@ const VerifyEmail = () => {
     }
   };
 
-  const resend = async (e) => {
+  const resend = async () => {
     setLoading(true);
     try {
       await axios.get("/api/v1/users/resend");
@@ -66,68 +64,64 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className=" w-full min-h-screen bg-gray-200 flex justify-center  items-center mx-auto ">
-      <div className=" lg:h-[476px] bg-white w-full h-screen lg:w-[456px] mx-auto  border shadow-md rounded-xl ">
-        <form
-          onSubmit={handleSubmit}
-          className=" w-full h-full p-5  lg:py-[32px] lg:px-[28px]  "
-        >
-          <h1 className=" font3 text-[20px] lg:text-[28px] font-medium text-center">
-            Verify your Email
+    <div className="w-full min-h-screen bg-gray-50 flex justify-center items-center">
+      <div className="bg-white w-full max-w-md mx-auto border shadow-lg rounded-lg">
+        <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-6">
+          <h1 className="text-2xl font-semibold text-center text-gray-800">
+            Verify Your Email
           </h1>
-          <p className=" text-xs lg:text-base text-[#667185] text-center">
+          <p className="text-sm text-center text-gray-600">
             We sent a code to{" "}
-            <span className=" text-[#FF5D2E] font-medium">({sentTo})</span>
-            ,Enter code to continue
+            <span className="text-primary font-medium">({sentTo})</span>. Enter
+            the code to continue.
           </p>
 
-          <div
-            className=" flex flex-col gap-2 mt-8 lg:mt-10 
-          "
-          >
+          <div className="flex flex-col gap-4">
             <label
-              className=" tracking-wide text-center capitalize text-sm lg:text-sm  font-medium "
+              className="text-sm font-medium text-gray-700 text-center"
               htmlFor="code"
             >
-              Enter verification code
+              Enter Verification Code
             </label>
             <OtpInput
               value={OTP}
               onChange={setOTP}
               autoFocus
-              OTPLength={7}
-              otpType="any"
+              OTPLength={6}
+              otpType="number"
               disabled={false}
               className="otp-container"
+              inputStyle={{
+                width: "3rem",
+                height: "3rem",
+                margin: "0 0.5rem",
+                fontSize: "1.5rem",
+                borderRadius: "8px",
+                border: "1px solid #D1D5DB",
+                backgroundColor: "#F9FAFB",
+                color: "#374151",
+                textAlign: "center",
+              }}
+              focusStyle={{
+                border: `2px solid #FF5D2E`,
+              }}
             />
-
-            {/* <div className=" w-full flex -mt-1 justify-center items-center border-2 hover:border-[#FCB59A] border-[#D0D5DD] p-3.5  rounded-md">
-              <input
-                className=" w-full outline-none border-none placeholder:font-normal placeholder:text-sm placeholder:text-gray-400 "
-                placeholder="Enter verification code"
-                type="text"
-                name="code"
-                id="code"
-                value={OTP}
-                onChange={(e) => setOTP(e.target.value)}
-              />
-            </div> */}
           </div>
 
           <button
             disabled={loading}
             type="submit"
-            className=" disabled:opacity-50 w-full mt-10 px-[24px] rounded-[12px] py-[16px] font-semibold bg-[#FF5D2E]  text-white justify-center items-center flex gap-4"
+            className="disabled:opacity-50 w-full mt-4 px-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-opacity-90 transition"
           >
-            {loading ? "Loading" : "Enter"}
+            {loading ? "Loading..." : "Submit"}
           </button>
+
           <button
             type="button"
             onClick={resend}
-            className=" text-gray-500  text-center w-full my-6 text-sm font-medium"
+            className="text-center w-full text-sm text-primary font-medium"
           >
-            Didn't recieve email?{" "}
-            <span className="text-[#FF6634] ml-1">Resend</span>
+            Didn’t receive the email? <span className="underline">Resend</span>
           </button>
         </form>
       </div>
