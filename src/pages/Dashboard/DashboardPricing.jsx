@@ -29,7 +29,7 @@ const DashboardPricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-purple-100 p-6 flex flex-col gap-8">
+    <div className="min-h-screen  flex flex-col gap-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* DEMO PLAN */}
         <div className="bg-gradient-to-r from-pink-100 to-pink-300 rounded-xl p-6 border border-pink-500 shadow-lg transform hover:scale-105 transition duration-300">
