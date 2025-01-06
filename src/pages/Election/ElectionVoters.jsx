@@ -165,7 +165,7 @@ const ElectionVoters = () => {
                         {voter.phone}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
-                        {voter.isVerified ? "Voted" : "null"}
+                        {voter.isVerified ? "Yes" : "No"}
                       </td>
                     </tr>
                   ))}

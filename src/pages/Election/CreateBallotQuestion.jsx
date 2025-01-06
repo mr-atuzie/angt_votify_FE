@@ -79,7 +79,7 @@ const CreateBallotQuestion = () => {
       <div className="bg-white rounded-lg shadow-lg w-full lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
-          Add Ballot Question
+          Add Ballot Details
         </div>
 
         {/* Form */}

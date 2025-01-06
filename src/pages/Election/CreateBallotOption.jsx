@@ -102,7 +102,7 @@ const CreateBallotOption = () => {
       <div className="bg-white rounded-lg shadow-md h-full w-full lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
-          Ballot Option
+          Add Candidates Details to Ballot
         </div>
 
         {/* Form */}
@@ -160,7 +160,7 @@ const CreateBallotOption = () => {
             {/* Option Name */}
             <div>
               <label className="block text-sm font-medium mb-1" htmlFor="title">
-                Option Name
+                Candidate Name
               </label>
               <input
                 className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"

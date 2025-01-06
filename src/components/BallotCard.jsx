@@ -27,7 +27,7 @@ const BallotCard = ({
       {/* Profile Section */}
       <div className="flex items-center gap-4">
         <img
-          className="lg:w-16 lg:h-16 w-10 h-10 object-cover rounded-full border-2 border-blue-500"
+          className="lg:w-20 lg:h-20 w-10 h-10 object-cover rounded-full border-2 border-blue-500"
           src={option?.image}
           alt="Profile"
         />

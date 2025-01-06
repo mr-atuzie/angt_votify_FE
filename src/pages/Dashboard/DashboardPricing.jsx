@@ -5,7 +5,7 @@ import FlutterwavePayment from "../../components/FlutterwavePayment";
 
 const DashboardPricing = () => {
   const FeatureItem = ({ text, color }) => (
-    <div className="flex items-center gap-3 py-2">
+    <div className="flex items-center gap-2 lg:gap-3 py-2">
       <BiSolidBadgeCheck className={`${color} text-xl`} />
       <p className="text-sm text-gray-700">{text}</p>
     </div>

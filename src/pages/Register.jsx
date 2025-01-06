@@ -83,7 +83,7 @@ const Register = () => {
       setLoading(false);
 
       toast.success("User Registered successfully");
-      navigate("/dashboard");
+      navigate("/verify-email");
     } catch (error) {
       const message =
         (error.response &&

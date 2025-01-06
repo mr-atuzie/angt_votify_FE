@@ -129,13 +129,13 @@ const EditBallotOption = () => {
       <div className="bg-white rounded-lg shadow-md h-full w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 py-4 text-center uppercase text-white text-lg font-semibold">
-          Edit Ballot Option
+          Edit Ballot Candidate
         </div>
 
         {/* Form */}
         <form className="p-8">
           <p className="text-center text-gray-600 mb-6">
-            Add a voting option for{" "}
+            Edit a candidate for{" "}
             <span className="text-blue-600 font-semibold">
               {electionData?.title}
             </span>{" "}

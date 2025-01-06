@@ -117,10 +117,10 @@ const Navbar = () => {
 
             <ShowOnLogout>
               <Link
-                to="/register"
+                to="/login"
                 className="bg-blue-600 text-center text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-blue-700 transition"
               >
-                Register
+                Login
               </Link>
             </ShowOnLogout>
 
