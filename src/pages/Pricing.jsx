@@ -47,187 +47,132 @@ const Pricing = () => {
         </div>
 
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            className={`bg-pink-100 rounded-xl  p-6 border-2 border-pink-500`}
-          >
-            <h2 className="text-xl font-medium uppercase  tracking-wide">
-              Free
+          {/* DEMO PLAN */}
+          <div className="bg-gradient-to-r from-pink-100 to-pink-300 rounded-xl p-6 border border-pink-500 shadow-lg transform hover:scale-105 transition duration-300">
+            <h2 className="text-xl font-semibold uppercase text-pink-600">
+              Demo Plan
             </h2>
-            <h2 className=" text-gray-600 text-sm mb-6 ">
-              Get started at no cost—ideal for small-scale elections and
-              experiments.
-            </h2>
-
-            <div className=" flex gap-2 items-center">
-              <p className="text-4xl font-medium">$0</p>
-              <h2 className=" text-xs">/ month</h2>
+            <p className="text-gray-600 text-sm my-4">
+              Get started to explore how the voting app works.
+            </p>
+            <div className="flex items-center gap-2 mb-4">
+              <p className="text-3xl font-semibold">$8.00</p>
             </div>
-            <h2 className=" text-sm mb-6 text-gray-600">
-              ${formatter(0 * 12)} Anually
-            </h2>
 
-            <button className=" bg-pink-600 w-full mb-6 text-clip py-2 rounded-full text-white ">
-              Buy Basic
+            <button className="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300">
+              Try Demo plan
             </button>
-
-            <di className=" mb-6">
-              <h3 className="mb-1">All Basic features plus</h3>
-
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-pink-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-sm  text-gray-600">Up to 10 Elections</p>
-              </div>
-              <div className=" py-1 gap-1  flex items-center">
-                <span className=" text-pink-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600">Up to 100 voters</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-pink-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Basic support</p>
-              </div>
-            </di>
+            {/* <FlutterwavePayment
+              btn_style="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
+              btn_text="Try Free Plan"
+              amount={8}
+              subscriptionPlan={{
+                tier: "Demo",
+                voterLimit: 15,
+                electionsAllowed: 3,
+              }}
+            /> */}
+            <div className="mt-6">
+              <FeatureItem text="Up to 3 Elections" color="text-pink-600" />
+              <FeatureItem text="Up to 15 voters" color="text-pink-600" />
+              <FeatureItem text="Basic support" color="text-pink-600" />
+            </div>
           </div>
 
-          <div
-            className={`bg-green-100 rounded-xl  p-6 border-2 border-green-500`}
-          >
-            <h2 className="text-xl font-medium uppercase  tracking-wide">
-              Standard
+          {/* Standard Plan */}
+          <div className="bg-gradient-to-r from-green-100 to-green-300 rounded-xl p-6 border border-green-500 shadow-lg transform hover:scale-105 transition duration-300">
+            <h2 className="text-xl font-semibold uppercase text-green-600">
+              Standard Plan
             </h2>
-            <h2 className=" text-gray-600 text-sm mb-6 ">
-              Perfect for growing organizations with moderate voting needs.
-            </h2>
-
-            <div className=" flex gap-2 items-center">
-              <p className="text-4xl font-medium">$15.99</p>
-              <h2 className=" text-xs">/ month</h2>
+            <p className="text-gray-600 text-sm my-4">
+              Ideal for small groups or organizations with moderate voting
+              needs.
+            </p>
+            <div className="flex items-center gap-2 mb-4">
+              <p className="text-3xl font-semibold">$17.00</p>
             </div>
-            <h2 className=" text-sm mb-6 text-gray-600">
-              ${formatter(15.99 * 12)} Anually
-            </h2>
 
-            <button className=" bg-green-600 w-full mb-6 text-clip py-2 rounded-full text-white ">
-              Buy Standard
+            <button className="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300">
+              Get Standard Plan
             </button>
-
-            <di className=" mb-6">
-              <h3 className="mb-1">All Standard features plus</h3>
-
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-green-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-sm  text-gray-600">Up to 2,000 Elections</p>
-              </div>
-              <div className=" py-1 gap-1  flex items-center">
-                <span className=" text-green-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600">Up to 1,000 voters</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-green-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Basic support</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-green-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Data export and more</p>
-              </div>
-            </di>
+            {/* <FlutterwavePayment
+              btn_style="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
+              btn_text="Get Standard Plan"
+              amount={17}
+              subscriptionPlan={{
+                tier: "Standard",
+                voterLimit: 30,
+                electionsAllowed: 5,
+              }}
+            /> */}
+            <div className="mt-6">
+              <FeatureItem text="Up to 5 Elections" color="text-green-600" />
+              <FeatureItem text="Up to 30 voters" color="text-green-600" />
+              <FeatureItem text="Data export and more" color="text-green-600" />
+            </div>
           </div>
 
-          <div
-            className={`bg-purple-100 rounded-xl  p-6 border-2 border-purple-500`}
-          >
-            <h2 className="text-xl font-medium uppercase  tracking-wide">
-              Pro
+          {/* Pro Plan */}
+          <div className="bg-gradient-to-r from-purple-100 to-purple-300 rounded-xl p-6 border border-purple-500 shadow-lg transform hover:scale-105 transition duration-300">
+            <h2 className="text-xl font-semibold uppercase text-purple-600">
+              Pro Plan
             </h2>
-            <h2 className=" text-gray-600 text-sm mb-6 ">
-              Advanced features for managing large-scale elections seamlessly
-            </h2>
-
-            <div className=" flex gap-2 items-center">
-              <p className="text-4xl font-medium">$39.99</p>
-              <h2 className=" text-xs">/ month</h2>
+            <p className="text-gray-600 text-sm my-4">
+              Advanced features for managing large-scale elections seamlessly.
+            </p>
+            <div className="flex items-center gap-2 mb-4">
+              <p className="text-3xl font-semibold">$30.00</p>
             </div>
-            <h2 className=" text-sm mb-6 text-gray-600">
-              ${formatter(39.99 * 12)} Anually
-            </h2>
 
-            <button className=" bg-purple-600 w-full mb-6 text-clip py-2 rounded-full text-white ">
-              Buy Pro
+            <button className="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300">
+              Get Pro Plan
             </button>
-
-            <di className=" mb-6">
-              <h3 className="mb-1">All Pro features plus</h3>
-
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-purple-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-sm  text-gray-600">Up to 5,000 Elections</p>
-              </div>
-              <div className=" py-1 gap-1  flex items-center">
-                <span className=" text-purple-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600">Up to 2,000 voters</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-purple-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Basic support</p>
-              </div>
-              <div className=" py-1 gap-1 flex items-center">
-                <span className=" text-purple-600">
-                  <BiSolidBadgeCheck />
-                </span>
-                <p className="text-gray-600 ">Data export and more</p>
-              </div>
-            </di>
+            {/* <FlutterwavePayment
+              btn_style="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
+              btn_text="Get Pro Plan"
+              amount={30}
+              subscriptionPlan={{
+                tier: "Pro",
+                voterLimit: 300,
+                electionsAllowed: 15,
+              }}
+            /> */}
+            <div className="mt-6">
+              <FeatureItem text="Up to 15 Elections" color="text-purple-600" />
+              <FeatureItem text="Up to 300 voters" color="text-purple-600" />
+              <FeatureItem
+                text="Priority support and data export"
+                color="text-purple-600"
+              />
+            </div>
           </div>
 
           {/* Custom Plan */}
-          <div className="bg-gray-200 rounded-xl p-6 border border-gray-500 shadow-md">
-            <h2 className="text-lg font-semibold uppercase text-gray-800">
+          <div className="bg-gradient-to-r from-gray-100 to-gray-300 rounded-xl p-6 border border-gray-500 shadow-lg transform hover:scale-105 transition duration-300">
+            <h2 className="text-xl font-semibold uppercase text-gray-800">
               Custom Plan
             </h2>
             <p className="text-gray-600 text-sm my-4">
               Tailor-made solutions for your organization’s unique needs.
             </p>
             {amount > 0 && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-4">
                 <p className="text-3xl font-semibold">${formatter(amount)}</p>
-                <span className="text-xs">/ month</span>
+                <span className="text-xs">/ voters</span>
               </div>
             )}
             <input
               type="number"
-              placeholder="Enter number of elction"
-              className="mt-4 w-full py-2 px-4 rounded-full bg-white border border-gray-300"
+              placeholder="Enter number of elections"
+              className="mt-4 w-full py-3 mb-2 px-5 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none transition duration-200"
               onChange={handleInputChange}
             />
-            <p className="text-sm text-gray-600 my-4">
-              ${formatter(amount * 12)} Annually
-            </p>
 
-            <button className="bg-black text-white w-full py-2 rounded-full hover:bg-gray-800 transition">
-              Custom Plan
+            <button className="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300">
+              Customize Plan
             </button>
-
             {/* <FlutterwavePayment
-              btn_style="bg-black text-white w-full py-2 rounded-full hover:bg-gray-800 transition"
+              btn_style="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300"
               btn_text="Customize Plan"
               amount={amount}
               subscriptionPlan={customizePlan}

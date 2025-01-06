@@ -57,7 +57,7 @@ const FlutterwavePayment = ({
       console.log(response);
       handleSubscribe();
       closePaymentModal(); // close modal programmatically
-      toast.success("Payment was successful");
+      toast.success("Subscribtion payment was successful");
     },
     onClose: () => {
       console.log("Payment closed");
