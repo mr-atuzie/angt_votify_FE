@@ -1,25 +1,59 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { fetchElectionData } from "../redux/features/election/electionSlice";
+import { IoIosCloudUpload } from "react-icons/io";
 
 const ElectionGeneralSetting = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [previewImage, setPreviewImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  function previewImageHandler(ev) {
+    const file = ev.target.files[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPreviewImage(imageUrl);
+    }
+
+    setSelectedImage(ev.target.files[0]);
+  }
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setPreviewImage(null);
+  };
+
   const handleSaveChanges = async () => {
     setLoading(true);
 
+    const dataDoc = new FormData();
+
     try {
+      dataDoc.append("file", selectedImage);
+      dataDoc.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+      dataDoc.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+
+      const res = await fetch(process.env.REACT_APP_CLOUD_URL, {
+        method: "post",
+        body: dataDoc,
+      });
+
+      const imageData = await res.json();
+
+      const imagePath = imageData.secure_url.toString();
       const { data } = await axios.put(`/api/v1/election/${id}`, {
         title,
         description,
+        image: imagePath,
       });
       dispatch(fetchElectionData(id));
 
@@ -42,6 +76,14 @@ const ElectionGeneralSetting = () => {
     }
   };
 
+  const electionData = useOutletContext();
+
+  useEffect(() => {
+    setTitle(electionData?.title || "");
+    setDescription(electionData?.description || "");
+    setPreviewImage(electionData?.image || "");
+  }, [electionData]);
+
   return (
     <div className="min-h-screen flex gap-10 flex-col  ">
       <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
@@ -55,8 +97,44 @@ const ElectionGeneralSetting = () => {
         <form className="space-y-6 p-3 lg:p-6">
           {/* Instruction Text */}
           <p className="mb-6 text-gray-600 text-center text-sm">
-            Fill out the form below to create a new election.
+            Fill out the form below to edit election.
           </p>
+
+          {previewImage ? (
+            <div className="relative">
+              <img
+                className="w-40 h-40 rounded-lg object-cover"
+                src={previewImage}
+                alt="Preview"
+              />
+              <button
+                onClick={removeImage}
+                className="absolute top-2 right-2 bg-white text-gray-500 rounded-full p-1"
+              >
+                X
+              </button>
+            </div>
+          ) : (
+            <div>
+              <p className="block text-sm font-medium mb-1">Election logo</p>
+              <label
+                htmlFor="addPhoto"
+                className="bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col justify-center items-center h-40 w-40"
+              >
+                <input
+                  id="addPhoto"
+                  type="file"
+                  className="hidden"
+                  onChange={previewImageHandler}
+                />
+                <IoIosCloudUpload className="text-gray-500 text-2xl" />
+                <span className="text-xs text-gray-500 mt-2">Upload image</span>
+              </label>
+              <small className="text-gray-500">
+                Upload an image that represents the voting option For election.
+              </small>
+            </div>
+          )}
 
           {/* Election Title */}
           <div>

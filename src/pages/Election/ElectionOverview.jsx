@@ -32,8 +32,6 @@ const ElectionOverview = () => {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(electionData);
-
   const navigate = useNavigate();
 
   const { id } = useParams();

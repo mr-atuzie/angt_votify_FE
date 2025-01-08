@@ -40,8 +40,20 @@ const CreateElection = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({ ...formData, [name]: value });
+    if (name === "startDate" || name === "endDate") {
+      const localDate = new Date(value);
+      const adjustedDate = new Date(
+        localDate.getTime() - localDate.getTimezoneOffset() * 60000
+      )
+        .toISOString()
+        .slice(0, 16); // Convert to local time without offset
+
+      setFormData({ ...formData, [name]: adjustedDate });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

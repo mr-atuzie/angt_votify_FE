@@ -5,7 +5,7 @@ import FlutterwavePayment from "../../components/FlutterwavePayment";
 
 const DashboardPricing = () => {
   const FeatureItem = ({ text, color }) => (
-    <div className="flex items-center lg:gap-3 py-2">
+    <div className="flex items-center lg:gap-3 py-1 text-sm">
       <BiSolidBadgeCheck className={`${color} text-xl`} />
       <p className="text-sm text-gray-700">{text}</p>
     </div>
@@ -40,7 +40,7 @@ const DashboardPricing = () => {
             Get started to explore how the voting app works.
           </p>
           <div className="flex items-center gap-2 mb-4">
-            <p className="text-3xl font-semibold">$8.00</p>
+            <p className="text-3xl font-semibold  text-pink-600">$8.00</p>
           </div>
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
@@ -64,11 +64,11 @@ const DashboardPricing = () => {
           <h2 className="text-xl font-semibold uppercase text-green-600">
             Standard Plan
           </h2>
-          <p className="text-gray-600 text-sm my-4">
+          <p className="text-gray-600 text-sm my-4 ">
             Ideal for small groups or organizations with moderate voting needs.
           </p>
           <div className="flex items-center gap-2 mb-4">
-            <p className="text-3xl font-semibold">$17.00</p>
+            <p className="text-3xl font-semibold text-green-600">$17.00</p>
           </div>
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
@@ -96,7 +96,7 @@ const DashboardPricing = () => {
             Advanced features for managing large-scale elections seamlessly.
           </p>
           <div className="flex items-center gap-2 mb-4">
-            <p className="text-3xl font-semibold">$30.00</p>
+            <p className="text-3xl font-semibold  text-purple-600">$30.00</p>
           </div>
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
@@ -135,7 +135,7 @@ const DashboardPricing = () => {
           <input
             type="number"
             placeholder="Enter number of elections"
-            className="mt-4 w-full py-3 px-5 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none transition duration-200"
+            className="mt-4 w-full py-3  mb-2 px-5 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none transition duration-200"
             onChange={handleInputChange}
           />
           <FlutterwavePayment

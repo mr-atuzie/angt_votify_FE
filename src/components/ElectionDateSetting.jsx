@@ -4,27 +4,41 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 const ElectionDateSetting = () => {
-  const [startDate, setStartDate] = useState(""); // Example date
-  const [endDate, setEndDate] = useState(""); // Example date
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
 
+  // Adjust time offset before saving
+  const adjustForTimezone = (dateString) => {
+    const localDate = new Date(dateString);
+    return new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 16); // Return local time in ISO format without the time zone
+  };
+
   const handleSaveChanges = async () => {
     setLoading(true);
+
+    if (!startDate || !endDate) {
+      toast.error("Please enter all required fields");
+      setLoading(false);
+      return;
+    }
+
     try {
+      const adjustedStartDate = adjustForTimezone(startDate);
+      const adjustedEndDate = adjustForTimezone(endDate);
+
       const { data } = await axios.put(`/api/v1/election/${id}`, {
-        endDate,
-        startDate,
+        startDate: adjustedStartDate,
+        endDate: adjustedEndDate,
       });
 
       console.log(data);
       setLoading(false);
-      toast.success("Election date has be");
-      // const response = await axios.get(`/api/v1/ballot/election/${id}`);
-      // console.log(response.data);
-      // setBallots(response.data);
-      // return response.data;
+      toast.success("Election date has been updated");
     } catch (error) {
       const message =
         (error.response &&
@@ -39,24 +53,20 @@ const ElectionDateSetting = () => {
   };
 
   return (
-    <div className="min-h-screen flex gap-10 flex-col  ">
+    <div className="min-h-screen flex gap-10 flex-col">
       <div className="bg-white rounded-lg shadow-lg w-full mx-auto mt-8">
-        {/* Header */}
         <div className="w-full bg-blue-800 text-white text-center py-4 rounded-t-lg">
-          <h1 className=" text-lg lg:text-2xl uppercase font-semibold">
-            {" "}
+          <h1 className="text-lg lg:text-2xl uppercase font-semibold">
             Election Date
           </h1>
         </div>
 
-        <form className="space-y-6  p-3 lg:p-6">
-          {/* Instruction Text */}
+        <form className="space-y-6 p-3 lg:p-6">
           <p className="mb-6 text-gray-600 text-center text-sm">
             Update the election start and end dates below.
           </p>
 
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            {/* Start Date */}
             <div className="w-full">
               <label
                 htmlFor="start-date"
@@ -73,7 +83,6 @@ const ElectionDateSetting = () => {
               />
             </div>
 
-            {/* End Date */}
             <div className="w-full">
               <label
                 htmlFor="end-date"
@@ -91,7 +100,6 @@ const ElectionDateSetting = () => {
             </div>
           </div>
 
-          {/* Save Button */}
           <div className="flex justify-center">
             <button
               type="button"

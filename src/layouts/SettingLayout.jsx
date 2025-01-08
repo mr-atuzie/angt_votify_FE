@@ -1,13 +1,15 @@
 import React from "react";
 import { MdOutlineBallot } from "react-icons/md";
 import { FaRegCalendarDays } from "react-icons/fa6";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useOutletContext, useParams } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { LiaCogSolid } from "react-icons/lia";
 
 const SettingLayout = () => {
   const fontSize = 15;
   const { id } = useParams();
+
+  const electionData = useOutletContext();
 
   return (
     <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
@@ -66,7 +68,7 @@ const SettingLayout = () => {
         </div>
       </div>
       <div className=" flex-1">
-        <Outlet />
+        <Outlet context={electionData} />
       </div>
     </div>
   );
