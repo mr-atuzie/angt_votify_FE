@@ -61,9 +61,7 @@ const Ballot = ({
               >
                 <button className="flex w-full items-center gap-3 px-4 py-2 hover:bg-blue-50 rounded-lg transition">
                   <IoAddSharp size={20} className="text-blue-600" />
-                  <span className="text-gray-800 text-sm">
-                    Add More Candidates
-                  </span>
+                  <span className="text-gray-800 text-sm">Add Candidates</span>
                 </button>
               </Link>
 

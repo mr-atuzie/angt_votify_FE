@@ -84,17 +84,17 @@ const EditBallotQuestion = () => {
   }
 
   return (
-    <div className="min-h-screen  bg-gray-100 p-6 flex flex-col gap-6">
-      <div className="bg-white rounded-lg shadow-lg w-[60%] mx-auto">
+    <div className="min-h-screen  bg-gray-100 flex flex-col gap-6">
+      <div className="bg-white rounded-lg shadow-lg w-[95%] lg:w-[60%] mx-auto">
         {/* Header */}
         <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
           Edit Ballot Details
         </div>
 
         {/* Form */}
-        <form className="p-8">
+        <form className=" p-4 lg:p-8">
           {/* Election Title */}
-          <p className="text-center capitalize text-gray-700 mb-8">
+          <p className="text-center text-sm capitalize text-gray-700 mb-8">
             Create a ballot question for the{" "}
             <span className="text-blue-600 font-semibold">
               {electionData?.title}

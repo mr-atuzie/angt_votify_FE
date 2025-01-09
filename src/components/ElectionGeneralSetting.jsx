@@ -37,27 +37,39 @@ const ElectionGeneralSetting = () => {
 
     const dataDoc = new FormData();
 
+    let newImage;
+
+    if (!title || !description || !previewImage) {
+      setLoading(false);
+      return toast.error("Enter all required fields");
+    }
+
     try {
-      dataDoc.append("file", selectedImage);
-      dataDoc.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-      dataDoc.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+      if (selectedImage) {
+        dataDoc.append("file", selectedImage);
+        dataDoc.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
+        dataDoc.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
 
-      const res = await fetch(process.env.REACT_APP_CLOUD_URL, {
-        method: "post",
-        body: dataDoc,
-      });
+        const res = await fetch(process.env.REACT_APP_CLOUD_URL, {
+          method: "post",
+          body: dataDoc,
+        });
 
-      const imageData = await res.json();
+        const imageData = await res.json();
+        const imagePath = imageData.secure_url.toString();
+        newImage = imagePath;
+      } else {
+        newImage = electionData?.image;
+      }
 
-      const imagePath = imageData.secure_url.toString();
       const { data } = await axios.put(`/api/v1/election/${id}`, {
         title,
         description,
-        image: imagePath,
+        image: newImage,
       });
       dispatch(fetchElectionData(id));
 
-      console.log(data);
+      toast.success(data.message);
       setLoading(false);
       // const response = await axios.get(`/api/v1/ballot/election/${id}`);
       // console.log(response.data);
