@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 
 const ElectionVoter = () => {
@@ -13,6 +13,8 @@ const ElectionVoter = () => {
   };
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -69,13 +71,6 @@ const ElectionVoter = () => {
     e.preventDefault();
     setLoading(true);
 
-    // if (!title) {
-    //   setLoading(false);
-    //   return toast.error("All fields are required");
-    // }
-
-    console.log({ name, email, phone });
-
     try {
       const { data } = await axios.put(`/api/v1/voter/${id}`, {
         fullName: name,
@@ -86,6 +81,7 @@ const ElectionVoter = () => {
       setLoading(false);
 
       toast.success("Voter details updated successfully");
+      navigate(-1);
       console.log(data);
     } catch (error) {
       const message =
