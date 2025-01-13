@@ -60,11 +60,14 @@ const ElectionVoters = () => {
     console.log("Search submitted for:", searchQuery);
   };
 
+  console.log(voters);
+
   const downloadCSV = () => {
-    const csvHeaders = ["Name,Email,Phone,Voted"];
+    const csvHeaders = ["Name,Email,Phone,Voted,voter ID,voting Code,link"];
     const csvRows = voters.map((voter) => {
       const voted = voter.isVerified ? "Yes" : "No";
-      return `${voter.fullName},${voter.email},${voter.phone},${voted}`;
+      const electionLink = `${process.env.REACT_APP_BACKEND_URL}/voting/${electionData?._id}/voter/${voter._id}/login`;
+      return `${voter.fullName},${voter.email},${voter.phone},${voted},${voter.voterId},${voter.verificationCode},${electionLink}`;
     });
     const csvContent = [csvHeaders, ...csvRows].join("\n");
     const blob = new Blob([csvContent], { type: "text/csv" });
@@ -79,6 +82,14 @@ const ElectionVoters = () => {
   if (!electionData) {
     return <div>No election data available</div>;
   }
+
+  const handleViewDetails = (voterId) => {
+    // Navigate to a voter detail page
+    navigate(`/election/${electionData?._id}/voter/${voterId}`);
+
+    // Alternatively, fetch voter details and display in a modal
+    // fetchVoterDetails(voterId).then(data => setModalData(data));
+  };
 
   if (preLoader) {
     return <DashboardLoader />;
@@ -150,6 +161,8 @@ const ElectionVoters = () => {
                     <th className="px-4 py-3">Email</th>
                     <th className="px-4 py-3">Phone</th>
                     <th className="px-4 py-3">Voted</th>
+                    <th className="px-4 py-3">Action</th>{" "}
+                    {/* New Action Header */}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
@@ -166,6 +179,14 @@ const ElectionVoters = () => {
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
                         {voter.isVerified ? "Yes" : "No"}
+                      </td>
+                      <td className="px-4 py-4">
+                        <button
+                          onClick={() => handleViewDetails(voter._id)}
+                          className="text-blue-600 hover:underline"
+                        >
+                          View Details
+                        </button>
                       </td>
                     </tr>
                   ))}

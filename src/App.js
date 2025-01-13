@@ -58,6 +58,7 @@ import ResetPassword from "./pages/ResetPassword";
 import How from "./pages/How";
 import VerifyEmail from "./pages/VerifyEmail";
 import NotFound from "./pages/NotFound";
+import ElectionVoter from "./pages/Election/ElectionVoter";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -183,6 +184,7 @@ function App() {
 
             {/* Voters Routes */}
             <Route path="voters" element={<ElectionVoters />} />
+            <Route path="voter/:id" element={<ElectionVoter />} />
             <Route path="voters/create" element={<ElectionAddVoters />} />
 
             {/* Settings Layout */}

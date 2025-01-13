@@ -113,7 +113,7 @@ const Dashboard = () => {
                           ? "text-yellow-600 bg-yellow-100"
                           : election?.status === "Ongoing"
                           ? "text-green-600 bg-green-100"
-                          : "text-blue-600 bg-blue-100"
+                          : "text-red-600 bg-red-100"
                       }`}
                     >
                       {election?.status}
