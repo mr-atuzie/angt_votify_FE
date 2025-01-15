@@ -146,25 +146,24 @@ const ElectionOverview = () => {
             <p className="text-lg font-bold text-blue-600">
               {verifiedVoters} voters
             </p>
-            <p
-              className={`text-xs lg:text-sm font-medium ${
-                (verifiedVoters / voters) * 100 < 50
-                  ? "text-red-500"
-                  : (verifiedVoters / voters) * 100 < 70
-                  ? "text-orange-500"
-                  : "text-green-500"
-              }`}
-            >
-              ({((verifiedVoters / voters) * 100).toFixed(2)}%) voting
-              percentage
-            </p>
           </div>
         </div>
       </div>
 
       {/* Voter Statistics Chart */}
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-lg font-medium mb-4">Voter Statistics</h2>
+        <h2 className="text-lg font-medium">Voter Statistics</h2>
+        <p
+          className={`text-xs lg:text-sm font-medium  mb-4 ${
+            (verifiedVoters / voters) * 100 < 50
+              ? "text-red-500"
+              : (verifiedVoters / voters) * 100 < 70
+              ? "text-orange-500"
+              : "text-green-500"
+          }`}
+        >
+          ({((verifiedVoters / voters) * 100).toFixed(2)}%) voting percentage
+        </p>
         {voters === 0 ? (
           <p className="text-gray-600 text-center">
             No voter data available yet.
