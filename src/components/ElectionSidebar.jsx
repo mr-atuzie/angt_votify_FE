@@ -31,8 +31,8 @@ const ElectionSidebar = ({ id }) => {
             Icon: PiUsersFourFill,
           },
           {
-            to: `/election/${id}/launch`,
-            label: "Launch",
+            to: `/election/${id}/manage`,
+            label: "Manage Election",
             Icon: MdRocketLaunch,
           },
           {

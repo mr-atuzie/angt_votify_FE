@@ -32,8 +32,8 @@ const ElectionMobileNav = ({ id }) => {
             Icon: FaChartPie,
           },
           {
-            to: `/election/${id}/launch`,
-            label: "Launch",
+            to: `/election/${id}/manage`,
+            label: "Manage",
             Icon: MdRocketLaunch,
           },
           {

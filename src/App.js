@@ -164,7 +164,7 @@ function App() {
             {/* Results Route */}
             <Route path=":result" element={<ElectionResult />} />
 
-            <Route path="launch" element={<ElectionLaunch />} />
+            <Route path="manage" element={<ElectionLaunch />} />
 
             {/* Ballot Routes */}
             <Route path="ballot" element={<ElectionBallot />} />
