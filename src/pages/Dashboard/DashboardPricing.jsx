@@ -50,6 +50,7 @@ const DashboardPricing = () => {
               tier: "Demo",
               voterLimit: 15,
               electionsAllowed: 3,
+              amount: 8,
             }}
           />
           <div className="mt-6">
@@ -78,6 +79,7 @@ const DashboardPricing = () => {
               tier: "Standard",
               voterLimit: 30,
               electionsAllowed: 5,
+              amount: 17,
             }}
           />
           <div className="mt-6">
@@ -106,6 +108,7 @@ const DashboardPricing = () => {
               tier: "Pro",
               voterLimit: 300,
               electionsAllowed: 15,
+              amount: 30,
             }}
           />
           <div className="mt-6">

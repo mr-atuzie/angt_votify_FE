@@ -13,10 +13,11 @@ const FlutterwavePayment = ({
 }) => {
   const user = useSelector(selectUser);
 
-  const handleSubscribe = async () => {
+  const handleSubscribe = async (flutterwavePaymentReciept) => {
     try {
       const { data } = await axios.patch(`/api/v1/user/subscribe`, {
         subscriptionPlan,
+        flutterwavePaymentReciept,
       });
 
       console.log(data);
@@ -55,7 +56,7 @@ const FlutterwavePayment = ({
     text: btn_text,
     callback: (response) => {
       console.log(response);
-      handleSubscribe();
+      handleSubscribe(response.flw_ref);
       closePaymentModal(); // close modal programmatically
       toast.success("Subscribtion payment was successful");
     },

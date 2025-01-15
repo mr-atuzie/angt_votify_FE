@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
-import { useSelector } from "react-redux";
+// import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
+// import { useSelector } from "react-redux";
 import DashboardLoader from "../../components/DashboardLoader";
 import {
   FaCalendarCheck,
@@ -26,17 +26,17 @@ const ElectionOverview = () => {
   const [verifiedVoters, setVerifiedVoters] = useState(0);
   const [preLoader, setPreLoader] = useState(false);
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { id } = useParams();
 
-  useEffect(() => {
-    if (isLoggedIn === false) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (isLoggedIn === false) {
+  //     navigate("/login");
+  //   }
+  // }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     setPreLoader(true);
@@ -193,6 +193,16 @@ const ElectionOverview = () => {
           </div>
         )}
       </div>
+
+      {/* Row 3: Buttons */}
+      {/* <div className="flex justify-center gap-4 mt-6">
+        <button className="bg-blue-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-600 transition">
+          Start
+        </button>
+        <button className="bg-red-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-red-600 transition">
+          End
+        </button>
+      </div> */}
     </div>
   );
 };

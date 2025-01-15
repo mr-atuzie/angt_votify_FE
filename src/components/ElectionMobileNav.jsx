@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { MdBallot } from "react-icons/md";
+import { MdBallot, MdRocketLaunch } from "react-icons/md";
 import { PiUsersFourFill } from "react-icons/pi";
 import { GrSettingsOption } from "react-icons/gr";
 import { IoHome } from "react-icons/io5";
@@ -30,6 +30,11 @@ const ElectionMobileNav = ({ id }) => {
             to: `/election/${id}/result`,
             label: "Result",
             Icon: FaChartPie,
+          },
+          {
+            to: `/election/${id}/launch`,
+            label: "Launch",
+            Icon: MdRocketLaunch,
           },
           {
             to: `/election/${id}/setting/general`,

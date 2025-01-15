@@ -5,6 +5,7 @@ import { GrSettingsOption } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
 import { FaChartPie } from "react-icons/fa6";
+import { MdRocketLaunch } from "react-icons/md";
 
 const ElectionSidebar = ({ id }) => {
   return (
@@ -28,6 +29,11 @@ const ElectionSidebar = ({ id }) => {
             to: `/election/${id}/voters`,
             label: "Voters",
             Icon: PiUsersFourFill,
+          },
+          {
+            to: `/election/${id}/launch`,
+            label: "Launch",
+            Icon: MdRocketLaunch,
           },
           {
             to: `/election/${id}/result`,

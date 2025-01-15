@@ -178,7 +178,7 @@ const ElectionVoter = () => {
             <button
               className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all"
               type="button"
-              //   onClick={() => navigate(-1)}
+              onClick={() => navigate(-1)}
             >
               Close
             </button>

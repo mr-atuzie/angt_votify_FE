@@ -18,8 +18,7 @@ const DashboardLayout = () => {
       console.log("dashbaord layout check session.....");
 
       if (!loginStatus.payload) {
-        navigate("/login");
-        return;
+        navigate("/login", { replace: true });
       }
 
       console.log(loginStatus);

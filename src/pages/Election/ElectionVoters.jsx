@@ -19,6 +19,8 @@ const ElectionVoters = () => {
   const [voters, setVoters] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [preLoader, setPreLoader] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 25;
   const electionData = useOutletContext();
   const [fileMenu, setFileMenu] = useState(false);
 
@@ -84,12 +86,14 @@ const ElectionVoters = () => {
   }
 
   const handleViewDetails = (voterId) => {
-    // Navigate to a voter detail page
     navigate(`/election/${electionData?._id}/voter/${voterId}`);
-
-    // Alternatively, fetch voter details and display in a modal
-    // fetchVoterDetails(voterId).then(data => setModalData(data));
   };
+
+  const totalVoters = voters.length;
+  const paginatedVoters = voters.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   if (preLoader) {
     return <DashboardLoader />;
@@ -153,6 +157,10 @@ const ElectionVoters = () => {
               </button>
             </div>
 
+            <div className="flex justify-between items-center ">
+              <p>Total Voters: {totalVoters}</p>
+            </div>
+
             <div className="relative overflow-x-auto shadow-lg sm:rounded-lg bg-white">
               <table className="w-full text-sm text-left text-gray-700">
                 <thead className="bg-blue-800 text-white uppercase text-xs">
@@ -161,12 +169,11 @@ const ElectionVoters = () => {
                     <th className="px-4 py-3">Email</th>
                     <th className="px-4 py-3">Phone</th>
                     <th className="px-4 py-3">Voted</th>
-                    <th className="px-4 py-3">Action</th>{" "}
-                    {/* New Action Header */}
+                    <th className="px-4 py-3">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
-                  {voters.map((voter) => (
+                  {paginatedVoters.map((voter) => (
                     <tr key={voter._id} className="bg-white hover:bg-gray-50">
                       <td className="px-4 whitespace-nowrap py-4 font-medium text-gray-900">
                         {voter.fullName}
@@ -183,7 +190,7 @@ const ElectionVoters = () => {
                       <td className="px-4 py-4">
                         <button
                           onClick={() => handleViewDetails(voter._id)}
-                          className="text-blue-600 hover:underline"
+                          className="text-blue-600 whitespace-nowrap hover:underline"
                         >
                           View Details
                         </button>
@@ -192,6 +199,55 @@ const ElectionVoters = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className={`px-3 py-1 rounded ${
+                  currentPage === 1
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700"
+                }`}
+              >
+                Previous
+              </button>
+
+              {Array.from({
+                length: Math.ceil(totalVoters / itemsPerPage),
+              }).map((_, index) => {
+                const page = index + 1;
+                return (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 rounded ${
+                      page === currentPage
+                        ? "bg-blue-700 text-white"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) =>
+                    Math.min(prev + 1, Math.ceil(totalVoters / itemsPerPage))
+                  )
+                }
+                disabled={currentPage === Math.ceil(totalVoters / itemsPerPage)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === Math.ceil(totalVoters / itemsPerPage)
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700"
+                }`}
+              >
+                Next
+              </button>
             </div>
           </>
         ) : (

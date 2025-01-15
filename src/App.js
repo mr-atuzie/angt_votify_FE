@@ -59,6 +59,7 @@ import How from "./pages/How";
 import VerifyEmail from "./pages/VerifyEmail";
 import NotFound from "./pages/NotFound";
 import ElectionVoter from "./pages/Election/ElectionVoter";
+import ElectionLaunch from "./pages/Election/ElectionLaunch";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -162,6 +163,8 @@ function App() {
 
             {/* Results Route */}
             <Route path=":result" element={<ElectionResult />} />
+
+            <Route path="launch" element={<ElectionLaunch />} />
 
             {/* Ballot Routes */}
             <Route path="ballot" element={<ElectionBallot />} />
