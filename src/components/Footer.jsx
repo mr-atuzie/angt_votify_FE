@@ -49,11 +49,6 @@ const Footer = () => {
           </h2>
           <ul className="space-y-2">
             <li>
-              <a href="#contestants" className="hover:text-purple-500">
-                Contestants
-              </a>
-            </li>
-            <li>
               <a href="#rules" className="hover:text-purple-500">
                 Rules
               </a>

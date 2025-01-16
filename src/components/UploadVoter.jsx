@@ -2,11 +2,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import { VscFileSubmodule } from "react-icons/vsc";
 import { IoMdArrowBack } from "react-icons/io";
+import { IoCloudUploadSharp } from "react-icons/io5";
+import toast from "react-hot-toast";
+import { fetchElectionData } from "../redux/features/election/electionSlice";
+import { useDispatch } from "react-redux";
 
 const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
   const [file, setFile] = useState(null);
   const [loading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleFileChange = (e) => {
     setMessage("");
@@ -35,8 +41,11 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+      dispatch(fetchElectionData(electionData?._id));
       setMessage(response.data.message);
+      toast.success(response.data.message);
       setUploading(false);
+      setFileMenu(false);
     } catch (error) {
       setUploading(false);
       setMessage(
@@ -68,10 +77,9 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
               Maximum file size: <strong>2MB</strong>
             </li>
             <li>
-              The file must include headers:{" "}
-              <strong>name, email, phone number</strong>
+              The file must include headers: <strong>name, phone</strong>
             </li>
-            <li>All email addresses must be valid.</li>
+            <li>All email/phone number addresses must be valid.</li>
           </ul>
 
           {message && (
@@ -86,24 +94,7 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
             </div>
           )}
 
-          <div className="mb-4 h-40 flex justify-center border-2 border-gray-400 rounded-lg border-dashed items-center w-60 bg-gray-200">
-            <label
-              htmlFor="file"
-              className="text-sm flex items-center gap-2 font-medium text-gray-500 cursor-pointer"
-            >
-              <VscFileSubmodule size={25} /> Click to select file
-              <input
-                id="file"
-                name="file"
-                type="file"
-                accept=".xlsx,.csv"
-                onChange={handleFileChange}
-                className="hidden"
-              />
-            </label>
-          </div>
-
-          {file && (
+          {file ? (
             <button
               disabled={loading}
               onClick={handleUpload}
@@ -130,9 +121,29 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
                   <span className="sr-only">Loading...</span>
                 </div>
               ) : (
-                "Upload File"
+                <div className=" justify-center flex items-center gap-3">
+                  <IoCloudUploadSharp />
+                  Upload File
+                </div>
               )}
             </button>
+          ) : (
+            <div className="mb-4 h-40 flex justify-center border-2 border-gray-400 rounded-lg border-dashed items-center w-60 bg-gray-200">
+              <label
+                htmlFor="file"
+                className="text-sm flex items-center gap-2 font-medium text-gray-500 cursor-pointer"
+              >
+                <VscFileSubmodule size={25} /> Click to select file
+                <input
+                  id="file"
+                  name="file"
+                  type="file"
+                  accept=".xlsx,.csv"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
           )}
         </div>
       </div>

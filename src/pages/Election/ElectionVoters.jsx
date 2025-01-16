@@ -165,6 +165,8 @@ const ElectionVoters = () => {
               <table className="w-full text-sm text-left text-gray-700">
                 <thead className="bg-blue-800 text-white uppercase text-xs">
                   <tr>
+                    <th className="px-4 py-3">#</th>{" "}
+                    {/* Serial Number Column */}
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Email</th>
                     <th className="px-4 py-3">Phone</th>
@@ -173,13 +175,16 @@ const ElectionVoters = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
-                  {paginatedVoters.map((voter) => (
+                  {paginatedVoters.map((voter, index) => (
                     <tr key={voter._id} className="bg-white hover:bg-gray-50">
+                      <td className="px-4 py-4 text-gray-900 font-medium">
+                        {index + 1} {/* Display Serial Number */}
+                      </td>
                       <td className="px-4 whitespace-nowrap py-4 font-medium text-gray-900">
                         {voter.fullName}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
-                        {voter.email}
+                        {voter.email ? voter.email : "NULL"}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
                         {voter.phone}
