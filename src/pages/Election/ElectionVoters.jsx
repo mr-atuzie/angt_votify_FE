@@ -20,7 +20,7 @@ const ElectionVoters = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [preLoader, setPreLoader] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 25;
+  const itemsPerPage = 100;
   const electionData = useOutletContext();
   const [fileMenu, setFileMenu] = useState(false);
 
@@ -227,9 +227,9 @@ const ElectionVoters = () => {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 rounded ${
+                    className={`px-3 py-1 text-sm lg:text-base rounded ${
                       page === currentPage
-                        ? "bg-blue-700 text-white"
+                        ? "bg-blue-700  text-white"
                         : "bg-gray-200 hover:bg-gray-300"
                     }`}
                   >

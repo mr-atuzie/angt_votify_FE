@@ -39,15 +39,16 @@ const ElectionLaunch = () => {
       toast.error(message);
     }
   };
+
   const handleEndElection = (id) => {
     setLoading2(true);
 
     try {
       const { data } = axios.post(`/api/v1/election/end-election/${id}`);
       console.log(data);
-      dispatch(fetchElectionData(id));
-      toast.success(data.message);
+      // toast.success(data.message);
       setLoading2(false);
+      // dispatch(fetchElectionData(id));
     } catch (error) {
       const message =
         (error.response &&
