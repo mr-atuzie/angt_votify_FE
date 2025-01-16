@@ -184,10 +184,10 @@ const ElectionVoters = () => {
                         {voter.fullName}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
-                        {voter.email ? voter.email : "NULL"}
+                        {voter.email ? voter.email : "null"}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
-                        {voter.phone}
+                        0{voter.phone}
                       </td>
                       <td className="px-4 whitespace-nowrap py-4">
                         {voter.isVerified ? "Yes" : "No"}

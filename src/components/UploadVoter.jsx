@@ -71,7 +71,7 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
           </p>
           <ul className="list-disc list-inside text-sm lg:text-base text-gray-600 mb-6">
             <li>
-              Accepted formats: <strong>.xlsx, .csv</strong>
+              Accepted formats: <strong>.csv</strong>
             </li>
             <li>
               Maximum file size: <strong>2MB</strong>
@@ -98,7 +98,7 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
             <button
               disabled={loading}
               onClick={handleUpload}
-              className=" bg-blue-600 disabled:opacity-60 text-white px-4 py-2 rounded-md w-60 hover:bg-blue-700 transition"
+              className=" bg-blue-600 disabled:opacity-60 flex justify-center text-white px-4 py-2 rounded-md w-60 hover:bg-blue-700 transition"
             >
               {loading ? (
                 <div role="status">
