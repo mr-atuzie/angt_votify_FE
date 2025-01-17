@@ -102,7 +102,9 @@ const ElectionOverview = () => {
             <FaCalendarCheck className="text-purple-500 text-2xl" />
           </div>
           <p className="text-lg font-bold text-blue-600">
-            {moment(electionData?.startDate).format("MMM DD, YYYY hh:mm A")}
+            {moment(electionData?.startDate)
+              .local()
+              .format("MMM DD, YYYY hh:mm A")}
           </p>
         </div>
 

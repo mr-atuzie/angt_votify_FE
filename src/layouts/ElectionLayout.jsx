@@ -17,6 +17,8 @@ const ElectionLayout = () => {
     (state) => state.election
   );
 
+  console.log(electionData);
+
   useEffect(() => {
     // Check login status and fetch election data
     const initialize = async () => {

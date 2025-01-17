@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { format, parseISO } from "date-fns";
 
 const ElectionDateSetting = () => {
   const [startDate, setStartDate] = useState("");
@@ -10,12 +11,10 @@ const ElectionDateSetting = () => {
 
   const { id } = useParams();
 
-  // Adjust time offset before saving
-  const adjustForTimezone = (dateString) => {
-    const localDate = new Date(dateString);
-    return new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000)
-      .toISOString()
-      .slice(0, 16); // Return local time in ISO format without the time zone
+  // Format dates to ISO string for API compatibility
+  const formatDateForAPI = (dateString) => {
+    const parsedDate = parseISO(dateString);
+    return format(parsedDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
   };
 
   const handleSaveChanges = async () => {
@@ -28,8 +27,10 @@ const ElectionDateSetting = () => {
     }
 
     try {
-      const adjustedStartDate = adjustForTimezone(startDate);
-      const adjustedEndDate = adjustForTimezone(endDate);
+      const adjustedStartDate = formatDateForAPI(startDate);
+      const adjustedEndDate = formatDateForAPI(endDate);
+
+      console.log({ adjustedEndDate, adjustedStartDate });
 
       const { data } = await axios.put(`/api/v1/election/${id}`, {
         startDate: adjustedStartDate,
@@ -99,6 +100,12 @@ const ElectionDateSetting = () => {
               />
             </div>
           </div>
+
+          <p className=" text-xs text-center text-gray-500">
+            Please note that all election times will automatically include an
+            additional hour due to system settings. Ensure to account for this
+            adjustment when planning your schedules.
+          </p>
 
           <div className="flex justify-center">
             <button
