@@ -68,7 +68,7 @@ const ElectionVoters = () => {
     const csvHeaders = ["Name,Email,Phone,Voted,voter ID,voting Code,link"];
     const csvRows = voters.map((voter) => {
       const voted = voter.isVerified ? "Yes" : "No";
-      const electionLink = `${process.env.REACT_APP_BACKEND_URL}/voting/${electionData?._id}/voter/${voter._id}/login`;
+      const electionLink = `${process.env.REACT_APP_CLIENT_URL}/voting/${electionData?._id}/voter/${voter._id}/login`;
       return `${voter.fullName},${voter.email},${voter.phone},${voted},${voter.voterId},${voter.verificationCode},${electionLink}`;
     });
     const csvContent = [csvHeaders, ...csvRows].join("\n");
