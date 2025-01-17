@@ -218,40 +218,47 @@ const CreateElection = () => {
               </div>
 
               {/* Dates */}
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="w-full">
-                  <label
-                    className="block text-sm font-medium  mb-1"
-                    htmlFor="startDate"
-                  >
-                    Start Date
-                  </label>
-                  <input
-                    id="startDate"
-                    name="startDate"
-                    value={startDate}
-                    onChange={handleInputChange}
-                    type="datetime-local"
-                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
+              <div>
+                <div className="flex flex-col lg:flex-row gap-4">
+                  <div className="w-full">
+                    <label
+                      className="block text-sm font-medium  mb-1"
+                      htmlFor="startDate"
+                    >
+                      Start Date
+                    </label>
+                    <input
+                      id="startDate"
+                      name="startDate"
+                      value={startDate}
+                      onChange={handleInputChange}
+                      type="datetime-local"
+                      className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
 
-                <div className="w-full">
-                  <label
-                    className="block text-sm font-medium mb-1"
-                    htmlFor="endDate"
-                  >
-                    End Date
-                  </label>
-                  <input
-                    id="endDate"
-                    name="endDate"
-                    value={endDate}
-                    onChange={handleInputChange}
-                    type="datetime-local"
-                    className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                  <div className="w-full">
+                    <label
+                      className="block text-sm font-medium mb-1"
+                      htmlFor="endDate"
+                    >
+                      End Date
+                    </label>
+                    <input
+                      id="endDate"
+                      name="endDate"
+                      value={endDate}
+                      onChange={handleInputChange}
+                      type="datetime-local"
+                      className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
                 </div>
+                <p className=" text-xs mt-2  text-gray-500">
+                  Please note that all election times will automatically include
+                  an additional hour due to system settings. Ensure to account
+                  for this adjustment when planning your schedules.
+                </p>
               </div>
 
               {/* Election Type */}
