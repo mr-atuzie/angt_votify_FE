@@ -13,42 +13,30 @@ const ElectionVoter = () => {
   };
 
   const { id } = useParams();
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
-
   const [preLoader, setPreLoader] = useState(false);
 
-  // Fetch the ballot details when the component mounts
+  // Fetch the voter details when the component mounts
   useEffect(() => {
     setPreLoader(true);
     const fetchVoter = async () => {
       try {
-        setLoading(true);
         const { data } = await axios.get(`/api/v1/voter/${id}`);
-        console.log(data);
-
         setFormData({
           name: data.voter.fullName || "",
           email: data.voter.email || "",
         });
-
         setPhone(data.voter.phone);
-        // setTitle(data?.title || "");
-        // setDescription(data?.description || "");
-        setLoading(false);
         setPreLoader(false);
       } catch (error) {
-        setLoading(false);
         setPreLoader(false);
-        const message =
-          error.response?.data?.message ||
-          error.message ||
-          "Failed to fetch voter.";
-        toast.error(message);
+        toast.error(
+          error.response?.data?.message || "Failed to fetch voter details."
+        );
       }
     };
 
@@ -63,64 +51,62 @@ const ElectionVoter = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      const { data } = await axios.put(`/api/v1/voter/${id}`, {
+      await axios.put(`/api/v1/voter/${id}`, {
         fullName: name,
         email,
         phone,
       });
-
       setLoading(false);
-
       toast.success("Voter details updated successfully");
       navigate(-1);
-      console.log(data);
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
       setLoading(false);
-      toast.error(message);
+      toast.error(
+        error.response?.data?.message || "Failed to update voter details."
+      );
     }
   };
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this voter?")) {
+      setLoading(true);
+      try {
+        await axios.delete(`/api/v1/voter/${id}`);
+        toast.success("Voter deleted successfully");
+        navigate(-1);
+      } catch (error) {
+        setLoading(false);
+        toast.error(error.response?.data?.message || "Failed to delete voter.");
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen  bg-gray-100 p-3 lg:p-6 flex flex-col gap-6">
-      <div className="bg-white rounded-lg shadow-lg w-full lg:w-[60%] mx-auto">
+    <div className="min-h-screen flex justify-center ">
+      <div className="bg-white h-fit mx-auto shadow-md rounded-lg w-[95%] lg:w-[50%]">
         {/* Header */}
-        <div className="bg-blue-800 uppercase py-4 text-center text-white text-lg font-bold">
+        <div className="bg-blue-700 text-white text-lg font-semibold text-center py-4 rounded-t-lg">
           Voter Details
         </div>
 
         {/* Form */}
-        <form className="p-3 lg:p-8" onSubmit={handleSubmit}>
-          {/* <p className="text-center text-sm lg:text-base text-gray-700 mb-8">
-            Add a voter to the election:{" "}
-            <span className="text-blue-600 font-semibold">
-              {electionData?.title}
-            </span>
-          </p> */}
-
+        <form className=" p-3 lg:p-6 space-y-4" onSubmit={handleSubmit}>
           {/* Name */}
-          <div className="mb-6">
+          <div>
             <label className="block text-sm font-medium mb-1" htmlFor="name">
               Full Name
             </label>
             <input
-              className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
               type="text"
               name="name"
+              className="border border-gray-300 p-3 w-full rounded-lg focus:ring-2 focus:ring-blue-400"
               placeholder="Enter voter's full name"
               value={name}
               onChange={handleInputChange}
@@ -129,60 +115,68 @@ const ElectionVoter = () => {
           </div>
 
           {/* Email */}
-          <div className="mb-6">
+          <div>
             <label className="block text-sm font-medium mb-1" htmlFor="email">
               Email Address
             </label>
             <input
-              className="border border-gray-300 p-3 bg-gray-50 rounded-lg block w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
-              name="email"
               type="email"
+              name="email"
+              className="border border-gray-300 p-3 w-full rounded-lg focus:ring-2 focus:ring-blue-400"
               placeholder="Enter voter's email address"
-              required
               value={email}
               onChange={handleInputChange}
+              required
             />
           </div>
 
           {/* Phone */}
-          <div className="mb-6">
+          <div>
             <label className="block text-sm font-medium mb-1" htmlFor="phone">
               Phone Number
             </label>
-
             <PhoneInput
-              country={"ng"} // Default country
+              country={"ng"}
               value={phone}
-              onChange={setPhone} // Update state with selected number
-              inputClass="phone-input-field" // Apply custom class to input field
-              buttonClass="phone-input-button" // Apply custom class to button
-              containerClass="phone-input-container" // Apply custom class to container
+              onChange={setPhone}
+              inputClass="phone-input-field"
+              containerClass="phone-input-container"
             />
-            <small className="text-gray-500">
-              Ensure this number is correct to receive the verification code via
-              SMS.
+            <small className="text-gray-500 block mt-1">
+              Ensure this number is correct to receive SMS updates.
             </small>
           </div>
 
-          {/* Submit Buttons */}
-          <div className="flex gap-4 items-center justify-center">
+          {/* Action Buttons */}
+          <div className="flex justify-between items-center mt-6">
             <button
-              className="text-sm lg:text-base w-40 py-3 bg-blue-600 rounded-lg text-white hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600 transition-all disabled:bg-gray-300"
               type="submit"
-              onClick={handleSubmit}
+              className={`w-full mr-2 py-2 rounded-lg ${
+                loading
+                  ? "bg-gray-300"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
               disabled={loading}
             >
-              {loading ? "Loading..." : "Edit"}
+              {loading ? "Saving..." : "Save Changes"}
             </button>
-
             <button
-              className="text-sm lg:text-base w-40 py-3 bg-red-600 rounded-lg text-white hover:bg-white hover:text-red-600 hover:border-2 hover:border-red-600 transition-all"
               type="button"
-              onClick={() => navigate(-1)}
+              className="w-full ml-2 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              onClick={handleDelete}
             >
-              Close
+              Delete Voter
             </button>
           </div>
+
+          {/* Back Button */}
+          <button
+            type="button"
+            className="w-full mt-4 py-2 text-gray-600 hover:text-blue-600"
+            onClick={() => navigate(-1)}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>
