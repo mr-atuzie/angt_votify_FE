@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BiSolidBadgeCheck } from "react-icons/bi";
 import { formatter } from "../../utils";
 import FlutterwavePayment from "../../components/FlutterwavePayment";
+import { demo, pro, standard } from "../../utils/subscriptionPlans";
 
 const DashboardPricing = () => {
   const FeatureItem = ({ text, color }) => (
@@ -25,6 +26,8 @@ const DashboardPricing = () => {
       tier: "customize",
       voterLimit: 100,
       electionsAllowed: numberOfElection,
+      amount: (value * 0.147).toFixed(2),
+      currency: "USD",
     };
   };
 
@@ -44,14 +47,9 @@ const DashboardPricing = () => {
           </div>
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
-            btn_text="Try Free Plan"
-            amount={8}
-            subscriptionPlan={{
-              tier: "Demo",
-              voterLimit: 15,
-              electionsAllowed: 3,
-              amount: 8,
-            }}
+            btn_text="Try Demo Plan"
+            amount={demo.amount}
+            subscriptionPlan={demo}
           />
           <div className="mt-6">
             <FeatureItem text="Up to 3 Elections" color="text-pink-600" />
@@ -74,13 +72,8 @@ const DashboardPricing = () => {
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
             btn_text="Get Standard Plan"
-            amount={17}
-            subscriptionPlan={{
-              tier: "Standard",
-              voterLimit: 30,
-              electionsAllowed: 5,
-              amount: 17,
-            }}
+            amount={standard.amount}
+            subscriptionPlan={standard}
           />
           <div className="mt-6">
             <FeatureItem text="Up to 5 Elections" color="text-green-600" />
@@ -103,13 +96,8 @@ const DashboardPricing = () => {
           <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
             btn_text="Get Pro Plan"
-            amount={30}
-            subscriptionPlan={{
-              tier: "Pro",
-              voterLimit: 300,
-              electionsAllowed: 15,
-              amount: 30,
-            }}
+            amount={pro.amount}
+            subscriptionPlan={pro}
           />
           <div className="mt-6">
             <FeatureItem text="Up to 15 Elections" color="text-purple-600" />

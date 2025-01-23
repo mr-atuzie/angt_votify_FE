@@ -5,7 +5,7 @@ import { PiUsersFourDuotone } from "react-icons/pi";
 import { SlLogout } from "react-icons/sl";
 import { GrSettingsOption } from "react-icons/gr";
 import { MdSpaceDashboard } from "react-icons/md";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 // import { IoMdPricetags } from "react-icons/io";
@@ -45,7 +45,9 @@ const DashboardSidebar = () => {
   return (
     <div className=" w-full h-full  bg-blue-900 p-4 py-6 text-white">
       <div className="mb-6">
-        <h1 className=" font-semibold text-lg text-center">2RUEVOTES</h1>
+        <Link className=" cursor-pointer" to={"/"}>
+          <h1 className=" font-semibold text-lg text-center">2RUEVOTES</h1>
+        </Link>
       </div>
       <div className="flex flex-col gap-2">
         {[
