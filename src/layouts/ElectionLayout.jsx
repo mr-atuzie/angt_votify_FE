@@ -25,10 +25,13 @@ const ElectionLayout = () => {
       const loginStatus = await dispatch(fetchLoginStatus());
       // console.log("election layout check session.....");
 
-      if (!loginStatus.payload) {
-        navigate("/login");
-        return;
-      }
+      // if (!loginStatus.payload) {
+      //   navigate("/login");
+      //   return;
+      // }
+
+      console.log(loginStatus);
+
       dispatch(fetchElectionData(id));
     };
 
