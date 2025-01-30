@@ -37,18 +37,21 @@ const VoteCard = ({
       const response = await axios.get(`/api/v1/ballot/election/${electionId}`);
       setBallots(response.data);
 
-      setLoading(false);
       toast.success("Vote successfully submitted!");
     } catch (error) {
       const message =
-        error.response?.data?.message || error.message || error.toString();
-      setLoading(false);
+        error.response?.data?.message || error.message || "An error occurred.";
       toast.error(`Failed to cast vote: ${message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="w-[95%] lg:w-[50%] mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden">
+    <div
+      key={ballot._id}
+      className="w-[95%] lg:w-[50%] mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden"
+    >
       {/* Election Info */}
       <div className="px-4 py-6 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
         <h1 className="text-lg sm:text-xl font-bold uppercase tracking-wide">
@@ -65,7 +68,7 @@ const VoteCard = ({
           ballot.votingOptions.map((option) => (
             <label
               key={option._id}
-              className="flex items-center gap-4 bg-gray-50 shadow-md p-4 sm:p-6 rounded-lg border border-gray-300 cursor-pointer transition hover:bg-gray-100"
+              className="flex items-center mb-3 gap-4 bg-gray-50 shadow-md p-4 sm:p-6 rounded-lg border border-gray-300 cursor-pointer transition hover:bg-gray-100"
             >
               {/* Profile Picture */}
               <img
@@ -99,7 +102,7 @@ const VoteCard = ({
           <p className="text-center text-gray-500">No options available.</p>
         )}
 
-        {/* Vote Button (Updated) */}
+        {/* Vote Button */}
         <div className="flex justify-center items-center mt-6 mb-4">
           {hasVoted ? (
             <button
@@ -113,15 +116,19 @@ const VoteCard = ({
             <button
               type="button"
               onClick={(e) => handleCastVote(e, ballot._id, voteFor)}
-              disabled={!voteFor} // Disabled if no option selected
+              disabled={!voteFor || loading} // Disable if no option is selected or loading
               className={`text-sm sm:text-base ${
-                !voteFor
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-700 hover:bg-blue-800"
-              } text-white font-medium rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md flex items-center transition-transform transform hover:scale-105`}
+                voteFor ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-400"
+              } text-white font-medium rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-md flex items-center transition-transform transform ${
+                voteFor ? "hover:scale-105" : "cursor-not-allowed"
+              }`}
             >
               <span className="mr-2">
-                {loading ? "Loading..." : "Submit Your Vote"}
+                {loading
+                  ? "Submitting..."
+                  : !voteFor
+                  ? "Select an option to vote"
+                  : "Submit Your Vote"}
               </span>
               <IoFingerPrintSharp size={24} />
             </button>
