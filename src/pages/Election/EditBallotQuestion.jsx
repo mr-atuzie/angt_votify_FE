@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import api from "../../axiosInstance";
 
 const EditBallotQuestion = () => {
   const electionData = useOutletContext();
@@ -22,7 +22,7 @@ const EditBallotQuestion = () => {
     const fetchBallot = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(`/api/v1/ballot/${ballotId}`);
+        const { data } = await api.get(`/api/v1/ballot/${ballotId}`);
 
         setTitle(data?.title || "");
         setDescription(data?.description || "");
@@ -52,7 +52,7 @@ const EditBallotQuestion = () => {
     }
 
     try {
-      const { data } = await axios.patch(`/api/v1/ballot/${ballotId}`, {
+      const { data } = await api.patch(`/api/v1/ballot/${ballotId}`, {
         title,
         description,
         electionId: electionData?._id,

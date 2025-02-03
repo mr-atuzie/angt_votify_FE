@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import axios from "axios";
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
+import api from "../../axiosInstance";
 
 const DashboardVoters = () => {
   const initialState = {
@@ -42,7 +42,7 @@ const DashboardVoters = () => {
     }
 
     try {
-      const { data } = await axios.post(`/api/v1/voter`, {
+      const { data } = await api.post(`/api/v1/voter`, {
         fullName: name,
         email,
         phone,
@@ -76,7 +76,7 @@ const DashboardVoters = () => {
     setPreLoader(true);
     const getElection = async () => {
       try {
-        const response = await axios.get(`/api/v1/user/election`);
+        const response = await api.get(`/api/v1/user/election`);
         console.log(response.data);
         setElections(response.data);
         setPreLoader(false);

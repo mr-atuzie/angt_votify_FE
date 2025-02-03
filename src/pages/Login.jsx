@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
+import { SET_USER } from "../redux/features/auth/authSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Login = () => {
@@ -50,6 +50,9 @@ const Login = () => {
 
       setLoading(false);
 
+      sessionStorage.setItem("token", data.token); // Store token
+      // axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
       const userDetail = {
         fullname: data?.user.name,
         id: data?.user._id,
@@ -61,7 +64,7 @@ const Login = () => {
       console.log(userDetail);
 
       dispatch(SET_USER(userDetail));
-      dispatch(SET_LOGIN(true));
+      // dispatch(SET_LOGIN(true));
 
       toast.success("Login successfully");
       navigate("/dashboard");

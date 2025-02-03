@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import api from "../axiosInstance";
 
 const CreateElection = () => {
   const initialState = {
@@ -80,7 +80,7 @@ const CreateElection = () => {
 
       const imagePath = imageData.secure_url.toString();
 
-      const { data } = await axios.post(`/api/v1/election/create`, {
+      const { data } = await api.post(`/api/v1/election/create`, {
         title,
         description,
         startDate,

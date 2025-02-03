@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { VscFileSubmodule } from "react-icons/vsc";
 import { IoMdArrowBack } from "react-icons/io";
@@ -6,6 +5,7 @@ import { IoCloudUploadSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { fetchElectionData } from "../redux/features/election/electionSlice";
 import { useDispatch } from "react-redux";
+import api from "../axiosInstance";
 
 const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
   const [file, setFile] = useState(null);
@@ -34,7 +34,7 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         "/api/v1/voter/upload-voters/" + electionData?._id,
         formData,
         {

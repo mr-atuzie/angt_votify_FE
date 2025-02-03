@@ -4,7 +4,7 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../../axiosInstance";
 
 const ElectionAddVoters = () => {
   const initialState = {
@@ -36,7 +36,7 @@ const ElectionAddVoters = () => {
     }
 
     try {
-      const { data } = await axios.post(`/api/v1/voter`, {
+      const { data } = await api.post(`/api/v1/voter`, {
         fullName: name,
         email,
         phone,

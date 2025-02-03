@@ -4,10 +4,10 @@ import { useOutletContext } from "react-router-dom";
 import { AiOutlineFieldTime, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaPlay, FaStop } from "react-icons/fa";
 import { MdOutlineDescription } from "react-icons/md";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { fetchElectionData } from "../../redux/features/election/electionSlice";
+import api from "../../axiosInstance";
 
 const ElectionLaunch = () => {
   const electionData = useOutletContext();
@@ -20,9 +20,7 @@ const ElectionLaunch = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(
-        `/api/v1/election/start-election/${id}`
-      );
+      const { data } = await api.post(`/api/v1/election/start-election/${id}`);
       console.log(data);
       dispatch(fetchElectionData(id));
       toast.success(data.message);
@@ -44,7 +42,7 @@ const ElectionLaunch = () => {
     setLoading2(true);
 
     try {
-      const { data } = await axios.post(`/api/v1/election/end-election/${id}`);
+      const { data } = await api.post(`/api/v1/election/end-election/${id}`);
       console.log(data);
       toast.success(data.message);
       setLoading2(false);

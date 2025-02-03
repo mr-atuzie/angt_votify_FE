@@ -2,22 +2,28 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import CountUpAnimation from "../../components/CountUpAnimation";
-import axios from "axios";
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
 import moment from "moment";
 import { FaCalendarAlt, FaCheckCircle, FaCalendarCheck } from "react-icons/fa";
 import { MdBallot } from "react-icons/md";
+import api from "../../axiosInstance";
 
 const Dashboard = () => {
   const [preLoader, setPreLoader] = useState(false);
   const [dashboard, setDashBoard] = useState(null);
 
+  const token = sessionStorage.getItem("token");
+
   useEffect(() => {
     setPreLoader(true);
     const getElection = async () => {
       try {
-        const response = await axios.get(`/api/v1/user/dashboard`);
+        const response = await api.get(`/api/v1/user/dashboard`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setDashBoard(response.data);
         setPreLoader(false);
@@ -38,7 +44,7 @@ const Dashboard = () => {
     };
 
     getElection();
-  }, []);
+  }, [token]);
 
   // setPreLoader(true);
 

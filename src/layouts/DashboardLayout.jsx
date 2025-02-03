@@ -1,31 +1,31 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import DashboardSidebar from "../components/DashboardSidebar";
 import DashboardHeader from "../components/DashboardHeader";
-import { fetchLoginStatus, selectUser } from "../redux/features/auth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 import MobileNav from "../components/MobileNav";
 
 const DashboardLayout = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const { fullname } = useSelector(selectUser);
 
-  useEffect(() => {
-    // Check login status and fetch election data
-    const initialize = async () => {
-      const loginStatus = await dispatch(fetchLoginStatus());
-      console.log("dashbaord layout check session.....");
+  // useEffect(() => {
+  //   // Check login status and fetch election data
+  //   const initialize = async () => {
+  //     const loginStatus = await dispatch(fetchLoginStatus());
+  //     console.log("dashbaord layout check session.....");
 
-      // if (!loginStatus.payload) {
-      //   navigate("/login", { replace: true });
-      // }
+  //     // if (!loginStatus.payload) {
+  //     //   navigate("/login", { replace: true });
+  //     // }
 
-      console.log(loginStatus);
-    };
+  //     console.log(loginStatus);
+  //   };
 
-    initialize();
-  }, [dispatch, navigate]);
+  //   initialize();
+  // }, [dispatch, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">

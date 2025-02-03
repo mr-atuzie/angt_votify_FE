@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import api from "../../axiosInstance";
 
 const ElectionVoter = () => {
   const initialState = {
@@ -25,7 +25,7 @@ const ElectionVoter = () => {
     setPreLoader(true);
     const fetchVoter = async () => {
       try {
-        const { data } = await axios.get(`/api/v1/voter/${id}`);
+        const { data } = await api.get(`/api/v1/voter/${id}`);
         setFormData({
           name: data.voter.fullName || "",
           email: data.voter.email || "",
@@ -58,7 +58,7 @@ const ElectionVoter = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`/api/v1/voter/${id}`, {
+      await api.put(`/api/v1/voter/${id}`, {
         fullName: name,
         email,
         phone,
@@ -78,7 +78,7 @@ const ElectionVoter = () => {
     if (window.confirm("Are you sure you want to delete this voter?")) {
       setLoading(true);
       try {
-        await axios.delete(`/api/v1/voter/${id}`);
+        await api.delete(`/api/v1/voter/${id}`);
         toast.success("Voter deleted successfully");
         navigate(-1);
       } catch (error) {

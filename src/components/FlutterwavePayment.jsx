@@ -3,7 +3,7 @@ import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/features/auth/authSlice";
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../axiosInstance";
 
 const FlutterwavePayment = ({
   btn_style,
@@ -15,7 +15,7 @@ const FlutterwavePayment = ({
 
   const handleSubscribe = async (flutterwavePaymentReciept) => {
     try {
-      const { data } = await axios.patch(`/api/v1/user/subscribe`, {
+      const { data } = await api.patch(`/api/v1/user/subscribe`, {
         subscriptionPlan,
         flutterwavePaymentReciept,
       });

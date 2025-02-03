@@ -1,16 +1,10 @@
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-// import { useEffect, useState } from "react";
-import {
-  // fetchLoginStatus,
-  selectIsLoggedIn,
-} from "../redux/features/auth/authSlice";
-// import Loader from "./Loader";
 
 const Private = () => {
   // const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
   // const [loading, setLoading] = useState(true); // Track loading state
+  const session = sessionStorage.getItem("token");
 
   // useEffect(() => {
   //   console.log("Private page....");
@@ -34,7 +28,7 @@ const Private = () => {
   // }
 
   // Navigate to login if not logged in
-  return isLoggedIn ? <Outlet /> : <Navigate to="/login" replace />;
+  return session ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default Private;

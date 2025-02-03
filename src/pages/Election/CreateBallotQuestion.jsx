@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import api from "../../axiosInstance";
 
 const CreateBallotQuestion = () => {
   const electionData = useOutletContext();
@@ -34,7 +34,7 @@ const CreateBallotQuestion = () => {
     }
 
     try {
-      const { data } = await axios.post(`/api/v1/ballot/create-ballot`, {
+      const { data } = await api.post(`/api/v1/ballot/create-ballot`, {
         title,
         description,
         electionId: electionData?._id,

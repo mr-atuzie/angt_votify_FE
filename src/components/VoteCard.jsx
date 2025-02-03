@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { IoFingerPrintSharp } from "react-icons/io5";
+import api from "../axiosInstance";
 
 const VoteCard = ({
   ballot,
@@ -25,7 +25,7 @@ const VoteCard = ({
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`/api/v1/voter/cast-vote`, {
+      const { data } = await api.post(`/api/v1/voter/cast-vote`, {
         votingOptionId: candidateId,
         voterId,
         ballotId,
@@ -34,7 +34,7 @@ const VoteCard = ({
       console.log(data);
 
       // Refresh ballots after voting
-      const response = await axios.get(`/api/v1/ballot/election/${electionId}`);
+      const response = await api.get(`/api/v1/ballot/election/${electionId}`);
       setBallots(response.data);
 
       toast.success("Vote successfully submitted!");

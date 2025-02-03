@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { SET_LOGIN, SET_USER } from "../redux/features/auth/authSlice";
+import { SET_USER } from "../redux/features/auth/authSlice";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -70,6 +70,9 @@ const Register = () => {
 
       console.log(data);
 
+      sessionStorage.setItem("token", data.token); // Store token
+      // axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
       const userDetail = {
         fullname: data?.newUser.name,
         id: data?.newUser._id,
@@ -78,7 +81,7 @@ const Register = () => {
       };
 
       dispatch(SET_USER(userDetail));
-      dispatch(SET_LOGIN(true));
+      // dispatch(SET_LOGIN(true));
 
       setLoading(false);
 

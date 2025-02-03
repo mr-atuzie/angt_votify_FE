@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import api from "../../axiosInstance";
 
 const EditBallotOption = () => {
   const { id, ballotId, optionId } = useParams();
@@ -23,7 +23,7 @@ const EditBallotOption = () => {
     setPreLoader(true);
     const fetchVotingOption = async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await api.get(
           `/api/v1/ballot/voting-option/${optionId}`
         );
 
@@ -90,7 +90,7 @@ const EditBallotOption = () => {
 
       const imagePath = imageData.secure_url.toString();
 
-      const { data } = await axios.put(
+      const { data } = await api.put(
         `/api/v1/ballot/voting-option/${optionId}`,
         {
           name: title,

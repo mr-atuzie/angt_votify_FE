@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoAddSharp } from "react-icons/io5";
@@ -9,11 +8,10 @@ import {
   useOutletContext,
   useParams,
 } from "react-router-dom";
-import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
-import { useSelector } from "react-redux";
 import UploadVoter from "../../components/UploadVoter";
 import { VscFileSubmodule } from "react-icons/vsc";
 import DashboardLoader from "../../components/DashboardLoader";
+import api from "../../axiosInstance";
 
 const ElectionVoters = () => {
   const [voters, setVoters] = useState([]);
@@ -24,21 +22,14 @@ const ElectionVoters = () => {
   const electionData = useOutletContext();
   const [fileMenu, setFileMenu] = useState(false);
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
   const { id } = useParams();
-
-  useEffect(() => {
-    if (isLoggedIn === false) {
-      navigate("/login");
-    }
-  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     setPreLoader(true);
     const getVoters = async () => {
       try {
-        const response = await axios.get(`/api/v1/voter/election/${id}`);
+        const response = await api.get(`/api/v1/voter/election/${id}`);
         setPreLoader(false);
         setVoters(response.data.voters);
       } catch (error) {

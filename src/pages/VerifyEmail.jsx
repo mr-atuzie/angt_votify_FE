@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { selectUser } from "../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
+import api from "../axiosInstance";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -43,7 +44,7 @@ const VerifyEmail = () => {
     }
 
     try {
-      const { data } = await axios.post("/api/v1/user/verify-email", {
+      const { data } = await api.post("/api/v1/user/verify-email", {
         code: otpCode,
       });
 

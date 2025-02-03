@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useOutletContext, useParams } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
 // import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 // import { useSelector } from "react-redux";
@@ -15,6 +14,7 @@ import { MdBallot } from "react-icons/md";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { PiUsersFourFill } from "react-icons/pi";
+import api from "../../axiosInstance";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -42,7 +42,7 @@ const ElectionOverview = () => {
     setPreLoader(true);
     const getTotalVoter = async () => {
       try {
-        const { data } = await axios.get(`/api/v1/election/${id}/total`);
+        const { data } = await api.get(`/api/v1/election/${id}/total`);
 
         console.log(data);
 

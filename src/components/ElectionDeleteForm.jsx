@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import api from "../axiosInstance";
 
 const ElectionDeleteForm = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ const ElectionDeleteForm = () => {
     setLoading(true);
 
     try {
-      await axios.delete(`/api/v1/election/${id}`);
+      await api.delete(`/api/v1/election/${id}`);
       toast.success(`election has been deleted`);
       setLoading(false);
       navigate("/dashboard");

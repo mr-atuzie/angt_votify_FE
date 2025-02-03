@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import api from "../axiosInstance";
 
 const DashboardSecuritySetting = () => {
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ const DashboardSecuritySetting = () => {
     }
 
     try {
-      const { data } = await axios.put(`/api/v1/user/profile/change-password`, {
+      const { data } = await api.put(`/api/v1/user/profile/change-password`, {
         password,
       });
       // dispatch(fetchElectionData(id));

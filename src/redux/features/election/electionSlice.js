@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../../axiosInstance";
 
 // Async thunk to fetch election data
 export const fetchElectionData = createAsyncThunk(
   "election/fetchElectionData",
   async (id, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/v1/election/${id}`);
+      const response = await api.get(`/api/v1/election/${id}`);
       // console.log("Fetched Election Data: ", response.data);
 
       return response.data;
@@ -24,7 +24,7 @@ export const fetchBallotData = createAsyncThunk(
   async (electionId, thunkAPI) => {
     try {
       console.log("Election ID:", electionId); // Debugging
-      const response = await axios.get(`/api/v1/ballot/election/${electionId}`);
+      const response = await api.get(`/api/v1/ballot/election/${electionId}`);
       // Log the response
       // console.log({ re: response.data });
       return response.data;

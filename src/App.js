@@ -18,7 +18,6 @@ import Testimonal from "./pages/Testimonal";
 import DashboardLayout from "./layouts/DashboardLayout";
 import DashboardElections from "./pages/Dashboard/DashboardElections";
 import DashboardVoters from "./pages/Dashboard/DashboardVoters";
-import DashboardCandidates from "./pages/Dashboard/DashboardCandidates";
 import DashboardPricing from "./pages/Dashboard/DashboardPricing";
 
 import CreateElection from "./pages/CreateElection";
@@ -50,7 +49,6 @@ import DashboardGeneralSetting from "./components/DashboardGeneralSetting";
 import DashboardSecuritySetting from "./components/DashboardSecuritySetting";
 import OrganisationForm from "./components/OrganisationForm";
 import { useDispatch } from "react-redux";
-import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import { useEffect } from "react";
 // import Private from "./components/Private";
 import ForgetPassword from "./pages/ForgetPassword";
@@ -68,43 +66,25 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getLoginStatus = async () => {
-      try {
-        const { data } = await axios.get(`/api/v1/user/loginStatus`);
+    const token = sessionStorage.getItem("token");
 
-        console.log(data);
+    if (token) {
+      console.log(token);
 
-        dispatch(SET_LOGIN(data));
-      } catch (error) {
-        const message =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+      // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
 
-        console.log(message);
-      }
-    };
-    getLoginStatus();
+    // const getLoginStatus = async () => {
+    //   try {
+    //     const { data } = await axios.get(`/api/v1/user/loginStatus`);
+    //     dispatch(SET_LOGIN(data));
+    //   } catch (error) {
+    //     console.error("Login status error:", error);
+    //   }
+    // };
+
+    // getLoginStatus();
   }, [dispatch]);
-
-  useEffect(() => {
-    const axiosInterceptor = axios.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error.response?.status === 401) {
-          // navigate("/login", { replace: true });
-          console.log("session expired");
-        }
-        return Promise.reject(error);
-      }
-    );
-
-    return () => {
-      axios.interceptors.response.eject(axiosInterceptor);
-    };
-  }, []);
 
   return (
     <>
@@ -134,10 +114,7 @@ function App() {
             {/* Individual dashboard sections */}
             <Route path="manage-elections" element={<DashboardElections />} />
             <Route path="voter-management" element={<DashboardVoters />} />
-            <Route
-              path="candidate-management"
-              element={<DashboardCandidates />}
-            />
+
             <Route path="subscription" element={<DashboardPricing />} />
 
             <Route path="create-election" element={<CreateElection />} />

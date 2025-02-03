@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import api from "../axiosInstance";
 
 const ElectionTypeSetting = () => {
   const [electionType, setElectionType] = useState("");
@@ -14,7 +14,7 @@ const ElectionTypeSetting = () => {
     console.log(electionType);
 
     try {
-      const { data } = await axios.put(`/api/v1/election/${id}`, {
+      const { data } = await api.put(`/api/v1/election/${id}`, {
         electionType,
       });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoAddSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../axiosInstance";
 
 const DashboardHeader = ({ fullname }) => {
   const location = useLocation();
@@ -19,9 +19,12 @@ const DashboardHeader = ({ fullname }) => {
 
   const logout = async () => {
     try {
-      const { data } = await axios.get(`/api/v1/user/logout`);
+      const { data } = await api.get(`/api/v1/user/logout`);
 
       toast.success(data);
+
+      sessionStorage.removeItem("token"); // Remove token
+      window.location.reload();
 
       console.log(data);
 

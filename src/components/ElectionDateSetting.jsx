@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { format, parseISO } from "date-fns";
+import api from "../axiosInstance";
 
 const ElectionDateSetting = () => {
   const [startDate, setStartDate] = useState("");
@@ -32,7 +32,7 @@ const ElectionDateSetting = () => {
 
       console.log({ adjustedEndDate, adjustedStartDate });
 
-      const { data } = await axios.put(`/api/v1/election/${id}`, {
+      const { data } = await api.put(`/api/v1/election/${id}`, {
         startDate: adjustedStartDate,
         endDate: adjustedEndDate,
       });

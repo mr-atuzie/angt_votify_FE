@@ -5,9 +5,10 @@ import { IoAddSharp } from "react-icons/io5";
 
 import Ballot from "../../components/Ballot";
 import { Link, useOutletContext, useParams } from "react-router-dom";
-import axios from "axios";
+
 import toast from "react-hot-toast";
 import DashboardLoader from "../../components/DashboardLoader";
+import api from "../../axiosInstance";
 
 const ElectionBallot = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const ElectionBallot = () => {
     setPreLoader(true);
     const getBallot = async () => {
       try {
-        const response = await axios.get(`/api/v1/ballot/election/${id}`);
+        const response = await api.get(`/api/v1/ballot/election/${id}`);
 
         setBallots(response.data);
         setPreLoader(false);
@@ -50,9 +51,9 @@ const ElectionBallot = () => {
     });
 
     try {
-      await axios.delete(`/api/v1/ballot/${ballotId}`);
+      await api.delete(`/api/v1/ballot/${ballotId}`);
 
-      const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      const response = await api.get(`/api/v1/ballot/election/${id}`);
       console.log(response.data);
       setBallots(response.data);
       return response.data;
@@ -73,9 +74,9 @@ const ElectionBallot = () => {
     console.log("clear ballot options", ballotId);
 
     try {
-      await axios.put(`/api/v1/ballot/clearAllOptions/${ballotId}`);
+      await api.put(`/api/v1/ballot/clearAllOptions/${ballotId}`);
 
-      const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      const response = await api.get(`/api/v1/ballot/election/${id}`);
       console.log(response.data);
       setBallots(response.data);
       return response.data;
@@ -96,9 +97,9 @@ const ElectionBallot = () => {
     console.log(optionId);
 
     try {
-      await axios.delete(`/api/v1/ballot/voting-option/${optionId}`);
+      await api.delete(`/api/v1/ballot/voting-option/${optionId}`);
 
-      const response = await axios.get(`/api/v1/ballot/election/${id}`);
+      const response = await api.get(`/api/v1/ballot/election/${id}`);
       console.log(response.data);
       setBallots(response.data);
       return response.data;

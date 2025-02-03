@@ -11,6 +11,7 @@ const VotingLogin = () => {
   const [voting, setVoting] = useState(null);
   const [voterLoginId, setVoterLoginId] = useState("");
   const [voterCode, setVoterCode] = useState("");
+  const [voterName, setVoterName] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { electionId, voterId } = useParams();
@@ -25,8 +26,11 @@ const VotingLogin = () => {
 
         const { data: voter } = await axios.get(`/api/v1/voter/${voterId}`);
 
+        console.log(voter);
+
         setVoterLoginId(voter?.voter.voterId || "");
         setVoterCode(voter?.voter.verificationCode || "");
+        setVoterName(voter?.voter.fullName || "");
 
         console.log(data);
 
@@ -186,8 +190,11 @@ const VotingLogin = () => {
             {/* Form Section */}
             <div className="px-6 py-8">
               <form onSubmit={handleSubmit}>
+                <p className="text-blue-600 text-center font-medium ">
+                  Welcome {voterName}
+                </p>
                 <p className="text-gray-600 text-center font-medium mb-6">
-                  Enter your credentials to access the voting platform.
+                  Login to access the voting platform.
                 </p>
 
                 {/* Input Fields */}

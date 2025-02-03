@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosCloudUpload } from "react-icons/io";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import api from "../../axiosInstance";
 
 const CreateBallotOption = () => {
   const { id, ballotId } = useParams();
@@ -57,7 +57,7 @@ const CreateBallotOption = () => {
 
       const imagePath = imageData.secure_url.toString();
 
-      const { data } = await axios.post(`/api/v1/ballot/create-ballot-option`, {
+      const { data } = await api.post(`/api/v1/ballot/create-ballot-option`, {
         name: title,
         description,
         image: imagePath,

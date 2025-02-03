@@ -6,10 +6,10 @@ import { SlLogout } from "react-icons/sl";
 import { GrSettingsOption } from "react-icons/gr";
 import { MdSpaceDashboard } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
 // import { IoMdPricetags } from "react-icons/io";
 import { PiMoneyDuotone } from "react-icons/pi";
+import api from "../axiosInstance";
 
 const fontSize = 20;
 
@@ -21,9 +21,12 @@ const DashboardSidebar = () => {
   const logout = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/api/v1/user/logout`);
+      const { data } = await api.get(`/api/v1/user/logout`);
 
       setLoading(false);
+
+      sessionStorage.removeItem("token"); // Remove token
+      window.location.reload();
 
       toast.success(data);
 

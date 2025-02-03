@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useOutletContext, useParams } from "react-router-dom";
 import { fetchElectionData } from "../redux/features/election/electionSlice";
 import { IoIosCloudUpload } from "react-icons/io";
+import api from "../axiosInstance";
 
 const ElectionGeneralSetting = () => {
   const [title, setTitle] = useState("");
@@ -62,7 +62,7 @@ const ElectionGeneralSetting = () => {
         newImage = electionData?.image;
       }
 
-      const { data } = await axios.put(`/api/v1/election/${id}`, {
+      const { data } = await api.put(`/api/v1/election/${id}`, {
         title,
         description,
         image: newImage,

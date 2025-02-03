@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../axiosInstance";
 
 const DashboardGeneralSetting = () => {
   const [name, setName] = useState("");
@@ -11,7 +11,7 @@ const DashboardGeneralSetting = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.put(`/api/v1/user/profile`, {
+      const { data } = await api.put(`/api/v1/user/profile`, {
         fullname: name,
         email,
       });

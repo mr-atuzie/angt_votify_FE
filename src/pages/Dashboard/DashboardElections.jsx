@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import DashboardLoader from "../../components/DashboardLoader";
 import DashboardElectionCard from "../../components/DashboardElectionCard";
+import api from "../../axiosInstance";
 
 const DashboardElections = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +24,7 @@ const DashboardElections = () => {
     setPreLoader(true);
     const getElection = async () => {
       try {
-        const response = await axios.get(`/api/v1/user/election`);
+        const response = await api.get(`/api/v1/user/election`);
         // console.log(response.data);
         setElections(response.data);
         setPreLoader(false);
