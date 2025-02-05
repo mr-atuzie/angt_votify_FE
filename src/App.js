@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import ScrollTop from "./components/ScrollTop";
 import axios from "axios";
 
@@ -48,8 +48,8 @@ import DashboardSettingLayout from "./layouts/DashboardSettingLayout";
 import DashboardGeneralSetting from "./components/DashboardGeneralSetting";
 import DashboardSecuritySetting from "./components/DashboardSecuritySetting";
 import OrganisationForm from "./components/OrganisationForm";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
 // import Private from "./components/Private";
 import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -63,28 +63,15 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-
-    if (token) {
-      console.log(token);
-
-      // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-
-    // const getLoginStatus = async () => {
-    //   try {
-    //     const { data } = await axios.get(`/api/v1/user/loginStatus`);
-    //     dispatch(SET_LOGIN(data));
-    //   } catch (error) {
-    //     console.error("Login status error:", error);
-    //   }
-    // };
-
-    // getLoginStatus();
-  }, [dispatch]);
+  if (!token) {
+    // console.log(token);
+    navigate("/login");
+    return null;
+    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
 
   return (
     <>

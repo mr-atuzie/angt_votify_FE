@@ -24,9 +24,9 @@ const DashboardHeader = ({ fullname }) => {
       toast.success(data);
 
       sessionStorage.removeItem("token"); // Remove token
-      window.location.reload();
+      // window.location.reload();
 
-      console.log(data);
+      // console.log(data);
 
       navigate(`/login`);
     } catch (error) {

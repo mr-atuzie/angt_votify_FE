@@ -26,7 +26,7 @@ const DashboardSidebar = () => {
       setLoading(false);
 
       sessionStorage.removeItem("token"); // Remove token
-      window.location.reload();
+      // window.location.reload();
 
       toast.success(data);
 
