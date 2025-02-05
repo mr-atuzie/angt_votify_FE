@@ -58,20 +58,19 @@ import VerifyEmail from "./pages/VerifyEmail";
 import NotFound from "./pages/NotFound";
 import ElectionVoter from "./pages/Election/ElectionVoter";
 import ElectionLaunch from "./pages/Election/ElectionLaunch";
+import { useEffect } from "react";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
-
-  if (!token) {
-    // console.log(token);
-    navigate("/login");
-    return null;
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  }
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <>

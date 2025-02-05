@@ -20,10 +20,10 @@ const DashboardHeader = ({ fullname }) => {
   const logout = async () => {
     try {
       const { data } = await api.get(`/api/v1/user/logout`);
+      sessionStorage.removeItem("token"); // Remove token
 
       toast.success(data);
 
-      sessionStorage.removeItem("token"); // Remove token
       // window.location.reload();
 
       // console.log(data);
