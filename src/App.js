@@ -65,14 +65,14 @@ axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
+    const token = sessionStorage.getItem("token"); // Fetch inside useEffect
     if (!token) {
       console.log("logout");
+      navigate("/login"); // Redirect to login if no token
     }
-  }, [navigate, token]);
-
+  }, [navigate]); // Only depend on navigate
   return (
     <>
       <BrowserRouter>
