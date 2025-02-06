@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollTop from "./components/ScrollTop";
 import axios from "axios";
 
@@ -64,15 +64,15 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem("token"); // Fetch inside useEffect
     if (!token) {
       console.log("logout");
-      navigate("/login"); // Redirect to login if no token
+      // navigate("/login"); // Redirect to login if no token
     }
-  }, [navigate]); // Only depend on navigate
+  }, []); // Only depend on navigate
   return (
     <>
       <BrowserRouter>
