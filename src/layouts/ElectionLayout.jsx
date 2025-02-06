@@ -6,6 +6,7 @@ import ElectionSidebar from "../components/ElectionSidebar";
 import ElectionHeader from "../components/ElectionHeader";
 import Loader from "../components/Loader";
 import ElectionMobileNav from "../components/ElectionMobileNav";
+import toast from "react-hot-toast";
 
 const ElectionLayout = () => {
   const { id } = useParams();
@@ -21,7 +22,8 @@ const ElectionLayout = () => {
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    if (token) {
+    if (!token) {
+      toast.error("Session time out,please login");
       navigate("/login", { replace: true });
     }
     dispatch(fetchElectionData(id));

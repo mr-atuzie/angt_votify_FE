@@ -5,6 +5,7 @@ import DashboardHeader from "../components/DashboardHeader";
 import { selectUser } from "../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import MobileNav from "../components/MobileNav";
+import toast from "react-hot-toast";
 
 const DashboardLayout = () => {
   // const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const DashboardLayout = () => {
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    if (token) {
+    if (!token) {
+      toast.error("Session time out,please login");
       navigate("/login", { replace: true });
     }
   }, [token, navigate]);
