@@ -18,9 +18,14 @@ const ElectionLayout = () => {
 
   // console.log(electionData);
 
+  const token = sessionStorage.getItem("token");
+
   useEffect(() => {
+    if (token) {
+      navigate("/login", { replace: true });
+    }
     dispatch(fetchElectionData(id));
-  }, [dispatch, id, navigate]);
+  }, [dispatch, id, navigate, token]);
 
   if (electionLoading) return <Loader />;
 

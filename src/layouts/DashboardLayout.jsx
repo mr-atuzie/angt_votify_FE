@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import DashboardSidebar from "../components/DashboardSidebar";
 import DashboardHeader from "../components/DashboardHeader";
 import { selectUser } from "../redux/features/auth/authSlice";
@@ -8,24 +8,16 @@ import MobileNav from "../components/MobileNav";
 
 const DashboardLayout = () => {
   // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { fullname } = useSelector(selectUser);
 
-  // useEffect(() => {
-  //   // Check login status and fetch election data
-  //   const initialize = async () => {
-  //     const loginStatus = await dispatch(fetchLoginStatus());
-  //     console.log("dashbaord layout check session.....");
+  const token = sessionStorage.getItem("token");
 
-  //     // if (!loginStatus.payload) {
-  //     //   navigate("/login", { replace: true });
-  //     // }
-
-  //     console.log(loginStatus);
-  //   };
-
-  //   initialize();
-  // }, [dispatch, navigate]);
+  useEffect(() => {
+    if (token) {
+      navigate("/login", { replace: true });
+    }
+  }, [token, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">

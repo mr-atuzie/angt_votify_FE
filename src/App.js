@@ -58,21 +58,11 @@ import VerifyEmail from "./pages/VerifyEmail";
 import NotFound from "./pages/NotFound";
 import ElectionVoter from "./pages/Election/ElectionVoter";
 import ElectionLaunch from "./pages/Election/ElectionLaunch";
-import { useEffect } from "react";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
-  // const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token"); // Fetch inside useEffect
-    if (!token) {
-      console.log("logout");
-      // navigate("/login"); // Redirect to login if no token
-    }
-  }, []); // Only depend on navigate
   return (
     <>
       <BrowserRouter>
