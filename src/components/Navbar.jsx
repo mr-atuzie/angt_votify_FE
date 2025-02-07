@@ -21,6 +21,7 @@ const Navbar = () => {
         <div className="hidden md:flex gap-8">
           {[
             "Home",
+            "About",
             "How it works",
             "Pricing",
             "FAQ",
@@ -89,6 +90,7 @@ const Navbar = () => {
           <div className="flex flex-col gap-4">
             {[
               "Home",
+              "About",
               "How it works",
               "Pricing",
               "FAQ",
