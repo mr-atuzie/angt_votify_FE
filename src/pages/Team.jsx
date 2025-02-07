@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import CEO from "../assets/idris.jpg";
 
 const Team = () => {
   return (
@@ -8,6 +9,11 @@ const Team = () => {
       <div className=" mt-[60px]">
         <section className="w-full py-5 lg:py-12 max-w-7xl mx-auto px-6 lg:px-12 ">
           <div>
+            <img
+              className=" w-36 object-cover h-36 rounded-md"
+              src={CEO}
+              alt=""
+            />
             <h1 className=" font-semibold text-lg">
               Idris Ogungbo Oluwabunmi{" "}
             </h1>
