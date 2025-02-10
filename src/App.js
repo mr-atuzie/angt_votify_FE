@@ -60,6 +60,7 @@ import ElectionVoter from "./pages/Election/ElectionVoter";
 import ElectionLaunch from "./pages/Election/ElectionLaunch";
 import Team from "./pages/Team";
 import TermsAndConditions from "./pages/TermsAndCondtions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -79,6 +80,7 @@ function App() {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
+          <Route path="/privay-policy" element={<PrivacyPolicy />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashbaord" element={<Dashboard />} />
           <Route path="/faq" element={<FAQ />} />
