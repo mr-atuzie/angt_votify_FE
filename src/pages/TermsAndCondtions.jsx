@@ -9,7 +9,7 @@ const TermsAndConditions = () => {
         <h1 className="text-4xl font-bold">2rueVote</h1>
       </header>
       <div className="bg-white p-6 rounded-b-lg shadow-lg">
-        <h2 className="text-3xl uppercase font-bold text-center my-4">
+        <h2 className=" text-xl lg:text-3xl uppercase font-bold text-center my-4">
           Terms and Conditions
         </h2>
         <p className="text-gray-600 text-center mb-6">
@@ -19,7 +19,7 @@ const TermsAndConditions = () => {
         <div className="space-y-8 text-gray-800">
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 1.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Acceptance of Terms
             </h3>
             <p>
@@ -30,7 +30,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 2.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Changes to Terms
             </h3>
             <p>
@@ -41,7 +41,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className="  lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 3.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Eligibility
             </h3>
             <p>
@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 4.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Account Registration and Security
             </h3>
             <p>
@@ -63,7 +63,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 5.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               User Responsibilities
             </h3>
             <ul className="list-disc list-inside pl-5">
@@ -77,7 +77,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 6.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Voting and Participation
             </h3>
             <p>
@@ -88,7 +88,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 7.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Intellectual Property
             </h3>
             <p>
@@ -99,7 +99,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 8.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Privacy and Data Protection
             </h3>
             <p>Your use of the Site is governed by our Privacy Policy.</p>
@@ -107,7 +107,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 9.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Third-Party Links and Content
             </h3>
             <p>
@@ -118,7 +118,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 10.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Disclaimers and Limitation of Liability
             </h3>
             <p>
@@ -128,7 +128,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 11.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Indemnification
             </h3>
             <p>
@@ -139,7 +139,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 12.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Termination
             </h3>
             <p>
@@ -150,7 +150,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 13.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Governing Law
             </h3>
             <p>
@@ -161,7 +161,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 14.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Dispute Resolution
             </h3>
             <p>Disputes shall be resolved through arbitration in Nigeria.</p>
@@ -169,7 +169,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" /> 15.
+              <FaCheckCircle size={iconSize} className="text-blue-500" />
               Contact Information
             </h3>
             <p>Email: info@angthub.com, idris.ogungbo@angthub.com</p>
