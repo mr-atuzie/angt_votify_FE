@@ -99,7 +99,7 @@ const TermsAndConditions = () => {
 
           <section>
             <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle iconSize={iconSize} className="text-blue-500" /> 8.
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 8.
               Privacy and Data Protection
             </h3>
             <p>Your use of the Site is governed by our Privacy Policy.</p>
