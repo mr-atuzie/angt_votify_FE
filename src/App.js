@@ -80,7 +80,7 @@ function App() {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
-          <Route path="/privay-policy" element={<PrivacyPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashbaord" element={<Dashboard />} />
           <Route path="/faq" element={<FAQ />} />
