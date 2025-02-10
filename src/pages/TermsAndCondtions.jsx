@@ -2,10 +2,11 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
 const TermsAndConditions = () => {
+  const iconSize = 15;
   return (
     <>
-      <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 rounded-t-lg shadow-md">
-        <h1 className="text-4xl font-bold">2RueVote</h1>
+      <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 shadow-md">
+        <h1 className="text-4xl font-bold">2rueVote</h1>
       </header>
       <div className="bg-white p-6 rounded-b-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center my-4">
@@ -17,8 +18,9 @@ const TermsAndConditions = () => {
 
         <div className="space-y-8 text-gray-800">
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 1. Acceptance of Terms
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 1.
+              Acceptance of Terms
             </h3>
             <p>
               By using 2RueVote.com, you agree to comply with these Terms and
@@ -27,8 +29,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 2. Changes to Terms
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 2.
+              Changes to Terms
             </h3>
             <p>
               We reserve the right to modify, amend, or update these Terms at
@@ -37,8 +40,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 3. Eligibility
+            <h3 className="  lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 3.
+              Eligibility
             </h3>
             <p>
               You must be at least 18 years old or the legal age of majority in
@@ -47,9 +51,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 4. Account
-              Registration and Security
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 4.
+              Account Registration and Security
             </h3>
             <p>
               You are responsible for maintaining the confidentiality of your
@@ -58,9 +62,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 5. User
-              Responsibilities
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 5.
+              User Responsibilities
             </h3>
             <ul className="list-disc list-inside pl-5">
               <li>You will not use the Site for any illegal activities.</li>
@@ -72,9 +76,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 6. Voting and
-              Participation
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 6.
+              Voting and Participation
             </h3>
             <p>
               By voting on 2RueVote.com, you agree to follow all rules and
@@ -83,9 +87,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 7. Intellectual
-              Property
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 7.
+              Intellectual Property
             </h3>
             <p>
               All content on 2RueVote.com is the property of 2RueVote and its
@@ -94,17 +98,17 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 8. Privacy and Data
-              Protection
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle iconSize={iconSize} className="text-blue-500" /> 8.
+              Privacy and Data Protection
             </h3>
             <p>Your use of the Site is governed by our Privacy Policy.</p>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 9. Third-Party Links
-              and Content
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 9.
+              Third-Party Links and Content
             </h3>
             <p>
               We do not assume responsibility for third-party content linked on
@@ -113,9 +117,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 10. Disclaimers and
-              Limitation of Liability
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 10.
+              Disclaimers and Limitation of Liability
             </h3>
             <p>
               2RueVote.com is provided on an "as-is" basis without warranties.
@@ -123,8 +127,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 11. Indemnification
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 11.
+              Indemnification
             </h3>
             <p>
               You agree to indemnify and hold harmless 2RueVote and its
@@ -133,8 +138,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 12. Termination
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 12.
+              Termination
             </h3>
             <p>
               We reserve the right to terminate your access to the Site at our
@@ -143,8 +149,9 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 13. Governing Law
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 13.
+              Governing Law
             </h3>
             <p>
               These Terms are governed by the laws of the Federal Republic of
@@ -153,16 +160,17 @@ const TermsAndConditions = () => {
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 14. Dispute Resolution
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 14.
+              Dispute Resolution
             </h3>
             <p>Disputes shall be resolved through arbitration in Nigeria.</p>
           </section>
 
           <section>
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle className="text-blue-500" /> 15. Contact
-              Information
+            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
+              <FaCheckCircle size={iconSize} className="text-blue-500" /> 15.
+              Contact Information
             </h3>
             <p>Email: info@angthub.com, idris.ogungbo@angthub.com</p>
             <p>Phone: +2348062430048</p>
