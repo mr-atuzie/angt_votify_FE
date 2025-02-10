@@ -3,7 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 const TermsAndConditions = () => {
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-gray-100 shadow-lg rounded-lg my-10">
+    <>
       <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 rounded-t-lg shadow-md">
         <h1 className="text-4xl font-bold">2RueVote</h1>
       </header>
@@ -169,7 +169,7 @@ const TermsAndConditions = () => {
           </section>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
