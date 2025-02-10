@@ -9,7 +9,7 @@ const TermsAndConditions = () => {
         <h1 className="text-4xl font-bold">2rueVote</h1>
       </header>
       <div className="bg-white p-6 rounded-b-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center my-4">
+        <h2 className="text-3xl uppercase font-bold text-center my-4">
           Terms and Conditions
         </h2>
         <p className="text-gray-600 text-center mb-6">
