@@ -80,11 +80,11 @@ const About = () => {
                 <div className="px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
                   {section.title}
                 </div>
-                <h2 className=" text-black lg:text-3xl font-semibold text-center">
+                <h2 className=" capitalize -mt-2 text-black lg:text-3xl font-semibold text-center">
                   {section.subtitle}
                 </h2>
               </div>
-              <p className="lg:text-lg">{section.text}</p>
+              <p className="lg:text-lg text-pretty  ">{section.text}</p>
             </div>
           </section>
         ))}
@@ -101,7 +101,7 @@ const About = () => {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="bg-white  rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6"
+                className="bg-white p-2 md:p-4  rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6"
               >
                 <img
                   src={member.image}
