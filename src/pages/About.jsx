@@ -5,13 +5,16 @@ import Reviews from "../components/Reviews";
 import Faq from "../components/Faq";
 import Banner from "../components/Banner";
 import ceoImage from "../assets/idris.jpg";
+import image1 from "../assets/election1.jpeg";
+import image2 from "../assets/election2.jpeg";
+import image3 from "../assets/election3.jpeg";
 
 const About = () => {
   const teamMembers = [
     {
-      name: ceoImage,
+      name: "Idris Ogungbo",
       role: "Co-Founder & CIO/CTO",
-      image: "/images/idris.jpg",
+      image: ceoImage,
       description:
         "Idris Ogungbo is a visionary technologist leading 2RueVote’s technological innovation. With over a decade of experience across fintech, maritime, telecoms, and oil & gas, he specializes in software development, cybersecurity, and systems architecture. He is also the founder of ANGT-Hub, a virtual tech hub connecting experts with learners.",
     },
@@ -24,41 +27,65 @@ const About = () => {
     },
   ];
 
+  const sections = [
+    {
+      title: "Welcome to 2RueVote",
+      subtitle: "Empowering secure and transparent voting",
+      text: "2RueVote is an innovative platform committed to revolutionizing the way people engage with voting and democracy. We empower organizations and individuals with tools to participate in the voting process more effectively, securely, and transparently.",
+      image: image1,
+    },
+    {
+      title: "Our Vision",
+      subtitle: "A future of secure and inclusive voting",
+      text: "To become the leading platform for secure, transparent, and inclusive voting globally, fostering a stronger connection between citizens and the decisions that shape their lives.",
+      image: image2,
+    },
+    {
+      title: "Our Mission",
+      subtitle: "Modernizing voting through technology",
+      text: "Our mission is to modernize the voting process through technology, ensuring that all organizations and individuals have access to a simple, secure, and reliable voting system. We are committed to creating a platform that champions transparency, eliminates voter fraud, and increases voter participation globally.",
+      image: image3,
+    },
+  ];
+
   return (
     <>
       <Navbar />
-      <div className="max-w-6xl mx-auto p-8 space-y-16">
+      <div className="max-w-6xl mt-[60px] mx-auto p-8 space-y-16">
         {/* Hero Section */}
-        <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-8 shadow-md rounded-lg">
+        {/* <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-8 shadow-md rounded-lg">
           <h1 className="text-4xl font-bold">About Us</h1>
-        </header>
+        </header> */}
 
         {/* Sections */}
-        {[
-          {
-            title: "Welcome to 2RueVote",
-            subtitle: "Empowering secure and transparent voting",
-            text: "2RueVote is an innovative platform committed to revolutionizing the way people engage with voting and democracy. We empower organizations and individuals with tools to participate in the voting process more effectively, securely, and transparently.",
-          },
-          {
-            title: "Our Vision",
-            subtitle: "A future of secure and inclusive voting",
-            text: "To become the leading platform for secure, transparent, and inclusive voting globally, fostering a stronger connection between citizens and the decisions that shape their lives.",
-          },
-          {
-            title: "Our Mission",
-            subtitle: "Modernizing voting through technology",
-            text: "Our mission is to modernize the voting process through technology, ensuring that all organizations and individuals have access to a simple, secure, and reliable voting system. We are committed to creating a platform that champions transparency, eliminates voter fraud, and increases voter participation globally.",
-          },
-        ].map((section, index) => (
-          <section key={index} className="text-center text-gray-700 px-6">
-            <div className="flex flex-col gap-4 justify-center mb-10 items-center">
-              <div className="text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
-                {section.subtitle}
-              </div>
-              <h2 className="text-3xl font-bold">{section.title}</h2>
+        {sections.map((section, index) => (
+          <section
+            key={index}
+            className={`flex flex-col md:flex-row items-center gap-10 ${
+              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            }`}
+          >
+            {/* Image */}
+            <div className="w-full md:w-1/2">
+              <img
+                src={section.image}
+                alt={section.title}
+                className="w-full h-64 object-cover rounded-lg shadow-md"
+              />
             </div>
-            <p className="mt-4 max-w-3xl mx-auto">{section.text}</p>
+
+            {/* Text Content */}
+            <div className="w-full md:w-1/2 text-gray-700 text-center md:text-left px-6">
+              <div className="flex flex-col gap-4 justify-center mb-6 items-center md:items-start">
+                <div className="px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
+                  {section.title}
+                </div>
+                <h2 className="text-xl lg:text-3xl font-bold">
+                  {section.subtitle}
+                </h2>
+              </div>
+              <p className="text-lg">{section.text}</p>
+            </div>
           </section>
         ))}
 
