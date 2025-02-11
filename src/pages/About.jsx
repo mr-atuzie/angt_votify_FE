@@ -90,15 +90,15 @@ const About = () => {
         <section>
           <div className="flex flex-col gap-4 justify-center mb-10 items-center">
             <div className="text-center px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
-              Our Experts
+              Meet Our Team
             </div>
-            <h2 className="text-3xl font-bold text-center">Meet Our Team</h2>
+            {/* <h2 className="text-3xl font-bold text-center"></h2> */}
           </div>
           <div className="mt-6 space-y-8">
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6"
+                className="bg-white  rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start gap-6"
               >
                 <img
                   src={member.image}
