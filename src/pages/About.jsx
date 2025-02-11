@@ -76,7 +76,7 @@ const About = () => {
 
             {/* Text Content */}
             <div className="w-full  text-gray-700 text-center md:text-left ">
-              <div className="flex flex-col gap-4 justify-center mb-3 lg:mb-6 items-center md:items-start">
+              <div className="flex flex-col gap-4 mb-3 lg:mb-6 items-center md:items-start">
                 <div className="px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
                   {section.title}
                 </div>
