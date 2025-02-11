@@ -75,16 +75,13 @@ const About = () => {
             </div>
 
             {/* Text Content */}
-            <div className="w-full md:w-1/2 text-gray-700 text-center md:text-left px-6">
+            <div className="w-full  text-gray-700 text-center md:text-left ">
               <div className="flex flex-col gap-4 justify-center mb-6 items-center md:items-start">
                 <div className="px-6 py-1.5 bg-blue-50 rounded-md w-fit text-blue-600 font-medium">
                   {section.title}
                 </div>
-                <h2 className="text-xl lg:text-3xl font-bold">
-                  {section.subtitle}
-                </h2>
               </div>
-              <p className="text-lg">{section.text}</p>
+              <p className="lg:text-lg">{section.text}</p>
             </div>
           </section>
         ))}
