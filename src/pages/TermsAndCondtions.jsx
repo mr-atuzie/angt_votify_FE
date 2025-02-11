@@ -8,10 +8,10 @@ const TermsAndConditions = () => {
   return (
     <>
       <Navbar />
-      <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 shadow-md">
+      {/* <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 shadow-md">
         <h1 className="text-4xl font-bold">2rueVote</h1>
-      </header>
-      <div className="bg-white p-6 rounded-b-lg shadow-lg">
+      </header> */}
+      <div className="bg-white mt-[60px] p-6 rounded-b-lg shadow-lg">
         <h2 className=" text-xl lg:text-3xl uppercase font-bold text-center my-4">
           Terms and Conditions
         </h2>
