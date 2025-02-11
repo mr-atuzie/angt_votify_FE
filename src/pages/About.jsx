@@ -51,7 +51,7 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-6xl mt-[60px] mx-auto p-8 space-y-16">
+      <div className=" mt-[60px] mx-auto p-8 space-y-16">
         {/* Hero Section */}
         {/* <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-8 shadow-md rounded-lg">
           <h1 className="text-4xl font-bold">About Us</h1>
