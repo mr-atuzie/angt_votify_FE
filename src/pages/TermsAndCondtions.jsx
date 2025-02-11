@@ -1,10 +1,13 @@
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const TermsAndConditions = () => {
   const iconSize = 15;
   return (
     <>
+      <Navbar />
       <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 shadow-md">
         <h1 className="text-4xl font-bold">2rueVote</h1>
       </header>
@@ -177,6 +180,7 @@ const TermsAndConditions = () => {
           </section>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
