@@ -48,12 +48,33 @@ const ElectionVoters = () => {
 
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
     console.log("Search submitted for:", searchQuery);
+
+    try {
+      const { data } = await api.get(`/api/v1/voter/election/${id}/search`, {
+        params: { fullName: searchQuery },
+      });
+
+      console.log(data.voters);
+      console.log(data);
+
+      setVoters(data.voters);
+      // return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      toast.error(message);
+    }
   };
 
-  console.log(voters);
+  // console.log(voters);
 
   const downloadCSV = () => {
     const csvHeaders = ["Name,Email,Phone,Voted,voter ID,voting Code,link"];
