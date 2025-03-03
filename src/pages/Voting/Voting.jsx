@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DashboardLoader from "../../components/DashboardLoader";
 import VoteCard from "../../components/VoteCard";
 
@@ -71,6 +71,7 @@ const Voting = () => {
 
       {/* Ballots */}
       <div className="flex flex-col items-center">
+        <Link to={`/voting/result/${electionId}`}>view results</Link>
         {ballots.length > 0 ? (
           ballots.map((ballot) => {
             const hasVoted = ballot?.voters?.includes(voterId) || false;

@@ -62,6 +62,7 @@ import ElectionLaunch from "./pages/Election/ElectionLaunch";
 import TermsAndConditions from "./pages/TermsAndCondtions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import About from "./pages/About";
+import VotingResult from "./pages/Voting/VotingResult";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
@@ -174,6 +175,8 @@ function App() {
             path="voting/:electionId/voter/:voterId/vote"
             element={<Voting />}
           />
+
+          <Route path="voting/result/:id/" element={<VotingResult />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
