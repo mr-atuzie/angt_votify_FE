@@ -102,7 +102,7 @@ const Footer = () => {
           </div>
           <div className="mt-6">
             {/* <p className="text-sm">Phone: +234 80 1234 5678</p> */}
-            <p className="text-sm">Email: info@2ruevotes.com</p>
+            <p className="text-sm">Email: hello@2ruevote.com</p>
           </div>
         </div>
       </div>

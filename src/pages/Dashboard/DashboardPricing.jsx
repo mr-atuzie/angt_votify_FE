@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { BiSolidBadgeCheck } from "react-icons/bi";
 import { formatter } from "../../utils";
-import FlutterwavePayment from "../../components/FlutterwavePayment";
+// import FlutterwavePayment from "../../components/FlutterwavePayment";
 import { demo, pro, standard } from "../../utils/subscriptionPlans";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/auth/authSlice";
+import PaystackPayment from "../../components/PaystackPayment";
 
 const DashboardPricing = () => {
   const FeatureItem = ({ text, color }) => (
@@ -31,6 +34,8 @@ const DashboardPricing = () => {
     };
   };
 
+  const user = useSelector(selectUser);
+
   return (
     <div className="min-h-screen  flex flex-col p-3 gap-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -45,12 +50,29 @@ const DashboardPricing = () => {
           <div className="flex items-center gap-2 mb-4">
             <p className="text-3xl font-semibold  text-pink-600">$8.00</p>
           </div>
-          <FlutterwavePayment
+          {/* <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
             btn_text="Try Demo Plan"
             amount={demo.amount}
             subscriptionPlan={demo}
-          />
+          /> */}
+
+          {user ? (
+            <PaystackPayment
+              btn_style={
+                "rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
+              }
+              btn_text={"Try Demo Plan"}
+              subscriptionPlan={demo}
+              amount={demo.amount}
+              email={user?.email}
+            />
+          ) : (
+            <button className="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300">
+              Try Demo plan
+            </button>
+          )}
+
           <div className="mt-6">
             <FeatureItem text="Up to 3 Elections" color="text-pink-600" />
             <FeatureItem text="Up to 15 voters" color="text-pink-600" />
@@ -69,12 +91,26 @@ const DashboardPricing = () => {
           <div className="flex items-center gap-2 mb-4">
             <p className="text-3xl font-semibold text-green-600">$17.00</p>
           </div>
-          <FlutterwavePayment
+          {/* <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
             btn_text="Get Standard Plan"
             amount={standard.amount}
             subscriptionPlan={standard}
-          />
+          /> */}
+
+          {user ? (
+            <PaystackPayment
+              btn_style="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
+              btn_text="Get Standard Plan"
+              amount={standard.amount}
+              subscriptionPlan={standard}
+              email={user?.email}
+            />
+          ) : (
+            <button className="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300">
+              Get Standard Plan
+            </button>
+          )}
           <div className="mt-6">
             <FeatureItem text="Up to 5 Elections" color="text-green-600" />
             <FeatureItem text="Up to 30 voters" color="text-green-600" />
@@ -93,12 +129,25 @@ const DashboardPricing = () => {
           <div className="flex items-center gap-2 mb-4">
             <p className="text-3xl font-semibold  text-purple-600">$30.00</p>
           </div>
-          <FlutterwavePayment
+          {/* <FlutterwavePayment
             btn_style="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
             btn_text="Get Pro Plan"
             amount={pro.amount}
             subscriptionPlan={pro}
-          />
+          /> */}
+          {user ? (
+            <PaystackPayment
+              btn_style="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
+              btn_text="Get Pro Plan"
+              amount={pro.amount}
+              subscriptionPlan={pro}
+              email={user?.email}
+            />
+          ) : (
+            <button className="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300">
+              Get Pro Plan
+            </button>
+          )}
           <div className="mt-6">
             <FeatureItem text="Up to 15 Elections" color="text-purple-600" />
             <FeatureItem text="Up to 300 voters" color="text-purple-600" />
@@ -129,12 +178,20 @@ const DashboardPricing = () => {
             className="mt-4 w-full py-3  mb-2 px-5 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none transition duration-200"
             onChange={handleInputChange}
           />
-          <FlutterwavePayment
-            btn_style="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300"
-            btn_text="Customize Plan"
-            amount={amount}
-            subscriptionPlan={customizePlan}
-          />
+
+          {user ? (
+            <PaystackPayment
+              btn_style="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300"
+              btn_text="Customize Plan"
+              amount={amount}
+              subscriptionPlan={customizePlan}
+              email={user.email}
+            />
+          ) : (
+            <button className="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300">
+              Customize Plan
+            </button>
+          )}
           <div className="mt-6">
             <FeatureItem text="Custom Elections" color="text-black" />
             <FeatureItem text="Custom Voter Limit" color="text-black" />

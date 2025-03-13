@@ -1,30 +1,48 @@
 import React from "react";
 import { PaystackButton } from "react-paystack";
+import api from "../axiosInstance";
+import toast from "react-hot-toast";
 
-const PaystackPayment = () => {
-  const config = {
-    reference: new Date().getTime().toString(),
-    email: "customer@example.com",
-    amount: 5000 * 100, // Amount in kobo
-    publicKey: "pk_test_820864edf00e25d73eeb6bf0d1df11ff33fa62e9",
+const PaystackPayment = ({
+  btn_style,
+  btn_text,
+  subscriptionPlan,
+  amount,
+  email,
+}) => {
+  const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY; // Replace with your Paystack public key
+  const convertAmount = amount * 100; // Convert to cents (USD)
+
+  const handleSubscribe = async () => {
+    try {
+      await api.patch(`/api/v1/user/subscribe`, {
+        subscriptionPlan,
+      });
+
+      // console.log(data);
+    } catch (error) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      toast.error(message);
+    }
   };
 
-  const handleSuccess = (response) => {
-    console.log("Success:", response);
+  const componentProps = {
+    email,
+    amount: convertAmount,
+    publicKey,
+    currency: "USD", // ✅ Force transactions in USD
+    text: btn_text,
+    onSuccess: (reference) => {
+      console.log("Payment successful!", reference);
+      toast.success("Subscribtion payment was successful");
+      handleSubscribe();
+    },
+    onClose: () => alert("Transaction closed without payment"),
   };
 
-  const handleClose = () => {
-    console.log("Transaction was closed.");
-  };
-
-  return (
-    <PaystackButton
-      {...config}
-      text="Pay Now"
-      onSuccess={handleSuccess}
-      onClose={handleClose}
-    />
-  );
+  return <PaystackButton {...componentProps} className={btn_style} />;
 };
 
 export default PaystackPayment;

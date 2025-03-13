@@ -16,11 +16,11 @@ import "swiper/css/autoplay";
 const Reviews = () => {
   const testimonials = [
     {
-      name: "Daniel Martinez",
+      name: "ASC. Yinusa Jelili",
       role: "Tech Consultant",
-      location: "São Paulo, Brazil",
+      location: "NSCDC Ogun State",
       feedback:
-        "This voting system exceeded our expectations. The secure process and real-time tracking made it ideal for our tech conference elections. It’s a fantastic solution for international events.",
+        "We utilized this innovative platform to successfully conduct the recently concluded 2024 election for over 3,000 members of our Cooperative Society in the NSCDC Ogun State Command, and the experience was nothing short of exceptional. The process was secure, efficient, and seamless, leaving our members highly impressed. Many expressed excitement about this cutting-edge solution, suggesting it would be a game-changer if adopted by federal and state governments, as well as other organizations. Kudos to the 2ruevote team for delivering such a remarkable solution.",
     },
     {
       name: "Kwame Mensah",

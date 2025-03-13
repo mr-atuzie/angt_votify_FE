@@ -20,7 +20,7 @@ const Hero = () => {
         {/* Subtitle */}
         <p className="text-gray-600 text-base lg:text-lg leading-relaxed lg:w-[75%]">
           Simplify the election process for your organization. Our app ensures
-          your next election is free, fair, seamless, and secure.
+          your next election is fair, seamless, and secure.
         </p>
 
         {/* CTA Button */}

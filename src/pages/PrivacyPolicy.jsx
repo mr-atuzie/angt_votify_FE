@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
               <FaShieldAlt size={iconSize} className="text-blue-500" />
               Contact Us
             </h3>
-            <p>Email: info@angthub.com, idris.ogungbo@angthub.com</p>
+            <p>Email: hello@2ruevote.com, idris.ogungbo@angthub.com</p>
             <p>Phone: +2348062430048</p>
           </section>
         </div>
