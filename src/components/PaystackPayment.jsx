@@ -15,11 +15,11 @@ const PaystackPayment = ({
 
   const handleSubscribe = async () => {
     try {
-      await api.patch(`/api/v1/user/subscribe`, {
+      const { data } = await api.patch(`/api/v1/user/subscribe`, {
         subscriptionPlan,
       });
 
-      // console.log(data);
+      console.log(data);
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();

@@ -4,182 +4,123 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const TermsAndConditions = () => {
-  const iconSize = 15;
+  const iconSize = 20;
   return (
     <>
       <Navbar />
-      {/* <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-6 shadow-md">
-        <h1 className="text-4xl font-bold">2rueVote</h1>
-      </header> */}
-      <div className="bg-white mt-[60px] p-6 rounded-b-lg shadow-lg">
-        <h2 className=" text-xl lg:text-3xl uppercase font-bold text-center my-4">
-          Terms and Conditions
-        </h2>
-        <p className="text-gray-600 text-center mb-6">
-          Effective Date: 04-02-2025
-        </p>
 
-        <div className="space-y-8 text-gray-800">
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Acceptance of Terms
-            </h3>
-            <p>
-              By using 2RueVote.com, you agree to comply with these Terms and
-              all applicable laws and regulations.
-            </p>
-          </section>
+      <div className="bg-gradient-to-b from-blue-500 to-indigo-700 min-h-screen flex items-center justify-center px-4 py-12">
+        <div className="bg-white max-w-4xl w-full rounded-xl shadow-lg p-8 lg:p-12">
+          <h2 className="text-4xl font-extrabold text-center text-gray-800 uppercase">
+            Terms and Conditions
+          </h2>
+          <p className="text-gray-500 text-center mt-2">
+            Effective Date: 04-02-2025
+          </p>
 
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Changes to Terms
-            </h3>
-            <p>
-              We reserve the right to modify, amend, or update these Terms at
-              any time.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="  lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Eligibility
-            </h3>
-            <p>
-              You must be at least 18 years old or the legal age of majority in
-              your jurisdiction to use 2RueVote.com.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Account Registration and Security
-            </h3>
-            <p>
-              You are responsible for maintaining the confidentiality of your
-              login credentials.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              User Responsibilities
-            </h3>
-            <ul className="list-disc list-inside pl-5">
-              <li>You will not use the Site for any illegal activities.</li>
-              <li>
-                You will not attempt to interfere with the Site’s security.
-              </li>
-              <li>You will not violate other users' privacy rights.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Voting and Participation
-            </h3>
-            <p>
-              By voting on 2RueVote.com, you agree to follow all rules and
-              guidelines provided.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Intellectual Property
-            </h3>
-            <p>
-              All content on 2RueVote.com is the property of 2RueVote and its
-              licensors.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Privacy and Data Protection
-            </h3>
-            <p>Your use of the Site is governed by our Privacy Policy.</p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Third-Party Links and Content
-            </h3>
-            <p>
-              We do not assume responsibility for third-party content linked on
-              our site.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Disclaimers and Limitation of Liability
-            </h3>
-            <p>
-              2RueVote.com is provided on an "as-is" basis without warranties.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Indemnification
-            </h3>
-            <p>
-              You agree to indemnify and hold harmless 2RueVote and its
-              affiliates from any claims arising from your use of the Site.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Termination
-            </h3>
-            <p>
-              We reserve the right to terminate your access to the Site at our
-              discretion.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Governing Law
-            </h3>
-            <p>
-              These Terms are governed by the laws of the Federal Republic of
-              Nigeria.
-            </p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Dispute Resolution
-            </h3>
-            <p>Disputes shall be resolved through arbitration in Nigeria.</p>
-          </section>
-
-          <section>
-            <h3 className=" lg:text-xl font-semibold flex items-center gap-2">
-              <FaCheckCircle size={iconSize} className="text-blue-500" />
-              Contact Information
-            </h3>
-            <p>Email: hello@2ruevote.com, idris.ogungbo@angthub.com</p>
-            <p>Phone: +2348062430048</p>
-          </section>
+          <div className="mt-6 space-y-6 text-gray-800">
+            {[
+              {
+                title: "Acceptance of Terms",
+                details:
+                  "By using 2RueVote.com, you agree to comply with these Terms and all applicable laws and regulations.",
+              },
+              {
+                title: "Changes to Terms",
+                details:
+                  "We reserve the right to modify, amend, or update these Terms at any time.",
+              },
+              {
+                title: "Eligibility",
+                details:
+                  "You must be at least 18 years old or the legal age of majority in your jurisdiction to use 2RueVote.com.",
+              },
+              {
+                title: "Account Registration and Security",
+                details:
+                  "You are responsible for maintaining the confidentiality of your login credentials.",
+              },
+              {
+                title: "User Responsibilities",
+                details: [
+                  "You will not use the Site for any illegal activities.",
+                  "You will not attempt to interfere with the Site’s security.",
+                  "You will not violate other users' privacy rights.",
+                ],
+              },
+              {
+                title: "Voting and Participation",
+                details:
+                  "By voting on 2RueVote.com, you agree to follow all rules and guidelines provided.",
+              },
+              {
+                title: "Intellectual Property",
+                details:
+                  "All content on 2RueVote.com is the property of 2RueVote and its licensors.",
+              },
+              {
+                title: "Privacy and Data Protection",
+                details:
+                  "Your use of the Site is governed by our Privacy Policy.",
+              },
+              {
+                title: "Third-Party Links and Content",
+                details:
+                  "We do not assume responsibility for third-party content linked on our site.",
+              },
+              {
+                title: "Disclaimers and Limitation of Liability",
+                details:
+                  '2RueVote.com is provided on an "as-is" basis without warranties.',
+              },
+              {
+                title: "Indemnification",
+                details:
+                  "You agree to indemnify and hold harmless 2RueVote and its affiliates from any claims arising from your use of the Site.",
+              },
+              {
+                title: "Termination",
+                details:
+                  "We reserve the right to terminate your access to the Site at our discretion.",
+              },
+              {
+                title: "Governing Law",
+                details:
+                  "These Terms are governed by the laws of the Federal Republic of Nigeria.",
+              },
+              {
+                title: "Dispute Resolution",
+                details:
+                  "Disputes shall be resolved through arbitration in Nigeria.",
+              },
+              {
+                title: "Contact Information",
+                details: ["Email: hello@2ruevote.com", "Phone: +2348062430048"],
+              },
+            ].map((section, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 mt-[60px] p-5 rounded-lg shadow-md"
+              >
+                <h3 className="text-xl font-semibold flex items-center gap-2 text-blue-600">
+                  <FaCheckCircle size={iconSize} className="text-blue-500" />
+                  {section.title}
+                </h3>
+                {Array.isArray(section.details) ? (
+                  <ul className="list-disc list-inside mt-2 text-gray-700">
+                    {section.details.map((detail, i) => (
+                      <li key={i}>{detail}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-2 text-gray-700">{section.details}</p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

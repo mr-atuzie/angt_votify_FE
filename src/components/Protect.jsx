@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const ShowOnLogin = ({ children }) => {
   const isLoggedIn = sessionStorage.getItem("token");
 
@@ -11,7 +9,7 @@ const ShowOnLogin = ({ children }) => {
 };
 
 export const ShowOnLogout = ({ children }) => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const isLoggedIn = sessionStorage.getItem("token");
 
   if (!isLoggedIn) {
     return children;

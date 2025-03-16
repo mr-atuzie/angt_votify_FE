@@ -11,9 +11,6 @@ import { selectUser } from "../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 
 const Pricing = () => {
-  const [amount, setAmount] = useState(0);
-  const [numberOfElection, setNumberOfElection] = useState(0);
-
   const user = useSelector(selectUser);
 
   const FeatureItem = ({ text, color }) => (
@@ -22,20 +19,28 @@ const Pricing = () => {
       <p className="text-sm text-gray-700">{text}</p>
     </div>
   );
-  let customizePlan = {};
+
+  const [amount, setAmount] = useState(0);
+  const [numberOfElection, setNumberOfElection] = useState("");
+  const [customizePlan, setCustomizePlan] = useState({
+    tier: "customize",
+    voterLimit: 100,
+    electionsAllowed: 0,
+    amount: 0,
+    currency: "USD",
+  });
 
   const handleInputChange = (e) => {
-    const value = Number(e.target.value);
-    setNumberOfElection(value);
-    setAmount((value * 0.147).toFixed(2));
+    const value = e.target.value === "" ? "" : Number(e.target.value); // Allow empty string for controlled input
 
-    customizePlan = {
-      tier: "customize",
-      voterLimit: 100,
-      electionsAllowed: numberOfElection,
-      amount: (value * 0.147).toFixed(2),
-      currency: "USD",
-    };
+    setNumberOfElection(value); // Update input value
+    setAmount(value ? (value * 0.147).toFixed(2) : 0); // Prevent NaN when empty
+
+    setCustomizePlan((prev) => ({
+      ...prev,
+      electionsAllowed: value || 0, // Prevent NaN issue
+      amount: value ? (value * 0.147).toFixed(2) : 0,
+    }));
   };
 
   return (
@@ -209,6 +214,7 @@ const Pricing = () => {
               placeholder="Enter number of elections"
               className="mt-4 w-full py-3 mb-2 px-5 rounded-xl bg-white border border-gray-300 focus:ring-2 focus:ring-gray-400 focus:outline-none transition duration-200"
               onChange={handleInputChange}
+              value={numberOfElection}
             />
 
             {user ? (

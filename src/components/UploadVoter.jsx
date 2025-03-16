@@ -77,7 +77,8 @@ const UploadVoter = ({ electionData, setFileMenu, fileMenu }) => {
               Maximum file size: <strong>2MB</strong>
             </li>
             <li>
-              The file must include headers: <strong>name, phone</strong>
+              The file must include headers:{" "}
+              <strong>name, email & phone</strong>
             </li>
             <li>All email/phone number addresses must be valid.</li>
           </ul>
