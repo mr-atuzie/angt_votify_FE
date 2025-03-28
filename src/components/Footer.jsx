@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaVoteYea } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaVoteYea, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -76,7 +76,7 @@ const Footer = () => {
           </p>
           <div className="flex justify-start gap-4 text-2xl">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=61574035723342"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-500"
@@ -84,15 +84,15 @@ const Footer = () => {
               <FaFacebook />
             </a>
             <a
-              href="https://x.com/2ruevote?s=21"
+              href="https://www.linkedin.com/company/2ruevote/?viewAsMember=true"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-500"
             >
-              <FaTwitter />
+              <FaLinkedin />
             </a>
             <a
-              href="https://www.instagram.com/2ruevote?igsh=MW9nZGZkeXJjMDd4ag%3D%3D&utm_source=qr"
+              href="https://www.instagram.com/2ruevotes/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-purple-500"

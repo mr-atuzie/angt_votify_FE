@@ -9,9 +9,12 @@ import PaystackPayment from "../components/PaystackPayment";
 import { demo, pro, standard } from "../utils/subscriptionPlans";
 import { selectUser } from "../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Pricing = () => {
   const user = useSelector(selectUser);
+
+  const navigate = useNavigate();
 
   const FeatureItem = ({ text, color }) => (
     <div className="py-1 flex items-center gap-2">
@@ -41,6 +44,12 @@ const Pricing = () => {
       electionsAllowed: value || 0, // Prevent NaN issue
       amount: value ? (value * 0.147).toFixed(2) : 0,
     }));
+  };
+
+  const handlePlanSelection = () => {
+    if (!user) {
+      navigate("/login");
+    }
   };
 
   return (
@@ -80,7 +89,10 @@ const Pricing = () => {
                 email={user.email}
               />
             ) : (
-              <button className="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300">
+              <button
+                onClick={handlePlanSelection}
+                className="rounded-full w-full py-3 bg-pink-600 text-white hover:bg-pink-700 transition ease-in-out duration-300"
+              >
                 Try Demo plan
               </button>
             )}
@@ -126,7 +138,10 @@ const Pricing = () => {
                 email={user.email}
               />
             ) : (
-              <button className="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300">
+              <button
+                onClick={handlePlanSelection}
+                className="rounded-full w-full py-3 bg-green-600 text-white hover:bg-green-700 transition ease-in-out duration-300"
+              >
                 Get Standard Plan
               </button>
             )}
@@ -170,7 +185,10 @@ const Pricing = () => {
                 email={user.email}
               />
             ) : (
-              <button className="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300">
+              <button
+                onClick={handlePlanSelection}
+                className="rounded-full w-full py-3 bg-purple-600 text-white hover:bg-purple-700 transition ease-in-out duration-300"
+              >
                 Get Pro Plan
               </button>
             )}
@@ -226,7 +244,10 @@ const Pricing = () => {
                 email={user.email}
               />
             ) : (
-              <button className="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300">
+              <button
+                onClick={handlePlanSelection}
+                className="bg-black text-white w-full py-3 rounded-full hover:bg-gray-800 transition duration-300"
+              >
                 Customize Plan
               </button>
             )}

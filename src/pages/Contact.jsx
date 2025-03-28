@@ -1,31 +1,49 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Banner from "../components/Banner";
+import axios from "axios";
 
 const Contact = () => {
-  const form = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm("service_keu82gf", "template_hslu977", form.current, {
-        publicKey: "5bwkLkCC1c3TQELzA",
-      })
-      .then(
-        () => {
-          toast.success("Email has been sent");
-          console.log("SUCCESS!");
-          e.target.reset();
-        },
-        (error) => {
-          toast.error(error.text);
-          console.log("FAILED...", error.text);
-        }
+    if (!name || !email || !message) {
+      // setLoading(false);
+      return toast.error("All fields are required");
+    }
+
+    try {
+      const { data } = await axios.post("/api/v1/user/contact-us");
+      console.log(data);
+
+      console.log({ name, email, message });
+
+      toast.success(
+        `Dear ${name} your message has been sent,The 2ruevote team will contact you shortly`
       );
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      // toast.error(`Failed to send message, ${name}. Please try again.`);
+      console.error(error);
+
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      //   setLoading(false);
+      toast.error(message);
+    }
   };
   return (
     <>
@@ -40,11 +58,7 @@ const Contact = () => {
               Want to get in touch with our team? We're all ears.
             </h1>
           </div>
-          <form
-            ref={form}
-            onSubmit={sendEmail}
-            className=" lg:w-[75%] mx-auto my-8 "
-          >
+          <form onSubmit={sendEmail} className=" lg:w-[75%] mx-auto my-8 ">
             <div className=" mb-8">
               <label
                 className=" font-medium lg:font-semibold "
@@ -57,6 +71,8 @@ const Contact = () => {
                 type="text"
                 className=" bg-gray-100 rounded block p-3 w-full placeholder:text-gray-400 placeholder:font-medium "
                 placeholder="Enter Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -72,6 +88,8 @@ const Contact = () => {
                 type="email"
                 placeholder="Enter Your Email"
                 className=" bg-gray-100 rounded block p-3 w-full placeholder:text-gray-400 placeholder:font-medium "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -86,6 +104,8 @@ const Contact = () => {
               <textarea
                 name="message"
                 id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Enter Your Message"
                 className=" bg-gray-100 rounded h-48 block p-3 w-full placeholder:text-gray-400 placeholder:font-medium"
               ></textarea>

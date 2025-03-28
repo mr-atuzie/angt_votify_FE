@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import DashboardLoader from "../../components/DashboardLoader";
 import VoteCard from "../../components/VoteCard";
+import { FaPoll } from "react-icons/fa";
 
 const Voting = () => {
   const { electionId, voterId } = useParams();
@@ -71,7 +72,15 @@ const Voting = () => {
 
       {/* Ballots */}
       <div className="flex flex-col items-center">
-        <Link to={`/voting/result/${electionId}`}>view results</Link>
+        {/* <Link to={`/voting/result/${electionId}`}>view results</Link> */}
+
+        <Link
+          to={`/voting/result/${electionId}`}
+          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md transition-colors mb-6"
+        >
+          <FaPoll className="text-lg" />
+          <span>View Results</span>
+        </Link>
         {ballots.length > 0 ? (
           ballots.map((ballot) => {
             const hasVoted = ballot?.voters?.includes(voterId) || false;
