@@ -21,14 +21,11 @@ const Contact = () => {
     }
 
     try {
-      const { data } = await axios.post("/api/v1/user/contact-us", {
+      await axios.post("/api/v1/user/contact-us", {
         name,
         email,
         message,
       });
-      console.log(data);
-
-      console.log({ name, email, message });
 
       toast.success(
         `Dear ${name} your message has been sent,The 2ruevote team will contact you shortly`
