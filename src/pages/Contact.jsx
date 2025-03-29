@@ -9,17 +9,23 @@ const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!name || !email || !message) {
-      // setLoading(false);
+      setLoading(false);
       return toast.error("All fields are required");
     }
 
     try {
-      const { data } = await axios.post("/api/v1/user/contact-us");
+      const { data } = await axios.post("/api/v1/user/contact-us", {
+        name,
+        email,
+        message,
+      });
       console.log(data);
 
       console.log({ name, email, message });
@@ -30,6 +36,7 @@ const Contact = () => {
       setName("");
       setEmail("");
       setMessage("");
+      setLoading(false);
     } catch (error) {
       // toast.error(`Failed to send message, ${name}. Please try again.`);
       console.error(error);
@@ -41,7 +48,7 @@ const Contact = () => {
         error.message ||
         error.toString();
 
-      //   setLoading(false);
+      setLoading(false);
       toast.error(message);
     }
   };
@@ -114,7 +121,8 @@ const Contact = () => {
             <div className=" w-full flex justify-start">
               <button
                 type="submit"
-                className="  rounded uppercase bg-blue-600 text-lg font-semibold text-white px-8 py-2 lg:py-4  hover:bg-white hover:text-purple-700 hover:border-2 hover:border-purple-700 "
+                disabled={loading}
+                className=" disabled:opacity-50  rounded uppercase bg-blue-600 text-lg font-semibold text-white px-8 py-2 lg:py-4  hover:bg-white hover:text-purple-700 hover:border-2 hover:border-purple-700 "
               >
                 SUBMIT
               </button>
